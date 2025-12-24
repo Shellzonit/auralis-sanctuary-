@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 
+
+export default function JobsPage() {
   const [jobs, setJobs] = useState<any[]>([]);
 
   useEffect(() => {
