@@ -44,21 +44,39 @@ const aiCareers = [
 
   const [jobForm, setJobForm] = useState({ company: "", role: "", description: "", contact: "", hot: false });
   const [jobSubmitted, setJobSubmitted] = useState(false);
+  const [jobs, setJobs] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   function handleJobChange(e: any) {
     const { name, value, type, checked } = e.target;
     setJobForm({ ...jobForm, [name]: type === "checkbox" ? checked : value });
   }
 
-  function handleJobSubmit(e: any) {
+  async function handleJobSubmit(e: any) {
     e.preventDefault();
-    // Save job to localStorage
-    const jobs = JSON.parse(localStorage.getItem("publicJobs") || "[]");
-    jobs.push({ ...jobForm, date: new Date().toISOString(), approved: false });
-    localStorage.setItem("publicJobs", JSON.stringify(jobs));
+    const newJob = { ...jobForm, date: new Date().toISOString(), approved: false };
+    await fetch("/api/jobs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newJob),
+    });
     setJobSubmitted(true);
     setJobForm({ company: "", role: "", description: "", contact: "", hot: false });
+    fetchJobs();
   }
+
+  async function fetchJobs() {
+    setLoading(true);
+    const res = await fetch("/api/jobs");
+    const data = await res.json();
+    setJobs(data);
+    setLoading(false);
+  }
+
+  // Load jobs on mount
+  React.useEffect(() => {
+    fetchJobs();
+  }, []);
 
   return (
     <main className="min-h-screen bg-white text-black flex flex-col items-center px-6 py-12">
@@ -70,7 +88,7 @@ const aiCareers = [
         {/* Job Listing Submission Form */}
         <div className="mb-12 bg-amber-50 border border-amber-200 rounded-xl p-6 shadow">
           <h2 className="text-lg font-semibold mb-2 text-rose-700">Need creative AI talent?</h2>
-          <p className="mb-4 text-gray-700">Post a job or gig for free. (Submissions are not public in this demo.)</p>
+          <p className="mb-4 text-gray-700">Post a job or gig for free. Submissions are now public and update automatically.</p>
           {jobSubmitted ? (
             <div className="text-green-700 font-semibold">Thank you! Your job listing has been received.</div>
           ) : (
@@ -123,6 +141,30 @@ const aiCareers = [
               </div>
               <button type="submit" className="mt-2 px-5 py-2 bg-rose-700 text-white rounded-lg font-semibold hover:bg-rose-800 transition">Submit Job</button>
             </form>
+          )}
+        </div>
+        {/* Public Job Listings */}
+        <div className="mb-12 bg-white border border-amber-100 rounded-xl p-6 shadow">
+          <h2 className="text-lg font-semibold mb-4 text-rose-700">Public Job Board</h2>
+          {loading ? (
+            <div>Loading jobs...</div>
+          ) : jobs.length === 0 ? (
+            <div className="text-gray-500">No jobs posted yet.</div>
+          ) : (
+            <ul className="space-y-4">
+              {jobs.map((job, idx) => (
+                <li key={idx} className="border-b border-amber-100 pb-4 mb-4 last:border-b-0 last:pb-0 last:mb-0">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-rose-700">{job.company}</span>
+                    {job.hot && <span className="ml-2 px-2 py-0.5 bg-amber-200 text-amber-800 rounded text-xs font-semibold">HOT</span>}
+                  </div>
+                  <div className="font-semibold text-gray-800">{job.role}</div>
+                  <div className="text-gray-700 mb-1">{job.description}</div>
+                  <div className="text-xs text-gray-500">Posted: {job.date ? new Date(job.date).toLocaleDateString() : ""}</div>
+                  <div className="text-xs text-gray-500">Contact: {job.contact}</div>
+                </li>
+              ))}
+            </ul>
           )}
         </div>
         {aiCareers.map((section) => (

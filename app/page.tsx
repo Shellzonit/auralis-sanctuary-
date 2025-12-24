@@ -26,7 +26,7 @@ import { useEffect } from "react";
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
         <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 text-black relative animate-fade-in">
           <button onClick={closeTutorial} className="absolute top-3 right-4 text-2xl text-gray-400 hover:text-black">&times;</button>
-          <h2 className="text-2xl font-bold mb-4 text-rose-700">Welcome to Auralis Studio!</h2>
+          <h2 className="text-2xl font-bold mb-4 text-rose-700">Welcome to Sanctuary!</h2>
           <ol className="list-decimal list-inside space-y-2 text-base">
             <li>Browse <span className="font-semibold text-amber-700">music</span> and <span className="font-semibold text-rose-700">art</span> by category.</li>
             <li>Click on music links to listen, or view art in the gallery.</li>
@@ -49,10 +49,7 @@ import { useEffect } from "react";
     >
 
 
-      {/* Logo and Title (static image) */}
-      <div style={{ textAlign: "center", paddingTop: "40px" }}>
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 600, margin: 0 }}>Auralis Studio</h1>
-      </div>
+      {/* Logo and Title removed */}
 
       {/* Quick links to new features */}
       <div className="flex gap-4 mb-6 justify-center">
@@ -63,7 +60,7 @@ import { useEffect } from "react";
       {/* Hero Section */}
       <div className="mt-8 mb-8 sm:mt-10 sm:mb-12">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wider text-black mb-4" style={{ fontFamily: 'serif, system-ui, sans-serif', letterSpacing: '0.04em' }}>
-          Auralis Studio
+          Welcome to Sanctuary
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal text-gray-700 mb-2" style={{ letterSpacing: '0.03em' }}>
           A mythic refuge for sound, story, and creative ceremony.
@@ -130,7 +127,7 @@ import { useEffect } from "react";
       </div>
 
       {/* Art Categories and Picture Slots */}
-      <ArtSection />
+      {/* <ArtSection /> removed as requested */}
 import { useState } from "react";
 
 const ART_STYLES = [
@@ -277,9 +274,9 @@ function ArtItem({ item }: { item: { id: number, src: string, alt: string, style
       {/* Footer */}
       <footer className="w-full flex justify-center items-center py-8 mt-8 border-t border-amber-100 bg-white/60 backdrop-blur-sm text-center text-sm sm:text-base">
         <span className="text-gray-500 tracking-wide italic">
-          Created with intention · © {new Date().getFullYear()} Auralis Studio
+          Created with intention · © {new Date().getFullYear()} Sanctuary
         </span>
-	  </footer>
+      </footer>
     </main>
   );
 }
