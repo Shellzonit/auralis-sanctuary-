@@ -1,8 +1,6 @@
 "use client";
 import Image from "next/image";
-
 import { useState } from "react";
-
 const GENRES = [
   "Ambient",
   "Electronic",
@@ -79,6 +77,9 @@ export default function Music() {
           ))}
         </div>
       </div>
+    </main>
+  );
+}
 
 function MusicItem({ music }: { music: { id: number, title: string, artist: string, genre: string, link: string } }) {
   const [votes, setVotes] = useState(() => {
@@ -132,8 +133,5 @@ function MusicItem({ music }: { music: { id: number, title: string, artist: stri
         )}
       </div>
     </div>
-  );
-}
-    </main>
   );
 }
