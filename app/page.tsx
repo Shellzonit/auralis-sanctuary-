@@ -2,14 +2,18 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
   const [showTutorial, setShowTutorial] = useState(false);
+  const [hotJobs, setHotJobs] = useState<any[]>([]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const seen = localStorage.getItem("auralis-tutorial-seen");
       if (!seen) setShowTutorial(true);
+      // Hot jobs logic
+      const jobs = JSON.parse(localStorage.getItem("publicJobs") || "[]");
+      setHotJobs(jobs.filter((j: any) => j.hot && j.approved));
     }
   }, []);
 
@@ -100,15 +104,6 @@ import { useEffect } from "react";
           href="/join"
           className="py-3 px-7 bg-gradient-to-r from-rose-100 via-amber-100 to-emerald-100 text-amber-900 rounded-2xl shadow-lg font-medium tracking-wide transition-all duration-200 hover:from-amber-200 hover:to-emerald-200 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-amber-200"
         >
-          import { useEffect, useState } from "react";
-          const [hotJobs, setHotJobs] = useState<any[]>([]);
-          useEffect(() => {
-            if (typeof window !== "undefined") {
-              const jobs = JSON.parse(localStorage.getItem("publicJobs") || "[]");
-              setHotJobs(jobs.filter((j: any) => j.hot && j.approved));
-            }
-          }, []);
-
           Join the Sanctuary
         </Link>
       </div>
