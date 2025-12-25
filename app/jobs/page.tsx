@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { supabase } from '../../lib/supabaseClient';
+import { createClient } from '@supabase/supabase-js';
 
 
 export default function JobsPage() {
@@ -119,6 +119,7 @@ function stringToColor(str: string) {
 }
 
 function ChatBox() {
+  const [supabase, setSupabase] = useState<any>(null);
   const [messages, setMessages] = useState<any[]>([]);
   const [input, setInput] = useState("");
   const [username, setUsername] = useState("");
@@ -126,10 +127,21 @@ function ChatBox() {
   const [lastSent, setLastSent] = useState<number>(0);
   const bottomRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const client = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
+    setSupabase(client);
+  }, []);
+
+  if (!supabase) return null;
+
   // Fetch messages and subscribe to new ones
   useEffect(() => {
     let ignore = false;
     async function fetchMessages() {
+      if (!supabase) return;
       const { data } = await supabase
         .from('job_chat')
         .select('*')
@@ -139,15 +151,19 @@ function ChatBox() {
     fetchMessages();
     const sub = supabase
       .channel('job_chat')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'job_chat' }, (payload) => {
-        setMessages((msgs) => [...msgs, payload.new]);
-      })
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'job_chat' },
+        (payload: { new: any; old: any; [key: string]: any }) => {
+          setMessages((msgs) => [...msgs, payload.new]);
+        }
+      )
       .subscribe();
     return () => {
       ignore = true;
       sub.unsubscribe();
     };
-  }, []);
+  }, [supabase]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -156,6 +172,7 @@ function ChatBox() {
   async function sendMessage(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+    if (!supabase) return;
     if (!username.trim() || !input.trim()) {
       setError("Username and message required.");
       return;
