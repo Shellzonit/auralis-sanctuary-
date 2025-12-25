@@ -11,26 +11,7 @@ export default function JobsPage() {
     if (!input.trim()) return;
     setMessages([...messages, { text: input }]);
     setInput("");
-  }
-
-  return (
-    <div
-      style={{
-        maxWidth: 400,
-        margin: "2rem auto",
-        padding: 20,
-        border: "1px solid #ccc",
-        borderRadius: 8,
-      }}
-    >
-      <h1>Basic In‑Memory Chat</h1>
-
-      <div style={{ minHeight: 120, marginBottom: 16 }}>
-        {messages.map((m, i) => (
-          <div
-            key={i}
-            style={{
-              padding: 4,
+        ))}
               background: "#f9f9f9",
               margin: "4px 0",
               borderRadius: 4,
@@ -39,25 +20,6 @@ export default function JobsPage() {
             {m.text}
           </div>
         ))}
-
-               setMessages([...messages, { text: input }]);
-               setInput("");
-             }
-
-             return (
-               <div
-                 style={{
-                   maxWidth: 400,
-                   margin: "2rem auto",
-                   padding: 20,
-                   border: "1px solid #ccc",
-                   borderRadius: 8,
-                 }}
-               >
-                 <h1>Basic In‑Memory Chat</h1>
-
-                 <div style={{ minHeight: 120, marginBottom: 16 }}>
-                   {messages.map((m, i) => (
                      <div
                        key={i}
                        style={{
