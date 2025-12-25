@@ -24,23 +24,39 @@ const companies = [
   }
 ];
 
-export default function LicenseShowcase() {
+const licenses = [
+  { name: "Standard License", description: "Basic usage for most creative works." },
+  { name: "Extended License", description: "Commercial use and redistribution rights." },
+  { name: "Editorial License", description: "For news, commentary, and non-commercial use." },
+  { name: "Custom License", description: "Contact provider for custom terms." },
+];
+
+import { useState } from "react";
+
+export default function LicensePage() {
+  const LICENSE_OPTIONS = [
+    "Creative Commons Attribution (CC BY)",
+    "Creative Commons Attribution-ShareAlike (CC BY-SA)",
+    "Creative Commons Attribution-NoDerivs (CC BY-ND)",
+    "Creative Commons Attribution-NonCommercial (CC BY-NC)",
+    "Creative Commons Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)",
+    "Creative Commons Attribution-NonCommercial-NoDerivs (CC BY-NC-ND)",
+    "Public Domain (CC0)",
+    "All Rights Reserved",
+    "Custom License (Contact for details)"
+  ];
+
   return (
-    <div style={{ maxWidth: 700, margin: "2rem auto", padding: 32 }}>
-      <h1 style={{ fontSize: "2rem", marginBottom: 24 }}>Content License Companies</h1>
-      <p style={{ marginBottom: 32 }}>
-        Explore companies that offer copyright licenses for creative content.
-      </p>
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        {companies.map((company) => (
-          <li key={company.name} style={{ marginBottom: 24, borderBottom: "1px solid #eee", paddingBottom: 16 }}>
-            <a href={company.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#be123c", textDecoration: "none" }}>
-              {company.name}
-            </a>
-            <div style={{ color: "#444", marginTop: 8 }}>{company.description}</div>
+    <main className="min-h-screen flex flex-col items-center px-6 py-12" style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
+      <h1 className="text-4xl md:text-6xl font-bold mb-8 text-center">Licensing Options</h1>
+      <ul className="max-w-xl w-full mx-auto bg-gray-900 rounded-lg shadow-lg p-8 text-lg">
+        {LICENSE_OPTIONS.map((option, idx) => (
+          <li key={idx} className="mb-4 px-4 py-2 rounded bg-gray-800 text-amber-200 font-semibold">
+            {option}
           </li>
         ))}
       </ul>
-    </div>
+    </main>
   );
+}
 }
