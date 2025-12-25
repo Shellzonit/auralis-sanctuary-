@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { supabase } from '../../lib/supabaseClient';
 
 
 export default function JobsPage() {
@@ -37,8 +38,8 @@ export default function JobsPage() {
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const { name, value, type, checked } = e.target;
-    setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
+    const { name, value, type } = e.target;
+    setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value }));
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -100,6 +101,127 @@ export default function JobsPage() {
           ))}
         </ul>
       )}
+      <ChatBox />
+    </div>
+  );
+}
+
+function stringToColor(str: string) {
+  // Simple hash to color
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const c = (hash & 0x00FFFFFF)
+    .toString(16)
+    .toUpperCase();
+  return "#" + "00000".substring(0, 6 - c.length) + c;
+}
+
+function ChatBox() {
+  const [messages, setMessages] = useState<any[]>([]);
+  const [input, setInput] = useState("");
+  const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
+  const [lastSent, setLastSent] = useState<number>(0);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  // Fetch messages and subscribe to new ones
+  useEffect(() => {
+    let ignore = false;
+    async function fetchMessages() {
+      const { data } = await supabase
+        .from('job_chat')
+        .select('*')
+        .order('inserted_at', { ascending: true });
+      if (!ignore && data) setMessages(data);
+    }
+    fetchMessages();
+    const sub = supabase
+      .channel('job_chat')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'job_chat' }, (payload) => {
+        setMessages((msgs) => [...msgs, payload.new]);
+      })
+      .subscribe();
+    return () => {
+      ignore = true;
+      sub.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  async function sendMessage(e: React.FormEvent) {
+    e.preventDefault();
+    setError("");
+    if (!username.trim() || !input.trim()) {
+      setError("Username and message required.");
+      return;
+    }
+    // Spam guard: 1 message per 5 seconds
+    if (Date.now() - lastSent < 5000) {
+      setError("Please wait before sending another message.");
+      return;
+    }
+    if (input.length > 300) {
+      setError("Message too long.");
+      return;
+    }
+    const { error } = await supabase.from('job_chat').insert({ username, message: input });
+    if (error) {
+      setError("Failed to send message.");
+      return;
+    }
+    setInput("");
+    setLastSent(Date.now());
+  }
+
+  return (
+    <div className="mt-12 mb-8 max-w-2xl mx-auto bg-gradient-to-br from-amber-50 to-white border border-amber-200 rounded-2xl shadow-xl p-6">
+      <h2 className="text-2xl font-extrabold mb-4 text-rose-700 tracking-tight flex items-center gap-2">
+        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12c0 2.003.59 3.87 1.6 5.43L2 22l4.57-1.6A9.96 9.96 0 0 0 12 22Z" stroke="#be123c" strokeWidth="2"/></svg>
+        Jobs Board Chat
+      </h2>
+      <div className="h-72 overflow-y-auto bg-white rounded-xl p-4 mb-4 border border-amber-100 flex flex-col gap-2">
+        {messages.map((msg, i) => (
+          <div key={msg.id || i} className="flex items-end gap-3">
+            <div className="flex-shrink-0">
+              <div className="w-9 h-9 rounded-full flex items-center justify-center font-bold text-white shadow" style={{background: stringToColor(msg.username)}}>
+                {msg.username.slice(0,2).toUpperCase()}
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <div className="bg-amber-100 rounded-xl px-4 py-2 shadow text-gray-900 max-w-xs">
+                <span className="font-semibold text-rose-800">{msg.username}</span>
+                <span className="block text-gray-800 whitespace-pre-line">{msg.message}</span>
+              </div>
+              <span className="text-xs text-gray-400 mt-1 ml-1">{msg.inserted_at && new Date(msg.inserted_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+            </div>
+          </div>
+        ))}
+        <div ref={bottomRef} />
+      </div>
+      <form onSubmit={sendMessage} className="flex flex-col md:flex-row gap-2 items-end">
+        <input
+          className="p-2 border rounded-lg flex-1 md:max-w-[160px] focus:ring-2 focus:ring-rose-200"
+          placeholder="Your name"
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+          maxLength={32}
+        />
+        <input
+          className="flex-1 p-2 border rounded-lg focus:ring-2 focus:ring-amber-200"
+          placeholder="Type a message..."
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          maxLength={300}
+        />
+        <button type="submit" className="px-5 py-2 bg-rose-700 text-white rounded-lg font-bold hover:bg-rose-800 transition shadow">Send</button>
+      </form>
+      {error && <div className="text-red-600 text-sm mt-2">{error}</div>}
+      <div className="text-xs text-gray-400 mt-2">Spam guard: 1 message per 5 seconds. Max 300 chars.</div>
     </div>
   );
 }
