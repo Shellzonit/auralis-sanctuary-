@@ -56,13 +56,13 @@ export default function Home() {
           const radius = 120;
           const x = Math.cos(angle - Math.PI / 2) * radius;
           const y = Math.sin(angle - Math.PI / 2) * radius;
-          // Assign a unique color to each tab for distinction
+          // Assign a neutral color palette for all tabs
           const tabColors = [
-            "#fbbf24", // Explore the Music Sanctuary (amber)
-            "#34d399", // Employment (green)
-            "#818cf8", // Content Showcase (purple)
-            "#f472b6", // Internal Email (pink)
-            "#a3a3a3", // License Content Info (gray)
+            "#e5e7eb", // light neutral
+            "#d1d5db", // slightly darker neutral
+            "#f3f4f6", // off-white neutral
+            "#e5e7eb", // repeat for consistency
+            "#d1d5db"
           ];
           const color = tabColors[idx % tabColors.length];
           return (
@@ -71,10 +71,10 @@ export default function Home() {
               href={tab.href}
               onMouseEnter={() => setActiveTab(idx)}
               className={
-                "absolute px-6 py-2 rounded-full font-bold text-lg transition-all duration-150 border-2 " +
+                "absolute px-7 py-3 rounded-full font-semibold text-base transition-all duration-200 border-2 " +
                 (activeTab === idx
                   ? "bg-white text-black border-black shadow-lg scale-110 z-10"
-                  : "bg-opacity-90 text-black border-transparent z-0")
+                  : "bg-opacity-80 text-black border-gray-300 z-0")
               }
               style={{
                 left: `calc(50% + ${x}px)` ,
@@ -82,8 +82,9 @@ export default function Home() {
                 transform: 'translate(-50%, -50%)',
                 cursor: "pointer",
                 background: color,
-                boxShadow: activeTab === idx ? '0 4px 24px 0 rgba(0,0,0,0.15)' : undefined,
+                boxShadow: activeTab === idx ? '0 4px 24px 0 rgba(0,0,0,0.10)' : undefined,
                 zIndex: 2,
+                letterSpacing: '0.01em',
               }}
             >
               {tab.label}
