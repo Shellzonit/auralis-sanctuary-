@@ -1,148 +1,140 @@
 "use client";
 
 
+"use client";
 
-import React, { useState } from "react";
-
-function SanctuaryLogo() {
-  return (
-    <div
-      style={{
-        display: "inline-flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "0.5rem",
-        borderRadius: "50%",
-        border: "3px solid var(--sanctuary-accent)",
-        width: "90px",
-        height: "90px",
-        background: "var(--sanctuary-soft)",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.15)"
-      }}
-    >
-      <span
-        style={{
-          fontSize: "2.2rem",
-          fontWeight: 900,
-          color: "var(--sanctuary-accent)",
-          lineHeight: 1,
-          letterSpacing: "-0.05em",
-          marginBottom: "-0.2rem"
-        }}
-      >
-        S
-      </span>
-      <span
-        style={{
-          fontSize: "2.2rem",
-          fontWeight: 900,
-          color: "var(--sanctuary-accent)",
-          lineHeight: 1,
-          letterSpacing: "-0.05em",
-          marginTop: "-0.2rem"
-        }}
-      >
-        S
-      </span>
-    </div>
-  );
-}
+import React from "react";
+import SanctuaryLogo from "@/components/SanctuaryLogo";
 
 export default function Home() {
   const tabs = [
-    { label: "Explore the Music Sanctuary", href: "/music" },
-    { label: "Employment", href: "/jobs" },
-    { label: "Content Showcase", href: "/showcase" },
-    { label: "Internal Email", href: "/mail" },
-    { label: "License Content Info", href: "/license" },
+    { name: "Music", href: "/music" },
+    { name: "Art", href: "/art" },
+    { name: "Blog", href: "/blog" },
+    { name: "Jobs", href: "/jobs" },
+    { name: "About", href: "/about" },
+    { name: "Community", href: "/community" }
   ];
-  const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <main className="min-h-screen flex flex-col items-center px-6 py-12" style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
-      {/* Sanctuary Logo */}
-      <div className="flex flex-col items-center justify-center w-full mt-8 mb-4">
+    <main
+      className="flex flex-col items-center justify-center min-h-screen px-4"
+      style={{
+        background: "var(--sanctuary-bg)",
+        color: "var(--sanctuary-text)"
+      }}
+    >
+      {/* LOGO (crest above the Gate) */}
+      <div className="mt-xl mb-md">
         <SanctuaryLogo />
-        <div style={{ width: 80, height: 0, borderBottom: '8px solid #111', marginTop: 8, marginBottom: 16 }} />
       </div>
-      {/* Centered Site Name */}
-      <div className="flex-1 flex items-center justify-center w-full">
-        <span className="text-5xl md:text-7xl font-extrabold tracking-tight text-center mb-10" style={{letterSpacing: '0.05em'}}>
-          Auralis Sanctuary
-        </span>
-      </div>
-      {/* Hero Title */}
-      <h1 className="text-4xl md:text-6xl font-bold mb-6 text-center">
-        Welcome to Auralis Sanctuary
-      </h1>
 
-      {/* Circular Tab Navigation with border/background */}
-      <div className="relative flex justify-center items-center mb-12" style={{ width: 340, height: 340 }}>
-        {/* Faint circular border and background */}
+      {/* SANCTUARY GATE */}
+      <div className="flex flex-col items-center justify-center mt-gate mb-lg">
+        <span
+          style={{
+            color: "var(--sanctuary-accent)",
+            fontSize: "6rem",
+            fontWeight: 900,
+            lineHeight: 1,
+            letterSpacing: "-0.05em"
+          }}
+        >
+          S
+        </span>
+
         <div
           style={{
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 280,
-            height: 280,
-            borderRadius: '50%',
-            border: '4px solid #e5e5e5',
-            background: 'rgba(245,245,244,0.5)',
-            zIndex: 0,
+            width: 80,
+            height: 0,
+            borderBottom: "8px solid var(--sanctuary-text)",
+            marginTop: "0.5rem",
+            marginBottom: "0.5rem"
           }}
         />
-        <div className="absolute left-1/2 top-1/2" style={{ transform: 'translate(-50%, -50%)', zIndex: 1 }}>
-          <span className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Menu</span>
+
+        <span
+          style={{
+            color: "var(--sanctuary-accent)",
+            fontSize: "6rem",
+            fontWeight: 900,
+            lineHeight: 1,
+            letterSpacing: "-0.05em"
+          }}
+        >
+          S
+        </span>
+      </div>
+
+      {/* TITLE */}
+      <h1
+        className="text-4xl font-bold mb-md"
+        style={{ color: "var(--sanctuary-text)" }}
+      >
+        Auralis Sanctuary
+      </h1>
+
+      {/* CIRCULAR MENU */}
+      <div
+        className="relative flex justify-center items-center mb-xl"
+        style={{ width: 340, height: 340 }}
+      >
+        {/* Circular background */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 280,
+            height: 280,
+            borderRadius: "50%",
+            border: "4px solid var(--sanctuary-border)",
+            background: "var(--sanctuary-soft)",
+            zIndex: 0
+          }}
+        />
+
+        {/* Center label (optional — you can replace with logo if you want) */}
+        <div
+          className="absolute left-1/2 top-1/2"
+          style={{
+            transform: "translate(-50%, -50%)",
+            zIndex: 1,
+            color: "var(--sanctuary-text)",
+            fontWeight: "bold",
+            fontSize: "1.5rem"
+          }}
+        >
+          Sanctuary
         </div>
+
+        {/* Tabs */}
         {tabs.map((tab, idx) => {
           const angle = (2 * Math.PI * idx) / tabs.length;
           const radius = 120;
           const x = Math.cos(angle - Math.PI / 2) * radius;
           const y = Math.sin(angle - Math.PI / 2) * radius;
-          // Assign a neutral color palette for all tabs
-          const tabColors = [
-            "#e5e7eb", // light neutral
-            "#d1d5db", // slightly darker neutral
-            "#f3f4f6", // off-white neutral
-            "#e5e7eb", // repeat for consistency
-            "#d1d5db"
-          ];
-          const color = tabColors[idx % tabColors.length];
+
           return (
             <a
               key={tab.href}
               href={tab.href}
-              onMouseEnter={() => setActiveTab(idx)}
-              className={
-                "absolute px-7 py-3 rounded-full font-semibold text-base transition-all duration-200 border-2 " +
-                (activeTab === idx
-                  ? "bg-white text-black border-black shadow-lg scale-110 z-10"
-                  : "bg-opacity-80 text-black border-gray-300 z-0")
-              }
+              className="absolute px-3 py-2 rounded-full text-sm font-medium transition"
               style={{
-                left: `calc(50% + ${x}px)` ,
-                top: `calc(50% + ${y}px)` ,
-                transform: 'translate(-50%, -50%)',
-                cursor: "pointer",
-                background: color,
-                boxShadow: activeTab === idx ? '0 4px 24px 0 rgba(0,0,0,0.10)' : undefined,
-                zIndex: 2,
-                letterSpacing: '0.01em',
+                left: `calc(50% + ${x}px)`,
+                top: `calc(50% + ${y}px)`,
+                transform: "translate(-50%, -50%)",
+                background: "var(--sanctuary-accent)",
+                color: "white",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.15)"
               }}
             >
-              {tab.label}
+              {tab.name}
             </a>
           );
         })}
       </div>
-
-      {/* Description */}
-      <p className="max-w-2xl text-center text-lg md:text-xl text-gray-300 mb-10">
-        Explore, share, and experience music in a mythic, minimalist space. Upload your tracks, discover new sounds, and connect with fellow creators.
-      </p>
     </main>
   );
 }
