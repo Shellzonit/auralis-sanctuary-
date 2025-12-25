@@ -82,20 +82,17 @@ export default function Music() {
 }
 
 function MusicItem({ music }: { music: { id: number, title: string, artist: string, genre: string, link: string } }) {
-  const [votes, setVotes] = useState(() => {
-    // Use localStorage for anonymous voting persistence
+  const [votes, setVotes] = useState(0);
+  const [voted, setVoted] = useState(false);
+
+  // Hydration-safe: load from localStorage only on client
+  React.useEffect(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(`music-votes-${music.id}`);
-      return stored ? parseInt(stored) : 0;
+      setVotes(stored ? parseInt(stored) : 0);
+      setVoted(localStorage.getItem(`music-voted-${music.id}`) === "true");
     }
-    return 0;
-  });
-  const [voted, setVoted] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem(`music-voted-${music.id}`) === "true";
-    }
-    return false;
-  });
+  }, [music.id]);
 
   function handleVote(delta: number) {
     if (voted) return;
