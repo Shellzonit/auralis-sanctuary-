@@ -7,6 +7,11 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a0a0f] to-[#1a1a22] text-[#f2f2f7] flex flex-col items-center px-6 py-16 font-serif">
 
+      {/* BIG LETTER S - redeploy trigger */}
+      <div className="mb-8">
+        <span style={{ fontSize: "8rem", color: "#be123c", fontWeight: "bold", letterSpacing: "0.1em" }}>S</span>
+      </div>
+
       {/* LOGO */}
       <div className="mb-8">
         <SanctuaryLogo />
