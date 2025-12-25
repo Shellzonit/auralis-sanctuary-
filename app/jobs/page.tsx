@@ -27,87 +27,62 @@ export default function JobsPage() {
 
       <div style={{ minHeight: 120, marginBottom: 16 }}>
         {messages.map((m, i) => (
-          <div
-            key={i}
-            style={{
-              padding: 4,
-              background: "#f9f9f9",
-              margin: "4px 0",
-              borderRadius: 4,
-            }}
-          >
-            {m.text}
-          </div>
-        ))}
-      </div>
+           "use client";
 
-      <form onSubmit={sendMessage} style={{ display: "flex", gap: 8 }}>
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
-          style={{ flex: 1 }}
-        />
-        <button type="submit">Send</button>
-      </form>
-    </div>
-  );
-}
-              padding: 4,
-              background: "#f9f9f9",
-              margin: "4px 0",
-              borderRadius: 4,
-            }}
-          >
-            {m.text}
-          </div>
-        ))}
-      </div>
-      <form onSubmit={sendMessage} style={{ display: "flex", gap: 8 }}>
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
-          style={{ flex: 1 }}
-        />
-        <button type="submit">Send</button>
-      </form>
-    </div>
-  );
-}
-import { useState, FormEvent } from "react";
+           import { useState, FormEvent } from "react";
 
-export default function JobsPage() {
-  const [messages, setMessages] = useState<{ text: string }[]>([]);
-  const [input, setInput] = useState("");
+           export default function JobsPage() {
+             const [messages, setMessages] = useState<{ text: string }[]>([]);
+             const [input, setInput] = useState("");
 
-  function sendMessage(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!input.trim()) return;
-    setMessages([...messages, { text: input }]);
-    setInput("");
-  }
+             function sendMessage(e: FormEvent) {
+               e.preventDefault();
+               if (!input.trim()) return;
 
-  return (
-    <div
-      style={{
-        maxWidth: 400,
-        margin: "2rem auto",
-        padding: 20,
-        border: "1px solid #ccc",
-        borderRadius: 8,
-      }}
-    >
-      <h1>Basic In‑Memory Chat</h1>
-      <div style={{ minHeight: 120, marginBottom: 16 }}>
-        {messages.map((m, i) => (
-          <div
-            key={i}
-            style={{
-              padding: 4,
-              background: "#f9f9f9",
-              margin: "4px 0",
-              borderRadius: 4,
+               setMessages([...messages, { text: input }]);
+               setInput("");
+             }
+
+             return (
+               <div
+                 style={{
+                   maxWidth: 400,
+                   margin: "2rem auto",
+                   padding: 20,
+                   border: "1px solid #ccc",
+                   borderRadius: 8,
+                 }}
+               >
+                 <h1>Basic In‑Memory Chat</h1>
+
+                 <div style={{ minHeight: 120, marginBottom: 16 }}>
+                   {messages.map((m, i) => (
+                     <div
+                       key={i}
+                       style={{
+                         padding: 4,
+                         background: "#f9f9f9",
+                         margin: "4px 0",
+                         borderRadius: 4,
+                       }}
+                     >
+                       {m.text}
+                     </div>
+                   ))}
+                 </div>
+
+                 <form onSubmit={sendMessage} style={{ display: "flex", gap: 8 }}>
+                   <input
+                     value={input}
+                     onChange={(e) => setInput(e.target.value)}
+                     placeholder="Type a message..."
+                     style={{ flex: 1 }}
+                   />
+                   <button type="submit">Send</button>
+                 </form>
+               </div>
+             );
+           }
             }}
           >
             {m.text}
