@@ -142,11 +142,10 @@ function ChatBox() {
     let ignore = false;
     async function fetchMessages() {
       if (!supabase) return;
-      const { data } = await supabase
+      const { data } = await supabase!
         .from('job_chat')
         .select('*')
-        .order('inserted_at', { ascending: true });
-      if (!ignore && data) setMessages(data);
+        .order('inserted_at', { ascending: true })
     }
     fetchMessages();
     const sub = supabase
