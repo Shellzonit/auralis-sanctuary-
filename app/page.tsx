@@ -1,32 +1,74 @@
 
 
 
+import React, { useState } from "react";
+
 export default function Home() {
+  const tabs = [
+    { label: "Music Sanctuary", href: "/music" },
+    { label: "Employment", href: "/jobs" },
+    { label: "Showcase", href: "/showcase" },
+    { label: "Internal Email", href: "/mail" },
+    { label: "License Info", href: "/license" },
+  ];
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center px-6 py-12">
+      {/* Centered Site Name */}
+      <div className="flex-1 flex items-center justify-center w-full">
+        <span className="text-5xl md:text-7xl font-extrabold tracking-tight text-center mb-10" style={{letterSpacing: '0.05em'}}>
+          Auralis Sanctuary
+        </span>
+      </div>
       {/* Hero Title */}
       <h1 className="text-4xl md:text-6xl font-bold mb-6 text-center">
         Welcome to Auralis Sanctuary
       </h1>
 
-
-      {/* Main Navigation Buttons */}
-      <div className="mb-8 flex flex-wrap gap-4 justify-center">
-        <a href="/music" className="inline-block px-6 py-3 bg-amber-400 text-black font-bold rounded-full shadow hover:bg-amber-500 transition text-lg">
-          Explore the Music Sanctuary
-        </a>
-        <a href="/jobs" className="inline-block px-6 py-3 bg-emerald-400 text-black font-bold rounded-full shadow hover:bg-emerald-500 transition text-lg">
-          Employment
-        </a>
-        <a href="/showcase" className="inline-block px-6 py-3 bg-indigo-400 text-black font-bold rounded-full shadow hover:bg-indigo-500 transition text-lg">
-          Content Showcase
-        </a>
-        <a href="/mail" className="inline-block px-6 py-3 bg-pink-400 text-black font-bold rounded-full shadow hover:bg-pink-500 transition text-lg">
-          Internal Email
-        </a>
-        <a href="/license" className="inline-block px-6 py-3 bg-gray-400 text-black font-bold rounded-full shadow hover:bg-gray-500 transition text-lg">
-          License Content Info
-        </a>
+      {/* Circular Tab Navigation */}
+      <div className="relative flex justify-center items-center mb-12" style={{ width: 340, height: 340 }}>
+        <div className="absolute left-1/2 top-1/2" style={{ transform: 'translate(-50%, -50%)' }}>
+          <span className="text-2xl font-bold text-white">Menu</span>
+        </div>
+        {tabs.map((tab, idx) => {
+          const angle = (2 * Math.PI * idx) / tabs.length;
+          const radius = 140;
+          const x = Math.cos(angle - Math.PI / 2) * radius;
+          const y = Math.sin(angle - Math.PI / 2) * radius;
+          // Assign a unique color to each tab for distinction
+          const tabColors = [
+            "#fbbf24", // amber-400
+            "#34d399", // emerald-400
+            "#818cf8", // indigo-400
+            "#f472b6", // pink-400
+            "#a3a3a3", // gray-400
+          ];
+          const color = tabColors[idx % tabColors.length];
+          return (
+            <a
+              key={tab.href}
+              href={tab.href}
+              onMouseEnter={() => setActiveTab(idx)}
+              className={
+                "absolute px-6 py-2 rounded-full font-bold text-lg transition-all duration-150 border-2 " +
+                (activeTab === idx
+                  ? "bg-white text-black border-black shadow-lg scale-110 z-10"
+                  : "bg-opacity-90 text-black border-transparent z-0")
+              }
+              style={{
+                left: `calc(50% + ${x}px)` ,
+                top: `calc(50% + ${y}px)` ,
+                transform: 'translate(-50%, -50%)',
+                cursor: "pointer",
+                background: color,
+                boxShadow: activeTab === idx ? '0 4px 24px 0 rgba(0,0,0,0.15)' : undefined,
+              }}
+            >
+              {tab.label}
+            </a>
+          );
+        })}
       </div>
 
       {/* Description */}
