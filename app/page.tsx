@@ -15,6 +15,11 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center px-6 py-12">
+      {/* Red S with underline */}
+      <div className="flex flex-col items-center justify-center w-full mt-8 mb-4">
+        <span style={{ color: '#be123c', fontSize: '6rem', fontWeight: 900, lineHeight: 1 }}>S</span>
+        <div style={{ width: 80, height: 0, borderBottom: '8px solid #111', marginTop: 8, marginBottom: 16 }} />
+      </div>
       {/* Centered Site Name */}
       <div className="flex-1 flex items-center justify-center w-full">
         <span className="text-5xl md:text-7xl font-extrabold tracking-tight text-center mb-10" style={{letterSpacing: '0.05em'}}>
