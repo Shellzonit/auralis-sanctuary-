@@ -1,7 +1,53 @@
 "use client";
 
 
+
 import React, { useState } from "react";
+
+function SanctuaryLogo() {
+  return (
+    <div
+      style={{
+        display: "inline-flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "0.5rem",
+        borderRadius: "50%",
+        border: "3px solid var(--sanctuary-accent)",
+        width: "90px",
+        height: "90px",
+        background: "var(--sanctuary-soft)",
+        boxShadow: "0 4px 10px rgba(0,0,0,0.15)"
+      }}
+    >
+      <span
+        style={{
+          fontSize: "2.2rem",
+          fontWeight: 900,
+          color: "var(--sanctuary-accent)",
+          lineHeight: 1,
+          letterSpacing: "-0.05em",
+          marginBottom: "-0.2rem"
+        }}
+      >
+        S
+      </span>
+      <span
+        style={{
+          fontSize: "2.2rem",
+          fontWeight: 900,
+          color: "var(--sanctuary-accent)",
+          lineHeight: 1,
+          letterSpacing: "-0.05em",
+          marginTop: "-0.2rem"
+        }}
+      >
+        S
+      </span>
+    </div>
+  );
+}
 
 export default function Home() {
   const tabs = [
@@ -15,9 +61,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex flex-col items-center px-6 py-12" style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
-      {/* Red S with underline */}
+      {/* Sanctuary Logo */}
       <div className="flex flex-col items-center justify-center w-full mt-8 mb-4">
-        <span style={{ color: '#be123c', fontSize: '6rem', fontWeight: 900, lineHeight: 1 }}>S</span>
+        <SanctuaryLogo />
         <div style={{ width: 80, height: 0, borderBottom: '8px solid #111', marginTop: 8, marginBottom: 16 }} />
       </div>
       {/* Centered Site Name */}
