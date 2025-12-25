@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const GENRES = [
   "Ambient",
   "Electronic",
@@ -86,7 +86,7 @@ function MusicItem({ music }: { music: { id: number, title: string, artist: stri
   const [voted, setVoted] = useState(false);
 
   // Hydration-safe: load from localStorage only on client
-  React.useEffect(() => {
+  useEffect(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(`music-votes-${music.id}`);
       setVotes(stored ? parseInt(stored) : 0);
