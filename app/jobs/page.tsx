@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 
 export default function JobsPage() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<{ text: string }[]>([]);
   const [input, setInput] = useState("");
 
-  function sendMessage(e) {
+  function sendMessage(e: FormEvent) {
     e.preventDefault();
     if (!input.trim()) return;
     setMessages([...messages, { text: input }]);
