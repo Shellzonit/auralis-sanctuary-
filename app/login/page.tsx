@@ -14,7 +14,7 @@ export default function LoginPage() {
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-
+    if (!supabase) return;
     if (mode === "signup") {
       const { error } = await supabase.auth.signUp({
         email,

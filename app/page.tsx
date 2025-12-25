@@ -11,7 +11,7 @@ export default function Home() {
     { name: "Music", href: "/music" },
     { name: "Art", href: "/art" },
     { name: "Blog", href: "/blog" },
-    { name: "Jobs", href: "/jobs" },
+    { name: "Stream", href: "/stream" },
     { name: "About", href: "/about" },
     { name: "Community", href: "/community" }
   ];
