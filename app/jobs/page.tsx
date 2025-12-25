@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 export default function JobsPage() {
   const [jobs, setJobs] = useState<any[]>([]);
+  const [form, setForm] = useState({ role: "", company: "", description: "", contact: "", hot: false });
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem("publicJobs");
@@ -34,9 +36,42 @@ export default function JobsPage() {
     }
   }
 
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const { name, value, type, checked } = e.target;
+    setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!form.role || !form.company || !form.description || !form.contact) return;
+    const newJob = { ...form, date: new Date().toISOString(), approved: false };
+    const updated = [newJob, ...jobs];
+    setJobs(updated);
+    localStorage.setItem("publicJobs", JSON.stringify(updated));
+    setForm({ role: "", company: "", description: "", contact: "", hot: false });
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 2000);
+  }
+
   return (
     <div className="max-w-2xl mx-auto mt-12 p-6 bg-white rounded-xl shadow border border-amber-100">
       <h1 className="text-3xl font-bold mb-6 text-rose-700">Jobs Board</h1>
+
+      {/* Job Submission Form */}
+      <form onSubmit={handleSubmit} className="mb-8 space-y-4 bg-amber-50 p-4 rounded-lg border border-amber-200">
+        <h2 className="text-xl font-semibold mb-2 text-rose-800">Post a Job for AI Talent</h2>
+        <input name="role" value={form.role} onChange={handleChange} placeholder="Role (e.g. AI Engineer)" className="w-full p-2 rounded border" required />
+        <input name="company" value={form.company} onChange={handleChange} placeholder="Company/Project" className="w-full p-2 rounded border" required />
+        <textarea name="description" value={form.description} onChange={handleChange} placeholder="Job Description" className="w-full p-2 rounded border" rows={3} required />
+        <input name="contact" value={form.contact} onChange={handleChange} placeholder="Contact Email" className="w-full p-2 rounded border" type="email" required />
+        <label className="flex items-center gap-2 text-sm">
+          <input type="checkbox" name="hot" checked={form.hot} onChange={handleChange} />
+          Mark as HOT
+        </label>
+        <button type="submit" className="px-4 py-2 bg-rose-700 text-white rounded font-bold hover:bg-rose-800 transition">Post Job</button>
+        {submitted && <div className="text-emerald-600 font-semibold mt-2">Job posted!</div>}
+      </form>
+
       {jobs.length === 0 ? (
         <div className="text-gray-500">No jobs posted yet.</div>
       ) : (
