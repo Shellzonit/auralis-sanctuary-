@@ -27,17 +27,18 @@ export default function JobsPage() {
 
       <div style={{ minHeight: 120, marginBottom: 16 }}>
         {messages.map((m, i) => (
-           "use client";
-
-           import { useState, FormEvent } from "react";
-
-           export default function JobsPage() {
-             const [messages, setMessages] = useState<{ text: string }[]>([]);
-             const [input, setInput] = useState("");
-
-             function sendMessage(e: FormEvent) {
-               e.preventDefault();
-               if (!input.trim()) return;
+          <div
+            key={i}
+            style={{
+              padding: 4,
+              background: "#f9f9f9",
+              margin: "4px 0",
+              borderRadius: 4,
+            }}
+          >
+            {m.text}
+          </div>
+        ))}
 
                setMessages([...messages, { text: input }]);
                setInput("");
