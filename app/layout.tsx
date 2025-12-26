@@ -28,6 +28,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         style={{ position: "relative", minHeight: "100vh" }}
       >
+        <nav style={{ width: "100%", display: "flex", justifyContent: "flex-start", alignItems: "center", padding: "1rem 2rem 0.5rem 2rem" }}>
+          <a href="/" className="text-sanctuary-accent hover:text-sanctuary-text transition-colors font-bold text-lg" style={{ textDecoration: "none" }}>Home</a>
+        </nav>
         {children}
         <div className="blue-streak" />
       </body>

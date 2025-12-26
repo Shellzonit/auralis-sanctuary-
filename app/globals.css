@@ -46,8 +46,8 @@
 
 /* Sanctuary color palette */
 :root {
-  --background: #111111; /* soft black */
-  --foreground: #F5F2EB; /* moonlit ivory */
+  --background: #F5F2EB; /* moonlit ivory */
+  --foreground: #4F4F4F; /* slate charcoal */
   --accent: #D4A857;     /* warm gold */
   --accent-alt: #CBA35C; /* muted honey gold */
   --text-soft: #EAE7DF;  /* soft parchment */
