@@ -3,7 +3,12 @@
 import { useEffect, useState } from "react";
 
 // Featured works for the week — manually curated
-const featuredWorks = [
+const featuredWorks: {
+  id: number;
+  title: string;
+  creator: string;
+  link: string;
+}[] = [
   // Example structure — fill these in later:
   // {
   //   id: 1,
