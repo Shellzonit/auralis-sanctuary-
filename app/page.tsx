@@ -6,7 +6,6 @@ import SanctuaryLogo from "@/components/SanctuaryLogo";
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a0a0f] to-[#1a1a22] text-[#f2f2f7] flex flex-col items-center px-6 py-16 font-serif">
-
       {/* BIG LETTER S - redeploy trigger */}
       <div className="mb-8">
         <span style={{ fontSize: "8rem", color: "#be123c", fontWeight: "bold", letterSpacing: "0.1em" }}>S</span>
@@ -17,6 +16,9 @@ export default function Home() {
         <SanctuaryLogo />
       </div>
 
+      {/* BLUE LINE */}
+      <div className="w-32 h-1 bg-blue-500 rounded-full mb-8"></div>
+
       {/* WELCOME TEXT */}
       <p className="max-w-xl text-center text-lg opacity-85 mb-12">
         Welcome to the Sanctuary — a creative space for music, art, blogs, and
@@ -24,38 +26,31 @@ export default function Home() {
       </p>
 
       {/* CIRCULAR MENU */}
-              <a
-                href="/chat"
-                className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
-              >
-                Chat
-              </a>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mt-8">
-        
-
+        <a
+          href="/chat"
+          className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
+        >
+          Chat
+        </a>
         <a
           href="/showcase"
           className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
         >
           Content Showcase
         </a>
-
         <a
           href="/email"
           className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
         >
           Internal Email
         </a>
-
         <a
           href="/license"
           className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
         >
           License Info
         </a>
-
-        <a
-
       </div>
     </main>
   );
