@@ -16,6 +16,20 @@ export default function Home() {
         position: "relative",
       }}
     >
+      {/* AI and Innovation Banner */}
+      <div
+        style={{
+          fontWeight: 700,
+          fontSize: "2.4rem",
+          marginBottom: "1.5rem",
+          color: "var(--accent)",
+          textAlign: "center",
+          letterSpacing: "0.04em",
+        }}
+      >
+        <strong>AI and Innovation All Under One Tent</strong>
+      </div>
+
       {/* Title */}
       <h1
         style={{
