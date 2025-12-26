@@ -19,7 +19,8 @@ export default function MailPage() {
 
   return (
     <div className="max-w-xl mx-auto mt-12 p-6 bg-white rounded-xl shadow border border-rose-100">
-      <h1 className="text-2xl font-bold mb-4 text-rose-700">Internal Mail</h1>
+      <h1 className="text-4xl font-extrabold mb-6 text-rose-800 text-center tracking-wide">Sanctuary</h1>
+      <h2 className="text-2xl font-bold mb-4 text-rose-700">Internal Mail</h2>
       <p className="mb-4 text-gray-700">Send a message to another user or team. (Demo only, not delivered.)</p>
       {sent ? (
         <div className="text-green-700 font-semibold mb-4">Message sent!</div>
