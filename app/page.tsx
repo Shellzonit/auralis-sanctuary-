@@ -1,4 +1,6 @@
 "use client";
+import "./homepage-s.css";
+
 export default function Home() {
   return (
     <main
@@ -16,6 +18,8 @@ export default function Home() {
         position: "relative",
       }}
     >
+      {/* Elegant Large S */}
+      <span className="homepage-s-elegant">S</span>
       {/* AI and Innovation Banner */}
       <div
         style={{

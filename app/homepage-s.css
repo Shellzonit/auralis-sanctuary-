@@ -1,0 +1,28 @@
+.homepage-s-elegant {
+  position: absolute;
+  left: 50%;
+  top: 7.5rem;
+  transform: translateX(-50%);
+  z-index: 1;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 11rem;
+  font-weight: 700;
+  color: rgba(44, 62, 80, 0.09); /* elegant, subtle blue-gray */
+  line-height: 0.8;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.1em;
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .homepage-s-elegant {
+    font-size: 6rem;
+    top: 6rem;
+  }
+}
+@media (max-width: 600px) {
+  .homepage-s-elegant {
+    font-size: 3.5rem;
+    top: 4.5rem;
+  }
+}
