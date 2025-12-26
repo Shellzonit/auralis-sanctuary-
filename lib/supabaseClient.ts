@@ -1,15 +1,15 @@
 "use client";
 
-import { createClient } from '@supabase/supabase-js';
+"use client";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+import { createClient } from "@supabase/supabase-js";
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables: NEXT_PUBLIC_SUPABASE_URL and/or NEXT_PUBLIC_SUPABASE_ANON_KEY');
+let supabase: ReturnType<typeof createClient> | null = null;
+
+if (typeof window !== "undefined") {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+  supabase = createClient(url, key);
 }
 
-export const supabase =
-  typeof window !== 'undefined'
-    ? createClient(supabaseUrl, supabaseAnonKey)
-    : null;
+export { supabase };
