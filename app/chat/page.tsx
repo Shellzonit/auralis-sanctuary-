@@ -18,9 +18,15 @@ const featuredWorks: {
   // },
 ];
 
+type Message = {
+  id: number;
+  username: string;
+  content: string;
+};
+
 export default function ChatPage() {
   const [username, setUsername] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
 
   // Generate a mythic username on load
@@ -41,7 +47,7 @@ export default function ChatPage() {
   const sendMessage = () => {
     if (!input.trim()) return;
 
-    const newMessage = {
+    const newMessage: Message = {
       id: Date.now(),
       username,
       content: input,
@@ -52,7 +58,7 @@ export default function ChatPage() {
   };
 
   // Generate a sigil for each user
-  const generateSigil = (name) => {
+  const generateSigil = (name: string) => {
     const sigils = ["✦", "☾", "⚘", "✹", "❖", "✧"];
     let sum = 0;
     for (let i = 0; i < name.length; i++) sum += name.charCodeAt(i);

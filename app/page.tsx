@@ -1,9 +1,25 @@
 "use client";
 
+
+import SanctuaryLogo from "../components/SanctuaryLogo";
 import { useEffect, useState } from "react";
 
+// Types
+type FeaturedWork = {
+  id: number;
+  title: string;
+  creator: string;
+  link: string;
+};
+
+type Message = {
+  id: number;
+  username: string;
+  content: string;
+};
+
 // Featured works for the week — manually curated
-const featuredWorks = [
+const featuredWorks: FeaturedWork[] = [
   // Example structure — fill these in later:
   // {
   //   id: 1,
@@ -15,7 +31,7 @@ const featuredWorks = [
 
 export default function ChatPage() {
   const [username, setUsername] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
 
   // Generate a mythic username on load
@@ -36,7 +52,7 @@ export default function ChatPage() {
   const sendMessage = () => {
     if (!input.trim()) return;
 
-    const newMessage = {
+    const newMessage: Message = {
       id: Date.now(),
       username,
       content: input,
@@ -47,7 +63,7 @@ export default function ChatPage() {
   };
 
   // Generate a sigil for each user
-  const generateSigil = (name) => {
+  const generateSigil = (name: string) => {
     const sigils = ["✦", "☾", "⚘", "✹", "❖", "✧"];
     let sum = 0;
     for (let i = 0; i < name.length; i++) sum += name.charCodeAt(i);
@@ -56,6 +72,16 @@ export default function ChatPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center p-6 bg-black text-red-200">
+      {/* LOGO */}
+      <div className="mb-8">
+        <SanctuaryLogo />
+        <p
+          className="text-center text-2xl mt-4 tracking-wider font-semibold bg-gradient-to-r from-fuchsia-400 via-sky-400 to-emerald-300 bg-clip-text text-transparent drop-shadow-lg shadow-black/60"
+          style={{ letterSpacing: '0.08em', textShadow: '0 2px 16px #0ff6, 0 1px 2px #0008' }}
+        >
+          A Modern Approach to AI Creations
+        </p>
+      </div>
       <h1 className="text-4xl font-bold mb-2 text-red-400">Sanctuary Chat Stream</h1>
       <p className="text-red-300 mb-8 italic">
         A flowing chamber for thoughts, offerings, questions, and presence.  
