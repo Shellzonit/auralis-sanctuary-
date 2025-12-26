@@ -13,13 +13,13 @@ function buildThread(messages, parentId = null) {
 function ThreadNode({ node, onReply }) {
   return (
     <div className="flex flex-col items-center mb-4">
-      <div className="bg-[#f7fafc] px-6 py-4 rounded-full shadow text-red-600 font-semibold border-2 border-gray-300 w-fit max-w-lg text-center transition-all duration-200">
+      <div className="bg-[#f7fafc] px-6 py-4 rounded-full shadow border-2 border-gray-300 w-fit max-w-lg text-center transition-all duration-200">
         <div className="text-xs opacity-60 mb-1 font-mono tracking-widest">
           {node.username || "Anonymous"} · {new Date(node.created_at).toLocaleString()}
         </div>
-        <div className="whitespace-pre-wrap text-lg leading-tight">{node.text}</div>
+        <div className="whitespace-pre-wrap text-2xl font-extrabold text-[#b1001a] leading-tight" style={{textShadow: '0 1px 0 #fff, 0 2px 8px #fff'}}> {node.text} </div>
         <button
-          className="mt-2 text-xs text-red-400 hover:underline"
+          className="mt-2 text-xs text-red-600 hover:underline font-bold"
           onClick={() => onReply(node.id)}
         >
           Reply
