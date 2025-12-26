@@ -45,15 +45,7 @@ export default function ChatPage() {
       {/* Threaded Chat Section */}
       <ThreadedChat />
 
-      {/* Prominent Content Upload Link */}
-      <div className="w-full flex justify-center my-8">
-        <a
-          href="/content"
-          className="px-8 py-4 rounded-2xl bg-gradient-to-r from-fuchsia-500 to-emerald-400 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-fuchsia-400/60 glow-link transition hover:scale-110 hover:from-fuchsia-400 hover:to-emerald-300"
-        >
-          ➕ Upload Your Content
-        </a>
-      </div>
+      // ...existing code...
 
       {/* Feature Links Section */}
       <ChatFeatureLinks />
