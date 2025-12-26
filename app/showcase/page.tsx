@@ -25,7 +25,7 @@ export default function ShowcasePage() {
   async function fetchPhotos() {
     if (!supabase) return;
     const { data, error } = await supabase
-      .from("showcase_content")
+      .from("showcase photos")
       .select("id, title, url, category")
       .eq("category", "art")
       .order("id", { ascending: false });
@@ -45,7 +45,7 @@ export default function ShowcasePage() {
     await fetch("/api/submit-content", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, description: "", category: "art", url }),
+      body: JSON.stringify({ title, description: "", category: "art", url, table: "showcase photos" }),
     });
     setSubmitted(true);
     setTitle("");
