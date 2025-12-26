@@ -1,4 +1,10 @@
+
+
+
 "use client";
+
+export const dynamic = "force-dynamic";
+export const prerender = false;
 
 
 import { useState, useEffect } from "react";
