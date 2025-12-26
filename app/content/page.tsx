@@ -1,7 +1,31 @@
 
+
 import { contentData } from "../../lib/content";
+import { useState } from "react";
 
 export default function ShowcasePage() {
+  // SubmitContent state
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("music");
+  const [url, setUrl] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await fetch("/api/submit-content", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, description, category, url }),
+    });
+    setSubmitted(true);
+    setTitle("");
+    setDescription("");
+    setCategory("music");
+    setUrl("");
+    setTimeout(() => setSubmitted(false), 4000);
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-black to-[#1a1a22] text-red-200 px-6 py-16 font-serif">
 
@@ -82,14 +106,57 @@ export default function ShowcasePage() {
         </section>
       ))}
 
+      {/* SUBMIT CONTENT SECTION */}
+      <section className="max-w-2xl mx-auto mt-24 mb-10 bg-[#18181f] rounded-2xl shadow-2xl p-8 border-2 border-red-700/40">
+        <h2 className="text-3xl text-center text-red-400 mb-6 font-bold">Submit Your Work</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <input
+            className="w-full p-3 bg-[#1f1f29] border border-red-900/40 rounded text-lg"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+          <textarea
+            className="w-full p-3 bg-[#1f1f29] border border-red-900/40 rounded text-lg"
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+          <select
+            className="w-full p-3 bg-[#1f1f29] border border-red-900/40 rounded text-lg"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+          >
+            <option value="music">Music</option>
+            <option value="art">Art</option>
+            <option value="writing">Writing</option>
+            <option value="videos">Videos</option>
+          </select>
+          <input
+            className="w-full p-3 bg-[#1f1f29] border border-red-900/40 rounded text-lg"
+            placeholder="Link (URL)"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            required
+          />
+          <button
+            type="submit"
+            className="w-full py-3 bg-red-700 hover:bg-red-800 rounded text-lg font-bold shadow-lg transition"
+          >
+            Submit
+          </button>
+        </form>
+        {submitted && (
+          <div className="text-green-400 text-center font-semibold mt-4">Your content has been submitted!</div>
+        )}
+      </section>
+
       {/* BACK TO HOMEPAGE BUTTON */}
-      <div className="text-center mt-20">
-        <a
-          href="/"
-          className="inline-block px-8 py-3 rounded-lg bg-[#1f1f29] hover:bg-[#2a2a35] border border-red-900/40 shadow-md shadow-red-900/30 transition text-lg"
-        >
-          ← Back to Homepage
-        </a>
+      <div className="text-center mt-10">
+        <a href="/" className="text-red-300 underline text-lg">← Back to Homepage</a>
       </div>
     </main>
   );
