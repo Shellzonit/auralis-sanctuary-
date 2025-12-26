@@ -12,6 +12,10 @@ export default function NavTabs() {
     { href: "/mail", label: "Email" },
     { href: "/games", label: "Games" },
     { href: "/license", label: "Licensing" },
+    { href: "/spotlight", label: "Spotlight" },
+    { href: "/about", label: "About Us" },
+    { href: "/legacy", label: "Legacy" },
+    { href: "/privacy", label: "Privacy" },
   ];
   return (
     <nav className="w-full flex justify-center mb-8">

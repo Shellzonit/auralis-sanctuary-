@@ -1,0 +1,71 @@
+.spotlight {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+  color: #eaeaea;
+  animation: fadeIn 1.2s ease;
+}
+
+.spotlight-title {
+  font-size: 2.8rem;
+  letter-spacing: 0.12em;
+  font-weight: 300;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.spotlight-intro {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 40px;
+}
+
+.creator-name {
+  font-size: 2.4rem;
+  font-weight: 400;
+  margin: 20px 0 30px;
+  color: #ffe7b3;
+  text-shadow: 0 0 18px rgba(255, 215, 130, 0.35);
+}
+
+.featured-work {
+  margin: 30px 0;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 25px rgba(255, 215, 130, 0.08);
+}
+
+.creator-bio,
+.spotlight-reason {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin: 20px 0;
+}
+
+.divider {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 215, 130, 0),
+    rgba(255, 215, 130, 0.4),
+    rgba(255, 215, 130, 0)
+  );
+  margin: 50px auto;
+}
+
+.ritual-note {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  margin-top: 40px;
+  letter-spacing: 0.03em;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
