@@ -7,7 +7,7 @@ export default function Thread({ messages, onReply }) {
       .filter((msg) => msg.parentId === parentId)
       .map((msg) => (
         <div key={msg.id} style={{ marginLeft: level * 24 }} className="mb-2">
-          <div className="bg-[#222] p-3 rounded-lg shadow text-red-200">
+          <div className="bg-[#f7fafc] p-3 rounded-lg shadow text-[#181818] border border-gray-300">
             <div className="text-sm opacity-60 mb-1">
               {new Date(msg.createdAt).toLocaleString()}
             </div>
