@@ -1,58 +1,57 @@
 
 "use client";
 
+
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 
-type ContentItem = {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  url: string;
-};
+const STATIC_AI_PHOTOS = [
+  {
+    url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+    title: "AI Dreamscape 1",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+    title: "AI Dreamscape 2",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80",
+    title: "AI Dreamscape 3",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=600&q=80",
+    title: "AI Dreamscape 4",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=600&q=80",
+    title: "AI Dreamscape 5",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+    title: "AI Dreamscape 6",
+  },
+];
 
-const CATEGORY_LABELS: Record<string, string> = {
-  music: "Music & Audio",
-  art: "Visual Art",
-  writing: "Writing & Lore",
-  videos: "Video Creations",
-};
 
-export default function ShowcasePage() {
-  const [content, setContent] = useState<Record<string, ContentItem[]>>({});
-  const [loading, setLoading] = useState(true);
-  // Upload form state
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("music");
+  const [photos, setPhotos] = useState([...STATIC_AI_PHOTOS]);
   const [url, setUrl] = useState("");
+  const [title, setTitle] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  async function fetchContent() {
-    setLoading(true);
-    const response = await supabase
-      ?.from("showcase_content")
-      .select("id,title,description,category,url")
+  // Fetch user-submitted photos from Supabase
+  async function fetchPhotos() {
+    const { data, error } = await supabase
+      .from("showcase_content")
+      .select("id, title, url")
       .order("id", { ascending: false });
-    if (response?.error) {
-      setContent({});
-      setLoading(false);
-      return;
+    if (!error && data) {
+      const userPhotos = data.map((item: any) => ({ url: item.url, title: item.title || "User Submission" }));
+      setPhotos([...STATIC_AI_PHOTOS, ...userPhotos]);
     }
-    // Group by category
-    const grouped: Record<string, ContentItem[]> = {};
-    (response?.data || []).forEach((item: ContentItem) => {
-      const cat = item.category?.toLowerCase() || "other";
-      if (!grouped[cat]) grouped[cat] = [];
-      grouped[cat].push(item);
-    });
-    setContent(grouped);
-    setLoading(false);
   }
 
   useEffect(() => {
-    fetchContent();
+    fetchPhotos();
   }, []);
 
   // Handle upload form submit
@@ -61,56 +60,35 @@ export default function ShowcasePage() {
     await fetch("/api/submit-content", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, description, category, url }),
+      body: JSON.stringify({ title, description: "", category: "art", url }),
     });
     setSubmitted(true);
     setTitle("");
-    setDescription("");
-    setCategory("music");
     setUrl("");
     setTimeout(() => setSubmitted(false), 4000);
-    fetchContent(); // Refresh showcase
+    fetchPhotos(); // Refresh gallery
   };
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-black to-[#1a1a22] text-red-200 px-6 py-16 font-serif">
       <h1 className="text-4xl font-bold text-red-400 tracking-wide text-center mb-2">
-        Content Showcase
+        AI Photo Showcase
       </h1>
       <div className="w-32 h-1 bg-red-600 mx-auto mb-10 rounded-full"></div>
 
       {/* Upload Form */}
       <section id="submit-content" className="max-w-2xl mx-auto mt-0 mb-10 bg-[#18181f] rounded-2xl shadow-2xl p-8 border-2 border-red-700/40">
-        <h2 className="text-3xl text-center text-red-400 mb-6 font-bold">Submit Your Work</h2>
+        <h2 className="text-3xl text-center text-red-400 mb-6 font-bold">Submit Your AI Art</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <input
             className="w-full px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
-            placeholder="Title"
+            placeholder="Title (optional)"
             value={title}
             onChange={e => setTitle(e.target.value)}
-            required
           />
-          <textarea
-            className="w-full px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
-            placeholder="Description"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            required
-          />
-          <select
-            className="w-full px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
-            value={category}
-            onChange={e => setCategory(e.target.value)}
-            required
-          >
-            <option value="music">Music & Audio</option>
-            <option value="art">Visual Art</option>
-            <option value="writing">Writing & Lore</option>
-            <option value="videos">Video Creations</option>
-          </select>
           <input
             className="w-full px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
-            placeholder="Content URL (YouTube, SoundCloud, image, etc.)"
+            placeholder="Image URL (required)"
             value={url}
             onChange={e => setUrl(e.target.value)}
             required
@@ -127,42 +105,19 @@ export default function ShowcasePage() {
         </form>
       </section>
 
-      {Object.entries(CATEGORY_LABELS).map(([cat, label]) => (
-        <section className="mb-16" key={cat}>
-          <h2 className="text-3xl text-red-300 font-semibold text-center mb-2">{label}</h2>
-          <div className="w-24 h-1 bg-red-700 mx-auto mb-8 rounded-full"></div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {loading ? (
-              <div className="col-span-full text-center text-red-400">Loading...</div>
-            ) : content[cat]?.length ? (
-              content[cat].map((item) => (
-                <div
-                  key={item.id}
-                  className="bg-[#1f1f29] border border-red-900/40 rounded-lg p-4 shadow-md shadow-red-900/30"
-                >
-                  <h3 className="text-xl text-red-300 mb-2">{item.title}</h3>
-                  <p className="text-red-200/70 text-sm mb-4">{item.description}</p>
-                  <div className="w-full h-40 bg-black/40 rounded-md flex items-center justify-center text-red-400/60 mb-4">
-                    {cat === "art" && <span>Image Preview</span>}
-                    {cat === "music" && <span>Audio Preview</span>}
-                    {cat === "videos" && <span>Video Preview</span>}
-                    {cat === "writing" && <span>Text Preview</span>}
-                  </div>
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    className="block text-center px-4 py-2 rounded-lg bg-[#2a2a35] hover:bg-[#3a3a45] border border-red-900/40 shadow-md shadow-red-900/30 transition text-red-200"
-                  >
-                    View Content →
-                  </a>
-                </div>
-              ))
-            ) : (
-              <div className="col-span-full text-center text-red-400">No content yet.</div>
-            )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {photos.map((photo, idx) => (
+          <div key={idx} className="bg-[#1f1f29] border border-red-900/40 rounded-lg p-4 shadow-md shadow-red-900/30 flex flex-col items-center">
+            <img
+              src={photo.url}
+              alt={photo.title}
+              className="w-full h-64 object-cover rounded-md mb-4 border-2 border-red-700/40 shadow-lg"
+              loading="lazy"
+            />
+            <h3 className="text-xl text-red-300 mb-2 text-center">{photo.title}</h3>
           </div>
-        </section>
-      ))}
+        ))}
+      </div>
     </main>
   );
 }
