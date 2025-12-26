@@ -41,12 +41,6 @@ export default function Home() {
           Email
         </a>
 
-        <a
-          href="/artists"
-          className="px-6 py-3 rounded-lg bg-[#1f1f29] hover:bg-[#2a2a35] border border-red-900/40 shadow-md shadow-red-900/30 transition text-lg"
-        >
-          Artist Intros
-        </a>
       </div>
 
       {/* THREADED COMMUNICATION SECTION - GLOWING & PROMINENT */}
@@ -55,11 +49,22 @@ export default function Home() {
           <div className="rounded-2xl bg-[#18181c] p-6">
             <h2 className="text-3xl font-extrabold text-center mb-4 text-red-300 drop-shadow-lg tracking-wide animate-glow">Join the Conversation!</h2>
             {/* ThreadedChat is a client component */}
-            {typeof window !== 'undefined' && (
-              <>
-                {require("@/components/ThreadedChat").default()}
-              </>
-            )}
+            <div style={{ marginTop: "2rem" }}>
+              <a
+                href="/artist-intros"
+                style={{
+                  padding: "0.75rem 1.25rem",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  borderRadius: "6px",
+                  textDecoration: "none",
+                  color: "inherit",
+                  fontSize: "1rem",
+                  display: "inline-block",
+                }}
+              >
+                Enter Circles & Roots
+              </a>
+            </div>
           </div>
         </div>
       </div>
