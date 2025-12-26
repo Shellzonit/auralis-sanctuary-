@@ -108,15 +108,13 @@ export default function ChatPage() {
 
       import { useEffect, useState } from "react";
 
-      // Featured works for the week — manually curated
       const featuredWorks = [
-        // Example structure — fill these in later:
-        // {
-        //   id: 1,
-        //   title: "Crimson Sky Ritual",
-        //   creator: "Shellzonit",
-        //   link: "https://www.youtube.com/embed/your-video-id"
-        // },
+        {
+          id: 1,
+          title: "Crimson Sky Ritual",
+          creator: "Shellzonit",
+          link: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+        }
       ];
 
       export default function ChatPage() {
