@@ -24,14 +24,14 @@ export default function Home() {
       </p>
 
       {/* CIRCULAR MENU */}
+              <a
+                href="/chat"
+                className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
+              >
+                Chat
+              </a>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mt-8">
         
-        <a
-          href="/employment"
-          className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
-        >
-          Employment
-        </a>
 
         <a
           href="/showcase"
@@ -55,11 +55,6 @@ export default function Home() {
         </a>
 
         <a
-          href="/chat"
-          className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
-        >
-          Chat
-        </a>
 
       </div>
     </main>
