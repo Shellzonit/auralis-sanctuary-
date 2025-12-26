@@ -68,11 +68,4 @@ export default function ShowcasePage() {
         </a>
       </div>
 
-    </main>
-  );
-}
-      ))}
 
-    </main>
-  );
-}
