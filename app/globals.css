@@ -45,6 +45,7 @@
 @tailwind utilities;
 
 /* Sanctuary color palette */
+:root {
   --background: #EAE7DF; /* soft parchment, slightly darker */
   --foreground: #181818; /* deep charcoal, more noticeable font */
   --accent: #D4A857;     /* warm gold */
