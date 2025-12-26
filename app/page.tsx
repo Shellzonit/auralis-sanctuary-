@@ -1,5 +1,6 @@
 "use client";
 import "./homepage-s.css";
+import "./homepage-artist-tabs.css";
 
 export default function Home() {
   return (
@@ -51,11 +52,13 @@ export default function Home() {
       {/* Title */}
       <h1
         style={{
-          fontSize: "2.2rem",
-          fontWeight: 400,
-          marginBottom: "2rem",
-          letterSpacing: "0.5px",
-          color: "#2a4365", // deep blue for title
+          fontFamily: "Playfair Display, Georgia, serif",
+          fontSize: "4.2rem",
+          fontWeight: 700,
+          marginBottom: "2.2rem",
+          letterSpacing: "0.08em",
+          color: "#2a4365",
+          textShadow: "0 2px 12px rgba(44,62,80,0.08)",
         }}
       >
         Auralis Sanctuary
@@ -70,17 +73,8 @@ export default function Home() {
         → Enter Circles & Roots
       </a>
 
-      {/* Centered Tabs for All Pages */}
-      <div
-        style={{
-          marginTop: "2.5rem",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "1.2rem",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      {/* Artist-like Elegant Tabs */}
+      <div className="homepage-artist-tabs">
         {[
           { label: "Home", href: "/" },
           { label: "Chat", href: "/chat" },
@@ -94,8 +88,8 @@ export default function Home() {
           <a
             key={tab.label}
             href={tab.href}
-            className="text-sanctuary-text hover:text-sanctuary-accent transition-colors font-semibold text-base px-3 py-1 rounded"
-            style={{ textDecoration: "none" }}
+            className="homepage-artist-tab"
+            tabIndex={0}
           >
             {tab.label}
           </a>
