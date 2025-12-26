@@ -13,13 +13,13 @@ function buildThread(messages, parentId = null) {
 function ThreadNode({ node, onReply, level = 0 }) {
   return (
     <div style={{ marginLeft: level * 32, marginBottom: 18 }}>
-      <div className="bg-[#f7fafc] px-6 py-4 rounded-lg shadow border border-gray-300">
-        <div className="text-xs opacity-60 mb-1 font-mono tracking-widest">
+      <div className="bg-[#18181f] px-8 py-5 rounded-lg shadow border border-gray-700">
+        <div className="text-xs opacity-60 mb-1 font-mono tracking-widest text-gray-300">
           {node.username || "Anonymous"} · {new Date(node.created_at).toLocaleString()}
         </div>
-        <div className="whitespace-pre-wrap text-xl font-bold text-[#b1001a] leading-tight" style={{textShadow: '0 1px 0 #fff, 0 2px 8px #fff'}}>{node.text}</div>
+        <div className="whitespace-pre-wrap text-2xl font-bold text-white leading-tight">{node.text}</div>
         <button
-          className="mt-2 text-xs text-red-600 hover:underline font-bold"
+          className="mt-2 text-xs text-red-400 hover:underline font-bold"
           onClick={() => onReply(node.id)}
         >
           Reply
@@ -92,12 +92,12 @@ export default function LargeThreadedChat() {
 
   return (
     <section className="w-full flex flex-col items-center justify-center py-12">
-      <div className="w-full max-w-5xl">
+      <div className="w-full max-w-7xl">
         <h2 className="text-3xl font-bold mb-6 text-red-400 text-center">Sanctuary Threaded Chatroom</h2>
         <div
           ref={chatRef}
-          className="bg-white/80 rounded-xl border border-gray-300 shadow-lg px-4 py-8 mb-6 overflow-y-auto"
-          style={{ minHeight: 480, maxHeight: 600 }}
+          className="bg-[#18181f] rounded-xl border border-gray-700 shadow-lg px-8 py-12 mb-6 overflow-y-auto"
+          style={{ minHeight: 700, maxHeight: 900 }}
         >
           {threadTree.length === 0 ? (
             <div className="text-gray-400 text-center">No messages yet. Start the conversation!</div>
@@ -107,9 +107,9 @@ export default function LargeThreadedChat() {
             ))
           )}
         </div>
-        <form onSubmit={handleSend} className="flex gap-2 w-full max-w-3xl mx-auto">
+        <form onSubmit={handleSend} className="flex gap-2 w-full max-w-4xl mx-auto">
           <input
-            className="flex-1 px-4 py-3 rounded border border-gray-400 text-lg"
+            className="flex-1 px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
             placeholder={replyTo ? "Reply to a message..." : "Type your message..."}
             value={input}
             onChange={(e) => setInput(e.target.value)}
