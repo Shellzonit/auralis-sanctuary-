@@ -67,5 +67,6 @@ export default function ShowcasePage() {
           ← Back to Homepage
         </a>
       </div>
+    </main>
 
 
