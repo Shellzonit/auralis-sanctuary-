@@ -4,8 +4,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 
-export default function ShowcasePage() {
-  const [photos, setPhotos] = useState([]);
+  type Photo = { url: string; title: string };
+  const [photos, setPhotos] = useState<Photo[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const PHOTOS_PER_PAGE = 6;
