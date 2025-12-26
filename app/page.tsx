@@ -24,7 +24,7 @@ export default function Home() {
       </p>
 
       {/* CIRCULAR MENU */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mt-8">
         
         <a
           href="/employment"
@@ -52,6 +52,13 @@ export default function Home() {
           className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
         >
           License Info
+        </a>
+
+        <a
+          href="/chat"
+          className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
+        >
+          Chat
         </a>
 
       </div>
