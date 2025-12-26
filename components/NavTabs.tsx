@@ -24,9 +24,10 @@ export default function NavTabs() {
             <li key={tab.href}>
               <Link
                 href={tab.href}
-                className={`text-lg font-medium ${tab.color} hover:text-white transition ${
-                  isActive ? "underline underline-offset-8 decoration-2 text-white" : ""
-                }`}
+                className={`text-lg font-medium ${tab.color} hover:text-white transition relative
+                  ${isActive ? "underline underline-offset-8 decoration-2 text-white" : ""}
+                  ${isActive ? "glow-tab" : ""}
+                  hover:glow-tab`}
               >
                 {tab.label}
               </Link>

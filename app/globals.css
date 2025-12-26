@@ -1,3 +1,16 @@
+/* Brighter, eye-catching glowing tab effect */
+.glow-tab {
+  text-shadow:
+    0 0 12px #fff,
+    0 0 24px #ff00ff,
+    0 0 36px #ff00ff,
+    0 0 48px #ff00ff,
+    0 0 64px #fff,
+    0 0 80px #ff00ff;
+  filter: brightness(2) saturate(2);
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
 
 /* Tailwind layers */
 @tailwind base;
