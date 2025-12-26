@@ -1,9 +1,8 @@
-.spotlight {
   max-width: 700px;
   margin: 0 auto;
   padding: 80px 20px;
   text-align: center;
-  color: #eaeaea;
+  color: #181818;
   animation: fadeIn 1.2s ease;
 }
 
