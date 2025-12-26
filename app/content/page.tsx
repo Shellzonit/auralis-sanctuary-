@@ -31,26 +31,26 @@ export default function ShowcasePage() {
     <main className="min-h-screen bg-gradient-to-b from-black to-[#1a1a22] text-red-200 px-6 py-16 font-serif">
 
       {/* RESOURCE LINKS SECTION */}
-      <div className="mb-10 flex flex-wrap justify-center gap-6">
+      <div className="mb-12 flex flex-wrap justify-center gap-8">
         <a
           href="https://github.com/Shellzonit/auralis-sanctuary"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-6 py-3 rounded-xl bg-gradient-to-r from-fuchsia-500 to-emerald-400 text-white font-bold text-lg shadow-lg hover:scale-105 hover:from-fuchsia-400 hover:to-emerald-300 transition"
+          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-fuchsia-500 to-emerald-400 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-fuchsia-400/60 glow-link transition hover:scale-110 hover:from-fuchsia-400 hover:to-emerald-300"
         >
-          Project GitHub
+          🚀 Project GitHub
         </a>
         <a
           href="/showcase"
-          className="px-6 py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-pink-500 text-white font-bold text-lg shadow-lg hover:scale-105 hover:from-yellow-300 hover:to-pink-400 transition"
+          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-yellow-400 to-pink-500 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-yellow-400/60 glow-link transition hover:scale-110 hover:from-yellow-300 hover:to-pink-400"
         >
-          See Showcase
+          🌟 See Showcase
         </a>
         <a
           href="mailto:support@sanctuary.com"
-          className="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-700 text-white font-bold text-lg shadow-lg hover:scale-105 hover:from-sky-400 hover:to-blue-500 transition"
+          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-700 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-sky-400/60 glow-link transition hover:scale-110 hover:from-sky-400 hover:to-blue-500"
         >
-          Contact Support
+          💌 Contact Support
         </a>
       </div>
 
