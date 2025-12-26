@@ -68,7 +68,11 @@
 
 /* Global body styling */
 body {
-  background-color: #1A1816; /* Soft Obsidian */
+  background-color: #1A1816; /* fallback */
+  background-image:
+    linear-gradient(135deg, #ece9e6 0%, #ffffff 100%),
+    repeating-linear-gradient(45deg, #eae7df 0px, #eae7df 40px, #f5f2eb 40px, #f5f2eb 80px);
+  background-blend-mode: lighten;
   color: #F5F2EB; /* warm ivory text */
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: 1.25rem;
