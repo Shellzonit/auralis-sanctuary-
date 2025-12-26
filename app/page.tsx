@@ -29,7 +29,7 @@ export default function Home() {
 
       {/* Main Portal Link */}
       <a
-        href="/circles"
+        href="/chat"
         style={{
           fontSize: "1.25rem",
           fontWeight: 400,
