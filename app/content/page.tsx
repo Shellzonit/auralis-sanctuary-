@@ -30,8 +30,16 @@ export default function ShowcasePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-black to-[#1a1a22] text-red-200 px-6 py-16 font-serif">
 
-      {/* RESOURCE LINKS SECTION */}
-      <div className="mb-12 flex flex-wrap justify-center gap-8">
+      {/* RESOURCE LINKS SECTION WITH ADD BUTTONS */}
+      <div className="mb-12 flex flex-wrap items-center justify-center gap-8 relative">
+        {/* Add Your Content Button (Left) */}
+        <a
+          href="#submit-content"
+          className="hidden md:inline-block absolute left-0 px-6 py-4 rounded-2xl bg-gradient-to-r from-red-500 to-pink-500 text-white font-extrabold text-xl shadow-2xl border-4 border-white/80 ring-4 ring-red-400/60 glow-link transition hover:scale-110 hover:from-red-400 hover:to-pink-400 z-10"
+          style={{ top: '50%', transform: 'translateY(-50%)' }}
+        >
+          ➕ Add Your Content
+        </a>
         <a
           href="https://github.com/Shellzonit/auralis-sanctuary"
           target="_blank"
@@ -75,6 +83,14 @@ export default function ShowcasePage() {
           className="px-10 py-5 rounded-2xl bg-gradient-to-r from-green-400 to-teal-600 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-green-400/60 glow-link transition hover:scale-110 hover:from-green-300 hover:to-teal-500"
         >
           🎵 Bandcamp
+        </a>
+        {/* Add Your Content Button (Right) */}
+        <a
+          href="#submit-content"
+          className="hidden md:inline-block absolute right-0 px-6 py-4 rounded-2xl bg-gradient-to-r from-red-500 to-pink-500 text-white font-extrabold text-xl shadow-2xl border-4 border-white/80 ring-4 ring-red-400/60 glow-link transition hover:scale-110 hover:from-red-400 hover:to-pink-400 z-10"
+          style={{ top: '50%', transform: 'translateY(-50%)' }}
+        >
+          ➕ Add Your Content
         </a>
       </div>
 
@@ -132,7 +148,7 @@ export default function ShowcasePage() {
       ))}
 
       {/* SUBMIT CONTENT SECTION */}
-      <section className="max-w-2xl mx-auto mt-24 mb-10 bg-[#18181f] rounded-2xl shadow-2xl p-8 border-2 border-red-700/40">
+      <section id="submit-content" className="max-w-2xl mx-auto mt-24 mb-10 bg-[#18181f] rounded-2xl shadow-2xl p-8 border-2 border-red-700/40">
         <h2 className="text-3xl text-center text-red-400 mb-6 font-bold">Submit Your Work</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <input
