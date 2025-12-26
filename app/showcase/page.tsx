@@ -22,31 +22,55 @@ const CATEGORY_LABELS: Record<string, string> = {
 export default function ShowcasePage() {
   const [content, setContent] = useState<Record<string, ContentItem[]>>({});
   const [loading, setLoading] = useState(true);
+  // Upload form state
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("music");
+  const [url, setUrl] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  async function fetchContent() {
+    setLoading(true);
+    const response = await supabase
+      ?.from("showcase_content")
+      .select("id,title,description,category,url")
+      .order("id", { ascending: false });
+    if (response?.error) {
+      setContent({});
+      setLoading(false);
+      return;
+    }
+    // Group by category
+    const grouped: Record<string, ContentItem[]> = {};
+    (response?.data || []).forEach((item: ContentItem) => {
+      const cat = item.category?.toLowerCase() || "other";
+      if (!grouped[cat]) grouped[cat] = [];
+      grouped[cat].push(item);
+    });
+    setContent(grouped);
+    setLoading(false);
+  }
 
   useEffect(() => {
-    async function fetchContent() {
-      setLoading(true);
-      const response = await supabase
-        ?.from("showcase_content")
-        .select("id,title,description,category,url")
-        .order("id", { ascending: false });
-      if (response?.error) {
-        setContent({});
-        setLoading(false);
-        return;
-      }
-      // Group by category
-      const grouped: Record<string, ContentItem[]> = {};
-      (response?.data || []).forEach((item: ContentItem) => {
-        const cat = item.category?.toLowerCase() || "other";
-        if (!grouped[cat]) grouped[cat] = [];
-        grouped[cat].push(item);
-      });
-      setContent(grouped);
-      setLoading(false);
-    }
     fetchContent();
   }, []);
+
+  // Handle upload form submit
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await fetch("/api/submit-content", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, description, category, url }),
+    });
+    setSubmitted(true);
+    setTitle("");
+    setDescription("");
+    setCategory("music");
+    setUrl("");
+    setTimeout(() => setSubmitted(false), 4000);
+    fetchContent(); // Refresh showcase
+  };
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-black to-[#1a1a22] text-red-200 px-6 py-16 font-serif">
@@ -54,6 +78,54 @@ export default function ShowcasePage() {
         Content Showcase
       </h1>
       <div className="w-32 h-1 bg-red-600 mx-auto mb-10 rounded-full"></div>
+
+      {/* Upload Form */}
+      <section id="submit-content" className="max-w-2xl mx-auto mt-0 mb-10 bg-[#18181f] rounded-2xl shadow-2xl p-8 border-2 border-red-700/40">
+        <h2 className="text-3xl text-center text-red-400 mb-6 font-bold">Submit Your Work</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <input
+            className="w-full px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
+            placeholder="Title"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            required
+          />
+          <textarea
+            className="w-full px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
+            placeholder="Description"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+            required
+          />
+          <select
+            className="w-full px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
+            value={category}
+            onChange={e => setCategory(e.target.value)}
+            required
+          >
+            <option value="music">Music & Audio</option>
+            <option value="art">Visual Art</option>
+            <option value="writing">Writing & Lore</option>
+            <option value="videos">Video Creations</option>
+          </select>
+          <input
+            className="w-full px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
+            placeholder="Content URL (YouTube, SoundCloud, image, etc.)"
+            value={url}
+            onChange={e => setUrl(e.target.value)}
+            required
+          />
+          <button
+            type="submit"
+            className="w-full px-6 py-3 rounded bg-red-600 hover:bg-red-700 text-white font-bold text-lg"
+          >
+            Submit
+          </button>
+          {submitted && (
+            <div className="text-green-400 text-center font-bold mt-2">Submitted!</div>
+          )}
+        </form>
+      </section>
 
       {Object.entries(CATEGORY_LABELS).map(([cat, label]) => (
         <section className="mb-16" key={cat}>
