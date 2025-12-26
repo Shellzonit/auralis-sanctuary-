@@ -1,4 +1,5 @@
 
+"use client";
 
 import { contentData } from "../../lib/content";
 import { useState } from "react";
