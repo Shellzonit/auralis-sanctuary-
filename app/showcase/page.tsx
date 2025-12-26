@@ -5,18 +5,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 
 export default function ShowcasePage() {
-  const STATIC_AI_PHOTOS = [
-    {
-      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
-      title: "Sample AI Photo 1",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
-      title: "Sample AI Photo 2",
-    },
-  ];
-
-  const [photos, setPhotos] = useState([...STATIC_AI_PHOTOS]);
+  const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const PHOTOS_PER_PAGE = 6;
@@ -38,7 +27,7 @@ export default function ShowcasePage() {
       .order("id", { ascending: false });
     if (!error && data) {
       const userPhotos = data.map((item: any) => ({ url: item.url, title: item.title || "User Submission" }));
-      setPhotos([...STATIC_AI_PHOTOS, ...userPhotos]);
+      setPhotos(userPhotos);
     }
     setLoading(false);
   }
