@@ -10,14 +10,14 @@ function buildThread(messages, parentId = null) {
     }));
 }
 
-function ThreadNode({ node, onReply }) {
+function ThreadNode({ node, onReply, level = 0 }) {
   return (
-    <div className="flex flex-col items-center mb-4">
-      <div className="bg-[#f7fafc] px-6 py-4 rounded-full shadow border-2 border-gray-300 w-fit max-w-lg text-center transition-all duration-200">
+    <div style={{ marginLeft: level * 32, marginBottom: 18 }}>
+      <div className="bg-[#f7fafc] px-6 py-4 rounded-lg shadow border border-gray-300">
         <div className="text-xs opacity-60 mb-1 font-mono tracking-widest">
           {node.username || "Anonymous"} · {new Date(node.created_at).toLocaleString()}
         </div>
-        <div className="whitespace-pre-wrap text-2xl font-extrabold text-[#b1001a] leading-tight" style={{textShadow: '0 1px 0 #fff, 0 2px 8px #fff'}}> {node.text} </div>
+        <div className="whitespace-pre-wrap text-xl font-bold text-[#b1001a] leading-tight" style={{textShadow: '0 1px 0 #fff, 0 2px 8px #fff'}}>{node.text}</div>
         <button
           className="mt-2 text-xs text-red-600 hover:underline font-bold"
           onClick={() => onReply(node.id)}
@@ -25,9 +25,8 @@ function ThreadNode({ node, onReply }) {
           Reply
         </button>
       </div>
-      {/* Replies: stack vertically, no indent */}
       {node.replies && node.replies.map((reply) => (
-        <ThreadNode key={reply.id} node={reply} onReply={onReply} />
+        <ThreadNode key={reply.id} node={reply} onReply={onReply} level={level + 1} />
       ))}
     </div>
   );
@@ -92,12 +91,12 @@ export default function LargeThreadedChat() {
   }, [messages]);
 
   return (
-    <section className="fixed inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
-      <div className="w-full max-w-4xl flex flex-col items-center justify-center pointer-events-auto">
+    <section className="w-full flex flex-col items-center justify-center py-12">
+      <div className="w-full max-w-5xl">
         <h2 className="text-3xl font-bold mb-6 text-red-400 text-center">Sanctuary Threaded Chatroom</h2>
         <div
           ref={chatRef}
-          className="bg-white/80 rounded-xl border border-gray-300 shadow-lg px-2 py-8 mb-6 overflow-y-auto flex flex-col items-center"
+          className="bg-white/80 rounded-xl border border-gray-300 shadow-lg px-4 py-8 mb-6 overflow-y-auto"
           style={{ minHeight: 480, maxHeight: 600 }}
         >
           {threadTree.length === 0 ? (
@@ -108,7 +107,7 @@ export default function LargeThreadedChat() {
             ))
           )}
         </div>
-        <form onSubmit={handleSend} className="flex gap-2 w-full max-w-2xl mx-auto">
+        <form onSubmit={handleSend} className="flex gap-2 w-full max-w-3xl mx-auto">
           <input
             className="flex-1 px-4 py-3 rounded border border-gray-400 text-lg"
             placeholder={replyTo ? "Reply to a message..." : "Type your message..."}
