@@ -26,8 +26,10 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{ position: "relative", minHeight: "100vh" }}
       >
         {children}
+        <div className="blue-streak" />
       </body>
     </html>
   );
