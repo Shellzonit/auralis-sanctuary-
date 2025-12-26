@@ -1,15 +1,23 @@
-/* Brighter, eye-catching glowing tab effect */
-.glow-tab {
+
+/* Strong, universal glow for active/hovered tab */
+.glow-tab-strong {
   text-shadow:
-    0 0 12px #fff,
-    0 0 24px #ff00ff,
-    0 0 36px #ff00ff,
-    0 0 48px #ff00ff,
-    0 0 64px #fff,
-    0 0 80px #ff00ff;
-  filter: brightness(2) saturate(2);
-  font-weight: bold;
-  letter-spacing: 0.04em;
+    0 0 8px #fff,
+    0 0 16px #fff,
+    0 0 32px #00eaff,
+    0 0 48px #00eaff,
+    0 0 64px #fff;
+  background: linear-gradient(90deg, #00eaff 0%, #fff 100%);
+  color: #222 !important;
+  box-shadow: 0 0 24px 8px #00eaff99, 0 0 8px 2px #fff;
+  border: 2px solid #fff;
+}
+
+/* Softer glow for inactive tabs */
+.glow-tab-soft {
+  text-shadow: 0 0 4px #00eaff99, 0 0 8px #fff2;
+  background: transparent;
+  color: #fff;
 }
 
 /* Tailwind layers */
