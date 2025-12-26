@@ -32,27 +32,8 @@ export default function Home() {
       {/* Main Portal Link */}
       <a
         href="/chat"
-        style={{
-          fontSize: "1.25rem",
-          fontWeight: 400,
-          textDecoration: "none",
-          color: "#2b6cb0",
-          background: "#e3f2fd",
-          borderRadius: "8px",
-          padding: "0.5rem 1.2rem",
-          boxShadow: "0 2px 8px rgba(44, 62, 80, 0.06)",
-          transition: "background 180ms, color 180ms, filter 180ms",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.background = "#bee3f8";
-          e.currentTarget.style.color = "#1a365d";
-          e.currentTarget.style.filter = "brightness(1.08)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = "#e3f2fd";
-          e.currentTarget.style.color = "#2b6cb0";
-          e.currentTarget.style.filter = "brightness(1)";
-        }}
+        className="text-sanctuary-accent hover:text-sanctuary-text transition-colors font-bold text-xl px-6 py-3 rounded-lg"
+        style={{ textDecoration: "none", background: "none" }}
       >
         → Enter Circles & Roots
       </a>
