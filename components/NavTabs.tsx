@@ -8,6 +8,7 @@ export default function NavTabs() {
     { href: "/", label: "Home" },
     { href: "/chat", label: "Chat" },
     { href: "/content", label: "Content" },
+    { href: "/artist-intros", label: "Artist Intros" },
     { href: "/mail", label: "Email" },
     { href: "/games", label: "Games" },
     { href: "/license", label: "Licensing" },
