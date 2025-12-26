@@ -52,6 +52,30 @@ export default function ShowcasePage() {
         >
           💌 Contact Support
         </a>
+        <a
+          href="https://patreon.com/yourpatreon"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-orange-400 to-pink-600 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-orange-400/60 glow-link transition hover:scale-110 hover:from-orange-300 hover:to-pink-400"
+        >
+          🧡 Patreon
+        </a>
+        <a
+          href="https://discord.gg/yourdiscord"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-indigo-500 to-blue-600 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-indigo-400/60 glow-link transition hover:scale-110 hover:from-indigo-400 hover:to-blue-500"
+        >
+          💬 Discord
+        </a>
+        <a
+          href="https://bandcamp.com/yourbandcamp"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-green-400 to-teal-600 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-green-400/60 glow-link transition hover:scale-110 hover:from-green-300 hover:to-teal-500"
+        >
+          🎵 Bandcamp
+        </a>
       </div>
 
       {/* PAGE TITLE */}
