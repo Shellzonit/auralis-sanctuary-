@@ -61,3 +61,14 @@ body {
   line-height: 1.8;
   transition: background 0.3s, color 0.3s;
 }
+body {
+  background: radial-gradient(
+      circle at center,
+      rgba(140, 91, 255, 0.18) 0%,
+      rgba(140, 91, 255, 0.10) 18%,
+      rgba(27, 26, 35, 0.95) 45%,
+      #0F0E14 100%
+    );
+  background-attachment: fixed;
+  color: #EAEAEA;
+}
