@@ -17,6 +17,8 @@ export default function ShowcasePage() {
   ];
 
   const [photos, setPhotos] = useState([...STATIC_AI_PHOTOS]);
+  const [page, setPage] = useState(1);
+  const PHOTOS_PER_PAGE = 6;
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -90,18 +92,39 @@ export default function ShowcasePage() {
         </form>
       </section>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        {photos.map((photo, idx) => (
-          <div key={idx} className="bg-[#1f1f29] border border-red-900/40 rounded-lg p-4 shadow-md shadow-red-900/30 flex flex-col items-center">
-            <img
-              src={photo.url}
-              alt={photo.title}
-              className="w-full h-64 object-cover rounded-md mb-4 border-2 border-red-700/40 shadow-lg"
-              loading="lazy"
-            />
-            <h3 className="text-xl text-red-300 mb-2 text-center">{photo.title}</h3>
-          </div>
-        ))}
+      {/* Paginated Photo Gallery */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mb-8">
+        {photos
+          .slice((page - 1) * PHOTOS_PER_PAGE, page * PHOTOS_PER_PAGE)
+          .map((photo, idx) => (
+            <div key={idx} className="bg-[#1f1f29] border border-red-900/40 rounded-lg p-4 shadow-md shadow-red-900/30 flex flex-col items-center">
+              <img
+                src={photo.url}
+                alt={photo.title}
+                className="w-full h-64 object-cover rounded-md mb-4 border-2 border-red-700/40 shadow-lg"
+                loading="lazy"
+              />
+              <h3 className="text-xl text-red-300 mb-2 text-center">{photo.title}</h3>
+            </div>
+          ))}
+      </div>
+      {/* Pagination Controls */}
+      <div className="flex justify-center gap-4 mb-8">
+        <button
+          onClick={() => setPage((p) => Math.max(1, p - 1))}
+          disabled={page === 1}
+          className="px-4 py-2 rounded bg-red-700 text-white font-bold disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <span className="text-lg text-red-300 font-bold">Page {page}</span>
+        <button
+          onClick={() => setPage((p) => (p * PHOTOS_PER_PAGE < photos.length ? p + 1 : p))}
+          disabled={page * PHOTOS_PER_PAGE >= photos.length}
+          className="px-4 py-2 rounded bg-red-700 text-white font-bold disabled:opacity-50"
+        >
+          Next
+        </button>
       </div>
     </main>
   );
