@@ -38,52 +38,37 @@ export default function Home() {
         → Enter Circles & Roots
       </a>
 
-      {/* Footer Tabs for All Pages */}
-      <footer
+      {/* Centered Tabs for All Pages */}
+      <div
         style={{
-          width: "100%",
-          position: "fixed",
-          left: 0,
-          bottom: 0,
-          background: "rgba(255,255,255,0.96)",
-          borderTop: "1px solid #cbd5e1",
-          padding: "0.75rem 0",
+          marginTop: "2.5rem",
           display: "flex",
+          flexWrap: "wrap",
+          gap: "1.2rem",
           justifyContent: "center",
-          zIndex: 50,
-          boxShadow: "0 -2px 8px rgba(44, 62, 80, 0.04)",
+          alignItems: "center",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "1.2rem",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {[
-            { label: "Home", href: "/" },
-            { label: "Chat", href: "/chat" },
-            { label: "Showcase", href: "/showcase" },
-            { label: "Email", href: "/email" },
-            { label: "Spotlight", href: "/spotlight" },
-            { label: "About Us", href: "/about" },
-            { label: "Legacy", href: "/legacy" },
-            { label: "Privacy", href: "/privacy" },
-          ].map((tab) => (
-            <a
-              key={tab.label}
-              href={tab.href}
-              className="text-sanctuary-text hover:text-sanctuary-accent transition-colors font-semibold text-base px-3 py-1 rounded"
-              style={{ textDecoration: "none" }}
-            >
-              {tab.label}
-            </a>
-          ))}
-        </div>
-      </footer>
+        {[
+          { label: "Home", href: "/" },
+          { label: "Chat", href: "/chat" },
+          { label: "Showcase", href: "/showcase" },
+          { label: "Email", href: "/email" },
+          { label: "Spotlight", href: "/spotlight" },
+          { label: "About Us", href: "/about" },
+          { label: "Legacy", href: "/legacy" },
+          { label: "Privacy", href: "/privacy" },
+        ].map((tab) => (
+          <a
+            key={tab.label}
+            href={tab.href}
+            className="text-sanctuary-text hover:text-sanctuary-accent transition-colors font-semibold text-base px-3 py-1 rounded"
+            style={{ textDecoration: "none" }}
+          >
+            {tab.label}
+          </a>
+        ))}
+      </div>
     </main>
   );
 }
