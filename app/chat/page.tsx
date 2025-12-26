@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from "react";
 import ChatFeatureLinks from "../../components/ChatFeatureLinks";
+import ChatMessage from "./ChatMessage";
 const featuredWorks: {
   id: number;
   title: string;
@@ -93,15 +94,12 @@ export default function ChatPage() {
           {/* Messages */}
           <div className="space-y-4 mb-4 max-h-[400px] overflow-y-auto pr-2">
             {messages.map((msg: Message) => (
-              <div
-                key={msg.id}
-                className="p-3 rounded-lg bg-red-900/40 border border-red-700/40 shadow-md shadow-red-900/30"
-              >
-                <p className="text-sm text-red-300/70 flex items-center gap-2">
+              <div key={msg.id}>
+                <p className="text-sm text-red-300/70 flex items-center gap-2 mb-1">
                   <span className="text-red-400">{generateSigil(msg.username)}</span>
                   {msg.username}
                 </p>
-                <p>{msg.content}</p>
+                <ChatMessage message={msg} />
               </div>
             ))}
           </div>
