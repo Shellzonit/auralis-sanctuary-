@@ -8,8 +8,8 @@ export default function Home() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#000",
-        color: "rgba(255,255,255,0.85)",
+        backgroundColor: "#f7fafc", // light background
+        color: "#222", // dark text for contrast
         fontFamily: "sans-serif",
         textAlign: "center",
         padding: "2rem",
@@ -23,6 +23,7 @@ export default function Home() {
           fontWeight: 400,
           marginBottom: "2rem",
           letterSpacing: "0.5px",
+          color: "#2a4365", // deep blue for title
         }}
       >
         Auralis Sanctuary
@@ -35,13 +36,21 @@ export default function Home() {
           fontSize: "1.25rem",
           fontWeight: 400,
           textDecoration: "none",
-          color: "rgba(255,255,255,0.85)",
-          transition: "filter 180ms ease",
+          color: "#2b6cb0",
+          background: "#e3f2fd",
+          borderRadius: "8px",
+          padding: "0.5rem 1.2rem",
+          boxShadow: "0 2px 8px rgba(44, 62, 80, 0.06)",
+          transition: "background 180ms, color 180ms, filter 180ms",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.filter = "brightness(1.18)";
+          e.currentTarget.style.background = "#bee3f8";
+          e.currentTarget.style.color = "#1a365d";
+          e.currentTarget.style.filter = "brightness(1.08)";
         }}
         onMouseLeave={(e) => {
+          e.currentTarget.style.background = "#e3f2fd";
+          e.currentTarget.style.color = "#2b6cb0";
           e.currentTarget.style.filter = "brightness(1)";
         }}
       >
@@ -55,12 +64,13 @@ export default function Home() {
           position: "fixed",
           left: 0,
           bottom: 0,
-          background: "rgba(0,0,0,0.92)",
-          borderTop: "1px solid rgba(255,255,255,0.08)",
+          background: "rgba(255,255,255,0.96)",
+          borderTop: "1px solid #cbd5e1",
           padding: "0.75rem 0",
           display: "flex",
           justifyContent: "center",
           zIndex: 50,
+          boxShadow: "0 -2px 8px rgba(44, 62, 80, 0.04)",
         }}
       >
         <div
@@ -87,7 +97,7 @@ export default function Home() {
               href={tab.href}
               style={{
                 textDecoration: "none",
-                color: "rgba(255,255,255,0.75)",
+                color: "#2b6cb0",
                 fontWeight: 500,
                 fontSize: "1rem",
                 padding: "0.25rem 0.75rem",
@@ -95,13 +105,13 @@ export default function Home() {
                 transition: "background 180ms, color 180ms, filter 180ms",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                e.currentTarget.style.color = "#fff";
-                e.currentTarget.style.filter = "brightness(1.18)";
+                e.currentTarget.style.background = "#bee3f8";
+                e.currentTarget.style.color = "#1a365d";
+                e.currentTarget.style.filter = "brightness(1.08)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = "none";
-                e.currentTarget.style.color = "rgba(255,255,255,0.75)";
+                e.currentTarget.style.color = "#2b6cb0";
                 e.currentTarget.style.filter = "brightness(1)";
               }}
             >
