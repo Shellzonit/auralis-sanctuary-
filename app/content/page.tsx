@@ -1,209 +1,106 @@
 
 "use client";
 
-import { contentData } from "../../lib/content";
-import { useState } from "react";
-import Message from "./Message";
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabaseClient";
 
-export default function ShowcasePage() {
-  // SubmitContent state
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("music");
+export default function ArtistPhotoSubmissionsPage() {
+  const STATIC_ARTIST_PHOTOS = [
+    {
+      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+      title: "Sample Artist Photo 1",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+      title: "Sample Artist Photo 2",
+    },
+  ];
+
+  const [photos, setPhotos] = useState([...STATIC_ARTIST_PHOTOS]);
   const [url, setUrl] = useState("");
+  const [title, setTitle] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  // Fetch user-submitted artist photos from Supabase
+  async function fetchPhotos() {
+    const { data, error } = await supabase
+      .from("showcase_content")
+      .select("id, title, url, category")
+      .eq("category", "art")
+      .order("id", { ascending: false });
+    if (!error && data) {
+      const userPhotos = data.map((item: any) => ({ url: item.url, title: item.title || "Artist Submission" }));
+      setPhotos([...STATIC_ARTIST_PHOTOS, ...userPhotos]);
+    }
+  }
+
+  useEffect(() => {
+    fetchPhotos();
+  }, []);
+
+  // Handle upload form submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await fetch("/api/submit-content", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, description, category, url }),
+      body: JSON.stringify({ title, description: "", category: "art", url }),
     });
     setSubmitted(true);
     setTitle("");
-    setDescription("");
-    setCategory("music");
     setUrl("");
     setTimeout(() => setSubmitted(false), 4000);
+    fetchPhotos(); // Refresh gallery
   };
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-black to-[#1a1a22] text-red-200 px-6 py-16 font-serif">
-      {/* DEMO: Embedded Message Example */}
-      <section className="max-w-xl mx-auto mb-12">
-        <h2 className="text-2xl font-bold text-red-300 mb-4 text-center">Message Example</h2>
-        <Message message={{ text: "Check out this video: https://www.youtube.com/watch?v=dQw4w9WgXcQ\nAnd this site: https://sanctuary.com" }} />
-      </section>
-
-      {/* RESOURCE LINKS SECTION WITH ADD BUTTONS */}
-      <div className="mb-12 flex flex-wrap items-center justify-center gap-8 relative">
-        {/* Add Your Content Button (Left) */}
-        <a
-          href="#submit-content"
-          className="hidden md:inline-block absolute left-0 px-6 py-4 rounded-2xl bg-gradient-to-r from-red-500 to-pink-500 text-white font-extrabold text-xl shadow-2xl border-4 border-white/80 ring-4 ring-red-400/60 glow-link transition hover:scale-110 hover:from-red-400 hover:to-pink-400 z-10"
-          style={{ top: '50%', transform: 'translateY(-50%)' }}
-        >
-          ➕ Add Your Content
-        </a>
-        <a
-          href="https://github.com/Shellzonit/auralis-sanctuary"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-fuchsia-500 to-emerald-400 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-fuchsia-400/60 glow-link transition hover:scale-110 hover:from-fuchsia-400 hover:to-emerald-300"
-        >
-          🚀 Project GitHub
-        </a>
-        <a
-          href="/showcase"
-          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-yellow-400 to-pink-500 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-yellow-400/60 glow-link transition hover:scale-110 hover:from-yellow-300 hover:to-pink-400"
-        >
-          🌟 See Showcase
-        </a>
-        <a
-          href="mailto:support@sanctuary.com"
-          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-700 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-sky-400/60 glow-link transition hover:scale-110 hover:from-sky-400 hover:to-blue-500"
-        >
-          💌 Contact Support
-        </a>
-        <a
-          href="https://patreon.com/yourpatreon"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-orange-400 to-pink-600 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-orange-400/60 glow-link transition hover:scale-110 hover:from-orange-300 hover:to-pink-400"
-        >
-          🧡 Patreon
-        </a>
-        <a
-          href="https://discord.gg/yourdiscord"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-indigo-500 to-blue-600 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-indigo-400/60 glow-link transition hover:scale-110 hover:from-indigo-400 hover:to-blue-500"
-        >
-          💬 Discord
-        </a>
-        <a
-          href="https://bandcamp.com/yourbandcamp"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-green-400 to-teal-600 text-white font-extrabold text-2xl shadow-2xl border-4 border-white/80 ring-4 ring-green-400/60 glow-link transition hover:scale-110 hover:from-green-300 hover:to-teal-500"
-        >
-          🎵 Bandcamp
-        </a>
-        {/* Add Your Content Button (Right) */}
-        <a
-          href="#submit-content"
-          className="hidden md:inline-block absolute right-0 px-6 py-4 rounded-2xl bg-gradient-to-r from-red-500 to-pink-500 text-white font-extrabold text-xl shadow-2xl border-4 border-white/80 ring-4 ring-red-400/60 glow-link transition hover:scale-110 hover:from-red-400 hover:to-pink-400 z-10"
-          style={{ top: '50%', transform: 'translateY(-50%)' }}
-        >
-          ➕ Add Your Content
-        </a>
-      </div>
-
-      {/* PAGE TITLE */}
       <h1 className="text-4xl font-bold text-red-400 tracking-wide text-center mb-2">
-        Content Showcase
+        Artist Photo Submissions
       </h1>
-
-      {/* RED LINE */}
       <div className="w-32 h-1 bg-red-600 mx-auto mb-10 rounded-full"></div>
 
-      {/* CATEGORY SECTIONS */}
-      {Object.entries(contentData).map(([category, items]: [string, Array<{ id: string; title: string; description: string; type: string; url: string }>]) => (
-        <section key={category} className="mb-16">
-
-          {/* CATEGORY TITLE */}
-          <h2 className="text-3xl text-red-300 font-semibold text-center mb-2 capitalize">
-            {category.replace(/([A-Z])/g, " $1")}
-          </h2>
-
-          <div className="w-24 h-1 bg-red-700 mx-auto mb-8 rounded-full"></div>
-
-          {/* CONTENT GRID */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-
-            {items.map((item: { id: string; title: string; description: string; type: string; url: string }) => (
-              <div
-                key={item.id}
-                className="bg-[#1f1f29] border border-red-900/40 rounded-lg p-4 shadow-md shadow-red-900/30"
-              >
-                <h3 className="text-xl text-red-300 mb-2">{item.title}</h3>
-                <p className="text-red-200/70 text-sm mb-4">{item.description}</p>
-
-                {/* MEDIA PREVIEW */}
-                <div className="w-full h-40 bg-black/40 rounded-md flex items-center justify-center text-red-400/60 mb-4">
-                  {item.type === "image" && <span>Image Preview</span>}
-                  {item.type === "audio" && <span>Audio Preview</span>}
-                  {item.type === "video" && <span>Video Preview</span>}
-                  {item.type === "text" && <span>Text Preview</span>}
-                </div>
-
-                {/* VIEW BUTTON */}
-                <a
-                  href={item.url}
-                  target="_blank"
-                  className="block text-center px-4 py-2 rounded-lg bg-[#2a2a35] hover:bg-[#3a3a45] border border-red-900/40 shadow-md shadow-red-900/30 transition text-red-200"
-                >
-                  View Content →
-                </a>
-              </div>
-            ))}
-
-          </div>
-        </section>
-      ))}
-
-      {/* SUBMIT CONTENT SECTION */}
-      <section id="submit-content" className="max-w-2xl mx-auto mt-24 mb-10 bg-[#18181f] rounded-2xl shadow-2xl p-8 border-2 border-red-700/40">
-        <h2 className="text-3xl text-center text-red-400 mb-6 font-bold">Submit Your Work</h2>
+      {/* Upload Form */}
+      <section id="submit-content" className="max-w-2xl mx-auto mt-0 mb-10 bg-[#18181f] rounded-2xl shadow-2xl p-8 border-2 border-red-700/40">
+        <h2 className="text-3xl text-center text-red-400 mb-6 font-bold">Submit Your Photo</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <input
-            className="w-full p-3 bg-[#1f1f29] border border-red-900/40 rounded text-lg"
-            placeholder="Title"
+            className="w-full px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
+            placeholder="Title (optional)"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
+            onChange={e => setTitle(e.target.value)}
           />
-          <textarea
-            className="w-full p-3 bg-[#1f1f29] border border-red-900/40 rounded text-lg"
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-          <select
-            className="w-full p-3 bg-[#1f1f29] border border-red-900/40 rounded text-lg"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-          >
-            <option value="music">Music</option>
-            <option value="art">Art</option>
-            <option value="writing">Writing</option>
-            <option value="videos">Videos</option>
-          </select>
           <input
-            className="w-full p-3 bg-[#1f1f29] border border-red-900/40 rounded text-lg"
-            placeholder="Link (URL)"
+            className="w-full px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
+            placeholder="Image URL (required)"
             value={url}
-            onChange={(e) => setUrl(e.target.value)}
+            onChange={e => setUrl(e.target.value)}
             required
           />
           <button
             type="submit"
-            className="w-full py-3 bg-red-700 hover:bg-red-800 rounded text-lg font-bold shadow-lg transition"
+            className="w-full px-6 py-3 rounded bg-red-600 hover:bg-red-700 text-white font-bold text-lg"
           >
             Submit
           </button>
+          {submitted && (
+            <div className="text-green-400 text-center font-bold mt-2">Submitted!</div>
+          )}
         </form>
-        {submitted && (
-          <div className="text-green-400 text-center font-semibold mt-4">Your content has been submitted!</div>
-        )}
       </section>
 
-      {/* BACK TO HOMEPAGE BUTTON */}
-      <div className="text-center mt-10">
-        <a href="/" className="text-red-300 underline text-lg">← Back to Homepage</a>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {photos.map((photo, idx) => (
+          <div key={idx} className="bg-[#1f1f29] border border-red-900/40 rounded-lg p-4 shadow-md shadow-red-900/30 flex flex-col items-center">
+            <img
+              src={photo.url}
+              alt={photo.title}
+              className="w-full h-64 object-cover rounded-md mb-4 border-2 border-red-700/40 shadow-lg"
+              loading="lazy"
+            />
+            <h3 className="text-xl text-red-300 mb-2 text-center">{photo.title}</h3>
+          </div>
+        ))}
       </div>
     </main>
   );

@@ -1,48 +1,32 @@
 
 "use client";
 
-
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 
-const STATIC_AI_PHOTOS = [
-  {
-    url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
-    title: "AI Dreamscape 1",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
-    title: "AI Dreamscape 2",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80",
-    title: "AI Dreamscape 3",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=600&q=80",
-    title: "AI Dreamscape 4",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=600&q=80",
-    title: "AI Dreamscape 5",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
-    title: "AI Dreamscape 6",
-  },
-];
-
+export default function ShowcasePage() {
+  const STATIC_AI_PHOTOS = [
+    {
+      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+      title: "Sample AI Photo 1",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+      title: "Sample AI Photo 2",
+    },
+  ];
 
   const [photos, setPhotos] = useState([...STATIC_AI_PHOTOS]);
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  // Fetch user-submitted photos from Supabase
+  // Fetch user-submitted AI photos from Supabase
   async function fetchPhotos() {
     const { data, error } = await supabase
       .from("showcase_content")
-      .select("id, title, url")
+      .select("id, title, url, category")
+      .eq("category", "art")
       .order("id", { ascending: false });
     if (!error && data) {
       const userPhotos = data.map((item: any) => ({ url: item.url, title: item.title || "User Submission" }));
@@ -78,7 +62,7 @@ const STATIC_AI_PHOTOS = [
 
       {/* Upload Form */}
       <section id="submit-content" className="max-w-2xl mx-auto mt-0 mb-10 bg-[#18181f] rounded-2xl shadow-2xl p-8 border-2 border-red-700/40">
-        <h2 className="text-3xl text-center text-red-400 mb-6 font-bold">Submit Your AI Art</h2>
+        <h2 className="text-3xl text-center text-red-400 mb-6 font-bold">Submit Your AI Photo</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <input
             className="w-full px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
