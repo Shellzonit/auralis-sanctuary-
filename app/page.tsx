@@ -49,6 +49,21 @@ export default function Home() {
         </a>
       </div>
 
+      {/* THREADED COMMUNICATION SECTION - GLOWING & PROMINENT */}
+      <div className="w-full flex justify-center mt-16">
+        <div className="w-full max-w-2xl p-1 rounded-2xl bg-gradient-to-r from-red-700 via-red-400 to-red-700 shadow-lg animate-pulse-slow" style={{ boxShadow: '0 0 32px 8px #f87171, 0 0 0 4px #1a1a22' }}>
+          <div className="rounded-2xl bg-[#18181c] p-6">
+            <h2 className="text-3xl font-extrabold text-center mb-4 text-red-300 drop-shadow-lg tracking-wide animate-glow">Join the Conversation!</h2>
+            {/* ThreadedChat is a client component */}
+            {typeof window !== 'undefined' && (
+              <>
+                {require("@/components/ThreadedChat").default()}
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+
       {/* WELCOME SECTION */}
       <div className="max-w-2xl text-center text-red-300/80 leading-relaxed">
         <p>
