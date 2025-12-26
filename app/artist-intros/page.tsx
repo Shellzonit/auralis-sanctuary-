@@ -1,6 +1,8 @@
 "use client";
 
+
 import { useState, useEffect } from "react";
+import { supabase } from "../../lib/supabaseClient";
 
 
 type IntroEntry = {
@@ -14,32 +16,38 @@ export default function ArtistIntros() {
   const [name, setName] = useState("");
   const [intro, setIntro] = useState("");
 
-  // Load intros from localStorage (or later, Supabase)
+
+  // Load intros from Supabase
   useEffect(() => {
-    const saved = localStorage.getItem("artistIntros");
-    if (saved) setIntros(JSON.parse(saved));
+    const fetchIntros = async () => {
+      if (!supabase) return;
+      const { data, error } = await supabase
+        .from("artist_intros")
+        .select("id, name, intro, time")
+        .order("id", { ascending: false });
+      if (!error && data) setIntros(data);
+    };
+    fetchIntros();
   }, []);
 
-  // Save intros whenever they change
-  useEffect(() => {
-    localStorage.setItem("artistIntros", JSON.stringify(intros));
-  }, [intros]);
 
-  const submitIntro = (e: React.FormEvent<HTMLFormElement>) => {
-
+  const submitIntro = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!name || !intro) return;
+    if (!name || !intro || !supabase) return;
 
-    const newIntro: IntroEntry = {
-      id: Date.now(),
-      name,
-      intro,
-      time: new Date().toLocaleString(),
-    };
+    const { data, error } = await supabase.from("artist_intros").insert([
+      {
+        name,
+        intro,
+        time: new Date().toLocaleString(),
+      },
+    ]).select();
 
-    setIntros([newIntro, ...intros]);
-    setName("");
-    setIntro("");
+    if (!error && data && data.length > 0) {
+      setIntros([data[0], ...intros]);
+      setName("");
+      setIntro("");
+    }
   };
 
 
