@@ -1,5 +1,5 @@
 
-import { contentData } from "../data/content";
+import { contentData } from "../../lib/content";
 
 export default function ShowcasePage() {
   return (
@@ -14,7 +14,7 @@ export default function ShowcasePage() {
       <div className="w-32 h-1 bg-red-600 mx-auto mb-10 rounded-full"></div>
 
       {/* CATEGORY SECTIONS */}
-      {Object.entries(contentData).map(([category, items]) => (
+      {Object.entries(contentData).map(([category, items]: [string, Array<{ id: string; title: string; description: string; type: string; url: string }>]) => (
         <section key={category} className="mb-16">
 
           {/* CATEGORY TITLE */}
@@ -27,7 +27,7 @@ export default function ShowcasePage() {
           {/* CONTENT GRID */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
 
-            {items.map((item) => (
+            {items.map((item: { id: string; title: string; description: string; type: string; url: string }) => (
               <div
                 key={item.id}
                 className="bg-[#1f1f29] border border-red-900/40 rounded-lg p-4 shadow-md shadow-red-900/30"
@@ -68,5 +68,5 @@ export default function ShowcasePage() {
         </a>
       </div>
     </main>
-
-
+  );
+}
