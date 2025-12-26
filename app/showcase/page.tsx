@@ -23,6 +23,7 @@ export default function ShowcasePage() {
 
   // Fetch user-submitted AI photos from Supabase
   async function fetchPhotos() {
+    if (!supabase) return;
     const { data, error } = await supabase
       .from("showcase_content")
       .select("id, title, url, category")
