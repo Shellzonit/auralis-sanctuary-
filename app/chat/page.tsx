@@ -1,9 +1,10 @@
 "use client";
 
 
-import ChatFeatureLinks from "../../components/ChatFeatureLinks";
 
-// Featured works for the week — manually curated
+
+import { useState, useEffect } from "react";
+import ChatFeatureLinks from "../../components/ChatFeatureLinks";
 const featuredWorks: {
   id: number;
   title: string;
@@ -25,6 +26,11 @@ type Message = {
   content: string;
 };
 
+
+
+
+
+// Featured works for the week — manually curated
 export default function ChatPage() {
   const [username, setUsername] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -54,7 +60,7 @@ export default function ChatPage() {
       content: input,
     };
 
-    setMessages((prev) => [...prev, newMessage]);
+    setMessages((prev: Message[]) => [...prev, newMessage]);
     setInput("");
   };
 
@@ -86,7 +92,7 @@ export default function ChatPage() {
           </h2>
           {/* Messages */}
           <div className="space-y-4 mb-4 max-h-[400px] overflow-y-auto pr-2">
-            {messages.map((msg) => (
+            {messages.map((msg: Message) => (
               <div
                 key={msg.id}
                 className="p-3 rounded-lg bg-red-900/40 border border-red-700/40 shadow-md shadow-red-900/30"
