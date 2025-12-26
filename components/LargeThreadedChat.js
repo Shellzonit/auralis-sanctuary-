@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState, useRef } from "react";
 import { supabase } from "../lib/supabaseClient";
 
@@ -9,7 +11,6 @@ function buildThread(messages, parentId = null) {
       replies: buildThread(messages, msg.id),
     }));
 }
-
 function ThreadNode({ node, onReply, level = 0 }) {
   return (
     <div style={{ marginLeft: level * 32, marginBottom: 18 }}>
@@ -37,7 +38,9 @@ export default function LargeThreadedChat() {
   const [input, setInput] = useState("");
   const [replyTo, setReplyTo] = useState(null);
   const [username, setUsername] = useState("");
+  const [typingUsers, setTypingUsers] = useState([]);
   const chatRef = useRef(null);
+  const typingTimeouts = useRef({});
 
   useEffect(() => {
     setUsername("Visitor-" + Math.random().toString(36).substr(2, 5));
@@ -54,11 +57,28 @@ export default function LargeThreadedChat() {
           setMessages((msgs) => [...msgs, payload.new]);
         }
       )
+      .on(
+        "broadcast",
+        { event: "typing" },
+        (payload) => {
+          const { username: typingName } = payload.payload;
+          if (!typingName || typingName === username) return;
+          setTypingUsers((prev) => {
+            if (prev.includes(typingName)) return prev;
+            return [...prev, typingName];
+          });
+          // Remove after 2.5s
+          if (typingTimeouts.current[typingName]) clearTimeout(typingTimeouts.current[typingName]);
+          typingTimeouts.current[typingName] = setTimeout(() => {
+            setTypingUsers((prev) => prev.filter((u) => u !== typingName));
+          }, 2500);
+        }
+      )
       .subscribe();
     return () => {
       supabase.removeChannel(sub);
     };
-  }, []);
+  }, [username]);
 
   async function fetchMessages() {
     const { data } = await supabase
@@ -80,6 +100,16 @@ export default function LargeThreadedChat() {
     ]);
     setInput("");
     setReplyTo(null);
+  }
+
+  // Typing indicator: broadcast when user types
+  function handleInputChange(e) {
+    setInput(e.target.value);
+    supabase.channel("threaded-chat").send({
+      type: "broadcast",
+      event: "typing",
+      payload: { username },
+    });
   }
 
   const threadTree = buildThread(messages);
@@ -106,13 +136,19 @@ export default function LargeThreadedChat() {
               <ThreadNode key={node.id} node={node} onReply={setReplyTo} />
             ))
           )}
+          {/* Typing indicator */}
+          {typingUsers.length > 0 && (
+            <div className="mt-4 text-sm text-red-300 font-mono">
+              {typingUsers.join(", ")} {typingUsers.length === 1 ? "is" : "are"} typing...
+            </div>
+          )}
         </div>
         <form onSubmit={handleSend} className="flex gap-2 w-full max-w-4xl mx-auto">
           <input
             className="flex-1 px-4 py-3 rounded border border-gray-600 text-lg bg-[#23232b] text-white"
             placeholder={replyTo ? "Reply to a message..." : "Type your message..."}
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={handleInputChange}
           />
           <button
             type="submit"
