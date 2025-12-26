@@ -40,16 +40,11 @@ export default function LargeThreadedChat() {
   const chatRef = useRef(null);
 
   useEffect(() => {
-    // Generate a random username for demo
-    setUsername(
-      "Visitor-" + Math.random().toString(36).substr(2, 5)
-    );
+    setUsername("Visitor-" + Math.random().toString(36).substr(2, 5));
   }, []);
 
   useEffect(() => {
-    // Fetch messages
     fetchMessages();
-    // Subscribe to real-time updates
     const sub = supabase
       .channel("threaded-chat")
       .on(
@@ -87,10 +82,8 @@ export default function LargeThreadedChat() {
     setReplyTo(null);
   }
 
-  // Build thread tree
   const threadTree = buildThread(messages);
 
-  // Scroll to bottom on new message
   useEffect(() => {
     if (chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
@@ -98,44 +91,46 @@ export default function LargeThreadedChat() {
   }, [messages]);
 
   return (
-    <section className="w-full max-w-4xl mx-auto mt-8 mb-12">
-      <h2 className="text-3xl font-bold mb-6 text-red-400 text-center">Sanctuary Threaded Chatroom</h2>
-      <div
-        ref={chatRef}
-        className="bg-white/80 rounded-xl border border-gray-300 shadow-lg p-6 mb-6 overflow-y-auto"
-        style={{ minHeight: 480, maxHeight: 600 }}
-      >
-        {threadTree.length === 0 ? (
-          <div className="text-gray-400 text-center">No messages yet. Start the conversation!</div>
-        ) : (
-          threadTree.map((node) => (
-            <ThreadNode key={node.id} node={node} onReply={setReplyTo} />
-          ))
-        )}
-      </div>
-      <form onSubmit={handleSend} className="flex gap-2">
-        <input
-          className="flex-1 px-4 py-3 rounded border border-gray-400 text-lg"
-          placeholder={replyTo ? "Reply to a message..." : "Type your message..."}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button
-          type="submit"
-          className="px-6 py-3 rounded bg-red-600 hover:bg-red-700 text-white font-bold text-lg"
+    <section className="fixed inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
+      <div className="w-full max-w-4xl flex flex-col items-center justify-center pointer-events-auto">
+        <h2 className="text-3xl font-bold mb-6 text-red-400 text-center">Sanctuary Threaded Chatroom</h2>
+        <div
+          ref={chatRef}
+          className="bg-white/80 rounded-xl border border-gray-300 shadow-lg p-6 mb-6 overflow-y-auto"
+          style={{ minHeight: 480, maxHeight: 600 }}
         >
-          Send
-        </button>
-        {replyTo && (
+          {threadTree.length === 0 ? (
+            <div className="text-gray-400 text-center">No messages yet. Start the conversation!</div>
+          ) : (
+            threadTree.map((node) => (
+              <ThreadNode key={node.id} node={node} onReply={setReplyTo} />
+            ))
+          )}
+        </div>
+        <form onSubmit={handleSend} className="flex gap-2 w-full max-w-2xl mx-auto">
+          <input
+            className="flex-1 px-4 py-3 rounded border border-gray-400 text-lg"
+            placeholder={replyTo ? "Reply to a message..." : "Type your message..."}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
           <button
-            type="button"
-            className="px-3 py-3 rounded bg-gray-300 text-gray-700 font-bold"
-            onClick={() => setReplyTo(null)}
+            type="submit"
+            className="px-6 py-3 rounded bg-red-600 hover:bg-red-700 text-white font-bold text-lg"
           >
-            Cancel
+            Send
           </button>
-        )}
-      </form>
+          {replyTo && (
+            <button
+              type="button"
+              className="px-3 py-3 rounded bg-gray-300 text-gray-700 font-bold"
+              onClick={() => setReplyTo(null)}
+            >
+              Cancel
+            </button>
+          )}
+        </form>
+      </div>
     </section>
   );
 }
