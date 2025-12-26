@@ -4,9 +4,10 @@ import { createSupabaseClient } from "../../../lib/supabaseClient";
 
 
 export async function POST(req: NextRequest) {
-  const { title, description, category, url } = await req.json();
+  const { title, description, category, url, table } = await req.json();
   const supabase = createSupabaseClient();
-  const { data, error } = await supabase.from("showcase_content").insert([
+  const tableName = table || "showcase photos";
+  const { data, error } = await supabase.from(tableName).insert([
     { title, description, category, url },
   ]);
   if (error) {
