@@ -1,8 +1,10 @@
+ .legacy {
   max-width: 750px;
   margin: 0 auto;
   padding: 80px 20px;
   color: #181818;
   animation: fadeIn 1.2s ease;
+}
 /* End of file */
 
 .legacy-title {
