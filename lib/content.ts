@@ -5,7 +5,7 @@ export const contentData = {
       title: "Example Track",
       description: "A placeholder for audio or music content.",
       type: "audio",
-      url: "https://soundcloud.com/example-track",
+      url: "https://www.youtube.com/watch?v=jfKfPfyJRdk", // Lofi Girl livestream
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ export const contentData = {
       title: "Example Artwork",
       description: "A placeholder for an image or visual creation.",
       type: "image",
-      url: "https://example.com/artwork.jpg",
+      url: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee", // Abstract art
     },
     {
       id: 2,
@@ -37,7 +37,7 @@ export const contentData = {
       title: "Example Writing",
       description: "A placeholder for poems, stories, or lore.",
       type: "text",
-      url: "https://example.com/writing.pdf",
+      url: "https://www.gutenberg.org/files/84/84-h/84-h.htm", // Public domain text (Frankenstein)
     },
     {
       id: 2,

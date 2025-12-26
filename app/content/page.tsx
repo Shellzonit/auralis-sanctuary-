@@ -10,8 +10,14 @@ export default function ShowcasePage() {
 
 
       {/* NAVIGATION */}
+
       <div className="flex justify-center mb-8">
-        <Link href="/" className="px-6 py-2 rounded-lg bg-[#1f1f29] hover:bg-[#2a2a35] border border-red-900/40 shadow-md shadow-red-900/30 transition text-lg text-red-300 font-semibold">Home</Link>
+        <a
+          href="/"
+          className="inline-block px-6 py-3 mb-10 rounded-lg bg-[#1f1f29] hover:bg-[#2a2a35] border border-red-900/40 shadow-md shadow-red-900/30 transition text-lg"
+        >
+          ← Back to Homepage
+        </a>
       </div>
 
       {/* PAGE TITLE */}
