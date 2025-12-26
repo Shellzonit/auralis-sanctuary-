@@ -3,6 +3,7 @@
 
 import { contentData } from "../../lib/content";
 import { useState } from "react";
+import Message from "./Message";
 
 export default function ShowcasePage() {
   // SubmitContent state
@@ -29,6 +30,11 @@ export default function ShowcasePage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-black to-[#1a1a22] text-red-200 px-6 py-16 font-serif">
+      {/* DEMO: Embedded Message Example */}
+      <section className="max-w-xl mx-auto mb-12">
+        <h2 className="text-2xl font-bold text-red-300 mb-4 text-center">Message Example</h2>
+        <Message message={{ text: "Check out this video: https://www.youtube.com/watch?v=dQw4w9WgXcQ\nAnd this site: https://sanctuary.com" }} />
+      </section>
 
       {/* RESOURCE LINKS SECTION WITH ADD BUTTONS */}
       <div className="mb-12 flex flex-wrap items-center justify-center gap-8 relative">
