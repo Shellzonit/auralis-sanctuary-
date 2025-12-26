@@ -95,25 +95,8 @@ export default function Home() {
             <a
               key={tab.label}
               href={tab.href}
-              style={{
-                textDecoration: "none",
-                color: "#2b6cb0",
-                fontWeight: 500,
-                fontSize: "1rem",
-                padding: "0.25rem 0.75rem",
-                borderRadius: "8px",
-                transition: "background 180ms, color 180ms, filter 180ms",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#bee3f8";
-                e.currentTarget.style.color = "#1a365d";
-                e.currentTarget.style.filter = "brightness(1.08)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "none";
-                e.currentTarget.style.color = "#2b6cb0";
-                e.currentTarget.style.filter = "brightness(1)";
-              }}
+              className="text-sanctuary-text hover:text-sanctuary-accent transition-colors font-semibold text-base px-3 py-1 rounded"
+              style={{ textDecoration: "none" }}
             >
               {tab.label}
             </a>

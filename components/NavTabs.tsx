@@ -29,10 +29,8 @@ export default function NavTabs() {
             <li key={tab.href}>
               <Link
                 href={tab.href}
-                className={`text-2xl font-extrabold tracking-wide px-6 py-2 rounded-lg transition relative
-                  text-white
-                  ${isActive ? "glow-tab-strong" : "glow-tab-soft"}
-                  hover:glow-tab-strong focus:glow-tab-strong outline-none`}
+                className={`text-2xl font-extrabold tracking-wide px-6 py-2 rounded-lg transition-colors relative
+                  text-sanctuary-text hover:text-sanctuary-accent focus:text-sanctuary-accent outline-none`}
                 tabIndex={0}
               >
                 {tab.label}
