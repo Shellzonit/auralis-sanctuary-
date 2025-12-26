@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+
+import ChatFeatureLinks from "../../components/ChatFeatureLinks";
 
 // Featured works for the week — manually curated
 const featuredWorks: {
@@ -73,77 +74,50 @@ export default function ChatPage() {
         Speak gently. Listen deeply.
       </p>
 
-      {/* Featured Works Gallery */}
-      <div className="w-full max-w-2xl mb-10">
-        <h2 className="text-2xl font-bold mb-4 text-center text-red-400">
-          Featured Works of the Week
-        </h2>
+      {/* Chat Layout with Feature Links */}
+      <div className="flex w-full max-w-5xl justify-center items-start gap-8">
+        {/* Left Feature Links */}
+        <ChatFeatureLinks />
 
-        {featuredWorks.length === 0 && (
-          <p className="text-center text-red-300/60 italic">
-            The altar awaits this week’s offerings…
-          </p>
-        )}
-
-        <div className="space-y-8">
-          {featuredWorks.map((work) => (
-            <div
-              key={work.id}
-              className="p-4 rounded-xl bg-black/40 border border-red-900/40 shadow-lg shadow-red-900/20"
-            >
-              <h3 className="text-xl font-semibold text-red-300">{work.title}</h3>
-              <p className="text-sm text-red-400/70 mb-3">by {work.creator}</p>
-
-              {/* Embedded media */}
-              <div className="mb-4">
-                <iframe
-                  src={work.link}
-                  className="w-full h-48 rounded-lg border border-red-900/40"
-                  allow="autoplay; encrypted-media"
-                ></iframe>
+        {/* Chat Bar Centered */}
+        <div className="flex-1 max-w-2xl bg-black/40 p-6 rounded-xl border border-red-900/40 shadow-lg shadow-red-900/20 mx-4">
+          <h2 className="text-xl font-semibold mb-4 text-red-300">
+            Welcome to the Sanctuary Stream
+          </h2>
+          {/* Messages */}
+          <div className="space-y-4 mb-4 max-h-[400px] overflow-y-auto pr-2">
+            {messages.map((msg) => (
+              <div
+                key={msg.id}
+                className="p-3 rounded-lg bg-red-900/40 border border-red-700/40 shadow-md shadow-red-900/30"
+              >
+                <p className="text-sm text-red-300/70 flex items-center gap-2">
+                  <span className="text-red-400">{generateSigil(msg.username)}</span>
+                  {msg.username}
+                </p>
+                <p>{msg.content}</p>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Chat Container */}
-      <div className="w-full max-w-2xl bg-black/40 p-6 rounded-xl border border-red-900/40 shadow-lg shadow-red-900/20">
-        <h2 className="text-xl font-semibold mb-4 text-red-300">
-          Welcome to the Sanctuary Stream
-        </h2>
-
-        {/* Messages */}
-        <div className="space-y-4 mb-4 max-h-[400px] overflow-y-auto pr-2">
-          {messages.map((msg) => (
-            <div
-              key={msg.id}
-              className="p-3 rounded-lg bg-red-900/40 border border-red-700/40 shadow-md shadow-red-900/30"
+            ))}
+          </div>
+          {/* Input */}
+          <div className="flex gap-2">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Share your thought..."
+              className="flex-1 p-2 rounded-lg bg-black/60 border border-red-800 text-red-200"
+            />
+            <button
+              onClick={sendMessage}
+              className="px-4 py-2 rounded-lg bg-red-700 hover:bg-red-600 transition shadow-md shadow-red-900/40"
             >
-              <p className="text-sm text-red-300/70 flex items-center gap-2">
-                <span className="text-red-400">{generateSigil(msg.username)}</span>
-                {msg.username}
-              </p>
-              <p>{msg.content}</p>
-            </div>
-          ))}
+              Send
+            </button>
+          </div>
         </div>
 
-        {/* Input */}
-        <div className="flex gap-2">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Share your thought..."
-            className="flex-1 p-2 rounded-lg bg-black/60 border border-red-800 text-red-200"
-          />
-          <button
-            onClick={sendMessage}
-            className="px-4 py-2 rounded-lg bg-red-700 hover:bg-red-600 transition shadow-md shadow-red-900/40"
-          >
-            Send
-          </button>
-        </div>
+        {/* Right Feature Links (mirrored) */}
+        <ChatFeatureLinks />
       </div>
     </div>
   );

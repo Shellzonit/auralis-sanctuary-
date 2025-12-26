@@ -2,6 +2,7 @@
 
 
 import SanctuaryLogo from "../components/SanctuaryLogo";
+import NavTabs from "../components/NavTabs";
 import { useEffect, useState } from "react";
 
 // Types
@@ -82,6 +83,7 @@ export default function ChatPage() {
           A Modern Approach to AI Creations
         </p>
       </div>
+      <NavTabs />
       <h1 className="text-4xl font-bold mb-2 text-red-400">Sanctuary Chat Stream</h1>
       <p className="text-red-300 mb-8 italic">
         A flowing chamber for thoughts, offerings, questions, and presence.  
