@@ -17,7 +17,7 @@ function ThreadNode({ node, onReply }) {
         <div className="text-sm opacity-60 mb-1">
           {node.username || "Anonymous"} · {new Date(node.created_at).toLocaleString()}
         </div>
-        <div className="whitespace-pre-wrap mb-2">{node.text}</div>
+        <div className="whitespace-pre-wrap mb-2 text-red-600 font-semibold">{node.text}</div>
         <button
           className="mt-1 text-xs text-red-400 hover:underline"
           onClick={() => onReply(node.id)}
