@@ -17,6 +17,7 @@ export default function ShowcasePage() {
   ];
 
   const [photos, setPhotos] = useState([...STATIC_AI_PHOTOS]);
+  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const PHOTOS_PER_PAGE = 6;
   const [url, setUrl] = useState("");
@@ -25,7 +26,11 @@ export default function ShowcasePage() {
 
   // Fetch user-submitted AI photos from Supabase
   async function fetchPhotos() {
-    if (!supabase) return;
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
     const { data, error } = await supabase
       .from("showcase photos")
       .select("id, title, url, category")
@@ -35,6 +40,7 @@ export default function ShowcasePage() {
       const userPhotos = data.map((item: any) => ({ url: item.url, title: item.title || "User Submission" }));
       setPhotos([...STATIC_AI_PHOTOS, ...userPhotos]);
     }
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -93,21 +99,33 @@ export default function ShowcasePage() {
       </section>
 
       {/* Paginated Photo Gallery */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mb-8">
-        {photos
-          .slice((page - 1) * PHOTOS_PER_PAGE, page * PHOTOS_PER_PAGE)
-          .map((photo, idx) => (
-            <div key={idx} className="bg-[#1f1f29] border border-red-900/40 rounded-lg p-4 shadow-md shadow-red-900/30 flex flex-col items-center">
-              <img
-                src={photo.url}
-                alt={photo.title}
-                className="w-full h-64 object-cover rounded-md mb-4 border-2 border-red-700/40 shadow-lg"
-                loading="lazy"
-              />
-              <h3 className="text-xl text-red-300 mb-2 text-center">{photo.title}</h3>
-            </div>
-          ))}
-      </div>
+      {loading ? (
+        <div className="flex justify-center items-center min-h-[200px]">
+          <svg className="animate-spin h-8 w-8 text-red-400 mr-3" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+          </svg>
+          <span className="text-red-300 text-lg font-semibold">Loading photos...</span>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mb-8">
+          {photos
+            .slice((page - 1) * PHOTOS_PER_PAGE, page * PHOTOS_PER_PAGE)
+            .map((photo, idx) => (
+              <div key={idx} className="bg-[#1f1f29] border border-red-900/40 rounded-lg p-4 shadow-md shadow-red-900/30 flex flex-col items-center">
+                <a href={photo.url} target="_blank" rel="noopener noreferrer" className="block w-full">
+                  <img
+                    src={photo.url}
+                    alt={photo.title}
+                    className="w-full h-64 object-cover rounded-md mb-4 border-2 border-red-700/40 shadow-lg hover:opacity-80 transition"
+                    loading="lazy"
+                  />
+                </a>
+                <h3 className="text-xl text-red-300 mb-2 text-center break-words">{photo.title}</h3>
+              </div>
+            ))}
+        </div>
+      )}
       {/* Pagination Controls */}
       <div className="flex justify-center gap-4 mb-8">
         <button
