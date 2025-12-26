@@ -18,6 +18,20 @@ export default function Home() {
         position: "relative",
       }}
     >
+      {/* White Wave Above S */}
+      <div style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "7.5rem",
+        zIndex: 2,
+        pointerEvents: "none"
+      }}>
+        <svg viewBox="0 0 1440 180" width="100%" height="100%" preserveAspectRatio="none" style={{ display: "block" }}>
+          <path fill="#fff" d="M0,80 C320,180 1120,0 1440,100 L1440,0 L0,0 Z" />
+        </svg>
+      </div>
       {/* Elegant Large S */}
       <span className="homepage-s-elegant">S</span>
       {/* AI and Innovation Banner */}
