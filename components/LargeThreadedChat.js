@@ -13,11 +13,11 @@ function buildThread(messages, parentId = null) {
 function ThreadNode({ node, onReply, level = 0 }) {
   return (
     <div style={{ marginLeft: level * 32, marginBottom: 18 }}>
-      <div className="bg-[#18181f] px-8 py-5 rounded-lg shadow border border-gray-700">
+      <div className="bg-[#18181f] px-10 py-6 rounded-lg shadow border border-gray-700">
         <div className="text-xs opacity-60 mb-1 font-mono tracking-widest text-gray-300">
           {node.username || "Anonymous"} · {new Date(node.created_at).toLocaleString()}
         </div>
-        <div className="whitespace-pre-wrap text-2xl font-bold text-white leading-tight">{node.text}</div>
+        <div className="whitespace-pre-wrap text-3xl font-extrabold text-red-500 leading-tight drop-shadow-lg">{node.text}</div>
         <button
           className="mt-2 text-xs text-red-400 hover:underline font-bold"
           onClick={() => onReply(node.id)}
@@ -91,13 +91,13 @@ export default function LargeThreadedChat() {
   }, [messages]);
 
   return (
-    <section className="w-full flex flex-col items-center justify-center py-12">
+    <section className="w-full flex flex-col items-center justify-start pt-8" style={{ minHeight: '60vh' }}>
       <div className="w-full max-w-7xl">
         <h2 className="text-3xl font-bold mb-6 text-red-400 text-center">Sanctuary Threaded Chatroom</h2>
         <div
           ref={chatRef}
-          className="bg-[#18181f] rounded-xl border border-gray-700 shadow-lg px-8 py-12 mb-6 overflow-y-auto"
-          style={{ minHeight: 700, maxHeight: 900 }}
+          className="bg-[#18181f] rounded-xl border border-gray-700 shadow-lg px-12 py-16 mb-6 overflow-y-auto"
+          style={{ minHeight: '50vh', maxHeight: '70vh' }}
         >
           {threadTree.length === 0 ? (
             <div className="text-gray-400 text-center">No messages yet. Start the conversation!</div>
