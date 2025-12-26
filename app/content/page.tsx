@@ -5,6 +5,30 @@ export default function ShowcasePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-black to-[#1a1a22] text-red-200 px-6 py-16 font-serif">
 
+      {/* RESOURCE LINKS SECTION */}
+      <div className="mb-10 flex flex-wrap justify-center gap-6">
+        <a
+          href="https://github.com/Shellzonit/auralis-sanctuary"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 py-3 rounded-xl bg-gradient-to-r from-fuchsia-500 to-emerald-400 text-white font-bold text-lg shadow-lg hover:scale-105 hover:from-fuchsia-400 hover:to-emerald-300 transition"
+        >
+          Project GitHub
+        </a>
+        <a
+          href="/showcase"
+          className="px-6 py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-pink-500 text-white font-bold text-lg shadow-lg hover:scale-105 hover:from-yellow-300 hover:to-pink-400 transition"
+        >
+          See Showcase
+        </a>
+        <a
+          href="mailto:support@sanctuary.com"
+          className="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-700 text-white font-bold text-lg shadow-lg hover:scale-105 hover:from-sky-400 hover:to-blue-500 transition"
+        >
+          Contact Support
+        </a>
+      </div>
+
       {/* PAGE TITLE */}
       <h1 className="text-4xl font-bold text-red-400 tracking-wide text-center mb-2">
         Content Showcase
