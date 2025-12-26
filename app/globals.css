@@ -46,11 +46,14 @@
 
 /* Sanctuary color palette */
 :root {
-  --background: #fff8f0; /* brighter parchment */
-  --foreground: #111827; /* much darker, high contrast */
-  --accent: #ff007a;     /* vivid pink-red */
-  --soft: #fff3e0;       /* very light clay */
-  --border: #ffb300;     /* bright gold */
+  --background: #111111; /* soft black */
+  --foreground: #F5F2EB; /* moonlit ivory */
+  --accent: #D4A857;     /* warm gold */
+  --accent-alt: #CBA35C; /* muted honey gold */
+  --text-soft: #EAE7DF;  /* soft parchment */
+  --secondary: #6A6A6A;  /* warm gray */
+  --secondary-alt: #4F4F4F; /* slate charcoal */
+  --border: #D4A857;     /* warm gold */
 }
 
 /* Tailwind theme bridge */
@@ -65,21 +68,10 @@
 
 /* Global body styling */
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: 1.25rem;
   line-height: 1.8;
   transition: background 0.3s, color 0.3s;
-}
-body {
-  background: radial-gradient(
-      circle at center,
-      rgba(140, 91, 255, 0.18) 0%,
-      rgba(140, 91, 255, 0.10) 18%,
-      rgba(27, 26, 35, 0.95) 45%,
-      #0F0E14 100%
-    );
-  background-attachment: fixed;
-  color: #EAEAEA;
 }
