@@ -8,11 +8,12 @@ export default function Home() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#000", // deep black backdrop for moonlit text
-        color: "rgba(255,255,255,0.85)", // moonlit tone
+        backgroundColor: "#000",
+        color: "rgba(255,255,255,0.85)",
         fontFamily: "sans-serif",
         textAlign: "center",
         padding: "2rem",
+        position: "relative",
       }}
     >
       {/* Title */}
@@ -47,37 +48,68 @@ export default function Home() {
         → Enter Circles & Roots
       </a>
 
-      {/* Secondary Links */}
-      <div
+      {/* Footer Tabs for All Pages */}
+      <footer
         style={{
-          marginTop: "1.5rem",
-          fontSize: "1rem",
-          fontWeight: 400,
-          opacity: 0.85,
+          width: "100%",
+          position: "fixed",
+          left: 0,
+          bottom: 0,
+          background: "rgba(0,0,0,0.92)",
+          borderTop: "1px solid rgba(255,255,255,0.08)",
+          padding: "0.75rem 0",
           display: "flex",
-          gap: "0.75rem",
+          justifyContent: "center",
+          zIndex: 50,
         }}
       >
-        {["chat", "showcase", "email"].map((label) => (
-          <a
-            key={label}
-            href={`/${label}`}
-            style={{
-              textDecoration: "none",
-              color: "rgba(255,255,255,0.75)",
-              transition: "filter 180ms ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.filter = "brightness(1.18)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.filter = "brightness(1)";
-            }}
-          >
-            {label}
-          </a>
-        ))}
-      </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "1.2rem",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {[
+            { label: "Home", href: "/" },
+            { label: "Chat", href: "/chat" },
+            { label: "Showcase", href: "/showcase" },
+            { label: "Email", href: "/email" },
+            { label: "Spotlight", href: "/spotlight" },
+            { label: "About Us", href: "/about" },
+            { label: "Legacy", href: "/legacy" },
+            { label: "Privacy", href: "/privacy" },
+          ].map((tab) => (
+            <a
+              key={tab.label}
+              href={tab.href}
+              style={{
+                textDecoration: "none",
+                color: "rgba(255,255,255,0.75)",
+                fontWeight: 500,
+                fontSize: "1rem",
+                padding: "0.25rem 0.75rem",
+                borderRadius: "8px",
+                transition: "background 180ms, color 180ms, filter 180ms",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                e.currentTarget.style.color = "#fff";
+                e.currentTarget.style.filter = "brightness(1.18)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "none";
+                e.currentTarget.style.color = "rgba(255,255,255,0.75)";
+                e.currentTarget.style.filter = "brightness(1)";
+              }}
+            >
+              {tab.label}
+            </a>
+          ))}
+        </div>
+      </footer>
     </main>
   );
 }
