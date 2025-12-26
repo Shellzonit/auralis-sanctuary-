@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "../../../lib/supabaseClient";
 
-export async function POST(req: NextRequest) {
+import { createSupabaseClient } from "../../../lib/supabaseClient";
+
   const { title, description, category, url } = await req.json();
+  const supabase = createSupabaseClient();
   const { data, error } = await supabase.from("showcase_content").insert([
     { title, description, category, url },
   ]);
