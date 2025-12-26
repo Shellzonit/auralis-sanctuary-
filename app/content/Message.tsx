@@ -5,7 +5,15 @@ function extractLinks(text = "") {
   return text.match(urlRegex) || [];
 }
 
-export default function Message({ message }) {
+
+interface MessageProps {
+  message: {
+    text: string;
+    [key: string]: any;
+  };
+}
+
+export default function Message({ message }: MessageProps) {
   const links = extractLinks(message.text);
 
   return (
