@@ -34,13 +34,20 @@ export function PhotoGallery() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
       {photos.map((url, i) => (
-        <img
+        <a
           key={url + i}
-          src={url}
-          alt="Showcase photo"
-          className="rounded shadow object-cover w-full h-48"
-          loading="lazy"
-        />
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block group"
+        >
+          <img
+            src={url}
+            alt="Showcase photo"
+            className="rounded shadow object-cover w-full h-48 group-hover:opacity-80 transition"
+            loading="lazy"
+          />
+        </a>
       ))}
     </div>
   );
