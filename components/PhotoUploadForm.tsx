@@ -32,16 +32,27 @@ export function PhotoUploadForm({ onUpload }: { onUpload: () => void }) {
     }
     setUploading(true);
     setError(null);
-    const fileExt = file.name.split(".").pop();
-    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${fileExt}`;
-    // Supabase client removed
-    const { error: uploadError } = await sb.storage.from("showcase-photos").upload(fileName, file);
-    setUploading(false);
-    if (uploadError) {
-      setError(uploadError.message);
-    } else {
+    try {
+      if (!file) throw new Error("No file selected");
+      const res = await fetch("/api/b2/upload", {
+        method: "POST",
+        headers: {
+          "X-File-Name": encodeURIComponent(file.name),
+          "Content-Type": file.type || "application/octet-stream",
+        },
+        body: file,
+      });
+      const data = await res.json();
+      setUploading(false);
+      if (!res.ok) {
+        setError(data.error || "Upload failed");
+        return;
+      }
       setFile(null);
       onUpload();
+    } catch (err: any) {
+      setUploading(false);
+      setError(err.message || "Upload failed");
     }
   };
 

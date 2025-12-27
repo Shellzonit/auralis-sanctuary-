@@ -7,23 +7,17 @@ export function PhotoGallery() {
   useEffect(() => {
     async function fetchPhotos() {
       setLoading(true);
-      // Supabase client removed
-      const { data, error } = await sb.storage.from("showcase-photos").list(undefined, { limit: 100, sortBy: { column: "created_at", order: "desc" } });
-      if (error) {
+      // Fetch photo URLs from your Backblaze B2 API endpoint
+      try {
+        const res = await fetch("/api/b2/get-upload-url");
+        if (!res.ok) throw new Error("Failed to fetch photos");
+        const { files } = await res.json();
+        setPhotos(Array.isArray(files) ? files : []);
+      } catch (e) {
         setPhotos([]);
+      } finally {
         setLoading(false);
-        return;
       }
-      const urls = await Promise.all(
-        (data || [])
-          .filter((item: { name: string }) => item.name.match(/\.(jpg|jpeg|png|gif|webp)$/i))
-          .map(async (item: { name: string }) => {
-            const { data: urlData } = sb.storage.from("showcase-photos").getPublicUrl(item.name);
-            return urlData.publicUrl;
-          })
-      );
-      setPhotos(urls);
-      setLoading(false);
     }
     fetchPhotos();
   }, []);
