@@ -2,8 +2,6 @@
 import { useState, useRef, useEffect } from "react";
 import { getAblyClient } from "../../lib/ablyClient";
 
-// Unique, modern chat page layout
-
 type ChatMessage = {
   id: number;
   author: string;
@@ -39,45 +37,6 @@ export default function ChatPage() {
         },
       ],
     },
-      // Ably: subscribe to real-time messages and replies
-      useEffect(() => {
-        const ably = getAblyClient();
-        const channel = ably.channels.get("sanctuary-chat");
-        const onMessage = (msg) => {
-          const data = msg.data;
-          if (data.type === "message") {
-            setMessages(prev => [...prev, data.message]);
-          } else if (data.type === "reply") {
-            setMessages(prevMsgs => prevMsgs.map(m =>
-  
-    // Ably: subscribe to real-time messages and replies
-    useEffect(() => {
-      const ably = getAblyClient();
-      const channel = ably.channels.get("sanctuary-chat");
-      const onMessage = (msg) => {
-        const data = msg.data;
-        if (data.type === "message") {
-          setMessages(prev => [...prev, data.message]);
-        } else if (data.type === "reply") {
-          setMessages(prevMsgs => prevMsgs.map(m =>
-            m.id === data.parentId
-              ? { ...m, replies: [...m.replies, data.reply] }
-              : m
-          ));
-        }
-      };
-      channel.subscribe(onMessage);
-      return () => { channel.unsubscribe(onMessage); };
-    }, []);
-              m.id === data.parentId
-                ? { ...m, replies: [...m.replies, data.reply] }
-                : m
-            ));
-          }
-        };
-        channel.subscribe(onMessage);
-        return () => { channel.unsubscribe(onMessage); };
-      }, []);
     {
       id: 3,
       author: "Orion",
@@ -88,11 +47,32 @@ export default function ChatPage() {
       replies: [],
     },
   ]);
+
   const [input, setInput] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [replyingTo, setReplyingTo] = useState<number | null>(null);
   const [replyInput, setReplyInput] = useState("");
+
+  // Ably: subscribe to real-time messages and replies
+  useEffect(() => {
+    const ably = getAblyClient();
+    const channel = ably.channels.get("sanctuary-chat");
+    const onMessage = (msg: any) => {
+      const data = msg.data;
+      if (data.type === "message") {
+        setMessages(prev => [...prev, data.message]);
+      } else if (data.type === "reply") {
+        setMessages(prevMsgs => prevMsgs.map(m =>
+          m.id === data.parentId
+            ? { ...m, replies: [...m.replies, data.reply] }
+            : m
+        ));
+      }
+    };
+    channel.subscribe(onMessage);
+    return () => { channel.unsubscribe(onMessage); };
+  }, []);
 
   return (
     <div style={{ minHeight: "100vh", background: "#181a20", color: "#f7fafc", fontFamily: "Inter, sans-serif", display: "flex", flexDirection: "column", alignItems: "center" }}>
