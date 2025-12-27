@@ -1,7 +1,8 @@
 "use client";
+
 import { useEffect, useMemo, useState } from "react";
-import { getAblyClient } from "@/lib/ablyClient";
-import type { ChatMessage } from "@/types/chat";
+import { getAblyClient } from "@/lib/ablyClient/ablyClient";
+import type { ChatMessage } from "@/types/chat.ts";
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -93,12 +94,12 @@ export default function ChatPage() {
             {/* Root message */}
             <div className="mb-4">
               <div className="bg-neutral-900 text-neutral-50 rounded-lg px-4 py-3 text-sm">
-                  {featuredThread.root?.text || "No message"}
-                </div>
-                <div className="text-[10px] text-neutral-500 mt-1">
-                  {featuredThread.root?.author || "Guest"} ·{" "}
-                  {featuredThread.root?.timestamp ? new Date(featuredThread.root.timestamp).toLocaleTimeString() : ""}
-                </div>
+                {featuredThread.root.text}
+              </div>
+              <div className="text-[10px] text-neutral-500 mt-1">
+                {featuredThread.root.author || "Guest"} ·{" "}
+                {new Date(featuredThread.root.timestamp).toLocaleTimeString()}
+              </div>
             </div>
 
             {/* Replies (limit 3) */}
@@ -134,4 +135,3 @@ export default function ChatPage() {
     </div>
   );
 }
-            {featuredThread.replies.slice(0, 3).map((reply) => (
