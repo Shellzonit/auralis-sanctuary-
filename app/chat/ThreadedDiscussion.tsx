@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { supabase, createSupabaseClient } from "@/lib/supabaseClient";
+import { getSupabaseClient } from "@/lib/supabaseClient";
 
 type Message = {
   id: string;
@@ -12,10 +12,10 @@ type Message = {
 export default function ThreadedDiscussion() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newThread, setNewThread] = useState("");
-  const sb = supabase ?? createSupabaseClient();
 
   // Fetch all messages on mount
   useEffect(() => {
+    const sb = getSupabaseClient();
     async function fetchMessages() {
       const { data, error } = await sb
         .from("chat_threads")
@@ -49,13 +49,14 @@ export default function ThreadedDiscussion() {
 
   // Add a new message (thread or reply)
   const addMessage = useCallback(async (content: string, parentId: string | null = null) => {
+    const sb = getSupabaseClient();
     await sb.from("chat_threads").insert({
       parent_id: parentId,
       author: "User", // Replace with real user if available
       content,
     });
     // No need to update state here; real-time subscription will update
-  }, [sb]);
+  }, []);
 
   function renderReplies(parentId: string | null, level = 0) {
     return messages
