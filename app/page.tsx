@@ -1,37 +1,82 @@
 "use client";
-import NavTabs from "@/components/NavTabs";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+
+const tabs = [
+  { label: "Home", href: "/" },
+  { label: "Chat", href: "/chat" },
+  { label: "Showcase", href: "/showcase" },
+  { label: "Email", href: "/email" },
+  { label: "Spotlight", href: "/spotlight" },
+  { label: "About", href: "/about" },
+  { label: "Legacy", href: "/legacy" },
+  { label: "Privacy", href: "/privacy" },
+];
 
 export default function Home() {
-  const [thread, setThread] = useState<{author: string, text: string} | null>(null);
-
-  // Simulate fetching a chat thread preview (replace with real fetch/Ably logic as needed)
-  useEffect(() => {
-    setThread({
-      author: "Guest",
-      text: "Welcome to the Sanctuary! This is a sample chat message."
-    });
-  }, []);
-
   return (
-    <main style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", fontFamily: "sans-serif", background: "#f7fafc", padding: "2rem" }}>
-      {/* Tabs at the top */}
-      <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: "2rem" }}>
-        <NavTabs />
+    <main
+      style={{
+        minHeight: "100vh",
+        background: "#181a20",
+        color: "#f7fafc",
+        fontFamily: "Inter, sans-serif",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "0 1rem",
+      }}
+    >
+      {/* Tabs */}
+      <nav style={{ width: "100%", display: "flex", justifyContent: "center", gap: 24, marginTop: 40, marginBottom: 32 }}>
+        {tabs.map(tab => (
+          <Link
+            key={tab.href}
+            href={tab.href}
+            style={{
+              color: "#f7fafc",
+              background: "#23242b",
+              borderRadius: 18,
+              padding: "0.7rem 2.2rem",
+              fontWeight: 600,
+              fontSize: 18,
+              letterSpacing: ".04em",
+              textDecoration: "none",
+              border: "2px solid #31323a",
+              boxShadow: "0 2px 12px 0 #0006",
+              transition: "all .18s cubic-bezier(.4,0,.2,1)",
+              margin: 0,
+            }}
+            onMouseOver={e => (e.currentTarget.style.background = "#2a2b33")}
+            onMouseOut={e => (e.currentTarget.style.background = "#23242b")}
+          >
+            {tab.label}
+          </Link>
+        ))}
+      </nav>
+      {/* Sanctuary Title */}
+      <h1 style={{
+        fontFamily: 'Playfair Display, Georgia, serif',
+        fontSize: '4.5rem',
+        fontWeight: 900,
+        letterSpacing: '.08em',
+        color: '#ffe082',
+        textShadow: '0 4px 32px #000a, 0 1px 0 #fff2',
+        margin: 0,
+        marginBottom: 12,
+        textAlign: 'center',
+      }}>
+        SANCTUARY
+      </h1>
+      <div style={{ fontSize: 24, color: '#f7fafc', opacity: 0.85, marginBottom: 32, fontWeight: 600, letterSpacing: '.04em' }}>
+        AI & Innovation
       </div>
-      {/* Title */}
-      <h1 style={{ fontSize: "3rem", color: "#2a4365", marginBottom: "2rem" }}>Auralis Sanctuary</h1>
-      {/* Chat thread preview */}
-      <div style={{ width: "100%", maxWidth: 420, background: "#fff", border: "1px solid #eee", borderRadius: 12, padding: 16, boxShadow: "0 2px 8px #0001", textAlign: "left" }}>
-        <div style={{ fontWeight: 600, fontSize: 14, color: "#888", marginBottom: 8 }}>Chat Preview</div>
-        {thread ? (
-          <div>
-            <div style={{ fontSize: 16, color: "#222", marginBottom: 4 }}>{thread.text}</div>
-            <div style={{ fontSize: 12, color: "#666" }}>by {thread.author}</div>
-          </div>
-        ) : (
-          <div style={{ color: "#aaa", fontSize: 14 }}>No recent messages.</div>
-        )}
+      {/* Chat Preview */}
+      <div style={{ width: "100%", maxWidth: 420, background: "#23242b", border: "1px solid #31323a", borderRadius: 16, padding: 20, boxShadow: "0 2px 16px #0004", textAlign: "left", marginTop: 12 }}>
+        <div style={{ fontWeight: 700, fontSize: 15, color: "#ffe082", marginBottom: 10 }}>Chat Preview</div>
+        <div style={{ fontSize: 17, color: "#f7fafc", marginBottom: 6 }}>
+          Welcome to the Sanctuary! This is a sample chat message.
+        </div>
+        <div style={{ fontSize: 13, color: "#ffe082bb" }}>by Guest</div>
       </div>
     </main>
   );
