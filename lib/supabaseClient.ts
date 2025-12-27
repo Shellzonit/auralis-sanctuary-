@@ -8,3 +8,4 @@ export function getSupabaseClient(): SupabaseClient<any> {
   return createClient<any>(url, key);
 }
 
+
