@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { supabase, createSupabaseClient } from "@/lib/supabaseClient";
 
 type Message = {
   id: string;
@@ -12,22 +13,57 @@ function generateId() {
   return Math.random().toString(36).substr(2, 9);
 }
 
-const initialMessages: Message[] = [];
 
-export default function ThreadedDiscussion() {
-  const [messages, setMessages] = useState<Message[]>(initialMessages);
+
+
+
+
+  const [messages, setMessages] = useState<Message[]>([]);
   const [newThread, setNewThread] = useState("");
+  const sb = supabase ?? createSupabaseClient();
 
-  function addMessage(content: string, parentId: string | null = null) {
-    const msg: Message = {
-      id: generateId(),
-      parentId,
+  // Fetch all messages on mount
+  useEffect(() => {
+    async function fetchMessages() {
+      const { data, error } = await sb
+        .from("chat_threads")
+        .select("id,parent_id,author,content,created_at")
+        .order("created_at", { ascending: true });
+      if (!error && data) {
+        setMessages(
+          data.map((msg: any) => ({
+            id: msg.id,
+            parentId: msg.parent_id,
+            author: msg.author,
+            content: msg.content,
+            createdAt: msg.created_at,
+          }))
+        );
+      }
+    }
+    fetchMessages();
+
+    // Subscribe to real-time changes
+    const channel = sb
+      .channel('chat_threads_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'chat_threads' }, (payload) => {
+        fetchMessages();
+      })
+      .subscribe();
+    return () => {
+      channel.unsubscribe();
+    };
+  }, []);
+
+  // Add a new message (thread or reply)
+  const addMessage = useCallback(async (content: string, parentId: string | null = null) => {
+    await sb.from("chat_threads").insert({
+      parent_id: parentId,
       author: "User", // Replace with real user if available
       content,
-      createdAt: new Date().toISOString(),
-    };
-    setMessages((msgs) => [...msgs, msg]);
-  }
+    });
+    // No need to update state here; real-time subscription will update
+  }, [sb]);
 
   function renderReplies(parentId: string | null, level = 0) {
     return messages
