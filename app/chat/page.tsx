@@ -2,9 +2,23 @@
 import { useState, useRef } from "react";
 
 // Unique, modern chat page layout
+
+type ChatMessage = {
+  id: number;
+  author: string;
+  avatar: string;
+  text: string;
+  timestamp: string;
+  reactions: number;
+  replies: ChatMessage[];
+  fileUrl?: string;
+  fileType?: string;
+  fileName?: string;
+};
+
 export default function ChatPage() {
   // Example static data for demonstration
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 1,
       author: "Aurora",
@@ -20,6 +34,7 @@ export default function ChatPage() {
           text: "Thank you! Excited to be here.",
           timestamp: "1m ago",
           reactions: 1,
+          replies: [],
         },
       ],
     },
