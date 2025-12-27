@@ -1,5 +1,6 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { getAblyClient } from "../../lib/ablyClient";
 
 // Unique, modern chat page layout
 
@@ -20,6 +21,25 @@ export default function ChatPage() {
   // Example static data for demonstration
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
+        // Ably: subscribe to real-time messages and replies
+        useEffect(() => {
+          const ably = getAblyClient();
+          const channel = ably.channels.get("sanctuary-chat");
+          const onMessage = (msg) => {
+            const data = msg.data;
+            if (data.type === "message") {
+              setMessages(prev => [...prev, data.message]);
+            } else if (data.type === "reply") {
+              setMessages(prevMsgs => prevMsgs.map(m =>
+                m.id === data.parentId
+                  ? { ...m, replies: [...m.replies, data.reply] }
+                  : m
+              ));
+            }
+          };
+          channel.subscribe(onMessage);
+          return () => { channel.unsubscribe(onMessage); };
+        }, []);
       id: 1,
       author: "Aurora",
       avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Aurora",
@@ -51,6 +71,8 @@ export default function ChatPage() {
   const [input, setInput] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [replyingTo, setReplyingTo] = useState<number | null>(null);
+  const [replyInput, setReplyInput] = useState("");
 
   return (
     <div style={{ minHeight: "100vh", background: "#181a20", color: "#f7fafc", fontFamily: "Inter, sans-serif", display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -86,8 +108,82 @@ export default function ChatPage() {
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 18, marginBottom: 6 }}>
               <span style={{ fontSize: 15, color: "#ffe082bb", cursor: "pointer" }}>❤️ {msg.reactions}</span>
-              <span style={{ fontSize: 15, color: "#7fd1b9", cursor: "pointer" }}>↩️ Reply</span>
+              <span
+                style={{ fontSize: 15, color: "#7fd1b9", cursor: "pointer" }}
+                onClick={() => setReplyingTo(msg.id)}
+              >↩️ Reply</span>
             </div>
+            {replyingTo === msg.id && (
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  if (!replyInput.trim()) return;
+                  const reply = {
+                    id: Date.now(),
+                    author: "You",
+                    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=You",
+                    text: replyInput,
+                    timestamp: "now",
+                    reactions: 0,
+                    replies: [],
+                  };
+                  setMessages(prevMsgs => prevMsgs.map(m =>
+                    m.id === msg.id
+                      ? { ...m, replies: [...m.replies, reply] }
+                      : m
+                  ));
+                  const ably = getAblyClient();
+                  const channel = ably.channels.get("sanctuary-chat");
+                  channel.publish("reply", { type: "reply", parentId: msg.id, reply });
+                  setReplyInput("");
+                  setReplyingTo(null);
+                }}
+                style={{ marginTop: 10, marginBottom: 10, display: 'flex', gap: 8 }}
+              >
+                <input
+                  type="text"
+                  value={replyInput}
+                  onChange={e => setReplyInput(e.target.value)}
+                  placeholder="Type your reply..."
+                  style={{
+                    flex: 1,
+                    padding: '0.6rem 1rem',
+                    borderRadius: 8,
+                    border: '1px solid #31323a',
+                    background: '#181a20',
+                    color: '#f7fafc',
+                    fontSize: 15,
+                  }}
+                  autoFocus
+                />
+                <button
+                  type="submit"
+                  style={{
+                    background: '#ffe082',
+                    color: '#23242b',
+                    fontWeight: 700,
+                    fontSize: 15,
+                    border: 'none',
+                    borderRadius: 8,
+                    padding: '0.6rem 1.1rem',
+                    cursor: 'pointer',
+                  }}
+                >Send</button>
+                <button
+                  type="button"
+                  onClick={() => { setReplyingTo(null); setReplyInput(""); }}
+                  style={{
+                    background: 'transparent',
+                    color: '#ffe082',
+                    border: '1.5px solid #ffe082',
+                    borderRadius: 8,
+                    padding: '0.6rem 1.1rem',
+                    fontSize: 15,
+                    cursor: 'pointer',
+                  }}
+                >Cancel</button>
+              </form>
+            )}
             {/* Replies */}
             {msg.replies && msg.replies.length > 0 && (
               <div style={{ marginLeft: 36, marginTop: 10, borderLeft: "2px solid #31323a", paddingLeft: 16 }}>
@@ -128,7 +224,6 @@ export default function ChatPage() {
         }}
         onSubmit={e => {
           e.preventDefault();
-          // Simulate file upload by creating a local URL (replace with real upload logic)
           let fileUrl: string | undefined = undefined;
           let fileType: string | undefined = undefined;
           let fileName: string | undefined = undefined;
@@ -138,21 +233,22 @@ export default function ChatPage() {
             fileName = file.name;
           }
           if (input.trim() || file) {
-            setMessages(prev => [
-              ...prev,
-              {
-                id: Date.now(),
-                author: "You",
-                avatar: "https://api.dicebear.com/7.x/personas/svg?seed=You",
-                text: input,
-                timestamp: "now",
-                reactions: 0,
-                replies: [],
-                ...(fileUrl ? { fileUrl } : {}),
-                ...(fileType ? { fileType } : {}),
-                ...(fileName ? { fileName } : {}),
-              },
-            ]);
+            const msg: ChatMessage = {
+              id: Date.now(),
+              author: "You",
+              avatar: "https://api.dicebear.com/7.x/personas/svg?seed=You",
+              text: input,
+              timestamp: "now",
+              reactions: 0,
+              replies: [],
+              ...(fileUrl ? { fileUrl } : {}),
+              ...(fileType ? { fileType } : {}),
+              ...(fileName ? { fileName } : {}),
+            };
+            setMessages(prev => [...prev, msg]);
+            const ably = getAblyClient();
+            const channel = ably.channels.get("sanctuary-chat");
+            channel.publish("message", { type: "message", message: msg });
           }
           setInput("");
           setFile(null);

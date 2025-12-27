@@ -1,35 +1,101 @@
 
-"use client";
 
-const showcaseItems = [
-  {
-    id: 1,
-    type: "art",
-    title: "Dreamscape",
-    creator: "Aria",
-    description: "A surreal digital painting exploring AI and nature.",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-  },
-  {
-    id: 2,
-    type: "music",
-    title: "Neural Groove",
-    creator: "Jaxon",
-    description: "An AI-generated ambient track for deep focus.",
-    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
-  },
-  {
-    id: 3,
-    type: "thread",
-    title: "AI & Creativity",
-    creator: "Nova",
-    description: "A discussion thread on the future of creative AI.",
-    image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
-  },
-];
+"use client";
+import { useState } from "react";
+import { supabase } from "../../lib/supabaseClient";
+
+
+import { useEffect } from "react";
+
+type ShowcaseItem = {
+  id: string;
+  title: string;
+  description: string;
+  media_url: string;
+  creator_name: string;
+  featured: boolean;
+  created_at: string;
+};
 
 export default function Showcase() {
-  return (
+  const [showcaseItems, setShowcaseItems] = useState<ShowcaseItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchShowcase() {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from("showcase_content")
+        .select("id, title, description, media_url, creator_name, featured, created_at")
+        .order("created_at", { ascending: false });
+      if (!error && data) setShowcaseItems(data);
+      setLoading(false);
+    }
+    fetchShowcase();
+  }, []);
+
+export default function Showcase() {
+  const [showForm, setShowForm] = useState<null | "art" | "music">(null);
+  const [file, setFile] = useState<File | null>(null);
+  const [title, setTitle] = useState("");
+  const [creator, setCreator] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  function handleOpenForm(type: "art" | "music") {
+    setShowForm(type);
+    setFile(null);
+    setTitle("");
+    setCreator("");
+  }
+
+  function handleCloseForm() {
+    setShowForm(null);
+    setFile(null);
+    setTitle("");
+    setCreator("");
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!file) return;
+    setSubmitting(true);
+    try {
+      // Upload file to B2 (existing logic)
+      const res = await fetch("/api/b2/upload", {
+        method: "POST",
+        headers: {
+          "X-File-Name": file.name,
+        },
+        body: file,
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        // Insert metadata into Supabase
+        const { error } = await supabase.from("showcase_content").insert([
+          {
+            title,
+            description: "", // You can add a description field to the form if needed
+            media_url: data.url,
+            creator_name: creator,
+            featured: false,
+          },
+        ]);
+        setSubmitting(false);
+        if (!error) {
+          alert("Upload successful and saved to showcase!");
+          handleCloseForm();
+        } else {
+          alert("Upload succeeded but failed to save metadata: " + error.message);
+        }
+      } else {
+        setSubmitting(false);
+        alert("Upload failed: " + (data.error || "Unknown error"));
+      }
+    } catch (err) {
+      setSubmitting(false);
+      alert("Upload failed: " + err);
+    }
+  }
     <main
       style={{
         minHeight: "100vh",
@@ -71,7 +137,7 @@ export default function Showcase() {
             boxShadow: '0 2px 8px #0002',
             transition: 'background .15s',
           }}
-          onClick={() => alert('Upload Art: Feature coming soon!')}
+          onClick={() => handleOpenForm("art")}
         >
           Upload Art
         </button>
@@ -88,11 +154,128 @@ export default function Showcase() {
             boxShadow: '0 2px 8px #0002',
             transition: 'background .15s',
           }}
-          onClick={() => alert('Upload Music: Feature coming soon!')}
+          onClick={() => handleOpenForm("music")}
         >
           Upload Music
         </button>
       </div>
+
+      {showForm && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: '#000a',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+        }}>
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              background: '#23242b',
+              borderRadius: 16,
+              padding: 32,
+              minWidth: 320,
+              boxShadow: '0 4px 32px #0008',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 18,
+              color: '#f7fafc',
+              position: 'relative',
+            }}
+          >
+            <div style={{ fontSize: 22, fontWeight: 700, color: '#ffe082', marginBottom: 6 }}>
+              Upload {showForm === "art" ? "Art" : "Music"}
+            </div>
+            <label style={{ fontWeight: 500 }}>
+              File:
+              <input
+                type="file"
+                accept={showForm === "art" ? "image/*" : "audio/*"}
+                required
+                style={{ display: 'block', marginTop: 6 }}
+                onChange={e => setFile(e.target.files?.[0] || null)}
+              />
+            </label>
+            <label style={{ fontWeight: 500 }}>
+              Title:
+              <input
+                type="text"
+                value={title}
+                required
+                onChange={e => setTitle(e.target.value)}
+                style={{
+                  width: '100%',
+                  marginTop: 6,
+                  padding: '7px 10px',
+                  borderRadius: 6,
+                  border: '1px solid #31323a',
+                  background: '#181a20',
+                  color: '#ffe082',
+                  fontSize: 16,
+                }}
+              />
+            </label>
+            <label style={{ fontWeight: 500 }}>
+              Creator:
+              <input
+                type="text"
+                value={creator}
+                required
+                onChange={e => setCreator(e.target.value)}
+                style={{
+                  width: '100%',
+                  marginTop: 6,
+                  padding: '7px 10px',
+                  borderRadius: 6,
+                  border: '1px solid #31323a',
+                  background: '#181a20',
+                  color: '#ffe082',
+                  fontSize: 16,
+                }}
+              />
+            </label>
+            <div style={{ display: 'flex', gap: 12, marginTop: 10 }}>
+              <button
+                type="submit"
+                disabled={submitting || !file || !title || !creator}
+                style={{
+                  background: '#ffe082',
+                  color: '#181a20',
+                  fontWeight: 700,
+                  border: 'none',
+                  borderRadius: 8,
+                  padding: '10px 22px',
+                  fontSize: 16,
+                  cursor: submitting ? 'not-allowed' : 'pointer',
+                  opacity: submitting ? 0.7 : 1,
+                }}
+              >
+                {submitting ? 'Submitting...' : 'Submit'}
+              </button>
+              <button
+                type="button"
+                onClick={handleCloseForm}
+                style={{
+                  background: 'transparent',
+                  color: '#ffe082',
+                  border: '1.5px solid #ffe082',
+                  borderRadius: 8,
+                  padding: '10px 22px',
+                  fontSize: 16,
+                  cursor: 'pointer',
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
       <section style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
@@ -101,7 +284,11 @@ export default function Showcase() {
         maxWidth: 900,
         marginBottom: 48,
       }}>
-        {showcaseItems.map(item => (
+        {loading ? (
+          <div style={{ color: '#ffe082', fontSize: 20, textAlign: 'center', width: '100%' }}>Loading showcase...</div>
+        ) : showcaseItems.length === 0 ? (
+          <div style={{ color: '#ffe082', fontSize: 20, textAlign: 'center', width: '100%' }}>No showcase items yet.</div>
+        ) : showcaseItems.map(item => (
           <div key={item.id} style={{
             background: '#23242b',
             border: '1.5px solid #31323a',
@@ -114,11 +301,11 @@ export default function Showcase() {
             minHeight: 340,
             transition: 'transform .13s',
           }}>
-            <img src={item.image} alt={item.title} style={{ width: '100%', height: 160, objectFit: 'cover', borderTopLeftRadius: 18, borderTopRightRadius: 18, borderBottom: '1px solid #31323a' }} />
+            <img src={item.media_url} alt={item.title} style={{ width: '100%', height: 160, objectFit: 'cover', borderTopLeftRadius: 18, borderTopRightRadius: 18, borderBottom: '1px solid #31323a' }} />
             <div style={{ padding: '18px 18px 10px 18px', flex: 1, display: 'flex', flexDirection: 'column' }}>
               <div style={{ fontWeight: 700, fontSize: 20, color: '#ffe082', marginBottom: 4 }}>{item.title}</div>
               <div style={{ fontSize: 15, color: '#f7fafc', opacity: 0.92, marginBottom: 8 }}>{item.description}</div>
-              <div style={{ fontSize: 13, color: '#ffe082bb', marginTop: 'auto' }}>by {item.creator}</div>
+              <div style={{ fontSize: 13, color: '#ffe082bb', marginTop: 'auto' }}>by {item.creator_name}</div>
             </div>
           </div>
         ))}
