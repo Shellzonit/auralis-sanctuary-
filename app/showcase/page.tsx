@@ -16,10 +16,14 @@ type ShowcaseItem = {
   featured: boolean;
   created_at: string;
 };
-
 export default function Showcase() {
   const [showcaseItems, setShowcaseItems] = useState<ShowcaseItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState<null | "art" | "music">(null);
+  const [file, setFile] = useState<File | null>(null);
+  const [title, setTitle] = useState("");
+  const [creator, setCreator] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     async function fetchShowcase() {
@@ -33,13 +37,6 @@ export default function Showcase() {
     }
     fetchShowcase();
   }, []);
-
-export default function Showcase() {
-  const [showForm, setShowForm] = useState<null | "art" | "music">(null);
-  const [file, setFile] = useState<File | null>(null);
-  const [title, setTitle] = useState("");
-  const [creator, setCreator] = useState("");
-  const [submitting, setSubmitting] = useState(false);
 
   function handleOpenForm(type: "art" | "music") {
     setShowForm(type);

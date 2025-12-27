@@ -21,25 +21,6 @@ export default function ChatPage() {
   // Example static data for demonstration
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
-        // Ably: subscribe to real-time messages and replies
-        useEffect(() => {
-          const ably = getAblyClient();
-          const channel = ably.channels.get("sanctuary-chat");
-          const onMessage = (msg) => {
-            const data = msg.data;
-            if (data.type === "message") {
-              setMessages(prev => [...prev, data.message]);
-            } else if (data.type === "reply") {
-              setMessages(prevMsgs => prevMsgs.map(m =>
-                m.id === data.parentId
-                  ? { ...m, replies: [...m.replies, data.reply] }
-                  : m
-              ));
-            }
-          };
-          channel.subscribe(onMessage);
-          return () => { channel.unsubscribe(onMessage); };
-        }, []);
       id: 1,
       author: "Aurora",
       avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Aurora",
@@ -58,6 +39,25 @@ export default function ChatPage() {
         },
       ],
     },
+      // Ably: subscribe to real-time messages and replies
+      useEffect(() => {
+        const ably = getAblyClient();
+        const channel = ably.channels.get("sanctuary-chat");
+        const onMessage = (msg) => {
+          const data = msg.data;
+          if (data.type === "message") {
+            setMessages(prev => [...prev, data.message]);
+          } else if (data.type === "reply") {
+            setMessages(prevMsgs => prevMsgs.map(m =>
+              m.id === data.parentId
+                ? { ...m, replies: [...m.replies, data.reply] }
+                : m
+            ));
+          }
+        };
+        channel.subscribe(onMessage);
+        return () => { channel.unsubscribe(onMessage); };
+      }, []);
     {
       id: 3,
       author: "Orion",
