@@ -75,7 +75,7 @@ export default function AboutPage() {
           Instead, we move like tides — slow, rhythmic, ceremonial.
           We share our work the way ancestors shared stories around a fire:
           with reverence, with curiosity, with care.
-        </p>
+          </div>
       </section>
 
       <section className="about-section">
