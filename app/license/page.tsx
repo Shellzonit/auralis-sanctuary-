@@ -1,46 +1,46 @@
- "use client";
+"use client";
+import React from "react";
 
- import Link from "next/link";
+const companies = [
+  {
+    name: "Getty Images",
+    url: "https://www.gettyimages.com/",
+    description: "Stock photos, videos, and music with licensing options."
+  },
+  {
+    name: "Envato Elements",
+    url: "https://elements.envato.com/",
+    description: "Creative assets with commercial licenses."
+  },
+  {
+    name: "Adobe Stock",
+    url: "https://stock.adobe.com/",
+    description: "Photos, graphics, and videos for licensed use."
+  },
+  {
+    name: "Shutterstock",
+    url: "https://www.shutterstock.com/",
+    description: "Global provider of licensed images and music."
+  }
+];
 
-
- export default function Home() {
-   return (
-     <main className="min-h-screen bg-gradient-to-b from-[#0a0a0f] to-[#1a1a22] text-[#f2f2f7] flex flex-col items-center px-6 py-16 font-serif">
-       
-       {/* SANCTUARY GATE */}
-       <h1 className="text-4xl md:text-6xl tracking-wide mb-4 text-center">
-         Auralis Sanctuary
-       </h1>
-
-       <p className="max-w-xl text-center text-lg opacity-85 mb-12">
-         Welcome to the Sanctuary — a creative space for music, art, blogs, and
-         streaming. Explore, share, and connect with the community.
-       </p>
-
-       {/* CIRCULAR MENU */}
-       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-         <Link
-           href="/showcase"
-           className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
-         >
-           Content Showcase
-         </Link>
-
-         <Link
-           href="/email"
-           className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
-         >
-           Internal Email
-         </Link>
-
-         <Link
-           href="/license"
-           className="w-32 h-32 rounded-full bg-[#1f1f29] hover:bg-[#2a2a35] flex items-center justify-center text-center text-sm transition"
-         >
-           License Info
-         </Link>
-
-       </div>
-     </main>
-   );
+export default function LicenseShowcase() {
+  return (
+    <div style={{ maxWidth: 700, margin: "2rem auto", padding: 32 }}>
+      <h1 style={{ fontSize: "2rem", marginBottom: 24 }}>Content License Companies</h1>
+      <p style={{ marginBottom: 32 }}>
+        Explore companies that offer copyright licenses for creative content.
+      </p>
+      <ul style={{ listStyle: "none", padding: 0 }}>
+        {companies.map((company) => (
+          <li key={company.name} style={{ marginBottom: 24, borderBottom: "1px solid #eee", paddingBottom: 16 }}>
+            <a href={company.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#be123c", textDecoration: "none" }}>
+              {company.name}
+            </a>
+            <div style={{ color: "#444", marginTop: 8 }}>{company.description}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
