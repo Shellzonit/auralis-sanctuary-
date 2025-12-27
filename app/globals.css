@@ -38,11 +38,7 @@
   background: transparent;
   color: #fff;
 }
-
 /* Tailwind layers */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* Sanctuary color palette */
 :root {
