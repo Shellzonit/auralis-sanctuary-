@@ -1,7 +1,6 @@
 
 
 import React, { useEffect, useState, useRef } from "react";
-import { supabase } from "../lib/supabaseClient";
 
 function buildThread(messages, parentId = null) {
   return messages
@@ -48,7 +47,7 @@ export default function LargeThreadedChat() {
 
   useEffect(() => {
     fetchMessages();
-    const sub = supabase
+    // Supabase client removed
       .channel("threaded-chat")
       .on(
         "postgres_changes",
@@ -76,12 +75,12 @@ export default function LargeThreadedChat() {
       )
       .subscribe();
     return () => {
-      supabase.removeChannel(sub);
+      // Supabase client removed
     };
   }, [username]);
 
   async function fetchMessages() {
-    const { data } = await supabase
+    // Supabase client removed
       .from("chat_messages")
       .select("*")
       .order("created_at", { ascending: true });
@@ -91,7 +90,7 @@ export default function LargeThreadedChat() {
   async function handleSend(e) {
     e.preventDefault();
     if (!input.trim()) return;
-    await supabase.from("chat_messages").insert([
+    // Supabase client removed
       {
         text: input,
         parent_id: replyTo,
@@ -105,7 +104,7 @@ export default function LargeThreadedChat() {
   // Typing indicator: broadcast when user types
   function handleInputChange(e) {
     setInput(e.target.value);
-    supabase.channel("threaded-chat").send({
+    // Supabase client removed
       type: "broadcast",
       event: "typing",
       payload: { username },

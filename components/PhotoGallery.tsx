@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getSupabaseClient } from "@/lib/supabaseClient";
 
 export function PhotoGallery() {
   const [photos, setPhotos] = useState<string[]>([]);
@@ -8,7 +7,7 @@ export function PhotoGallery() {
   useEffect(() => {
     async function fetchPhotos() {
       setLoading(true);
-      const sb = getSupabaseClient();
+      // Supabase client removed
       const { data, error } = await sb.storage.from("showcase-photos").list(undefined, { limit: 100, sortBy: { column: "created_at", order: "desc" } });
       if (error) {
         setPhotos([]);

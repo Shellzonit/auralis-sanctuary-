@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { getSupabaseClient } from "@/lib/supabaseClient";
 
 export function PhotoUploadForm({ onUpload }: { onUpload: () => void }) {
   const [file, setFile] = useState<File | null>(null);
@@ -35,7 +34,7 @@ export function PhotoUploadForm({ onUpload }: { onUpload: () => void }) {
     setError(null);
     const fileExt = file.name.split(".").pop();
     const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${fileExt}`;
-    const sb = getSupabaseClient();
+    // Supabase client removed
     const { error: uploadError } = await sb.storage.from("showcase-photos").upload(fileName, file);
     setUploading(false);
     if (uploadError) {
