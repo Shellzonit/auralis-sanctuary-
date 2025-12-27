@@ -26,8 +26,26 @@ export default function Home() {
         padding: "0 1rem",
       }}
     >
+      {/* Auralis AI Header */}
+      <div style={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        paddingTop: 18,
+        paddingBottom: 2,
+        paddingLeft: 8,
+        fontSize: 18,
+        fontWeight: 600,
+        color: "#ffe082cc",
+        letterSpacing: ".04em",
+        opacity: 0.92,
+        textShadow: "0 1px 8px #0006"
+      }}>
+        <span style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 18 }}>Auralis AI</span>
+      </div>
       {/* Tabs */}
-      <nav style={{ width: "100%", display: "flex", justifyContent: "center", gap: 24, marginTop: 40, marginBottom: 32 }}>
+      <nav style={{ width: "100%", display: "flex", justifyContent: "center", gap: 24, marginTop: 24, marginBottom: 32 }}>
         {tabs.map(tab => (
           <Link
             key={tab.href}
