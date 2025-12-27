@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 // Unique, modern chat page layout
 export default function ChatPage() {
@@ -34,6 +34,8 @@ export default function ChatPage() {
     },
   ]);
   const [input, setInput] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
     <div style={{ minHeight: "100vh", background: "#181a20", color: "#f7fafc", fontFamily: "Inter, sans-serif", display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -53,7 +55,20 @@ export default function ChatPage() {
                 <div style={{ fontSize: 13, color: "#aaa" }}>{msg.timestamp}</div>
               </div>
             </div>
-            <div style={{ fontSize: 17, color: "#f7fafc", margin: "14px 0 8px 0" }}>{msg.text}</div>
+            <div style={{ fontSize: 17, color: "#f7fafc", margin: "14px 0 8px 0" }}>
+              {msg.text}
+              {msg.fileUrl && (
+                <div style={{ marginTop: 10 }}>
+                  {msg.fileType && msg.fileType.startsWith("image/") ? (
+                    <img src={msg.fileUrl} alt="uploaded" style={{ maxWidth: 320, maxHeight: 220, borderRadius: 10, border: '1px solid #31323a' }} />
+                  ) : (
+                    <a href={msg.fileUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#7fd1b9', textDecoration: 'underline', fontSize: 15 }}>
+                      {msg.fileName || 'Download file'}
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
             <div style={{ display: "flex", alignItems: "center", gap: 18, marginBottom: 6 }}>
               <span style={{ fontSize: 15, color: "#ffe082bb", cursor: "pointer" }}>❤️ {msg.reactions}</span>
               <span style={{ fontSize: 15, color: "#7fd1b9", cursor: "pointer" }}>↩️ Reply</span>
@@ -98,8 +113,35 @@ export default function ChatPage() {
         }}
         onSubmit={e => {
           e.preventDefault();
-          // Add send logic here
+          // Simulate file upload by creating a local URL (replace with real upload logic)
+          let fileUrl = null;
+          let fileType = null;
+          let fileName = null;
+          if (file) {
+            fileUrl = URL.createObjectURL(file);
+            fileType = file.type;
+            fileName = file.name;
+          }
+          if (input.trim() || file) {
+            setMessages(prev => [
+              ...prev,
+              {
+                id: Date.now(),
+                author: "You",
+                avatar: "https://api.dicebear.com/7.x/personas/svg?seed=You",
+                text: input,
+                timestamp: "now",
+                reactions: 0,
+                replies: [],
+                fileUrl,
+                fileType,
+                fileName,
+              },
+            ]);
+          }
           setInput("");
+          setFile(null);
+          if (fileInputRef.current) fileInputRef.current.value = "";
         }}
       >
         <input
@@ -109,15 +151,30 @@ export default function ChatPage() {
           placeholder="Type a message..."
           style={{
             width: "100%",
-            maxWidth: 420,
+            maxWidth: 340,
             padding: "0.9rem 1.2rem",
             borderRadius: 12,
             border: "none",
             fontSize: 17,
             background: "#181a20",
             color: "#f7fafc",
-            marginRight: 12,
+            marginRight: 8,
             outline: "none",
+          }}
+        />
+        <input
+          type="file"
+          accept="image/*,audio/*,video/*,.pdf,.doc,.docx,.txt"
+          ref={fileInputRef}
+          onChange={e => setFile(e.target.files && e.target.files[0] ? e.target.files[0] : null)}
+          style={{
+            marginRight: 8,
+            background: '#181a20',
+            color: '#f7fafc',
+            border: 'none',
+            borderRadius: 8,
+            fontSize: 15,
+            maxWidth: 160,
           }}
         />
         <button
@@ -129,7 +186,7 @@ export default function ChatPage() {
             fontSize: 17,
             border: "none",
             borderRadius: 10,
-            padding: "0.9rem 1.6rem",
+            padding: "0.9rem 1.2rem",
             cursor: "pointer",
             boxShadow: "0 2px 8px #0002",
             transition: "background .18s",
