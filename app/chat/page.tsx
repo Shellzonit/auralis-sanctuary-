@@ -129,9 +129,9 @@ export default function ChatPage() {
         onSubmit={e => {
           e.preventDefault();
           // Simulate file upload by creating a local URL (replace with real upload logic)
-          let fileUrl = null;
-          let fileType = null;
-          let fileName = null;
+          let fileUrl: string | undefined = undefined;
+          let fileType: string | undefined = undefined;
+          let fileName: string | undefined = undefined;
           if (file) {
             fileUrl = URL.createObjectURL(file);
             fileType = file.type;
@@ -148,9 +148,9 @@ export default function ChatPage() {
                 timestamp: "now",
                 reactions: 0,
                 replies: [],
-                fileUrl,
-                fileType,
-                fileName,
+                ...(fileUrl ? { fileUrl } : {}),
+                ...(fileType ? { fileType } : {}),
+                ...(fileName ? { fileName } : {}),
               },
             ]);
           }
