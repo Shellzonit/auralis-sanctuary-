@@ -1,149 +1,38 @@
 "use client";
-import "./homepage-s.css";
-import "./homepage-artist-tabs.css";
-
-import { useEffect, useMemo, useState } from "react";
-import { getAblyClient } from "@/lib/ablyClient";
-import type { ChatMessage } from "@/types/chat";
 import NavTabs from "@/components/NavTabs";
-
-import { ErrorBoundary } from "@/components/ErrorBoundary";
-
-
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  // Chat preview state
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [thread, setThread] = useState<{author: string, text: string} | null>(null);
 
+  // Simulate fetching a chat thread preview (replace with real fetch/Ably logic as needed)
   useEffect(() => {
-    const ably = getAblyClient();
-    const channel = ably.channels.get("sanctuary-chat-threaded");
-    const onMessage = (msg: any) => {
-      const data = msg.data as ChatMessage;
-      setMessages((prev) => {
-        if (prev.some((m) => m.id === data.id)) return prev;
-        return [...prev, data];
-      });
-    };
-    channel.subscribe("message", onMessage);
-    return () => channel.unsubscribe("message", onMessage);
+    setThread({
+      author: "Guest",
+      text: "Welcome to the Sanctuary! This is a sample chat message."
+    });
   }, []);
 
-  // Only show last 1 hour
-  const oneHourAgo = Date.now() - 60 * 60 * 1000;
-  const recentMessages = useMemo(
-    () => messages.filter((m) => m.timestamp >= oneHourAgo),
-    [messages]
-  );
-  // Group into threads
-  const threads = useMemo(() => {
-    const roots = recentMessages.filter((m) => !m.parentId);
-    const replies = recentMessages.filter((m) => m.parentId);
-    const groupedReplies = new Map<string, ChatMessage[]>();
-    for (const r of replies) {
-      const key = r.threadId;
-      if (!groupedReplies.has(key)) groupedReplies.set(key, []);
-      groupedReplies.get(key)!.push(r);
-    }
-    return roots.map((root) => ({
-      root,
-      replies: (groupedReplies.get(root.threadId) || []).sort(
-        (a, b) => a.timestamp - b.timestamp
-      ),
-    }));
-  }, [recentMessages]);
-  // Pick the most active thread
-  const featuredThread = useMemo(() => {
-    if (threads.length === 0) return null;
-    return threads.reduce((mostActive, current) => {
-      return current.replies.length > mostActive.replies.length
-        ? current
-        : mostActive;
-    });
-  }, [threads]);
-
   return (
-    <ErrorBoundary>
-    <main
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        backgroundColor: "#f7fafc",
-        color: "#222",
-        fontFamily: "sans-serif",
-        textAlign: "center",
-        padding: "2rem",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Tabs centered at top */}
+    <main style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", fontFamily: "sans-serif", background: "#f7fafc", padding: "2rem" }}>
+      {/* Tabs at the top */}
       <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: "2rem" }}>
         <NavTabs />
       </div>
-
-      {/* Name centered below tabs */}
-      <h1
-        style={{
-          fontFamily: "Playfair Display, Georgia, serif",
-          fontSize: "4.2rem",
-          fontWeight: 700,
-          letterSpacing: "0.08em",
-          color: "#2a4365",
-          textShadow: "0 2px 12px rgba(44,62,80,0.08)",
-          margin: 0,
-          zIndex: 2,
-        }}
-      >
-        Auralis Sanctuary
-      </h1>
-
-      {/* Chat Preview below name */}
-      <div style={{ marginTop: "2.5rem", width: "100%", maxWidth: 480, alignSelf: "center", zIndex: 2 }}>
-        <div className="text-lg font-semibold mb-2 text-neutral-700">Sanctuary Chat Preview</div>
-        {!featuredThread ? (
-          <div className="p-4 bg-white border border-neutral-200 rounded-lg text-center text-neutral-500 text-sm">
-            The Sanctuary is quiet right now.<br />
-            <a href="/chat" className="text-neutral-900 underline underline-offset-4">Enter the chat</a> to begin a new thread.
+      {/* Title */}
+      <h1 style={{ fontSize: "3rem", color: "#2a4365", marginBottom: "2rem" }}>Auralis Sanctuary</h1>
+      {/* Chat thread preview */}
+      <div style={{ width: "100%", maxWidth: 420, background: "#fff", border: "1px solid #eee", borderRadius: 12, padding: 16, boxShadow: "0 2px 8px #0001", textAlign: "left" }}>
+        <div style={{ fontWeight: 600, fontSize: 14, color: "#888", marginBottom: 8 }}>Chat Preview</div>
+        {thread ? (
+          <div>
+            <div style={{ fontSize: 16, color: "#222", marginBottom: 4 }}>{thread.text}</div>
+            <div style={{ fontSize: 12, color: "#666" }}>by {thread.author}</div>
           </div>
         ) : (
-          <div className="p-4 bg-white border border-neutral-200 rounded-lg">
-            <div className="text-xs uppercase tracking-wide text-neutral-500 mb-2">Featured Thread</div>
-            {/* Root message */}
-            <div className="mb-2">
-              <div className="bg-neutral-900 text-neutral-50 rounded-lg px-3 py-2 text-sm">{featuredThread.root.text}</div>
-              <div className="text-[10px] text-neutral-500 mt-1">
-                {featuredThread.root.author || "Guest"} · {new Date(featuredThread.root.timestamp).toLocaleTimeString()}
-              </div>
-            </div>
-            {/* Replies (limit 2) */}
-            {featuredThread.replies.slice(0, 2).map((reply: ChatMessage) => (
-              <div key={reply.id} className="pl-3 mb-2">
-                <div className="bg-neutral-100 border border-neutral-200 rounded-lg px-3 py-1 text-sm">{reply.text}</div>
-                <div className="text-[10px] text-neutral-500 mt-1">
-                  {reply.author || "Guest"} · {reply.timestamp ? new Date(reply.timestamp).toLocaleTimeString() : ""}
-                </div>
-              </div>
-            ))}
-            {/* If more than 2 replies */}
-            {featuredThread.replies.length > 2 && (
-              <div className="text-xs text-neutral-500 pl-3 mb-2">
-                + {featuredThread.replies.length - 2} more replies
-              </div>
-            )}
-            {/* Link to full thread */}
-            <a href={`/chat?thread=${featuredThread.root.threadId}`} className="inline-block mt-2 text-sm text-neutral-900 underline underline-offset-4">View full thread →</a>
-          </div>
+          <div style={{ color: "#aaa", fontSize: 14 }}>No recent messages.</div>
         )}
       </div>
-
-      {/* Large S as background at bottom */}
-      <span className="homepage-s-elegant" style={{ bottom: 0, top: "auto", left: "50%", transform: "translateX(-50%)", position: "fixed", zIndex: 0, pointerEvents: "none" }}>
-        S
-      </span>
     </main>
-    </ErrorBoundary>
   );
 }
