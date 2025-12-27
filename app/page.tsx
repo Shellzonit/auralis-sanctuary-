@@ -5,6 +5,8 @@ import "./homepage-artist-tabs.css";
 import { useEffect, useMemo, useState } from "react";
 import { getAblyClient } from "@/lib/ablyClient";
 import type { ChatMessage } from "@/types/chat";
+import NavTabs from "@/components/NavTabs";
+
 
 export default function Home() {
   // Chat preview state
@@ -65,30 +67,39 @@ export default function Home() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#f7fafc", // light background
-        color: "#222", // dark text for contrast
+        backgroundColor: "#f7fafc",
+        color: "#222",
         fontFamily: "sans-serif",
         textAlign: "center",
         padding: "2rem",
         position: "relative",
       }}
     >
-      {/* White Wave Above S */}
-      <div style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "7.5rem",
-        zIndex: 2,
-        pointerEvents: "none"
-      }}>
-        <svg viewBox="0 0 1440 180" width="100%" height="100%" preserveAspectRatio="none" style={{ display: "block" }}>
-          <path fill="#fff" d="M0,80 C320,180 1120,0 1440,100 L1440,0 L0,0 Z" />
-        </svg>
+      {/* Tabs and Title Row */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", marginBottom: "2.5rem", gap: "2rem" }}>
+        <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
+          <NavTabs />
+        </div>
+        <h1
+          style={{
+            fontFamily: "Playfair Display, Georgia, serif",
+            fontSize: "4.2rem",
+            fontWeight: 700,
+            letterSpacing: "0.08em",
+            color: "#2a4365",
+            textShadow: "0 2px 12px rgba(44,62,80,0.08)",
+            margin: 0,
+            flex: 0,
+            zIndex: 2,
+          }}
+        >
+          Auralis Sanctuary
+        </h1>
+        <div style={{ flex: 1, display: "flex", justifyContent: "flex-start" }}>
+          <NavTabs />
+        </div>
       </div>
-      {/* Elegant Large S */}
-      <span className="homepage-s-elegant">S</span>
+
       {/* AI and Innovation Banner */}
       <div
         style={{
@@ -103,55 +114,17 @@ export default function Home() {
         <strong>AI and Innovation All Under One Tent</strong>
       </div>
 
-      {/* Title */}
-      <h1
-        style={{
-          fontFamily: "Playfair Display, Georgia, serif",
-          fontSize: "4.2rem",
-          fontWeight: 700,
-          marginBottom: "2.2rem",
-          letterSpacing: "0.08em",
-          color: "#2a4365",
-          textShadow: "0 2px 12px rgba(44,62,80,0.08)",
-        }}
-      >
-        Auralis Sanctuary
-      </h1>
-
       {/* Main Portal Link */}
       <a
         href="/chat"
         className="text-sanctuary-accent hover:text-sanctuary-text transition-colors font-bold text-xl px-6 py-3 rounded-lg"
-        style={{ textDecoration: "none", background: "none" }}
+        style={{ textDecoration: "none", background: "none", marginBottom: "2rem" }}
       >
         → Enter Circles & Roots
       </a>
 
-      {/* Artist-like Elegant Tabs */}
-      <div className="homepage-artist-tabs">
-        {[
-          { label: "Home", href: "/" },
-          { label: "Chat", href: "/chat" },
-          { label: "Showcase", href: "/showcase" },
-          { label: "Email", href: "/email" },
-          { label: "Spotlight", href: "/spotlight" },
-          { label: "About Us", href: "/about" },
-          { label: "Legacy", href: "/legacy" },
-          { label: "Privacy", href: "/privacy" },
-        ].map((tab) => (
-          <a
-            key={tab.label}
-            href={tab.href}
-            className="homepage-artist-tab"
-            tabIndex={0}
-          >
-            {tab.label}
-          </a>
-        ))}
-      </div>
-
       {/* --- Chat Preview Section --- */}
-      <div style={{ marginTop: "3rem", width: "100%", maxWidth: 480, alignSelf: "center" }}>
+      <div style={{ marginTop: "2rem", width: "100%", maxWidth: 480, alignSelf: "center" }}>
         <div className="text-lg font-semibold mb-2 text-neutral-700">Sanctuary Chat Preview</div>
         {!featuredThread ? (
           <div className="p-4 bg-white border border-neutral-200 rounded-lg text-center text-neutral-500 text-sm">
@@ -188,6 +161,11 @@ export default function Home() {
           </div>
         )}
       </div>
+
+      {/* Large S at the bottom */}
+      <span className="homepage-s-elegant" style={{ bottom: 0, top: "auto", left: "50%", transform: "translateX(-50%)", position: "fixed", zIndex: 0 }}>
+        S
+      </span>
     </main>
   );
 }
