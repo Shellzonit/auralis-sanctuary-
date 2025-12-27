@@ -1,11 +1,10 @@
-
 import { NextRequest, NextResponse } from "next/server";
-import { createSupabaseClient } from "../../../lib/supabaseClient";
+import { getSupabaseClient } from "../../../lib/supabaseClient";
 
 
 export async function POST(req: NextRequest) {
   const { title, description, category, url, table } = await req.json();
-  const supabase = createSupabaseClient();
+  const supabase = getSupabaseClient();
   const tableName = table || "showcase photos";
   const { data, error } = await supabase.from(tableName).insert([
     { title, description, category, url },
