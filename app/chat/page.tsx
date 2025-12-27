@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import ChatFeatureLinks from "../../components/ChatFeatureLinks";
 import ChatMessage from "./ChatMessage";
 import ThreadedChat from "../../components/ThreadedChat";
+import ThreadedDiscussion from "./ThreadedDiscussion";
 const featuredWorks: {
   id: number;
   title: string;
@@ -36,19 +37,7 @@ type Message = {
 export default function ChatPage() {
   return (
     <div className="min-h-screen flex flex-col items-center p-6 bg-black text-red-200">
-      <h1 className="text-4xl font-bold mb-2 text-red-400">Sanctuary Threaded Chat</h1>
-      <p className="text-red-300 mb-8 italic text-center">
-        A flowing chamber for thoughts, offerings, questions, and presence.<br/>
-        Speak gently. Listen deeply.
-      </p>
-
-      {/* Threaded Chat Section */}
-      <ThreadedChat />
-
-      // ...existing code...
-
-      {/* Feature Links Section */}
-      <ChatFeatureLinks />
+      <ThreadedDiscussion />
     </div>
   );
 }
