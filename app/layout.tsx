@@ -35,6 +35,7 @@ export default function RootLayout({
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <a href="/profile/edit" style={{ color: '#ffe082', fontWeight: 600, fontSize: 17, textDecoration: 'none', padding: '0.4rem 1.2rem', borderRadius: 10, background: '#23242b', border: '1.5px solid #31323a', boxShadow: '0 2px 8px #0002', transition: 'background .18s' }}>Profile</a>
             <a href="/feedback" style={{ color: '#7fd1b9', fontWeight: 600, fontSize: 17, textDecoration: 'none', padding: '0.4rem 1.2rem', borderRadius: 10, background: '#23242b', border: '1.5px solid #31323a', boxShadow: '0 2px 8px #0002', transition: 'background .18s' }}>Feedback</a>
+            <a href="/admin" style={{ color: '#f7fafc', fontWeight: 600, fontSize: 17, textDecoration: 'none', padding: '0.4rem 1.2rem', borderRadius: 10, background: '#23242b', border: '1.5px solid #31323a', boxShadow: '0 2px 8px #0002', transition: 'background .18s' }}>Admin</a>
             <NotificationBell notifications={[
               { id: 1, message: "Welcome to Sanctuary!", read: false },
               { id: 2, message: "You were mentioned in chat.", read: true },
