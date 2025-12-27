@@ -57,6 +57,42 @@ export default function Showcase() {
       <div style={{ fontSize: 20, color: '#f7fafc', opacity: 0.85, marginBottom: 32, fontWeight: 500, letterSpacing: '.03em', textAlign: 'center', maxWidth: 540 }}>
         Discover the best of Sanctuary: featured art, music, and community threads curated for inspiration and innovation.
       </div>
+      <div style={{ display: 'flex', gap: 16, marginBottom: 32 }}>
+        <button
+          style={{
+            background: '#ffe082',
+            color: '#181a20',
+            fontWeight: 700,
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 22px',
+            fontSize: 16,
+            cursor: 'pointer',
+            boxShadow: '0 2px 8px #0002',
+            transition: 'background .15s',
+          }}
+          onClick={() => alert('Upload Art: Feature coming soon!')}
+        >
+          Upload Art
+        </button>
+        <button
+          style={{
+            background: '#ffe082',
+            color: '#181a20',
+            fontWeight: 700,
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 22px',
+            fontSize: 16,
+            cursor: 'pointer',
+            boxShadow: '0 2px 8px #0002',
+            transition: 'background .15s',
+          }}
+          onClick={() => alert('Upload Music: Feature coming soon!')}
+        >
+          Upload Music
+        </button>
+      </div>
       <section style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
