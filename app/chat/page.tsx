@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { getAblyClient } from "@/lib/ablyClient/ablyClient";
-import type { ChatMessage } from "@/types/chat.ts";
+import { getAblyClient } from "@/lib/ablyClient";
+import type { ChatMessage } from "@/types/chat";
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
