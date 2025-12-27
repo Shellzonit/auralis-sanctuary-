@@ -7,6 +7,8 @@ import { getAblyClient } from "@/lib/ablyClient";
 import type { ChatMessage } from "@/types/chat";
 import NavTabs from "@/components/NavTabs";
 
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+
 
 
 export default function Home() {
@@ -61,6 +63,7 @@ export default function Home() {
   }, [threads]);
 
   return (
+    <ErrorBoundary>
     <main
       style={{
         minHeight: "100vh",
@@ -141,5 +144,6 @@ export default function Home() {
         S
       </span>
     </main>
+    </ErrorBoundary>
   );
 }
