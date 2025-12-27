@@ -49,6 +49,26 @@ export default function ChatPage() {
             setMessages(prev => [...prev, data.message]);
           } else if (data.type === "reply") {
             setMessages(prevMsgs => prevMsgs.map(m =>
+  
+    // Ably: subscribe to real-time messages and replies
+    useEffect(() => {
+      const ably = getAblyClient();
+      const channel = ably.channels.get("sanctuary-chat");
+      const onMessage = (msg) => {
+        const data = msg.data;
+        if (data.type === "message") {
+          setMessages(prev => [...prev, data.message]);
+        } else if (data.type === "reply") {
+          setMessages(prevMsgs => prevMsgs.map(m =>
+            m.id === data.parentId
+              ? { ...m, replies: [...m.replies, data.reply] }
+              : m
+          ));
+        }
+      };
+      channel.subscribe(onMessage);
+      return () => { channel.unsubscribe(onMessage); };
+    }, []);
               m.id === data.parentId
                 ? { ...m, replies: [...m.replies, data.reply] }
                 : m
