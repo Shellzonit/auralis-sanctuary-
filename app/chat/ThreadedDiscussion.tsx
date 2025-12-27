@@ -9,15 +9,7 @@ type Message = {
   createdAt: string;
 };
 
-function generateId() {
-  return Math.random().toString(36).substr(2, 9);
-}
-
-
-
-
-
-
+export default function ThreadedDiscussion() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newThread, setNewThread] = useState("");
   const sb = supabase ?? createSupabaseClient();
