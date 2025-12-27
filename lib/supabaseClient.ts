@@ -7,3 +7,4 @@ export function getSupabaseClient(): SupabaseClient<any> {
   if (!url || !key) throw new Error("Supabase env vars are not set");
   return createClient<any>(url, key);
 }
+
