@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase, createSupabaseClient } from "@/lib/supabaseClient";
 
 export function PhotoGallery() {
   const [photos, setPhotos] = useState<string[]>([]);
@@ -8,7 +8,8 @@ export function PhotoGallery() {
   useEffect(() => {
     async function fetchPhotos() {
       setLoading(true);
-      const { data, error } = await supabase.storage.from("showcase-photos").list(undefined, { limit: 100, sortBy: { column: "created_at", order: "desc" } });
+      const sb = supabase ?? createSupabaseClient();
+      const { data, error } = await sb.storage.from("showcase-photos").list(undefined, { limit: 100, sortBy: { column: "created_at", order: "desc" } });
       if (error) {
         setPhotos([]);
         setLoading(false);
@@ -18,7 +19,7 @@ export function PhotoGallery() {
         (data || [])
           .filter((item) => item.name.match(/\.(jpg|jpeg|png|gif|webp)$/i))
           .map(async (item) => {
-            const { data: urlData } = supabase.storage.from("showcase-photos").getPublicUrl(item.name);
+            const { data: urlData } = sb.storage.from("showcase-photos").getPublicUrl(item.name);
             return urlData.publicUrl;
           })
       );
