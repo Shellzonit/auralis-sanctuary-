@@ -133,7 +133,26 @@ export default function AdminPage() {
   }, []);
 
   return (
-    <main style={{ minHeight: "100vh", background: "#181a20", color: "#f7fafc", fontFamily: "Inter, sans-serif", padding: '0 1rem' }}>
+    <main style={{ minHeight: "100vh", background: "#181a20", color: "#f7fafc", fontFamily: "Inter, sans-serif", padding: '0 1rem', position: 'relative' }}>
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        background: '#23242b',
+        color: '#ffd700',
+        fontWeight: 900,
+        fontSize: 32,
+        padding: '48px 32px',
+        borderRadius: 18,
+        border: '3px solid #ffd700',
+        boxShadow: '0 2px 32px #000a',
+        zIndex: 10000,
+        textAlign: 'center',
+      }}>
+        ADMIN ROOM IS RENDERING<br />If you see this, the page is working.<br />
+        <span style={{ fontSize: 18, color: '#7fd1b9', fontWeight: 400 }}>(If you don't see data, check your API/database.)</span>
+      </div>
       <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', background: '#ff6e6e', color: '#181a20', fontWeight: 700, textAlign: 'center', zIndex: 9999, padding: 6 }}>
         Debug: Admin dashboard rendered at {new Date().toLocaleString()}
       </div>
