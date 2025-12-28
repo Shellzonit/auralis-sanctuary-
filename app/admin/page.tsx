@@ -134,6 +134,9 @@ export default function AdminPage() {
 
   return (
     <main style={{ minHeight: "100vh", background: "#181a20", color: "#f7fafc", fontFamily: "Inter, sans-serif", padding: '0 1rem' }}>
+      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', background: '#ff6e6e', color: '#181a20', fontWeight: 700, textAlign: 'center', zIndex: 9999, padding: 6 }}>
+        Debug: Admin dashboard rendered at {new Date().toLocaleString()}
+      </div>
       <h1 style={{ color: '#ffe082', fontSize: '2.2rem', margin: '36px 0 18px 0', textAlign: 'center' }}>Admin Dashboard</h1>
             {/* Shared Links Section */}
             <h2 style={{ color: '#7fd1b9', fontSize: 20, marginBottom: 24 }}>Shared Links</h2>
