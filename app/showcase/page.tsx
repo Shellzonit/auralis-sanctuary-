@@ -173,38 +173,84 @@ export default function Showcase() {
       )}
       <section style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-        gap: 32,
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: 38,
         width: '100%',
-        maxWidth: 900,
-        marginBottom: 48,
+        maxWidth: 1000,
+        marginBottom: 56,
       }}>
         {loading ? (
-          <div style={{ color: '#ffe082', fontSize: 20, textAlign: 'center', width: '100%' }}>Loading showcase...</div>
+          <div style={{ color: '#00f2ff', fontSize: 22, textAlign: 'center', width: '100%' }}>Loading hologram showcase...</div>
         ) : showcaseItems.length === 0 ? (
-          <div style={{ color: '#ffe082', fontSize: 20, textAlign: 'center', width: '100%' }}>No showcase items yet.</div>
+          <div style={{ color: '#00f2ff', fontSize: 22, textAlign: 'center', width: '100%' }}>No hologram cards yet.</div>
         ) : showcaseItems.map(item => (
-          <div key={item.id} style={{
-            background: '#23242b',
-            border: '1.5px solid #31323a',
-            borderRadius: 18,
-            boxShadow: '0 2px 16px #0004',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'stretch',
-            minHeight: 340,
-            transition: 'transform .13s',
-          }}>
-            <img src={item.media_url} alt={item.title} style={{ width: '100%', height: 160, objectFit: 'cover', borderTopLeftRadius: 18, borderTopRightRadius: 18, borderBottom: '1px solid #31323a' }} />
-            <div style={{ padding: '18px 18px 10px 18px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-              <div style={{ fontWeight: 700, fontSize: 20, color: '#ffe082', marginBottom: 4 }}>{item.title}</div>
-              <div style={{ fontSize: 15, color: '#f7fafc', opacity: 0.92, marginBottom: 8 }}>{item.description}</div>
-              <div style={{ fontSize: 13, color: '#ffe082bb', marginTop: 'auto' }}>by {item.creator_name}</div>
+          <div
+            key={item.id}
+            style={{
+              background: 'rgba(30, 34, 54, 0.65)',
+              borderRadius: 22,
+              boxShadow: item.featured ? '0 8px 48px #00f2ff66, 0 2px 16px #0006' : '0 4px 24px #00f2ff22, 0 1.5px 8px #0004',
+              border: item.featured ? '2.5px solid #00f2ff' : '1.5px solid rgba(0,242,255,0.18)',
+              backdropFilter: 'blur(14px)',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'stretch',
+              minHeight: 360,
+              position: 'relative',
+              transition: 'box-shadow .18s, transform .18s',
+              animation: 'floatHolo 2.8s ease-in-out infinite',
+            }}
+          >
+            {item.featured && (
+              <div style={{
+                position: 'absolute',
+                top: 12,
+                right: 18,
+                background: 'linear-gradient(90deg,#00f2ff 60%,#ffe082 100%)',
+                color: '#181a20',
+                fontWeight: 800,
+                fontSize: 15,
+                borderRadius: 8,
+                padding: '4px 14px',
+                boxShadow: '0 0 12px #00f2ff44',
+                letterSpacing: '.04em',
+                zIndex: 2,
+              }}>🌟 Featured</div>
+            )}
+            <img
+              src={item.media_url}
+              alt={item.title}
+              style={{
+                width: '100%',
+                height: 170,
+                objectFit: 'cover',
+                borderTopLeftRadius: 22,
+                borderTopRightRadius: 22,
+                borderBottom: '1.5px solid #00f2ff33',
+                boxShadow: '0 0 24px #00f2ff22',
+                filter: item.featured ? 'drop-shadow(0 0 18px #00f2ff88)' : 'none',
+              }}
+            />
+            <div style={{ padding: '22px 22px 14px 22px', flex: 1, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+              <div style={{ fontWeight: 800, fontSize: 22, color: '#00f2ff', marginBottom: 6, textShadow: '0 0 12px #00f2ff44' }}>{item.title}</div>
+              <div style={{ fontSize: 16, color: '#f7fafc', opacity: 0.96, marginBottom: 10, textShadow: '0 0 8px #00f2ff22' }}>{item.description}</div>
+              <div style={{ fontSize: 14, color: '#ffe082bb', marginTop: 'auto', fontWeight: 600, textShadow: '0 0 8px #ffe08244' }}>by {item.creator_name}</div>
+              <div style={{ position: 'absolute', left: 18, bottom: 18, display: 'flex', alignItems: 'center', gap: 10 }}>
+                <span style={{ fontSize: 18, color: '#00f2ffbb', textShadow: '0 0 8px #00f2ff44', fontWeight: 700 }}>💠</span>
+                <span style={{ fontSize: 15, color: '#00f2ff', fontWeight: 700 }}>Hologram Card</span>
+              </div>
             </div>
           </div>
         ))}
       </section>
+      <style>{`
+        @keyframes floatHolo {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-8px) scale(1.02); }
+          100% { transform: translateY(0px); }
+        }
+      `}</style>
       {/* Future: Add filters, likes, and user submissions here */}
     </main>
   );
