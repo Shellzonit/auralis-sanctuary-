@@ -42,7 +42,29 @@ export default function Home() {
         opacity: 0.92,
         textShadow: "0 1px 8px #0006"
       }}>
-        <span style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 18 }}>Ai Wilding</span>
+        <span
+          style={{
+            fontFamily: 'Playfair Display, Inter, sans-serif',
+            fontWeight: 900,
+            fontSize: 48,
+            letterSpacing: '.09em',
+            background: 'linear-gradient(90deg, #00f2ff 0%, #ffe082 60%, #ff6ec4 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            textShadow: '0 2px 24px #00f2ff88, 0 1px 0 #fff2',
+            filter: 'drop-shadow(0 0 8px #ffe08288)',
+            transition: 'background 0.8s',
+            animation: 'aiGlow 2.5s infinite alternate',
+          }}
+        >
+          Ai Wilding
+        </span>
+        <style>{`
+          @keyframes aiGlow {
+            0% { filter: drop-shadow(0 0 8px #00f2ff88); }
+            100% { filter: drop-shadow(0 0 18px #ff6ec488); }
+          }
+        `}</style>
       </div>
       {/* Tabs */}
       <nav style={{ width: "100%", display: "flex", justifyContent: "center", gap: 24, marginTop: 24, marginBottom: 32 }}>
