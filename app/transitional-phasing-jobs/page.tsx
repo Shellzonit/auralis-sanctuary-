@@ -1,4 +1,15 @@
 export default function TransitionalPhasingJobs() {
+  const tabs = [
+    { label: "Home", href: "/" },
+    { label: "Chat", href: "/chat" },
+    { label: "Showcase", href: "/showcase" },
+    { label: "Email", href: "/email" },
+    { label: "Spotlight", href: "/spotlight" },
+    { label: "Sharing", href: "/sharing" },
+    { label: "About", href: "/about" },
+    { label: "Legacy", href: "/legacy" },
+    { label: "Privacy", href: "/privacy" },
+  ];
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-black text-yellow-300 px-6 py-16" style={{ background: '#0a0a0a' }}>
       {/* Spotlight Section */}
@@ -17,9 +28,37 @@ export default function TransitionalPhasingJobs() {
           </div>
         </div>
       </section>
-      <h1 className="text-5xl font-extrabold mb-8 text-center drop-shadow-lg" style={{ color: '#ffd700', letterSpacing: 1.5, textShadow: '0 2px 24px #000a' }}>
+      <h1 className="text-5xl font-extrabold mb-4 text-center drop-shadow-lg" style={{ color: '#ffd700', letterSpacing: 1.5, textShadow: '0 2px 24px #000a' }}>
         Transitional Phasing Jobs
       </h1>
+      {/* Navigation Tabs */}
+      <nav style={{ width: "100%", display: "flex", justifyContent: "center", gap: 24, marginTop: 12, marginBottom: 32 }}>
+        {tabs.map(tab => (
+          <a
+            key={tab.href}
+            href={tab.href}
+            style={{
+              textDecoration: "none",
+              color: "#f7fafc",
+              background: "#23242b",
+              borderRadius: 18,
+              padding: "0.7rem 2.2rem",
+              fontWeight: 600,
+              fontSize: 18,
+              letterSpacing: ".04em",
+              border: "2px solid #31323a",
+              boxShadow: "0 2px 12px 0 #0006",
+              transition: "all .18s cubic-bezier(.4,0,.2,1)",
+              margin: 0,
+              display: "inline-block",
+            }}
+            onMouseOver={e => { e.currentTarget.style.background = "#2a2b33"; }}
+            onMouseOut={e => { e.currentTarget.style.background = "#23242b"; }}
+          >
+            {tab.label}
+          </a>
+        ))}
+      </nav>
       <p className="max-w-2xl text-center text-lg md:text-xl mb-10" style={{ color: '#ffe082', opacity: 0.92 }}>
         Explore how traditional roles are evolving and what equivalent experience looks like in the AI era.
       </p>
@@ -144,7 +183,7 @@ export default function TransitionalPhasingJobs() {
       </div>
       {/* Call to Action Section */}
       <div className="w-full flex justify-center items-center mb-12">
-        <a href="/app/join" className="inline-block bg-gradient-to-r from-yellow-500 to-yellow-300 text-black font-bold py-4 px-10 rounded-full shadow-lg text-xl hover:from-yellow-400 hover:to-yellow-200 transition-all duration-150 border-2 border-yellow-400" style={{ letterSpacing: 1.1 }}>
+        <a href="/join" className="inline-block bg-gradient-to-r from-yellow-500 to-yellow-300 text-black font-bold py-4 px-10 rounded-full shadow-lg text-xl hover:from-yellow-400 hover:to-yellow-200 transition-all duration-150 border-2 border-yellow-400" style={{ letterSpacing: 1.1 }}>
           Join the Community & Explore Jobs
         </a>
       </div>
