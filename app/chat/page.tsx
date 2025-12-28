@@ -1,10 +1,6 @@
+
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { getAblyClient } from "../../lib/ablyClient";
-
-
-"use client";
-import { useState, useEffect, useRef } from "react";
 import { getAblyClient } from "../../lib/ablyClient";
 
 type Message = {
