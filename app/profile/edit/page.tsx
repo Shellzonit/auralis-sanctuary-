@@ -1,11 +1,37 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// TODO: Replace with actual username from auth/session
+const USERNAME = typeof window !== 'undefined' ? (window.localStorage.getItem('username') || 'aurora') : 'aurora';
 
 export default function EditProfilePage() {
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [avatar, setAvatar] = useState<string | null>(null);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    async function fetchProfile() {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch(`/api/profile/${USERNAME}`);
+        if (!res.ok) throw new Error('Failed to load profile');
+        const data = await res.json();
+        setName(data.name || '');
+        setBio(data.bio || '');
+        setAvatar(data.avatar || null);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProfile();
+  }, []);
 
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
@@ -15,10 +41,38 @@ export default function EditProfilePage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Save logic here (to backend or local storage)
-    alert("Profile saved! (Demo only)");
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+    let avatarUrl = avatar;
+    try {
+      // If a new avatar file is selected, upload it
+      if (avatarFile) {
+        const formData = new FormData();
+        formData.append('file', avatarFile);
+        const uploadRes = await fetch('/api/avatar', {
+          method: 'POST',
+          body: formData,
+        });
+        if (!uploadRes.ok) throw new Error('Avatar upload failed');
+        const uploadData = await uploadRes.json();
+        avatarUrl = uploadData.url;
+      }
+      const res = await fetch(`/api/profile/${USERNAME}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, bio, avatar: avatarUrl }),
+      });
+      if (!res.ok) throw new Error('Failed to save profile');
+      setSuccess(true);
+      setAvatarFile(null);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -44,6 +98,8 @@ export default function EditProfilePage() {
       }}>
         Edit Profile
       </h1>
+      {error && <div style={{ color: 'red', marginBottom: 12 }}>{error}</div>}
+      {success && <div style={{ color: 'green', marginBottom: 12 }}>Profile saved!</div>}
       <form
         onSubmit={handleSubmit}
         style={{
@@ -110,13 +166,15 @@ export default function EditProfilePage() {
             fontSize: 18,
             border: 'none',
             borderRadius: 10,
-            cursor: 'pointer',
+            cursor: loading ? 'not-allowed' : 'pointer',
             boxShadow: '0 2px 8px #0002',
             transition: 'background .18s',
             marginTop: 8,
+            opacity: loading ? 0.7 : 1,
           }}
+          disabled={loading}
         >
-          Save Profile
+          {loading ? 'Saving...' : 'Save Profile'}
         </button>
       </form>
     </main>

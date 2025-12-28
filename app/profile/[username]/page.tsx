@@ -1,25 +1,17 @@
+
 import { notFound } from "next/navigation";
 
-const demoProfiles: Record<string, { name: string; avatar: string; bio: string }> = {
-  aurora: {
-    name: "Aurora",
-    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Aurora",
-    bio: "Digital artist, dreamer, and Sanctuary founder. Exploring the intersection of AI and creativity.",
-  },
-  nova: {
-    name: "Nova",
-    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Nova",
-    bio: "Musician and coder. Building new worlds with sound and code.",
-  },
-  orion: {
-    name: "Orion",
-    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Orion",
-    bio: "Writer, wanderer, and community builder. Here to connect and inspire.",
-  },
-};
+async function getProfile(username: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/profile/${encodeURIComponent(username)}`, {
+    cache: 'no-store',
+  });
+  if (!res.ok) return null;
+  return res.json();
+}
 
-export default function ProfilePage({ params }: { params: { username: string } }) {
-  const profile = demoProfiles[params.username.toLowerCase()];
+
+export default async function ProfilePage({ params }: { params: { username: string } }) {
+  const profile = await getProfile(params.username);
   if (!profile) return notFound();
 
   return (

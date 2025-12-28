@@ -17,3 +17,17 @@ CREATE TABLE IF NOT EXISTS showcase (
   type TEXT NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Chat messages table for Neon/PostgreSQL
+CREATE TABLE IF NOT EXISTS chat_messages (
+  id SERIAL PRIMARY KEY,
+  author TEXT NOT NULL,
+  avatar TEXT,
+  text TEXT NOT NULL,
+  timestamp TIMESTAMPTZ DEFAULT NOW(),
+  reactions INTEGER DEFAULT 0,
+  file_url TEXT,
+  file_type TEXT,
+  file_name TEXT,
+  parent_id INTEGER REFERENCES chat_messages(id) ON DELETE CASCADE
+);
