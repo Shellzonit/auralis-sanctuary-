@@ -12,6 +12,7 @@ export default function NavTabs() {
     { href: "/mail", label: "Email" },
     { href: "/games", label: "Games" },
     { href: "/license", label: "Licensing" },
+    { href: "/sharing", label: "Sharing" },
     { href: "/spotlight", label: "Spotlight" },
     { href: "/about", label: "About Us" },
     { href: "/legacy", label: "Legacy" },
