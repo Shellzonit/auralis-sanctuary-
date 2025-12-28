@@ -7,3 +7,13 @@ create table if not exists job_chat (
 );
 
 -- Enable realtime on this table in Supabase dashboard after creation.
+
+-- Showcase table for Neon/PostgreSQL
+CREATE TABLE IF NOT EXISTS showcase (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  creator TEXT NOT NULL,
+  file_url TEXT NOT NULL,
+  type TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);

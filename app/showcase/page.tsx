@@ -24,8 +24,14 @@ export default function Showcase() {
   useEffect(() => {
     const fetchShowcase = async () => {
       setLoading(true);
-      // TODO: Replace with new backend fetch logic
-      setShowcaseItems([]); // No Supabase, so empty for now
+      try {
+        const res = await fetch("/api/showcase");
+        const json = await res.json();
+        if (json.items) setShowcaseItems(json.items);
+        else setShowcaseItems([]);
+      } catch (err) {
+        setShowcaseItems([]);
+      }
       setLoading(false);
     };
     fetchShowcase();
@@ -56,10 +62,25 @@ export default function Showcase() {
       const uploadRes = await fetch("/api/b2/upload", { method: "POST", body: formData });
       const data = await uploadRes.json();
       if (data.url) {
-        // TODO: Replace with new backend save logic
+        // Save metadata to Neon/Postgres
+        const saveRes = await fetch("/api/showcase", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title,
+            creator,
+            fileUrl: data.url,
+            type: showForm,
+          }),
+        });
+        const saveJson = await saveRes.json();
+        if (saveJson.item) {
+          setShowcaseItems(prev => [saveJson.item, ...prev]);
+          handleCloseForm();
+        } else {
+          alert("Upload succeeded but failed to save metadata: " + (saveJson.error || "Unknown error"));
+        }
         setSubmitting(false);
-        handleCloseForm();
-        setShowcaseItems([]); // No Supabase, so empty for now
       } else {
         setSubmitting(false);
         alert("Upload failed: " + (data.error || "Unknown error"));
