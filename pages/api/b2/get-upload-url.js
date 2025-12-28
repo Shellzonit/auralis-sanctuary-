@@ -16,9 +16,9 @@ export default async function handler(req, res) {
     }
 console.log("AUTH RESPONSE:", authData);
 
-    // List files in the B2 bucket
-    const listFilesResponse = await fetch(
-      authData.apiInfo.storageApi.baseUrl + "/b2api/v2/b2_list_file_names",
+    // Get upload URL for the bucket
+    const uploadUrlRes = await fetch(
+      authData.apiInfo.storageApi.baseUrl + "/b2api/v2/b2_get_upload_url",
       {
         method: "POST",
         headers: {
@@ -26,26 +26,19 @@ console.log("AUTH RESPONSE:", authData);
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          bucketId: process.env.B2_BUCKET_ID,
-          maxFileCount: 100
+          bucketId: process.env.B2_BUCKET_ID
         })
       }
     );
-
-    const listFilesData = await listFilesResponse.json();
-
-    if (!listFilesResponse.ok) {
-      console.error("Backblaze list files error:", listFilesData);
-      return res.status(500).json({ error: "Failed to list files from Backblaze" });
+    const uploadUrlData = await uploadUrlRes.json();
+    if (!uploadUrlRes.ok) {
+      console.error("Backblaze get upload url error:", uploadUrlData);
+      return res.status(500).json({ error: "Failed to get upload URL from Backblaze" });
     }
 
-    // Construct public URLs for each file (assuming all are public)
-    const files = (listFilesData.files || []).map(file => {
-      return `${authData.downloadUrl}/file/${file.bucketName}/${file.fileName}`;
-    });
-
     return res.status(200).json({
-      files
+      uploadUrl: uploadUrlData.uploadUrl,
+      authorizationToken: uploadUrlData.authorizationToken
     });
   } catch (error) {
     console.error("Error getting upload URL:", error);
