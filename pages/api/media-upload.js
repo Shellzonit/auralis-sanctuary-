@@ -1,6 +1,8 @@
+
 import formidable from 'formidable';
 import { saveMediaMetadata } from './lib/db.js';
 import { uploadToB2 } from './lib/b2.js';
+import fs from 'fs';
 
 export const config = {
   api: {
@@ -20,10 +22,18 @@ export default async function handler(req, res) {
     const file = files.file;
     if (!file) return res.status(400).json({ error: 'No file uploaded' });
 
+    // Read file buffer from disk
+    let fileBuffer;
+    try {
+      fileBuffer = await fs.promises.readFile(file.filepath);
+    } catch (e) {
+      return res.status(500).json({ error: 'Failed to read uploaded file' });
+    }
+
     // 1. Upload file to Backblaze B2
     let fileUrl;
     try {
-      fileUrl = await uploadToB2(file);
+      fileUrl = await uploadToB2(fileBuffer, file.originalFilename || file.newFilename || 'upload', file.mimetype || 'application/octet-stream');
     } catch (e) {
       return res.status(500).json({ error: 'B2 upload failed' });
     }
