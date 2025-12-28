@@ -71,6 +71,19 @@ export default function TransitionalPhasingJobs() {
           </tbody>
         </table>
       </div>
+      {/* Pay Potential Section */}
+      <div className="w-full max-w-3xl rounded-xl shadow-lg p-8 border border-green-700 mb-10" style={{ background: '#16241a', color: '#baffc9' }}>
+        <h2 className="text-2xl font-semibold mb-4 text-center" style={{ color: '#baffc9', textShadow: '0 2px 12px #000a' }}>Pay Potential for Transitional AI Jobs</h2>
+        <ul className="list-disc pl-6 text-lg space-y-2">
+          <li><span className="font-bold">AI Data Annotator:</span> $20–$50/hr (varies by project and expertise)</li>
+          <li><span className="font-bold">Conversational AI Trainer:</span> $25–$60/hr</li>
+          <li><span className="font-bold">Prompt Designer/Content Curator:</span> $30–$80/hr</li>
+          <li><span className="font-bold">AI Image/Video Model Trainer:</span> $25–$70/hr</li>
+          <li><span className="font-bold">AI Data Analyst:</span> $35–$90/hr</li>
+          <li><span className="font-bold">AI Output Quality Reviewer:</span> $20–$45/hr</li>
+          <li><span className="font-bold">Specialized Roles (Legal, Medical, etc.):</span> $30–$100/hr</li>
+        </ul>
+      </div>
       {/* AI Companies Seeking Help - Editable Section */}
       <div className="w-full max-w-3xl rounded-xl shadow-lg p-8 border border-yellow-600" style={{ background: '#111', color: '#ffe082' }}>
         <h2 className="text-2xl font-semibold mb-6 text-center" style={{ color: '#ffd700', textShadow: '0 2px 12px #000a' }}>AI Companies Looking for Help</h2>
