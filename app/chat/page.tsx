@@ -205,6 +205,3 @@ export default function ChatPage() {
     </main>
   );
 }
-// ...existing code...
-  );
-}
