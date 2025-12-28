@@ -14,33 +14,46 @@ type Message = {
 	reactions?: number;
 };
 
-// Demo data for initial UI
-const DEMO: Message[] = [
-	{
-		id: 1,
-		author: "Aurora",
-		avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Aurora",
-		text: "Welcome to the HoloChat! 🌌",
-		timestamp: "2m ago",
-		replies: [
-			{
-				id: 2,
-				author: "Nova",
-				avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Nova",
-				text: "This looks amazing!",
-				timestamp: "1m ago",
-			},
-		],
-	},
-	{
-		id: 3,
-		author: "Orion",
-		avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Orion",
-		text: "How do I send a hologram reply?",
-		timestamp: "just now",
-		replies: [],
-	},
-];
+
+export default function ChatPage() {
+	// ...existing code...
+	type Message = {
+		id: number;
+		author: string;
+		avatar: string;
+		text: string;
+		timestamp: string;
+		parentId?: number;
+		replies?: Message[];
+		reactions?: number;
+	};
+
+	const DEMO: Message[] = [
+		{
+			id: 1,
+			author: "Aurora",
+			avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Aurora",
+			text: "Welcome to the HoloChat! 🌌",
+			timestamp: "2m ago",
+			replies: [
+				{
+					id: 2,
+					author: "Nova",
+					avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Nova",
+					text: "This looks amazing!",
+					timestamp: "1m ago",
+				},
+			],
+		},
+		{
+			id: 3,
+			author: "Orion",
+			avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Orion",
+			text: "How do I send a hologram reply?",
+			timestamp: "just now",
+			replies: [],
+		},
+	];
 
 	const [messages, setMessages] = useState<Message[]>(
 		DEMO.map(m => ({ ...m, reactions: 0, replies: m.replies?.map(r => ({ ...r, reactions: 0 })) }))
@@ -50,12 +63,10 @@ const DEMO: Message[] = [
 	const [replyInput, setReplyInput] = useState("");
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	// Placeholder for Neon/Ably integration
 	useEffect(() => {
 		// TODO: Fetch messages from Neon, subscribe to Ably
 	}, []);
 
-	// Send new message
 	const handleSend = (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!input.trim()) return;
@@ -74,7 +85,6 @@ const DEMO: Message[] = [
 		// TODO: Save to Neon, publish to Ably
 	};
 
-	// Send reply
 	const handleReply = (parent: Message, e: React.FormEvent) => {
 		e.preventDefault();
 		if (!replyInput.trim()) return;
@@ -99,7 +109,6 @@ const DEMO: Message[] = [
 		// TODO: Save to Neon, publish to Ably
 	};
 
-	// React to message
 	const handleReact = (id: number, isReply = false, parentId?: number) => {
 		setMessages(prevMsgs =>
 			prevMsgs.map(m => {
@@ -120,7 +129,6 @@ const DEMO: Message[] = [
 		// TODO: Save reaction to Neon, publish to Ably
 	};
 
-	// Hologram card styles
 	const holoCard = {
 		background: "rgba(30, 34, 54, 0.65)",
 		borderRadius: 18,
@@ -201,23 +209,16 @@ const DEMO: Message[] = [
 								{msg.replies.map(reply => (
 									<div key={reply.id} style={holoReply}>
 										<div style={{ display: "flex", alignItems: "center" }}>
-											<img src={reply.avatar} alt={reply.author} style={{ ...holoAvatar, width: 36, height: 36, marginRight: 12 }} />
+											<img src={reply.avatar} alt={reply.author} style={holoAvatar} />
 											<div>
-												<div style={{ fontWeight: 600, fontSize: 16, color: "#00f2ff", textShadow: "0 0 8px #00f2ff44" }}>{reply.author}</div>
+												<div style={{ fontWeight: 700, fontSize: 16, color: "#00f2ff" }}>{reply.author}</div>
 												<div style={{ fontSize: 12, color: "#aaa" }}>{reply.timestamp}</div>
 											</div>
 										</div>
-										<div style={{ fontSize: 16, color: "#f7fafc", margin: "10px 0 6px 0", textShadow: "0 0 8px #00f2ff22" }}>{reply.text}</div>
-										<div style={{ display: 'flex', alignItems: 'center', gap: 18, marginTop: 4 }}>
-											<span
-												style={{ fontSize: 15, color: "#00f2ffbb", cursor: "pointer", textShadow: "0 0 8px #00f2ff44", transition: 'transform .18s', display: 'inline-flex', alignItems: 'center' }}
-												onClick={() => handleReact(reply.id, true, msg.id)}
-												aria-label="React to reply"
-											>
-												<span style={{ marginRight: 5, fontWeight: 700 }}>💠</span>
-												<span style={{ fontSize: 14, color: '#00f2ff', fontWeight: 700 }}>{reply.reactions}</span>
-											</span>
-										</div>
+										<div style={{ fontSize: 16, color: "#f7fafc", margin: "10px 0 6px 0" }}>{reply.text}</div>
+										<span style={{ fontSize: 14, color: "#00f2ffbb", cursor: "pointer", marginRight: 12 }} onClick={() => handleReact(reply.id, true, msg.id)}>
+											💠 <span style={{ fontSize: 13, color: '#00f2ff', fontWeight: 700 }}>{reply.reactions}</span>
+										</span>
 									</div>
 								))}
 							</div>
@@ -226,7 +227,7 @@ const DEMO: Message[] = [
 				))}
 			</section>
 			<form
-				style={{ position: "fixed", bottom: 0, left: 0, width: "100%", background: "rgba(0,242,255,0.12)", borderTop: "1.5px solid #00f2ff33", padding: "1.2rem 0.7rem", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 10, boxShadow: "0 0 24px #00f2ff22" }}
+				style={{ width: "100%", maxWidth: 600, display: "flex", alignItems: "center", position: "fixed", bottom: 0, left: 0, right: 0, background: "#181a20", padding: "1.2rem 0", borderTop: "1.5px solid #00f2ff33", boxShadow: "0 -2px 16px #00f2ff22" }}
 				onSubmit={handleSend}
 			>
 				<input
@@ -240,9 +241,13 @@ const DEMO: Message[] = [
 				<button type="submit" style={{ background: "#00f2ff", color: "#23242b", fontWeight: 700, fontSize: 18, border: "none", borderRadius: 12, padding: "1rem 1.3rem", cursor: "pointer", boxShadow: "0 0 12px #00f2ff44", transition: "background .18s" }}>
 					Send
 				</button>
+
+				<button type="submit" style={{ background: "#00f2ff", color: "#23242b", fontWeight: 700, fontSize: 18, border: "none", borderRadius: 12, padding: "1rem 1.3rem", cursor: "pointer", boxShadow: "0 0 12px #00f2ff44", transition: "background .18s" }}>
+					Send
+				</button>
 			</form>
 		</main>
 	);
-}
+
 
 
