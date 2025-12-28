@@ -54,6 +54,20 @@ export default function ChatPage() {
   const [replyingTo, setReplyingTo] = useState<number | null>(null);
   const [replyInput, setReplyInput] = useState("");
 
+  const mapReply = (reply: any, msg: any) => ({
+    id: reply.id,
+    author: reply.author,
+    avatar: reply.avatar,
+    text: reply.text,
+    timestamp: reply.timestamp,
+    reactions: reply.reactions,
+    replies: [],
+    fileUrl: reply.fileUrl ?? undefined,
+    fileType: reply.fileType ?? undefined,
+    fileName: reply.fileName ?? undefined,
+    parentId: msg.id,
+  });
+
   useEffect(() => {
     // Load chat history from Neon
     const fetchChat = async () => {
@@ -66,7 +80,7 @@ export default function ChatPage() {
           const replies = json.messages.filter((m: any) => m.parent_id);
           const threaded = messages.map((msg: any) => ({
             ...msg,
-            replies: replies.filter((r: any) => r.parent_id === msg.id),
+            replies: replies.filter((r: any) => r.parent_id === msg.id).map((r: any) => mapReply(r, msg)),
           }));
           setMessages(threaded);
         }
