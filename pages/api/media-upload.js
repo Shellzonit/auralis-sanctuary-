@@ -1,6 +1,6 @@
 import formidable from 'formidable';
-import { saveMediaMetadata } from '../../../lib/db.js'; // You will need to implement this
-import { uploadToB2 } from '../../../lib/b2.js'; // You will need to implement this
+import { saveMediaMetadata } from './lib/db.js';
+import { uploadToB2 } from './lib/b2.js';
 
 export const config = {
   api: {
