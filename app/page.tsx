@@ -26,6 +26,31 @@ export default function Home() {
         padding: "0 1rem",
       }}
     >
+      {/* Tabs - now above Sanctuary/Ai Wilding */}
+      <nav style={{ width: "100%", display: "flex", justifyContent: "center", gap: 24, marginTop: 32, marginBottom: 32 }}>
+        {tabs.map(tab => (
+          <Link
+            key={tab.href}
+            href={tab.href}
+            style={{
+              color: "#f7fafc",
+              background: "#23242b",
+              borderRadius: 18,
+              padding: "0.7rem 2.2rem",
+              fontWeight: 600,
+              fontSize: 18,
+              letterSpacing: ".04em",
+              textDecoration: "none",
+              border: "2px solid #31323a",
+              boxShadow: "0 2px 12px 0 #0006",
+            }}
+            onMouseOver={e => (e.currentTarget.style.background = "#31323a")}
+            onMouseOut={e => (e.currentTarget.style.background = "#23242b")}
+          >
+            {tab.label}
+          </Link>
+        ))}
+      </nav>
       {/* Ai Wilding Large Centered Header */}
       <div style={{
         width: "100%",
@@ -33,7 +58,7 @@ export default function Home() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 32,
+        marginTop: 0,
         marginBottom: 12,
       }}>
         <span
@@ -81,23 +106,6 @@ export default function Home() {
           SANCTUARY
         </span>
       </div>
-      {/* Tabs */}
-      <nav style={{ width: "100%", display: "flex", justifyContent: "center", gap: 24, marginTop: 24, marginBottom: 32 }}>
-        {tabs.map(tab => (
-          <Link
-            key={tab.href}
-            href={tab.href}
-            style={{
-              color: "#f7fafc",
-              background: "#23242b",
-              borderRadius: 18,
-              padding: "0.7rem 2.2rem",
-              fontWeight: 600,
-              fontSize: 18,
-              letterSpacing: ".04em",
-              textDecoration: "none",
-              border: "2px solid #31323a",
-              boxShadow: "0 2px 12px 0 #0006",
               transition: "all .18s cubic-bezier(.4,0,.2,1)",
               margin: 0,
             }}
