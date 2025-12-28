@@ -94,6 +94,14 @@ export default function AdminPage() {
     setLoading(false);
   };
 
+  // --- Media Uploads State ---
+  const [media, setMedia] = useState<any[]>([]);
+  React.useEffect(() => {
+    fetch("/api/media")
+      .then(res => res.json())
+      .then(data => setMedia(data));
+  }, []);
+
   return (
     <main style={{ minHeight: "100vh", background: "#181a20", color: "#f7fafc", fontFamily: "Inter, sans-serif", padding: '0 1rem' }}>
       <h1 style={{ color: '#ffe082', fontSize: '2.2rem', margin: '36px 0 18px 0', textAlign: 'center' }}>Admin Dashboard</h1>
@@ -109,6 +117,30 @@ export default function AdminPage() {
               {fb.email && <div style={{ fontSize: 14, color: '#7fd1b9' }}>From: {fb.email}</div>}
             </div>
           ))
+        )}
+      </div>
+
+      {/* Media Uploads Section */}
+      <h2 style={{ color: '#ffd700', fontSize: 20, marginBottom: 24 }}>User Uploads</h2>
+      <div style={{ maxWidth: 900, margin: '0 auto', background: '#23242b', border: '1.5px solid #ffd700', borderRadius: 16, boxShadow: '0 2px 16px #0004', padding: 24, marginBottom: 48 }}>
+        {media.length === 0 ? (
+          <div style={{ color: '#aaa', textAlign: 'center' }}>No uploads yet.</div>
+        ) : (
+          <ul style={{ listStyle: 'none', padding: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 24 }}>
+            {media.map((m: any) => (
+              <li key={m.id} style={{ background: '#18120a', color: '#ffd700', border: '1px solid #ffd700', borderRadius: 10, padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <span style={{ fontWeight: 700, color: '#ffe082', fontSize: 17 }}>{m.title}</span>
+                <span style={{ fontSize: 15, color: '#7fd1b9' }}>{m.artist}</span>
+                <span style={{ fontSize: 14, color: '#ffd700' }}>{m.type}</span>
+                {m.type === 'image' ? (
+                  <img src={m.url} alt={m.title} style={{ width: '100%', borderRadius: 8, margin: '8px 0' }} />
+                ) : (
+                  <audio controls src={m.url} style={{ width: '100%', margin: '8px 0' }} />
+                )}
+                <span style={{ fontSize: 13, color: '#aaa' }}>{new Date(m.created_at).toLocaleString()}</span>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
 
