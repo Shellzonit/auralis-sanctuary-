@@ -52,8 +52,6 @@ export default function TransitionalPhasingJobs() {
               margin: 0,
               display: "inline-block",
             }}
-            onMouseOver={e => { e.currentTarget.style.background = "#2a2b33"; }}
-            onMouseOut={e => { e.currentTarget.style.background = "#23242b"; }}
           >
             {tab.label}
           </a>
