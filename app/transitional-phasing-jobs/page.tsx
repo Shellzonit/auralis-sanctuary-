@@ -126,29 +126,42 @@ export default function TransitionalPhasingJobs() {
           <li><span className="font-bold">Specialized Roles (Legal, Medical, etc.):</span> $30–$100/hr</li>
         </ul>
       </div>
-      {/* AI Companies Seeking Help - Editable Section */}
-      <div className="w-full max-w-3xl rounded-xl shadow-lg p-8 border border-yellow-600" style={{ background: '#111', color: '#ffe082' }}>
-        <h2 className="text-2xl font-semibold mb-6 text-center" style={{ color: '#ffd700', textShadow: '0 2px 12px #000a' }}>AI Companies Looking for Help</h2>
-        <ul className="space-y-4">
-          {/* To update this list, simply add or remove <li> elements below */}
-          <li className="rounded-lg p-4 border border-yellow-700" style={{ background: '#18120a', color: '#ffd700' }}>
-            <span className="font-bold" style={{ color: '#ffe082' }}>OpenAI</span> — Roles: Prompt Engineer, Data Annotator, Community Moderator
-            <br /><a href="https://openai.com/careers" target="_blank" rel="noopener noreferrer" style={{ color: '#ffe082', textDecoration: 'underline' }}>openai.com/careers</a>
-          </li>
-          <li className="rounded-lg p-4 border border-yellow-700" style={{ background: '#18120a', color: '#ffd700' }}>
-            <span className="font-bold" style={{ color: '#ffe082' }}>Anthropic</span> — Roles: AI Safety Researcher, Data Labeler, Technical Writer
-            <br /><a href="https://www.anthropic.com/careers" target="_blank" rel="noopener noreferrer" style={{ color: '#ffe082', textDecoration: 'underline' }}>anthropic.com/careers</a>
-          </li>
-          <li className="rounded-lg p-4 border border-yellow-700" style={{ background: '#18120a', color: '#ffd700' }}>
-            <span className="font-bold" style={{ color: '#ffe082' }}>Hugging Face</span> — Roles: Community Contributor, Model Trainer, Developer Advocate
-            <br /><a href="https://huggingface.co/careers" target="_blank" rel="noopener noreferrer" style={{ color: '#ffe082', textDecoration: 'underline' }}>huggingface.co/careers</a>
-          </li>
-          <li className="rounded-lg p-4 border border-yellow-700" style={{ background: '#18120a', color: '#ffd700' }}>
-            <span className="font-bold" style={{ color: '#ffe082' }}>Stability AI</span> — Roles: Data Curator, AI Artist, Research Assistant
-            <br /><a href="https://stability.ai/careers" target="_blank" rel="noopener noreferrer" style={{ color: '#ffe082', textDecoration: 'underline' }}>stability.ai/careers</a>
-          </li>
-          {/* Add more companies and roles as needed */}
-        </ul>
+      {/* AI Companies Seeking Help - Centered and Elegant Section */}
+      <div className="w-full flex justify-center items-center mt-8 mb-8">
+        <div className="w-full max-w-2xl rounded-2xl shadow-2xl p-10 border-2 border-yellow-400 bg-gradient-to-br from-yellow-900/80 to-yellow-700/40" style={{ color: '#ffe082', boxShadow: '0 4px 32px #000a' }}>
+          <h2 className="text-3xl font-extrabold mb-8 text-center tracking-wide" style={{ color: '#ffd700', textShadow: '0 2px 16px #000a', letterSpacing: 1.2 }}>AI Companies Looking for Help</h2>
+          <ul className="flex flex-col gap-6">
+            <li className="rounded-xl p-6 border border-yellow-500 bg-yellow-950/80 flex flex-col md:flex-row md:items-center md:justify-between transition-transform hover:scale-105 hover:shadow-lg" style={{ color: '#ffd700' }}>
+              <div>
+                <span className="font-bold text-lg" style={{ color: '#ffe082' }}>OpenAI</span>
+                <span className="ml-2 text-base">— Roles: Prompt Engineer, Data Annotator, Community Moderator</span>
+              </div>
+              <a href="https://openai.com/careers" target="_blank" rel="noopener noreferrer" className="mt-2 md:mt-0 text-amber-200 underline font-semibold hover:text-amber-300 transition-colors">openai.com/careers</a>
+            </li>
+            <li className="rounded-xl p-6 border border-yellow-500 bg-yellow-950/80 flex flex-col md:flex-row md:items-center md:justify-between transition-transform hover:scale-105 hover:shadow-lg" style={{ color: '#ffd700' }}>
+              <div>
+                <span className="font-bold text-lg" style={{ color: '#ffe082' }}>Anthropic</span>
+                <span className="ml-2 text-base">— Roles: AI Safety Researcher, Data Labeler, Technical Writer</span>
+              </div>
+              <a href="https://www.anthropic.com/careers" target="_blank" rel="noopener noreferrer" className="mt-2 md:mt-0 text-amber-200 underline font-semibold hover:text-amber-300 transition-colors">anthropic.com/careers</a>
+            </li>
+            <li className="rounded-xl p-6 border border-yellow-500 bg-yellow-950/80 flex flex-col md:flex-row md:items-center md:justify-between transition-transform hover:scale-105 hover:shadow-lg" style={{ color: '#ffd700' }}>
+              <div>
+                <span className="font-bold text-lg" style={{ color: '#ffe082' }}>Hugging Face</span>
+                <span className="ml-2 text-base">— Roles: Community Contributor, Model Trainer, Developer Advocate</span>
+              </div>
+              <a href="https://huggingface.co/careers" target="_blank" rel="noopener noreferrer" className="mt-2 md:mt-0 text-amber-200 underline font-semibold hover:text-amber-300 transition-colors">huggingface.co/careers</a>
+            </li>
+            <li className="rounded-xl p-6 border border-yellow-500 bg-yellow-950/80 flex flex-col md:flex-row md:items-center md:justify-between transition-transform hover:scale-105 hover:shadow-lg" style={{ color: '#ffd700' }}>
+              <div>
+                <span className="font-bold text-lg" style={{ color: '#ffe082' }}>Stability AI</span>
+                <span className="ml-2 text-base">— Roles: Data Curator, AI Artist, Research Assistant</span>
+              </div>
+              <a href="https://stability.ai/careers" target="_blank" rel="noopener noreferrer" className="mt-2 md:mt-0 text-amber-200 underline font-semibold hover:text-amber-300 transition-colors">stability.ai/careers</a>
+            </li>
+            {/* Add more companies and roles as needed */}
+          </ul>
+        </div>
       </div>
     </main>
   );
