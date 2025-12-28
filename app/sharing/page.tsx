@@ -140,6 +140,40 @@ export default function SharingPage() {
       >
         Sharing Room
       </h1>
+      <div style={{ display: 'flex', gap: 24, marginBottom: 24 }}>
+        <a
+          href="#music-upload"
+          style={{
+            background: '#ffe082',
+            color: '#181a20',
+            fontWeight: 700,
+            borderRadius: 10,
+            padding: '14px 28px',
+            fontSize: 18,
+            textDecoration: 'none',
+            boxShadow: '0 2px 12px #0006',
+            transition: 'background .13s, color .13s',
+          }}
+        >
+          Share Music
+        </a>
+        <a
+          href="#image-upload"
+          style={{
+            background: '#ffe082',
+            color: '#181a20',
+            fontWeight: 700,
+            borderRadius: 10,
+            padding: '14px 28px',
+            fontSize: 18,
+            textDecoration: 'none',
+            boxShadow: '0 2px 12px #0006',
+            transition: 'background .13s, color .13s',
+          }}
+        >
+          Share Image
+        </a>
+      </div>
       <p style={{ color: '#f7fafc', opacity: 0.85, fontSize: 18, marginBottom: 32, textAlign: 'center', maxWidth: 600 }}>
         Explore shareable content folders for each artist. Click a folder to view their work!
       </p>
@@ -177,7 +211,7 @@ export default function SharingPage() {
           ))}
         </ul>
       </div>
-      <form onSubmit={handleUpload} style={{ background: '#23242b', border: '2px solid #ffe082', borderRadius: 16, padding: 24, marginBottom: 36, width: '100%', maxWidth: 480, display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <form id="image-upload" onSubmit={handleUpload} style={{ background: '#23242b', border: '2px solid #ffe082', borderRadius: 16, padding: 24, marginBottom: 36, width: '100%', maxWidth: 480, display: 'flex', flexDirection: 'column', gap: 16 }}>
         <h2 style={{ color: '#ffe082', fontSize: 22, fontWeight: 700, marginBottom: 8 }}>Upload Your Art or Music</h2>
         <input
           type="text"
@@ -198,6 +232,7 @@ export default function SharingPage() {
           <option value="image">Image</option>
           <option value="music">Music</option>
         </select>
+          <form id="music-upload" onSubmit={handleUpload} style={{ display: 'none' }}></form>
         <input
           type="file"
           accept={form.type === 'image' ? 'image/*' : 'audio/*'}
