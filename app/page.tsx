@@ -26,45 +26,60 @@ export default function Home() {
         padding: "0 1rem",
       }}
     >
-      {/* Ai Wilding Header */}
+      {/* Ai Wilding Large Centered Header */}
       <div style={{
         width: "100%",
         display: "flex",
-        justifyContent: "flex-start",
+        flexDirection: "column",
         alignItems: "center",
-        paddingTop: 18,
-        paddingBottom: 2,
-        paddingLeft: 8,
-        fontSize: 18,
-        fontWeight: 600,
-        color: "#ffe082cc",
-        letterSpacing: ".04em",
-        opacity: 0.92,
-        textShadow: "0 1px 8px #0006"
+        justifyContent: "center",
+        marginTop: 32,
+        marginBottom: 12,
       }}>
         <span
           style={{
             fontFamily: 'Playfair Display, Inter, sans-serif',
             fontWeight: 900,
-            fontSize: 48,
-            letterSpacing: '.09em',
+            fontSize: 'clamp(4rem, 12vw, 8rem)',
+            letterSpacing: '.13em',
             background: 'linear-gradient(90deg, #00f2ff 0%, #ffe082 60%, #ff6ec4 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-            textShadow: '0 2px 24px #00f2ff88, 0 1px 0 #fff2',
-            filter: 'drop-shadow(0 0 8px #ffe08288)',
+            textShadow: '0 6px 48px #00f2ff88, 0 2px 0 #fff2',
+            filter: 'drop-shadow(0 0 32px #ffe08288)',
             transition: 'background 0.8s',
             animation: 'aiGlow 2.5s infinite alternate',
+            marginBottom: 0,
+            textAlign: 'center',
+            width: '100%',
+            lineHeight: 1.05,
           }}
         >
           Ai Wilding
         </span>
         <style>{`
           @keyframes aiGlow {
-            0% { filter: drop-shadow(0 0 8px #00f2ff88); }
-            100% { filter: drop-shadow(0 0 18px #ff6ec488); }
+            0% { filter: drop-shadow(0 0 32px #00f2ff88); }
+            100% { filter: drop-shadow(0 0 64px #ff6ec488); }
           }
         `}</style>
+        {/* Sanctuary smaller below */}
+        <span
+          style={{
+            fontFamily: 'Playfair Display, Georgia, serif',
+            fontSize: '1.5rem',
+            fontWeight: 700,
+            letterSpacing: '.06em',
+            color: '#ffe082',
+            textShadow: '0 2px 12px #000a, 0 1px 0 #fff2',
+            marginTop: 10,
+            marginBottom: 0,
+            textAlign: 'center',
+            opacity: 0.92,
+          }}
+        >
+          SANCTUARY
+        </span>
       </div>
       {/* Tabs */}
       <nav style={{ width: "100%", display: "flex", justifyContent: "center", gap: 24, marginTop: 24, marginBottom: 32 }}>
@@ -93,20 +108,7 @@ export default function Home() {
           </Link>
         ))}
       </nav>
-      {/* Sanctuary Title */}
-      <h1 style={{
-        fontFamily: 'Playfair Display, Georgia, serif',
-        fontSize: '4.5rem',
-        fontWeight: 900,
-        letterSpacing: '.08em',
-        color: '#ffe082',
-        textShadow: '0 4px 32px #000a, 0 1px 0 #fff2',
-        margin: 0,
-        marginBottom: 12,
-        textAlign: 'center',
-      }}>
-        SANCTUARY
-      </h1>
+      {/* Sanctuary Title moved above, now removed here */}
       <div style={{ fontSize: 24, color: '#f7fafc', opacity: 0.85, marginBottom: 32, fontWeight: 600, letterSpacing: '.04em' }}>
         AI & Innovation
       </div>
