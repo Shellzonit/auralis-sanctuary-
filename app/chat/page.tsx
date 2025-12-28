@@ -205,13 +205,6 @@ export default function ChatPage() {
     </main>
   );
 }
-            boxShadow: "0 2px 8px #0002",
-            transition: "background .18s",
-          }}
-        >
-          Send
-        </button>
-      </form>
-    </div>
+// ...existing code...
   );
 }
