@@ -11,6 +11,7 @@ type Message = {
 	timestamp: string;
 	parentId?: number;
 	replies?: Message[];
+	reactions?: number;
 };
 
 // Demo data for initial UI
@@ -41,8 +42,9 @@ const DEMO: Message[] = [
 	},
 ];
 
-export default function HoloChatPage() {
-	const [messages, setMessages] = useState<Message[]>(DEMO);
+	const [messages, setMessages] = useState<Message[]>(
+		DEMO.map(m => ({ ...m, reactions: 0, replies: m.replies?.map(r => ({ ...r, reactions: 0 })) }))
+	);
 	const [input, setInput] = useState("");
 	const [replyingTo, setReplyingTo] = useState<number | null>(null);
 	const [replyInput, setReplyInput] = useState("");
@@ -64,6 +66,7 @@ export default function HoloChatPage() {
 			text: input,
 			timestamp: "now",
 			replies: [],
+			reactions: 0,
 		};
 		setMessages(prev => [msg, ...prev]);
 		setInput("");
@@ -82,6 +85,7 @@ export default function HoloChatPage() {
 			text: replyInput,
 			timestamp: "now",
 			parentId: parent.id,
+			reactions: 0,
 		};
 		setMessages(prevMsgs =>
 			prevMsgs.map(m =>
@@ -93,6 +97,27 @@ export default function HoloChatPage() {
 		setReplyInput("");
 		setReplyingTo(null);
 		// TODO: Save to Neon, publish to Ably
+	};
+
+	// React to message
+	const handleReact = (id: number, isReply = false, parentId?: number) => {
+		setMessages(prevMsgs =>
+			prevMsgs.map(m => {
+				if (!isReply && m.id === id) {
+					return { ...m, reactions: (m.reactions || 0) + 1 };
+				}
+				if (isReply && m.id === parentId) {
+					return {
+						...m,
+						replies: (m.replies || []).map(r =>
+							r.id === id ? { ...r, reactions: (r.reactions || 0) + 1 } : r
+						),
+					};
+				}
+				return m;
+			})
+		);
+		// TODO: Save reaction to Neon, publish to Ably
 	};
 
 	// Hologram card styles
@@ -146,7 +171,14 @@ export default function HoloChatPage() {
 						</div>
 						<div style={{ fontSize: 18, color: "#f7fafc", margin: "16px 0 10px 0", textShadow: "0 0 8px #00f2ff22" }}>{msg.text}</div>
 						<div style={{ display: "flex", alignItems: "center", gap: 22, marginBottom: 6 }}>
-							<span style={{ fontSize: 16, color: "#00f2ffbb", cursor: "pointer", textShadow: "0 0 8px #00f2ff44" }}>💠 React</span>
+							<span
+								style={{ fontSize: 16, color: "#00f2ffbb", cursor: "pointer", textShadow: "0 0 8px #00f2ff44", transition: 'transform .18s', display: 'inline-flex', alignItems: 'center' }}
+								onClick={() => handleReact(msg.id)}
+								aria-label="React to message"
+							>
+								<span style={{ marginRight: 6, fontWeight: 700 }}>💠</span>
+								<span style={{ fontSize: 15, color: '#00f2ff', fontWeight: 700 }}>{msg.reactions}</span>
+							</span>
 							<span style={{ fontSize: 16, color: "#7fd1b9", cursor: "pointer" }} onClick={() => setReplyingTo(msg.id)}>↩️ Reply</span>
 						</div>
 						{replyingTo === msg.id && (
@@ -176,6 +208,16 @@ export default function HoloChatPage() {
 											</div>
 										</div>
 										<div style={{ fontSize: 16, color: "#f7fafc", margin: "10px 0 6px 0", textShadow: "0 0 8px #00f2ff22" }}>{reply.text}</div>
+										<div style={{ display: 'flex', alignItems: 'center', gap: 18, marginTop: 4 }}>
+											<span
+												style={{ fontSize: 15, color: "#00f2ffbb", cursor: "pointer", textShadow: "0 0 8px #00f2ff44", transition: 'transform .18s', display: 'inline-flex', alignItems: 'center' }}
+												onClick={() => handleReact(reply.id, true, msg.id)}
+												aria-label="React to reply"
+											>
+												<span style={{ marginRight: 5, fontWeight: 700 }}>💠</span>
+												<span style={{ fontSize: 14, color: '#00f2ff', fontWeight: 700 }}>{reply.reactions}</span>
+											</span>
+										</div>
 									</div>
 								))}
 							</div>
