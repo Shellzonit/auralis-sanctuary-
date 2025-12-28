@@ -1,4 +1,6 @@
+
 "use client";
+import React, { ChangeEvent, FormEvent } from "react";
 
 
 export default function SharingPage() {
@@ -37,7 +39,7 @@ export default function SharingPage() {
     "bandcamp.com"
   ];
 
-  function isTrustedEmbed(url) {
+  function isTrustedEmbed(url: string) {
     try {
       const parsed = new URL(url);
       return trustedEmbedDomains.some(domain => parsed.hostname.endsWith(domain));
@@ -47,11 +49,17 @@ export default function SharingPage() {
   }
 
   // Upload form state
-  const [form, setForm] = React.useState({ title: '', artist: '', type: 'image', file: null });
+  type FormState = {
+    title: string;
+    artist: string;
+    type: string;
+    file: File | null;
+  };
+  const [form, setForm] = React.useState<FormState>({ title: '', artist: '', type: 'image', file: null });
   const [uploading, setUploading] = React.useState(false);
   const [uploadMsg, setUploadMsg] = React.useState('');
 
-  async function handleUpload(e) {
+  async function handleUpload(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setUploading(true);
     setUploadMsg('');
@@ -59,7 +67,9 @@ export default function SharingPage() {
     data.append('title', form.title);
     data.append('artist', form.artist);
     data.append('type', form.type);
-    data.append('file', form.file);
+    if (form.file) {
+      data.append('file', form.file);
+    }
     const res = await fetch('/api/media-upload', { method: 'POST', body: data });
     if (res.ok) {
       setUploadMsg('Upload successful!');
@@ -124,7 +134,10 @@ export default function SharingPage() {
         <input
           type="file"
           accept={form.type === 'image' ? 'image/*' : 'audio/*'}
-          onChange={e => setForm(f => ({ ...f, file: e.target.files[0] }))}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            const file = e.target.files && e.target.files.length > 0 ? e.target.files[0] : null;
+            setForm(f => ({ ...f, file }));
+          }}
           required
           style={{ color: '#ffe082' }}
         />
