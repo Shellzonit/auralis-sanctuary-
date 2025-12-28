@@ -39,7 +39,7 @@ export default function AdminPage() {
   }
 
   // --- AI Companies Admin State ---
-  const [companies, setCompanies] = useState([]);
+  const [companies, setCompanies] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [newCompany, setNewCompany] = useState({ name: "", roles: "", url: "" });
