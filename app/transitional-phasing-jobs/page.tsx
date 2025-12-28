@@ -7,6 +7,30 @@ export default function TransitionalPhasingJobs() {
       <p className="max-w-2xl text-center text-lg md:text-xl text-gray-300 mb-10">
         Explore how traditional roles are evolving and what equivalent experience looks like in the AI era.
       </p>
+      {/* Jobs at Risk Section */}
+      <div className="w-full max-w-3xl bg-red-950 rounded-xl shadow-lg p-8 border border-red-700 mb-12">
+        <h2 className="text-2xl font-semibold text-red-200 mb-6 text-center">Jobs at Risk</h2>
+        <ul className="list-disc pl-6 text-lg space-y-2">
+          <li>
+            Retail Associate → <a href="#ai-retail" className="text-amber-300 underline">AI Retail Assistant</a>
+          </li>
+          <li>
+            Customer Service Rep → <a href="#ai-customer" className="text-amber-300 underline">Conversational AI Trainer</a>
+          </li>
+          <li>
+            Data Entry Clerk → <a href="#ai-data" className="text-amber-300 underline">AI Data Annotator</a>
+          </li>
+          <li>
+            Truck Driver → <a href="#ai-driver" className="text-amber-300 underline">Autonomous Vehicle Operator</a>
+          </li>
+          <li>
+            Administrative Assistant → <a href="#ai-admin" className="text-amber-300 underline">AI Workflow Coordinator</a>
+          </li>
+          <li>
+            Freelance Writer → <a href="#ai-writer" className="text-amber-300 underline">AI Content Curator/Prompt Designer</a>
+          </li>
+        </ul>
+      </div>
       <div className="w-full max-w-3xl bg-gray-900 rounded-xl shadow-lg p-8 border border-gray-700 mb-12">
         <h2 className="text-2xl font-semibold text-amber-200 mb-6 text-center">Jobs Replaced or Evolving with AI</h2>
         <table className="w-full text-left border-collapse">
