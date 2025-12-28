@@ -30,8 +30,8 @@ export default function ShowcasePage() {
 		if (!file || !title) return;
 		setUploading(true);
 		const formData = new FormData();
-		formData.append("file", file);
-		formData.append("title", title);
+		"use client";
+		import { useState, useEffect } from "react";
 		formData.append("description", description);
 		await fetch("/api/showcase", {
 			method: "POST",
