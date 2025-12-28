@@ -11,7 +11,19 @@ export async function query(text: string, params?: any[]) {
 }
 
 
-export async function saveMediaMetadata({ title, artist, type, url, created_at }) {
+export async function saveMediaMetadata({
+  title,
+  artist,
+  type,
+  url,
+  created_at,
+}: {
+  title: string;
+  artist: string;
+  type: string;
+  url: string;
+  created_at: string | Date;
+}) {
   const queryText = `
     INSERT INTO media (title, artist, type, url, created_at)
     VALUES ($1, $2, $3, $4, $5)
