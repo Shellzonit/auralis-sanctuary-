@@ -26,7 +26,7 @@ export default function Home() {
         padding: "0 1rem",
       }}
     >
-      {/* Auralis AI Header */}
+      {/* Ai Wilding Header */}
       <div style={{
         width: "100%",
         display: "flex",
@@ -42,7 +42,7 @@ export default function Home() {
         opacity: 0.92,
         textShadow: "0 1px 8px #0006"
       }}>
-        <span style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 18 }}>Auralis AI</span>
+        <span style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 18 }}>Ai Wilding</span>
       </div>
       {/* Tabs */}
       <nav style={{ width: "100%", display: "flex", justifyContent: "center", gap: 24, marginTop: 24, marginBottom: 32 }}>
