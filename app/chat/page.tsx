@@ -168,19 +168,20 @@ export default function ChatPage() {
                       : m
                   ));
                   // Save reply to Neon
+                  const neonReply = {
+                    author: reply.author,
+                    avatar: reply.avatar,
+                    text: reply.text,
+                    reactions: reply.reactions,
+                    fileUrl: (reply as ChatMessage).fileUrl ?? null,
+                    fileType: (reply as ChatMessage).fileType ?? null,
+                    fileName: (reply as ChatMessage).fileName ?? null,
+                    parentId: msg.id,
+                  };
                   fetch("/api/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                      author: reply.author,
-                      avatar: reply.avatar,
-                      text: reply.text,
-                      reactions: reply.reactions,
-                      fileUrl: reply.fileUrl ?? null,
-                      fileType: reply.fileType ?? null,
-                      fileName: reply.fileName ?? null,
-                      parentId: msg.id,
-                    }),
+                    body: JSON.stringify(neonReply),
                   });
                   // Ably publish
                   const ably = getAblyClient();
