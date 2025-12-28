@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { query } from '../../../../lib/db';
 
 // GET /api/profile/[username]
-export async function GET(req: NextRequest, { params }: { params: { username: string } }) {
-  const { username } = params;
+export async function GET(req: NextRequest, context: { params: Promise<{ username: string }> }) {
+  const { username } = await context.params;
   try {
     const result = await query('SELECT username, name, bio, avatar FROM users WHERE username = $1', [username]);
     if (result.rows.length === 0) {
@@ -16,8 +16,8 @@ export async function GET(req: NextRequest, { params }: { params: { username: st
 }
 
 // PUT /api/profile/[username]
-export async function PUT(req: NextRequest, { params }: { params: { username: string } }) {
-  const { username } = params;
+export async function PUT(req: NextRequest, context: { params: Promise<{ username: string }> }) {
+  const { username } = await context.params;
   const { name, bio, avatar } = await req.json();
   try {
     const result = await query(
