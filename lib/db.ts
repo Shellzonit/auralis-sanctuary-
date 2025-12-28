@@ -10,4 +10,18 @@ export async function query(text: string, params?: any[]) {
   return res;
 }
 
+
+export async function saveMediaMetadata({ title, artist, type, url, created_at }) {
+  const queryText = `
+    INSERT INTO media (title, artist, type, url, created_at)
+    VALUES ($1, $2, $3, $4, $5)
+  `;
+  await pool.query(queryText, [title, artist, type, url, created_at]);
+}
+
+export async function getAllMedia() {
+  const { rows } = await pool.query('SELECT * FROM media ORDER BY created_at DESC');
+  return rows;
+}
+
 export default pool;
