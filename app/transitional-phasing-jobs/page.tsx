@@ -29,6 +29,24 @@ export default function TransitionalPhasingJobs() {
           <li>
             Freelance Writer → <a href="#ai-writer" className="text-amber-300 underline">AI Content Curator/Prompt Designer</a>
           </li>
+          <li>
+            Bookkeeper → <a href="#ai-bookkeeper" className="text-amber-300 underline">AI Financial Data Analyst</a>
+          </li>
+          <li>
+            Telemarketer → <a href="#ai-telemarketer" className="text-amber-300 underline">AI Outreach Specialist</a>
+          </li>
+          <li>
+            Graphic Designer → <a href="#ai-graphic" className="text-amber-300 underline">AI Visual Model Trainer</a>
+          </li>
+          <li>
+            Journalist → <a href="#ai-journalist" className="text-amber-300 underline">AI News Curator/Fact Checker</a>
+          </li>
+          <li>
+            Legal Secretary → <a href="#ai-legal" className="text-amber-300 underline">AI Legal Data Specialist</a>
+          </li>
+          <li>
+            Medical Transcriptionist → <a href="#ai-medical" className="text-amber-300 underline">AI Medical Data Annotator</a>
+          </li>
         </ul>
       </div>
       <div className="w-full max-w-3xl bg-gray-900 rounded-xl shadow-lg p-8 border border-gray-700 mb-12">

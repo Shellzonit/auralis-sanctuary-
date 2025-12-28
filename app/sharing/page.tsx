@@ -46,6 +46,10 @@ export default function SharingPage() {
     { title: 'My YouTube Channel', url: 'https://youtube.com/' },
     { title: 'My SoundCloud', url: 'https://soundcloud.com/' },
     { title: 'My Bandcamp', url: 'https://bandcamp.com/' },
+    { title: 'AI Art Timelapse', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
+    { title: 'Lo-fi AI Music', url: 'https://soundcloud.com/ai-lofi-demo' },
+    { title: 'Bandcamp AI Album', url: 'https://bandcamp.com/ai-album' },
+    { title: 'Generative Art Showcase', url: 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ' },
   ]);
 
   function isTrustedLink(url: string) {
