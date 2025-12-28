@@ -1,6 +1,22 @@
 export default function TransitionalPhasingJobs() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-black text-yellow-300 px-6 py-16" style={{ background: '#0a0a0a' }}>
+      {/* Spotlight Section */}
+      <section className="w-full max-w-3xl rounded-2xl shadow-xl p-8 border-2 border-yellow-400 mb-12 mt-4 bg-gradient-to-br from-yellow-900/80 to-yellow-700/40 flex flex-col items-center" style={{ color: '#ffe082', boxShadow: '0 4px 32px #000a' }}>
+        <h2 className="text-3xl font-extrabold mb-4 text-center tracking-wide" style={{ color: '#ffd700', textShadow: '0 2px 16px #000a', letterSpacing: 1.2 }}>🌟 Featured This Week</h2>
+        <div className="w-full flex flex-col md:flex-row md:justify-center gap-6">
+          <div className="flex-1 bg-black/60 rounded-xl p-6 border border-yellow-700 flex flex-col items-center">
+            <span className="font-bold text-lg mb-2" style={{ color: '#ffe082' }}>Top Job: AI Data Annotator</span>
+            <span className="text-base mb-2">Labeling, dataset curation, prompt engineering</span>
+            <a href="#" className="text-amber-200 underline font-semibold hover:text-amber-300 transition-colors">See Openings</a>
+          </div>
+          <div className="flex-1 bg-black/60 rounded-xl p-6 border border-yellow-700 flex flex-col items-center">
+            <span className="font-bold text-lg mb-2" style={{ color: '#ffe082' }}>Contributor: Jane Doe</span>
+            <span className="text-base mb-2">Recognized for outstanding AI content curation</span>
+            <a href="#" className="text-amber-200 underline font-semibold hover:text-amber-300 transition-colors">View Profile</a>
+          </div>
+        </div>
+      </section>
       <h1 className="text-5xl font-extrabold mb-8 text-center drop-shadow-lg" style={{ color: '#ffd700', letterSpacing: 1.5, textShadow: '0 2px 24px #000a' }}>
         Transitional Phasing Jobs
       </h1>
@@ -10,42 +26,42 @@ export default function TransitionalPhasingJobs() {
       {/* Jobs at Risk Section */}
       <div className="w-full max-w-3xl rounded-xl shadow-lg p-8 border mb-12" style={{ background: 'linear-gradient(135deg, #18120a 80%, #ffd70022 100%)', borderColor: '#ffd700' }}>
         <h2 className="text-2xl font-semibold mb-6 text-center" style={{ color: '#ffd700' }}>Jobs at Risk</h2>
-        <ul className="list-disc pl-6 text-lg space-y-2" style={{ color: '#ffe082' }}>
-          <li>
-            Retail Associate → <a href="#ai-retail" className="text-amber-300 underline">AI Retail Assistant</a>
+        <ul className="list-disc pl-6 text-lg space-y-2">
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Retail Associate → <a href="#ai-retail" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Retail Assistant</a>
           </li>
-          <li>
-            Customer Service Rep → <a href="#ai-customer" className="text-amber-300 underline">Conversational AI Trainer</a>
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Customer Service Rep → <a href="#ai-customer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">Conversational AI Trainer</a>
           </li>
-          <li>
-            Data Entry Clerk → <a href="#ai-data" className="text-amber-300 underline">AI Data Annotator</a>
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Data Entry Clerk → <a href="#ai-data" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Data Annotator</a>
           </li>
-          <li>
-            Truck Driver → <a href="#ai-driver" className="text-amber-300 underline">Autonomous Vehicle Operator</a>
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Truck Driver → <a href="#ai-driver" className="text-amber-300 underline hover:text-yellow-400 transition-colors">Autonomous Vehicle Operator</a>
           </li>
-          <li>
-            Administrative Assistant → <a href="#ai-admin" className="text-amber-300 underline">AI Workflow Coordinator</a>
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Administrative Assistant → <a href="#ai-admin" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Workflow Coordinator</a>
           </li>
-          <li>
-            Freelance Writer → <a href="#ai-writer" className="text-amber-300 underline">AI Content Curator/Prompt Designer</a>
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Freelance Writer → <a href="#ai-writer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Content Curator/Prompt Designer</a>
           </li>
-          <li>
-            Bookkeeper → <a href="#ai-bookkeeper" className="text-amber-300 underline">AI Financial Data Analyst</a>
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Bookkeeper → <a href="#ai-bookkeeper" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Financial Data Analyst</a>
           </li>
-          <li>
-            Telemarketer → <a href="#ai-telemarketer" className="text-amber-300 underline">AI Outreach Specialist</a>
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Telemarketer → <a href="#ai-telemarketer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Outreach Specialist</a>
           </li>
-          <li>
-            Graphic Designer → <a href="#ai-graphic" className="text-amber-300 underline">AI Visual Model Trainer</a>
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Graphic Designer → <a href="#ai-graphic" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Visual Model Trainer</a>
           </li>
-          <li>
-            Journalist → <a href="#ai-journalist" className="text-amber-300 underline">AI News Curator/Fact Checker</a>
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Journalist → <a href="#ai-journalist" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI News Curator/Fact Checker</a>
           </li>
-          <li>
-            Legal Secretary → <a href="#ai-legal" className="text-amber-300 underline">AI Legal Data Specialist</a>
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Legal Secretary → <a href="#ai-legal" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Legal Data Specialist</a>
           </li>
-          <li>
-            Medical Transcriptionist → <a href="#ai-medical" className="text-amber-300 underline">AI Medical Data Annotator</a>
+          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
+            Medical Transcriptionist → <a href="#ai-medical" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Medical Data Annotator</a>
           </li>
         </ul>
       </div>
@@ -53,14 +69,14 @@ export default function TransitionalPhasingJobs() {
         <h2 className="text-2xl font-semibold mb-6 text-center" style={{ color: '#ffd700' }}>Jobs Replaced or Evolving with AI</h2>
         <table className="w-full text-left border-collapse" style={{ color: '#ffe082' }}>
           <thead>
-            <tr>
+            <tr className="transition-colors duration-150 hover:bg-yellow-900/20">
               <th className="py-2 px-3 border-b border-yellow-700 text-lg">Traditional Job</th>
               <th className="py-2 px-3 border-b border-yellow-700 text-lg">AI Field Equivalent</th>
               <th className="py-2 px-3 border-b border-yellow-700 text-lg">Relevant AI Experience</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr className="transition-transform duration-150 hover:scale-102 hover:bg-yellow-900/20">
               <td className="py-2 px-3 border-b border-yellow-900">Data Entry Clerk</td>
               <td className="py-2 px-3 border-b border-yellow-900">AI Data Annotator</td>
               <td className="py-2 px-3 border-b border-yellow-900">Labeling, dataset curation, prompt engineering</td>
@@ -125,6 +141,12 @@ export default function TransitionalPhasingJobs() {
           <li><span className="font-bold">AI Output Quality Reviewer:</span> $20–$45/hr</li>
           <li><span className="font-bold">Specialized Roles (Legal, Medical, etc.):</span> $30–$100/hr</li>
         </ul>
+      </div>
+      {/* Call to Action Section */}
+      <div className="w-full flex justify-center items-center mb-12">
+        <a href="/app/join" className="inline-block bg-gradient-to-r from-yellow-500 to-yellow-300 text-black font-bold py-4 px-10 rounded-full shadow-lg text-xl hover:from-yellow-400 hover:to-yellow-200 transition-all duration-150 border-2 border-yellow-400" style={{ letterSpacing: 1.1 }}>
+          Join the Community & Explore Jobs
+        </a>
       </div>
       {/* AI Companies Seeking Help - Centered and Elegant Section */}
       <div className="w-full flex justify-center items-center mt-8 mb-8">
