@@ -176,9 +176,9 @@ export default function ChatPage() {
                       avatar: reply.avatar,
                       text: reply.text,
                       reactions: reply.reactions,
-                      fileUrl: reply.fileUrl,
-                      fileType: reply.fileType,
-                      fileName: reply.fileName,
+                      fileUrl: reply.fileUrl ?? null,
+                      fileType: reply.fileType ?? null,
+                      fileName: reply.fileName ?? null,
                       parentId: msg.id,
                     }),
                   });
