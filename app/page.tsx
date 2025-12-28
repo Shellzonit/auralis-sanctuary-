@@ -47,8 +47,8 @@ export default function Home() {
               transition: "all .18s cubic-bezier(.4,0,.2,1)",
               margin: 0,
             }}
-            onMouseOver={e => (e.currentTarget.style.background = "#2a2b33")}
-            onMouseOut={e => (e.currentTarget.style.background = "#23242b")}
+            onMouseOver={e => { e.currentTarget.style.background = "#2a2b33"; }}
+            onMouseOut={e => { e.currentTarget.style.background = "#23242b"; }}
           >
             {tab.label}
           </Link>
