@@ -54,14 +54,35 @@ export default function ChatPage() {
   const [replyingTo, setReplyingTo] = useState<number | null>(null);
   const [replyInput, setReplyInput] = useState("");
 
-  // Ably: subscribe to real-time messages and replies
   useEffect(() => {
+    // Load chat history from Neon
+    const fetchChat = async () => {
+      try {
+        const res = await fetch("/api/chat");
+        const json = await res.json();
+        if (json.messages) {
+          // Map Neon flat messages to threaded structure
+          const messages = json.messages.filter((m: any) => !m.parent_id);
+          const replies = json.messages.filter((m: any) => m.parent_id);
+          const threaded = messages.map((msg: any) => ({
+            ...msg,
+            replies: replies.filter((r: any) => r.parent_id === msg.id),
+          }));
+          setMessages(threaded);
+        }
+      } catch (err) {
+        // fallback to demo data if needed
+      }
+    };
+    fetchChat();
+
+    // Ably: subscribe to real-time messages and replies
     const ably = getAblyClient();
     const channel = ably.channels.get("sanctuary-chat");
     const onMessage = (msg: any) => {
       const data = msg.data;
       if (data.type === "message") {
-        setMessages(prev => [...prev, data.message]);
+        setMessages(prev => [...prev, { ...data.message, replies: [] }]);
       } else if (data.type === "reply") {
         setMessages(prevMsgs => prevMsgs.map(m =>
           m.id === data.parentId
@@ -132,6 +153,22 @@ export default function ChatPage() {
                       ? { ...m, replies: [...m.replies, reply] }
                       : m
                   ));
+                  // Save reply to Neon
+                  fetch("/api/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      author: reply.author,
+                      avatar: reply.avatar,
+                      text: reply.text,
+                      reactions: reply.reactions,
+                      fileUrl: reply.fileUrl,
+                      fileType: reply.fileType,
+                      fileName: reply.fileName,
+                      parentId: msg.id,
+                    }),
+                  });
+                  // Ably publish
                   const ably = getAblyClient();
                   const channel = ably.channels.get("sanctuary-chat");
                   channel.publish("reply", { type: "reply", parentId: msg.id, reply });
@@ -246,6 +283,22 @@ export default function ChatPage() {
               ...(fileName ? { fileName } : {}),
             };
             setMessages(prev => [...prev, msg]);
+            // Save to Neon
+            fetch("/api/chat", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                author: msg.author,
+                avatar: msg.avatar,
+                text: msg.text,
+                reactions: msg.reactions,
+                fileUrl: msg.fileUrl,
+                fileType: msg.fileType,
+                fileName: msg.fileName,
+                parentId: null,
+              }),
+            });
+            // Ably publish
             const ably = getAblyClient();
             const channel = ably.channels.get("sanctuary-chat");
             channel.publish("message", { type: "message", message: msg });
