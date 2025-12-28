@@ -24,15 +24,20 @@ export default function ShowcaseRoom() {
 
   async function handleUpload(e: React.FormEvent) {
     e.preventDefault();
-    if (!file || !title) return;
+    if (!title) return;
     setUploading(true);
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("title", title);
-    formData.append("description", description);
+    // For now, assume fileUrl is empty or generated elsewhere
+    const payload = {
+      title,
+      description,
+      creator: "anonymous", // Replace with actual user if available
+      fileUrl: file ? "" : "", // You may want to upload to B2 and get a URL here
+      type: file ? (file.type.startsWith("audio") ? "music" : "art") : "art"
+    };
     await fetch("/api/showcase", {
       method: "POST",
-      body: formData,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
     });
     setUploading(false);
     setFile(null);
