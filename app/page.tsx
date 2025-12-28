@@ -113,16 +113,6 @@ export default function Home() {
           SANCTUARY
         </span>
       </div>
-              transition: "all .18s cubic-bezier(.4,0,.2,1)",
-              margin: 0,
-            }}
-            onMouseOver={e => (e.currentTarget.style.background = "#2a2b33")}
-            onMouseOut={e => (e.currentTarget.style.background = "#23242b")}
-          >
-            {tab.label}
-          </Link>
-        ))}
-      </nav>
       {/* Sanctuary Title moved above, now removed here */}
       <div style={{ fontSize: 24, color: '#f7fafc', opacity: 0.85, marginBottom: 32, fontWeight: 600, letterSpacing: '.04em' }}>
         AI & Innovation
