@@ -1,4 +1,6 @@
-  // --- Shared Links State ---
+"use client";
+import React, { useState } from "react";
+// --- Shared Links State ---
   const [sharedLinks, setSharedLinks] = useState<any[]>([]);
   const [linksError, setLinksError] = useState("");
   React.useEffect(() => {
@@ -16,9 +18,6 @@
       })
       .catch(() => setLinksError("Failed to fetch shared links"));
   }, []);
-
-"use client";
-import React, { useState } from "react";
 
 // Demo: In-memory feedback list (replace with real data source later)
 const demoFeedback = [
