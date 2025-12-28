@@ -1,4 +1,6 @@
+// ...existing code...
 export default function TransitionalPhasingJobs() {
+// ...existing code...
   const tabs = [
     { label: "Home", href: "/" },
     { label: "Chat", href: "/chat" },
@@ -11,6 +13,7 @@ export default function TransitionalPhasingJobs() {
     { label: "Privacy", href: "/privacy" },
   ];
   return (
+    // ...existing code...
     <main className="min-h-screen flex flex-col items-center justify-center bg-black text-yellow-300 px-6 py-16" style={{ background: '#0a0a0a' }}>
       {/* Spotlight Section */}
       <section className="w-full max-w-3xl rounded-2xl shadow-xl p-8 border-2 border-yellow-400 mb-12 mt-4 bg-gradient-to-br from-yellow-900/80 to-yellow-700/40 flex flex-col items-center" style={{ color: '#ffe082', boxShadow: '0 4px 32px #000a' }}>
