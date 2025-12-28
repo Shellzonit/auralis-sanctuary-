@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { supabase } from "../../lib/supabaseClient";
+
 
 type ShowcaseItem = {
   id: string;
@@ -24,11 +24,8 @@ export default function Showcase() {
   useEffect(() => {
     const fetchShowcase = async () => {
       setLoading(true);
-      const { data, error } = await supabase
-        .from("showcase")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (!error && data) setShowcaseItems(data);
+      // TODO: Replace with new backend fetch logic
+      setShowcaseItems([]); // No Supabase, so empty for now
       setLoading(false);
     };
     fetchShowcase();
@@ -59,28 +56,10 @@ export default function Showcase() {
       const uploadRes = await fetch("/api/b2/upload", { method: "POST", body: formData });
       const data = await uploadRes.json();
       if (data.url) {
-        // Save metadata to Supabase
-        const { error } = await supabase.from("showcase").insert([
-          {
-            title,
-            description: "", // Add description if you have a field for it
-            media_url: data.url,
-            creator_name: creator,
-            featured: false,
-          },
-        ]);
+        // TODO: Replace with new backend save logic
         setSubmitting(false);
-        if (!error) {
-          handleCloseForm();
-          // Refresh showcase
-          const { data: newData } = await supabase
-            .from("showcase")
-            .select("*")
-            .order("created_at", { ascending: false });
-          if (newData) setShowcaseItems(newData);
-        } else {
-          alert("Upload succeeded but failed to save metadata: " + error.message);
-        }
+        handleCloseForm();
+        setShowcaseItems([]); // No Supabase, so empty for now
       } else {
         setSubmitting(false);
         alert("Upload failed: " + (data.error || "Unknown error"));
