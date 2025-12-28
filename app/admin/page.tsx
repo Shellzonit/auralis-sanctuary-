@@ -1,6 +1,16 @@
+
 "use client";
 import React, { useState } from "react";
-// --- Shared Links State ---
+
+// Demo: In-memory feedback list (replace with real data source later)
+const demoFeedback = [
+  { id: 1, feedback: "Love the design!", email: "user1@example.com" },
+  { id: 2, feedback: "Please add more art features.", email: "" },
+  { id: 3, feedback: "Found a bug in chat.", email: "user2@example.com" },
+];
+
+export default function AdminPage() {
+  // --- Shared Links State ---
   const [sharedLinks, setSharedLinks] = useState<any[]>([]);
   const [linksError, setLinksError] = useState("");
   React.useEffect(() => {
@@ -19,14 +29,6 @@ import React, { useState } from "react";
       .catch(() => setLinksError("Failed to fetch shared links"));
   }, []);
 
-// Demo: In-memory feedback list (replace with real data source later)
-const demoFeedback = [
-  { id: 1, feedback: "Love the design!", email: "user1@example.com" },
-  { id: 2, feedback: "Please add more art features.", email: "" },
-  { id: 3, feedback: "Found a bug in chat.", email: "user2@example.com" },
-];
-
-export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
 
