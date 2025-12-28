@@ -2,7 +2,6 @@
 import Link from "next/link";
 
 const tabs = [
-  { label: "Transitional Phasing Jobs", href: "/transitional-phasing-jobs" },
   { label: "Home", href: "/" },
   { label: "Chat", href: "/chat" },
   { label: "Showcase", href: "/showcase" },
