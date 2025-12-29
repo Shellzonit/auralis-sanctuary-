@@ -245,10 +245,6 @@ export default function ChatPage() {
 				<button type="submit" style={{ background: "#00f2ff", color: "#23242b", fontWeight: 700, fontSize: 18, border: "none", borderRadius: 12, padding: "1rem 1.3rem", cursor: "pointer", boxShadow: "0 0 12px #00f2ff44", transition: "background .18s" }}>
 					Send
 				</button>
-
-				<button type="submit" style={{ background: "#00f2ff", color: "#23242b", fontWeight: 700, fontSize: 18, border: "none", borderRadius: 12, padding: "1rem 1.3rem", cursor: "pointer", boxShadow: "0 0 12px #00f2ff44", transition: "background .18s" }}>
-					Send
-				</button>
 			</form>
 		</main>
 	);
