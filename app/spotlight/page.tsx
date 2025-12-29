@@ -1,5 +1,32 @@
 
+import React from "react";
+
+const creativePrompts = [
+  "Create something inspired by the color blue.",
+  "Draw or write about a dream you had.",
+  "Remix a classic work of art in your own style.",
+  "Share a photo that represents 'hope'.",
+  "Write a short poem about winter.",
+  "Design a futuristic cityscape.",
+  "Make something using only circles and lines.",
+  "Express a feeling without using words."
+];
+
+function getDailyPrompt() {
+  const day = new Date().getDate();
+  return creativePrompts[day % creativePrompts.length];
+}
+
 export default function SpotlightPage() {
+  // Placeholder leaderboard data
+  const leaderboard = [
+    { username: "aurora", clicks: 128 },
+    { username: "nova", clicks: 97 },
+    { username: "orion", clicks: 76 },
+    { username: "vega", clicks: 54 },
+    { username: "lyra", clicks: 41 }
+  ];
+
   return (
     <main
       style={{
@@ -25,25 +52,22 @@ export default function SpotlightPage() {
       }}>
         Spotlight
       </h1>
-      <div style={{ fontSize: 18, color: '#f7fafc', opacity: 0.85, marginBottom: 32, fontWeight: 500, letterSpacing: '.03em', textAlign: 'center', maxWidth: 540 }}>
-        Each month, we shine a light on a creator whose work inspires our community.
+      <div style={{ fontSize: 22, color: '#ffe082', fontWeight: 700, margin: '32px 0 12px', textAlign: 'center' }}>
+        User Leaderboard (by Clicks)
       </div>
-      <div style={{ fontSize: '2rem', fontWeight: 600, color: '#ffe082', textShadow: '0 0 18px #ffe08255', margin: '20px 0 30px' }}>
-        Jane Doe
+      <ol style={{ background: '#23242b', border: '2px solid #ffe082', borderRadius: 16, padding: 24, marginBottom: 36, width: '100%', maxWidth: 420, color: '#ffe082', fontSize: 18, fontWeight: 600 }}>
+        {leaderboard.map((user, idx) => (
+          <li key={user.username} style={{ marginBottom: 10, display: 'flex', justifyContent: 'space-between' }}>
+            <span>@{user.username}</span>
+            <span style={{ color: '#7fd1b9', fontWeight: 700 }}>{user.clicks} clicks</span>
+          </li>
+        ))}
+      </ol>
+      <div style={{ fontSize: 22, color: '#ffe082', fontWeight: 700, margin: '32px 0 12px', textAlign: 'center' }}>
+        Daily Creative Prompt
       </div>
-      <div style={{ margin: '30px 0', padding: 20, borderRadius: 12, background: 'rgba(255,255,255,0.03)', border: '1px solid #31323a', boxShadow: '0 0 25px #ffe08214', color: '#f7fafc', maxWidth: 480 }}>
-        <strong style={{ color: '#ffe082' }}>Featured Work:</strong> <br />
-        <a href="#" style={{ color: '#ffe082', textDecoration: 'underline', fontSize: 18 }}>&quot;Celestial Dreams&quot;</a>
-      </div>
-      <div style={{ fontSize: 17, color: '#f7fafc', marginBottom: 24, maxWidth: 540 }}>
-        Jane is a digital artist blending cosmic themes with surreal landscapes. Her work explores the intersection of dreams and reality, inviting viewers to journey beyond the ordinary.
-      </div>
-      <div style={{ width: '100%', maxWidth: 420, borderTop: '1.5px solid #31323a', margin: '32px 0' }} />
-      <div style={{ fontSize: 16, color: '#ffe082cc', marginBottom: 18, textAlign: 'center', maxWidth: 540 }}>
-        Jane was chosen for her innovative approach to digital art and her positive impact on the creative community.
-      </div>
-      <div style={{ fontSize: 15, color: '#7fd1b9', opacity: 0.92, marginTop: 18, textAlign: 'center', maxWidth: 540 }}>
-        Know a creator who deserves the spotlight? Nominate them for next month!
+      <div style={{ background: '#23242b', border: '2px solid #ffe082', borderRadius: 16, padding: 24, marginBottom: 36, width: '100%', maxWidth: 420, color: '#7fd1b9', fontSize: 18, fontWeight: 500, textAlign: 'center' }}>
+        {getDailyPrompt()}
       </div>
     </main>
   );

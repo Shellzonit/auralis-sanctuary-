@@ -1,6 +1,7 @@
 
 "use client";
 import React, { ChangeEvent, FormEvent } from "react";
+import MediaEmbed from '../../components/MediaEmbed';
 
 
 export default function SharingPage() {
@@ -245,8 +246,9 @@ export default function SharingPage() {
         ) : (
           <ul style={{ listStyle: 'none', padding: 0 }}>
             {submittedLinks.map((link, idx) => (
-              <li key={link.id || idx} style={{ marginBottom: 10 }}>
-                <a href={link.url} target="_blank" rel="noopener noreferrer" style={{ color: '#ffe082', textDecoration: 'underline', fontSize: 17 }}>{link.title}</a>
+              <li key={link.id || idx} style={{ marginBottom: 18, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <div style={{ fontWeight: 700, color: '#ffe082', fontSize: 16, marginBottom: 2 }}>{link.title}</div>
+                <MediaEmbed url={link.url} />
                 {link.created_at && (
                   <div style={{ fontSize: 13, color: '#aaa' }}>{new Date(link.created_at).toLocaleString()}</div>
                 )}

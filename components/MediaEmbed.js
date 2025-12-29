@@ -78,5 +78,44 @@ export default function MediaEmbed({ url }) {
     );
   }
 
-  return null;
+  // Fallback: Show a short, single-line link preview for unsupported URLs
+  try {
+    const parsed = new URL(url);
+    const hostname = parsed.hostname.replace(/^www\./, '');
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 8,
+          background: '#23242b',
+          color: '#7fd1b9',
+          borderRadius: 6,
+          padding: '6px 12px',
+          fontSize: 15,
+          textDecoration: 'none',
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
+          maxWidth: 320,
+          minWidth: 0,
+        }}
+        title={url}
+      >
+        <img
+          src={`https://www.google.com/s2/favicons?domain=${hostname}`}
+          alt="favicon"
+          style={{ width: 18, height: 18, marginRight: 4, flexShrink: 0 }}
+        />
+        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>
+          {hostname}
+        </span>
+      </a>
+    );
+  } catch {
+    return null;
+  }
 }
