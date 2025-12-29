@@ -28,61 +28,65 @@ export default function ChatPage() {
 		reactions?: number;
 	};
 
-	const DEMO: Message[] = [
-		{
-			id: 1,
-			author: "Aurora",
-			avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Aurora",
-			text: "Welcome to the HoloChat! 🌌",
-			timestamp: "2m ago",
-			replies: [
-				{
-					id: 2,
-					author: "Nova",
-					avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Nova",
-					text: "This looks amazing!",
-					timestamp: "1m ago",
-				},
-			],
-		},
-		{
-			id: 3,
-			author: "Orion",
-			avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Orion",
-			text: "How do I send a hologram reply?",
-			timestamp: "just now",
-			replies: [],
-		},
-	];
-
-	const [messages, setMessages] = useState<Message[]>(
-		DEMO.map(m => ({ ...m, reactions: 0, replies: m.replies?.map(r => ({ ...r, reactions: 0 })) }))
-	);
+	const [messages, setMessages] = useState<Message[]>([]);
 	const [input, setInput] = useState("");
 	const [replyingTo, setReplyingTo] = useState<number | null>(null);
 	const [replyInput, setReplyInput] = useState("");
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
-		// TODO: Fetch messages from Neon, subscribe to Ably
+		// Fetch messages from backend
+		fetch('/api/messages')
+			.then(async res => {
+				if (!res.ok) return [];
+				return res.json();
+			})
+			.then(data => {
+				if (Array.isArray(data)) {
+					setMessages(data.map(m => ({
+						...m,
+						author: m.author || 'Anonymous',
+						avatar: m.avatar || 'https://api.dicebear.com/7.x/personas/svg?seed=User',
+						text: m.content || m.text,
+						timestamp: m.created_at ? new Date(m.created_at).toLocaleString() : (m.timestamp || ''),
+						replies: [],
+						reactions: 0,
+					})));
+				}
+			});
 	}, []);
 
-	const handleSend = (e: React.FormEvent) => {
+	const handleSend = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!input.trim()) return;
-		const msg: Message = {
-			id: Date.now(),
+		const msgData = {
+			content: input,
 			author: "You",
-			avatar: "https://api.dicebear.com/7.x/personas/svg?seed=You",
-			text: input,
-			timestamp: "now",
-			replies: [],
-			reactions: 0,
+			avatar: "https://api.dicebear.com/7.x/personas/svg?seed=You"
 		};
-		setMessages(prev => [msg, ...prev]);
-		setInput("");
-		if (inputRef.current) inputRef.current.value = "";
-		// TODO: Save to Neon, publish to Ably
+		try {
+			const res = await fetch('/api/messages', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(msgData),
+			});
+			if (res.ok) {
+				const newMsg = await res.json();
+				setMessages(prev => [{
+					...newMsg,
+					author: newMsg.author || 'You',
+					avatar: newMsg.avatar || 'https://api.dicebear.com/7.x/personas/svg?seed=You',
+					text: newMsg.content,
+					timestamp: newMsg.created_at ? new Date(newMsg.created_at).toLocaleString() : 'now',
+					replies: [],
+					reactions: 0,
+				}, ...prev]);
+				setInput("");
+				if (inputRef.current) inputRef.current.value = "";
+			}
+		} catch (err) {
+			// Optionally show error
+		}
 	};
 
 	const handleReply = (parent: Message, e: React.FormEvent) => {
