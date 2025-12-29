@@ -82,7 +82,11 @@ export default function ChatPage() {
       username,
       timestamp: new Date().toISOString(),
     };
-    channelRef.current.publish("message", message);
+    channelRef.current.publish("message", message, (err: any) => {
+      if (err) {
+        alert("Failed to send message: " + err.message);
+      }
+    });
     setInput("");
     setSuggestion("");
   }
