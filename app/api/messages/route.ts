@@ -17,13 +17,13 @@ export async function GET() {
 // POST: Add a new message
 export async function POST(req: NextRequest) {
   try {
-    const { content } = await req.json();
+    const { content, author, avatar } = await req.json();
     if (!content) {
       return NextResponse.json({ error: 'Missing content' }, { status: 400 });
     }
     const result = await pool.query(
-      'INSERT INTO messages (content) VALUES ($1) RETURNING *',
-      [content]
+      'INSERT INTO messages (content, author, avatar) VALUES ($1, $2, $3) RETURNING *',
+      [content, author || null, avatar || null]
     );
     return NextResponse.json(result.rows[0]);
   } catch (error) {
