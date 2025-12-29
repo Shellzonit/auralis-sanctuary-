@@ -4,6 +4,19 @@ import React, { useState, useEffect, FormEvent } from "react";
 
 export default function SharingPage() {
   const [content, setContent] = useState("");
+
+  // Load draft from localStorage on mount
+  useEffect(() => {
+    const saved = typeof window !== 'undefined' ? localStorage.getItem('sharing_draft') : null;
+    if (saved) setContent(saved);
+  }, []);
+
+  // Save draft to localStorage on change
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('sharing_draft', content);
+    }
+  }, [content]);
   const [messages, setMessages] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -51,6 +64,9 @@ export default function SharingPage() {
         setContent("");
         setMsg("Message posted!");
         setTimeout(() => setMsg(""), 2000);
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('sharing_draft');
+        }
       } else {
         const err = await res.json();
         setMsg(err.error || "Failed to post message.");
