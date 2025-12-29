@@ -42,15 +42,32 @@ export default function SharingPage() {
   // Link submission state
   const [linkForm, setLinkForm] = React.useState({ title: '', url: '' });
   const [linkMsg, setLinkMsg] = React.useState('');
-  const [submittedLinks, setSubmittedLinks] = React.useState([
-    { title: 'My YouTube Channel', url: 'https://youtube.com/' },
-    { title: 'My SoundCloud', url: 'https://soundcloud.com/' },
-    { title: 'My Bandcamp', url: 'https://bandcamp.com/' },
-    { title: 'AI Art Timelapse', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
-    { title: 'Lo-fi AI Music', url: 'https://soundcloud.com/ai-lofi-demo' },
-    { title: 'Bandcamp AI Album', url: 'https://bandcamp.com/ai-album' },
-    { title: 'Generative Art Showcase', url: 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ' },
-  ]);
+  const [submittedLinks, setSubmittedLinks] = React.useState<any[]>([]);
+  const [linksLoading, setLinksLoading] = React.useState(false);
+  const [linksError, setLinksError] = React.useState('');
+
+  // Fetch shared links from API on mount
+  React.useEffect(() => {
+    setLinksLoading(true);
+    fetch('/api/shared-links')
+      .then(async res => {
+        if (!res.ok) {
+          const err = await res.json();
+          setLinksError(err.error || 'Failed to fetch shared links');
+          setLinksLoading(false);
+          return;
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data) setSubmittedLinks(data);
+        setLinksLoading(false);
+      })
+      .catch(() => {
+        setLinksError('Failed to fetch shared links');
+        setLinksLoading(false);
+      });
+  }, []);
 
   function isTrustedLink(url: string) {
     try {
@@ -61,16 +78,32 @@ export default function SharingPage() {
     }
   }
 
-  function handleLinkSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleLinkSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setLinkMsg('');
     if (!isTrustedLink(linkForm.url)) {
       setLinkMsg('Only YouTube, SoundCloud, or Bandcamp links are allowed.');
       return;
     }
-    setSubmittedLinks(links => [...links, { ...linkForm }]);
-    setLinkForm({ title: '', url: '' });
-    setLinkMsg('Link submitted!');
-    setTimeout(() => setLinkMsg(''), 2000);
+    try {
+      const res = await fetch('/api/shared-links', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(linkForm),
+      });
+      if (res.ok) {
+        const newLink = await res.json();
+        setSubmittedLinks(links => [newLink, ...links]);
+        setLinkForm({ title: '', url: '' });
+        setLinkMsg('Link submitted!');
+        setTimeout(() => setLinkMsg(''), 2000);
+      } else {
+        const err = await res.json();
+        setLinkMsg(err.error || 'Failed to submit link.');
+      }
+    } catch {
+      setLinkMsg('Failed to submit link.');
+    }
   }
 
   function isTrustedEmbed(url: string) {
@@ -203,13 +236,24 @@ export default function SharingPage() {
       {/* Display submitted links */}
       <div style={{ width: '100%', maxWidth: 600, marginBottom: 36 }}>
         <h3 style={{ color: '#ffe082', fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Shared Links</h3>
-        <ul style={{ listStyle: 'none', padding: 0 }}>
-          {submittedLinks.map((link, idx) => (
-            <li key={idx} style={{ marginBottom: 10 }}>
-              <a href={link.url} target="_blank" rel="noopener noreferrer" style={{ color: '#ffe082', textDecoration: 'underline', fontSize: 17 }}>{link.title}</a>
-            </li>
-          ))}
-        </ul>
+        {linksLoading ? (
+          <div style={{ color: '#aaa', textAlign: 'center' }}>Loading...</div>
+        ) : linksError ? (
+          <div style={{ color: 'salmon', textAlign: 'center' }}>{linksError}</div>
+        ) : submittedLinks.length === 0 ? (
+          <div style={{ color: '#aaa', textAlign: 'center' }}>No shared links yet.</div>
+        ) : (
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {submittedLinks.map((link, idx) => (
+              <li key={link.id || idx} style={{ marginBottom: 10 }}>
+                <a href={link.url} target="_blank" rel="noopener noreferrer" style={{ color: '#ffe082', textDecoration: 'underline', fontSize: 17 }}>{link.title}</a>
+                {link.created_at && (
+                  <div style={{ fontSize: 13, color: '#aaa' }}>{new Date(link.created_at).toLocaleString()}</div>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       <form id="image-upload" onSubmit={handleUpload} style={{ background: '#23242b', border: '2px solid #ffe082', borderRadius: 16, padding: 24, marginBottom: 36, width: '100%', maxWidth: 480, display: 'flex', flexDirection: 'column', gap: 16 }}>
         <h2 style={{ color: '#ffe082', fontSize: 22, fontWeight: 700, marginBottom: 8 }}>Upload Your Art or Music</h2>
