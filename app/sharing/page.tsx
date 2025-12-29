@@ -174,42 +174,8 @@ export default function SharingPage() {
       >
         Sharing Room
       </h1>
-      <div style={{ display: 'flex', gap: 24, marginBottom: 24 }}>
-        <a
-          href="#music-upload"
-          style={{
-            background: '#ffe082',
-            color: '#181a20',
-            fontWeight: 700,
-            borderRadius: 10,
-            padding: '14px 28px',
-            fontSize: 18,
-            textDecoration: 'none',
-            boxShadow: '0 2px 12px #0006',
-            transition: 'background .13s, color .13s',
-          }}
-        >
-          Share Music
-        </a>
-        <a
-          href="#image-upload"
-          style={{
-            background: '#ffe082',
-            color: '#181a20',
-            fontWeight: 700,
-            borderRadius: 10,
-            padding: '14px 28px',
-            fontSize: 18,
-            textDecoration: 'none',
-            boxShadow: '0 2px 12px #0006',
-            transition: 'background .13s, color .13s',
-          }}
-        >
-          Share Image
-        </a>
-      </div>
       <p style={{ color: '#f7fafc', opacity: 0.85, fontSize: 18, marginBottom: 32, textAlign: 'center', maxWidth: 600 }}>
-        Explore shareable content folders for each artist. Click a folder to view their work!
+        Share your favorite links (YouTube, SoundCloud, Bandcamp, or any creative site) or post a short creative thought below!
       </p>
       {/* Link Submission Form */}
       <form onSubmit={handleLinkSubmit} style={{ background: '#23242b', border: '2px solid #ffe082', borderRadius: 16, padding: 24, marginBottom: 24, width: '100%', maxWidth: 480, display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -257,41 +223,7 @@ export default function SharingPage() {
           </ul>
         )}
       </div>
-      <form id="image-upload" onSubmit={handleUpload} style={{ background: '#23242b', border: '2px solid #ffe082', borderRadius: 16, padding: 24, marginBottom: 36, width: '100%', maxWidth: 480, display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <h2 style={{ color: '#ffe082', fontSize: 22, fontWeight: 700, marginBottom: 8 }}>Upload Your Art or Music</h2>
-        <input
-          type="text"
-          placeholder="Title"
-          value={form.title}
-          onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
-          required
-          style={{ padding: 8, borderRadius: 8, border: '1px solid #ffe082', fontSize: 16 }}
-        />
-        <input
-          type="text"
-          placeholder="Artist (optional)"
-          value={form.artist}
-          onChange={e => setForm(f => ({ ...f, artist: e.target.value }))}
-          style={{ padding: 8, borderRadius: 8, border: '1px solid #ffe082', fontSize: 16 }}
-        />
-        <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value }))} style={{ padding: 8, borderRadius: 8, border: '1px solid #ffe082', fontSize: 16 }}>
-          <option value="image">Image</option>
-          <option value="music">Music</option>
-        </select>
-          <form id="music-upload" onSubmit={handleUpload} style={{ display: 'none' }}></form>
-        <input
-          type="file"
-          accept={form.type === 'image' ? 'image/*' : 'audio/*'}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            const file = e.target.files && e.target.files.length > 0 ? e.target.files[0] : null;
-            setForm(f => ({ ...f, file }));
-          }}
-          required
-          style={{ color: '#ffe082' }}
-        />
-        <button type="submit" disabled={uploading} style={{ background: '#ffe082', color: '#181a20', fontWeight: 700, borderRadius: 8, padding: 10, fontSize: 17, border: 'none', cursor: 'pointer' }}>{uploading ? 'Uploading...' : 'Upload'}</button>
-        {uploadMsg && <div style={{ color: uploadMsg.includes('success') ? 'lightgreen' : 'salmon', marginTop: 8 }}>{uploadMsg}</div>}
-      </form>
+
 
       <div style={{ width: '100%', maxWidth: 900 }}>
         {artistFolders.map((artist, idx) => (
