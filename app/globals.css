@@ -1,3 +1,55 @@
+/* Futuristic Hologram Chatroom Styles */
+.futuristic-chat {
+  font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
+  box-shadow: 0 0 48px 8px #00eaff33, 0 0 128px 32px #7f00ff22;
+  border-radius: 2rem;
+  border: 2px solid #00eaff44;
+  background: linear-gradient(135deg, #0f2027 0%, #2c5364 60%, #232526 100%);
+  overflow: hidden;
+}
+.hologram-panel {
+  box-shadow: 0 0 32px 4px #00eaff33, 0 0 64px 16px #7f00ff22;
+  border-radius: 1.5rem;
+  position: relative;
+  background: linear-gradient(120deg, #232526cc 60%, #0f2027cc 100%);
+  border: 1.5px solid #00eaff33;
+}
+.hologram-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 48px 12px #00eaff44, 0 0 128px 32px #7f00ff22;
+  pointer-events: none;
+  z-index: 1;
+}
+.hologram-bg {
+  background: radial-gradient(ellipse at 60% 40%, #00eaff22 0%, #7f00ff11 60%, transparent 100%),
+    linear-gradient(120deg, #00eaff11 0%, #7f00ff11 100%);
+  animation: holo-bg-move 12s linear infinite alternate;
+  z-index: 0;
+}
+@keyframes holo-bg-move {
+  0% { background-position: 0% 0%, 0% 0%; }
+  100% { background-position: 100% 100%, 100% 100%; }
+}
+.drop-shadow-glow {
+  text-shadow: 0 0 8px #00eaff, 0 0 24px #7f00ff99, 0 0 32px #fff8;
+}
+.animate-pulse {
+  animation: holo-pulse 2.5s infinite alternate;
+}
+@keyframes holo-pulse {
+  0% { filter: brightness(1) drop-shadow(0 0 8px #00eaff); }
+  100% { filter: brightness(1.2) drop-shadow(0 0 24px #7f00ff); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
 /* Blue streak bar for bottom of all pages */
 .blue-streak {
   position: fixed;
