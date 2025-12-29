@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, FormEvent } from "react";
-import Ably from "ably";
 
-const ably = new Ably.Realtime({ key: process.env.NEXT_PUBLIC_ABLY_API_KEY });
 const CHANNEL_NAME = "sanctuary-chat";
 
 export default function ChatPage() {
@@ -12,13 +10,24 @@ export default function ChatPage() {
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    channelRef.current = ably.channels.get(CHANNEL_NAME);
-    const onMessage = (msg: any) => {
-      setMessages((prev) => [...prev, msg.data]);
-    };
-    channelRef.current.subscribe("message", onMessage);
+    let ably: any;
+    let onMessage: any;
+    // Only run in the browser
+    import("ably").then((Ably) => {
+      ably = new Ably.Realtime({ key: process.env.NEXT_PUBLIC_ABLY_API_KEY });
+      channelRef.current = ably.channels.get(CHANNEL_NAME);
+      onMessage = (msg: any) => {
+        setMessages((prev) => [...prev, msg.data]);
+      };
+      channelRef.current.subscribe("message", onMessage);
+    });
     return () => {
-      channelRef.current?.unsubscribe("message", onMessage);
+      if (channelRef.current && onMessage) {
+        channelRef.current.unsubscribe("message", onMessage);
+      }
+      if (ably) {
+        ably.close();
+      }
     };
   }, []);
 
