@@ -9,7 +9,8 @@ export async function GET() {
     const result = await pool.query('SELECT * FROM shared_links ORDER BY created_at DESC');
     return NextResponse.json(result.rows);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to fetch links', details: error }, { status: 500 });
+    console.error('SHARED LINKS API ERROR:', error);
+    return NextResponse.json({ error: 'Failed to fetch links', details: String(error) }, { status: 500 });
   }
 }
 
@@ -26,6 +27,7 @@ export async function POST(req: NextRequest) {
     );
     return NextResponse.json(result.rows[0]);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to add link', details: error }, { status: 500 });
+    console.error('SHARED LINKS API ERROR:', error);
+    return NextResponse.json({ error: 'Failed to add link', details: String(error) }, { status: 500 });
   }
 }
