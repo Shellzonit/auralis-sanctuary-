@@ -70,13 +70,10 @@ export default function SharingPage() {
       });
   }, []);
 
+
+  // Allow any link or text to be shared
   function isTrustedLink(url: string) {
-    try {
-      const parsed = new URL(url);
-      return trustedEmbedDomains.some(domain => parsed.hostname.endsWith(domain));
-    } catch {
-      return false;
-    }
+    return true;
   }
 
   async function handleLinkSubmit(e: FormEvent<HTMLFormElement>) {
@@ -101,9 +98,11 @@ export default function SharingPage() {
       } else {
         const err = await res.json();
         setLinkMsg(err.error || 'Failed to submit link.');
+        console.error('Failed to submit link:', err);
       }
-    } catch {
+    } catch (e) {
       setLinkMsg('Failed to submit link.');
+      console.error('Failed to submit link:', e);
     }
   }
 
