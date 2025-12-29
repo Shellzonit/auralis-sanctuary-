@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { query } from '../../../../lib/db';
+import { query } from '@/lib/db';
 
 // POST: Follow a user
 export async function POST(req: NextRequest) {
