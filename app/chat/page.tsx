@@ -2,6 +2,7 @@
 
 
 import { useEffect, useRef, useState, FormEvent } from "react";
+import { useCallback } from "react";
 import { getAblyClient } from "../../lib/ablyClient";
 import ChatMessage from "./ChatMessage";
 
@@ -14,8 +15,40 @@ export default function ChatPage() {
   const [input, setInput] = useState("");
   const [username, setUsername] = useState("");
   const [tempUsername, setTempUsername] = useState("");
+  const [suggestion, setSuggestion] = useState<string>("");
+  const [loadingSuggestion, setLoadingSuggestion] = useState(false);
   const channelRef = useRef<any>(null);
   const bottomRef = useRef<HTMLDivElement | null>(null);
+  // AI-powered suggestion fetcher
+  const fetchSuggestion = useCallback(async (prompt: string) => {
+    if (!prompt.trim()) {
+      setSuggestion("");
+      return;
+    }
+    setLoadingSuggestion(true);
+    try {
+      const res = await fetch("/api/openai-suggest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt }),
+      });
+      const data = await res.json();
+      setSuggestion(data.suggestion || "");
+    } catch {
+      setSuggestion("");
+    } finally {
+      setLoadingSuggestion(false);
+    }
+  }, []);
+
+  // Debounce suggestion fetch
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (input.trim()) fetchSuggestion(input);
+      else setSuggestion("");
+    }, 600);
+    return () => clearTimeout(handler);
+  }, [input, fetchSuggestion]);
 
   useEffect(() => {
     let ably: any;
@@ -53,6 +86,7 @@ export default function ChatPage() {
     };
     channelRef.current.publish("message", message);
     setInput("");
+    setSuggestion("");
   }
 
   function handleSetUsername(e: FormEvent) {
@@ -90,15 +124,31 @@ export default function ChatPage() {
             ))}
             <div ref={bottomRef} />
           </div>
-          <form onSubmit={sendMessage} className="flex gap-2 mt-2">
-            <input
-              className="flex-1 border rounded px-3 py-2"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type a message..."
-              autoFocus
-            />
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Send</button>
+          <form onSubmit={sendMessage} className="flex flex-col gap-1 mt-2">
+            <div className="flex gap-2">
+              <input
+                className="flex-1 border rounded px-3 py-2"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Type a message..."
+                autoFocus
+              />
+              <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Send</button>
+            </div>
+            {suggestion && (
+              <div className="mt-1 flex items-center gap-2 text-sm bg-blue-50 border border-blue-200 rounded px-2 py-1">
+                <span className="text-blue-700">💡 AI Suggestion:</span>
+                <span className="italic flex-1">{suggestion}</span>
+                <button
+                  type="button"
+                  className="ml-2 px-2 py-1 bg-blue-200 hover:bg-blue-300 rounded text-xs text-blue-900"
+                  onClick={() => setInput(suggestion)}
+                  disabled={loadingSuggestion}
+                >
+                  Use
+                </button>
+              </div>
+            )}
           </form>
         </>
       )}
