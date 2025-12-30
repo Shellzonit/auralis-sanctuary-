@@ -51,37 +51,37 @@ export default function StateJobsPage() {
       }, [selectedState]);
     // Sample data for cities with AI-driven layoffs
     const stateCityData: Record<string, { city: string; jobsAffected: number; categories: string[]; timeline: string; resources: string[]; news: string[]; }[]> = {
-      California: [
+      "California": [
         { city: "San Francisco", jobsAffected: 1200, categories: ["Retail", "Transport", "Manufacturing"], timeline: "Q1-Q2 2025", resources: ["SF Workforce Center"], news: ["AI replacing retail jobs downtown"] },
         { city: "Los Angeles", jobsAffected: 900, categories: ["Logistics", "Customer Service"], timeline: "Q2 2025", resources: ["LA Job Training Hub"], news: ["Major logistics company automates warehouses"] },
       ],
-      Texas: [
+      "Texas": [
         { city: "Houston", jobsAffected: 700, categories: ["Oil & Gas", "Admin"], timeline: "Q1-Q3 2025", resources: ["Houston Retraining Center"], news: ["AI-driven automation in oil sector"] },
         { city: "Dallas", jobsAffected: 500, categories: ["Finance", "Retail"], timeline: "Q2 2025", resources: ["Dallas Workforce Solutions"], news: ["Banks introduce AI tellers"] },
       ],
-      New York: [
+      "New York": [
         { city: "New York City", jobsAffected: 1500, categories: ["Finance", "Media", "Transport"], timeline: "Q1-Q2 2025", resources: ["NYC Career Center"], news: ["AI in media production"] },
         { city: "Buffalo", jobsAffected: 300, categories: ["Manufacturing"], timeline: "Q2 2025", resources: ["Buffalo Skills Lab"], news: ["Factories automate assembly lines"] },
       ],
-      Illinois: [
+      "Illinois": [
         { city: "Chicago", jobsAffected: 800, categories: ["Transport", "Retail"], timeline: "Q1-Q2 2025", resources: ["Chicago Job Center"], news: ["AI-driven layoffs in retail"] },
       ],
-      Florida: [
+      "Florida": [
         { city: "Miami", jobsAffected: 600, categories: ["Hospitality", "Retail"], timeline: "Q2-Q3 2025", resources: ["Miami Workforce Hub"], news: ["Hotels automate front desk"] },
       ],
-      Pennsylvania: [
+      "Pennsylvania": [
         { city: "Philadelphia", jobsAffected: 400, categories: ["Healthcare", "Admin"], timeline: "Q2 2025", resources: ["Philly Retraining"], news: ["Hospitals use AI for admin"] },
       ],
-      Ohio: [
+      "Ohio": [
         { city: "Columbus", jobsAffected: 350, categories: ["Retail", "Transport"], timeline: "Q2 2025", resources: ["Columbus Job Center"], news: ["Retail chains automate checkout"] },
       ],
-      Georgia: [
+      "Georgia": [
         { city: "Atlanta", jobsAffected: 500, categories: ["Transport", "Customer Service"], timeline: "Q2-Q3 2025", resources: ["Atlanta Skills Center"], news: ["AI in call centers"] },
       ],
-      North Carolina: [
+      "North Carolina": [
         { city: "Charlotte", jobsAffected: 300, categories: ["Finance", "Retail"], timeline: "Q2 2025", resources: ["Charlotte Workforce"], news: ["Banks automate loan processing"] },
       ],
-      Michigan: [
+      "Michigan": [
         { city: "Detroit", jobsAffected: 700, categories: ["Manufacturing", "Transport"], timeline: "Q1-Q2 2025", resources: ["Detroit Retraining"], news: ["Auto plants use AI robots"] },
       ],
     };
