@@ -16,22 +16,6 @@ export default function HomePage() {
   ];
   return (
     <main className="min-h-screen font-sans flex flex-col items-center px-2" style={{ backgroundColor: '#F7F5F2', color: '#222' }}>
-      {/* Tabs Bar */}
-      <nav className="w-full flex justify-center mt-8 mb-12">
-        <ul className="flex flex-row flex-wrap justify-center w-full max-w-6xl gap-8 px-6 py-5 bg-peach-100 rounded-3xl shadow-2xl border border-peach-200">
-          {tabs.map(tab => (
-            <li key={tab.href} className="flex-1 flex justify-center min-w-[200px] mb-2">
-              <a
-                href={tab.href}
-                className="text-3xl md:text-4xl font-extrabold px-12 py-6 rounded-full transition-colors text-peach-900 bg-peach-200 hover:bg-peach-300 hover:text-peach-800 focus:bg-white focus:text-peach-700 outline-none tracking-wide shadow-lg border-2 border-peach-300"
-                style={{ letterSpacing: '.07em', minWidth: 180, boxShadow: '0 4px 16px rgba(255, 183, 149, 0.13)' }}
-              >
-                {tab.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
       <div className="flex flex-col items-center mb-10">
         <h1 className="font-serif text-6xl md:text-7xl font-extrabold tracking-wide text-center drop-shadow-lg whitespace-pre-line leading-tight mb-2" style={{ color: '#C2A86C' }}>
           AI Wilding
