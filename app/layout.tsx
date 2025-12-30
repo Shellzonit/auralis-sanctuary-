@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
         <html lang="en">
-          <body className="min-h-screen bg-gradient-to-b from-purple-900 via-purple-700 to-yellow-400 text-white">
+          <body className="min-h-screen" style={{background: 'linear-gradient(135deg, #6a1b9a 0%, #ffd700 100%)', color: 'white'}}>
             {/* Elegant Header */}
             <header className="w-full py-8 text-center">
               <h1 className="text-4xl md:text-5xl font-serif tracking-wide drop-shadow-lg">
