@@ -105,7 +105,6 @@ export default function HomePage() {
           { href: '/events', label: 'Events' },
           { href: '/faq', label: 'FAQ' },
           { href: '/about', label: 'About' },
-          { href: '/contact', label: 'Contact' },
         ].map((tab, idx) => {
           const [isHovered, onMouseEnter, onMouseLeave] = useHover();
           const isActive = currentPath === tab.href;

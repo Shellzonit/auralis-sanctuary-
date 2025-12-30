@@ -45,7 +45,6 @@ export default function RootLayout({
                 <a href="/new-ai-jobs" className="hover:text-yellow-300 transition">New AI Jobs</a>
                 
                 
-                <a href="/contact" className="hover:text-yellow-300 transition">Contact</a>
               </div>
             </nav>
             {/* Page Content */}
