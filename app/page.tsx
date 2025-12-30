@@ -5,29 +5,8 @@ import Image from "next/image";
 import SanctuaryLogo from "../components/SanctuaryLogo";
 
 export default function HomePage() {
-  const tabs = [
-    { href: '/', label: 'Home' },
-    { href: '/states', label: 'States' },
-    { href: '/jobs-at-risk', label: 'Jobs at Risk' },
-    { href: '/transitional-paths', label: 'Transitional Paths' },
-    { href: '/new-ai-jobs', label: 'New AI Jobs' },
-  ];
   return (
-    <>
-      <header className="bg-[#F7F5F2] border-b border-[#E0DDD8] py-5 w-full">
-        <nav className="flex justify-center space-x-12 text-lg">
-          {tabs.map((tab) => (
-            <a
-              key={tab.href}
-              href={tab.href}
-              className="text-[#4B2E83] hover:text-[#C2A86C] transition"
-            >
-              {tab.label}
-            </a>
-          ))}
-        </nav>
-      </header>
-      <main className="min-h-screen font-sans flex flex-col items-center px-2" style={{ backgroundColor: '#F7F5F2', color: '#222' }}>
+    <main className="min-h-screen font-sans flex flex-col items-center px-2" style={{ backgroundColor: '#F7F5F2', color: '#222' }}>
       <div className="flex flex-col items-center mb-10">
         <h1 className="font-serif text-6xl md:text-7xl font-extrabold tracking-wide text-center drop-shadow-lg whitespace-pre-line leading-tight mb-2" style={{ color: '#C2A86C' }}>
           AI Wilding
@@ -49,6 +28,5 @@ export default function HomePage() {
         </div>
       </section>
       </main>
-    </>
   );
 }
