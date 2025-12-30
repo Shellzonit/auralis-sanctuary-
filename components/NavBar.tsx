@@ -17,7 +17,6 @@ export default function NavBar() {
 
         {/* Desktop Navigation */}
         <div className="hidden gap-6 md:flex items-center">
-
           {/* STATES DROPDOWN */}
           <div
             className="relative"
@@ -29,19 +28,34 @@ export default function NavBar() {
             {statesOpen && (
               <div className="absolute left-0 mt-2 w-48 rounded-md bg-white shadow-lg border border-gray-200 z-20">
                 <div className="flex flex-col p-2">
-                  <Link href="/states/texas" className="px-3 py-2 hover:bg-gray-100 rounded">
+                  <Link
+                    href="/states/texas"
+                    className="px-3 py-2 hover:bg-gray-100 rounded"
+                  >
                     Texas
                   </Link>
-                  <Link href="/states/california" className="px-3 py-2 hover:bg-gray-100 rounded">
+                  <Link
+                    href="/states/california"
+                    className="px-3 py-2 hover:bg-gray-100 rounded"
+                  >
                     California
                   </Link>
-                  <Link href="/states/florida" className="px-3 py-2 hover:bg-gray-100 rounded">
+                  <Link
+                    href="/states/florida"
+                    className="px-3 py-2 hover:bg-gray-100 rounded"
+                  >
                     Florida
                   </Link>
-                  <Link href="/states/new-york" className="px-3 py-2 hover:bg-gray-100 rounded">
+                  <Link
+                    href="/states/new-york"
+                    className="px-3 py-2 hover:bg-gray-100 rounded"
+                  >
                     New York
                   </Link>
-                  <Link href="/states" className="px-3 py-2 text-blue-600 font-medium">
+                  <Link
+                    href="/states"
+                    className="px-3 py-2 text-blue-600 font-medium"
+                  >
                     View All States →
                   </Link>
                 </div>
@@ -60,19 +74,34 @@ export default function NavBar() {
             {jobsOpen && (
               <div className="absolute left-0 mt-2 w-56 rounded-md bg-white shadow-lg border border-gray-200 z-20">
                 <div className="flex flex-col p-2">
-                  <Link href="/jobs/administrative-assistant" className="px-3 py-2 hover:bg-gray-100 rounded">
+                  <Link
+                    href="/jobs/administrative-assistant"
+                    className="px-3 py-2 hover:bg-gray-100 rounded"
+                  >
                     Administrative Assistant
                   </Link>
-                  <Link href="/jobs/cashier" className="px-3 py-2 hover:bg-gray-100 rounded">
+                  <Link
+                    href="/jobs/cashier"
+                    className="px-3 py-2 hover:bg-gray-100 rounded"
+                  >
                     Cashier
                   </Link>
-                  <Link href="/jobs/customer-service-rep" className="px-3 py-2 hover:bg-gray-100 rounded">
+                  <Link
+                    href="/jobs/customer-service-rep"
+                    className="px-3 py-2 hover:bg-gray-100 rounded"
+                  >
                     Customer Service Rep
                   </Link>
-                  <Link href="/jobs/truck-driver" className="px-3 py-2 hover:bg-gray-100 rounded">
+                  <Link
+                    href="/jobs/truck-driver"
+                    className="px-3 py-2 hover:bg-gray-100 rounded"
+                  >
                     Truck Driver
                   </Link>
-                  <Link href="/jobs" className="px-3 py-2 text-blue-600 font-medium">
+                  <Link
+                    href="/jobs"
+                    className="px-3 py-2 text-blue-600 font-medium"
+                  >
                     View All Jobs →
                   </Link>
                 </div>
@@ -87,14 +116,6 @@ export default function NavBar() {
 
           <Link href="/new-ai-jobs" className="hover:text-blue-600">
             New AI Jobs
-          </Link>
-
-          <Link href="/training" className="hover:text-blue-600">
-            Training Hub
-          </Link>
-
-          <Link href="/recovery" className="hover:text-blue-600">
-            Recovery Hub
           </Link>
 
           <Link href="/about" className="hover:text-blue-600">
