@@ -123,14 +123,15 @@ export default function HomePage() {
             minWidth: 80,
             textAlign: 'center',
           };
+          const tabCombinedStyle = {
+            ...(isHovered ? { ...responsiveTabStyle, ...tabHoverStyle } : { ...responsiveTabStyle, ...activeStyle }),
+            outline: 'none',
+          } as React.CSSProperties;
           return (
             <a
               key={tab.href}
               href={tab.href}
-              style={{
-                ...(isHovered ? { ...responsiveTabStyle, ...tabHoverStyle } : { ...responsiveTabStyle, ...activeStyle }),
-                outline: 'none',
-              }}
+              style={tabCombinedStyle}
               onMouseEnter={onMouseEnter}
               onMouseLeave={onMouseLeave}
               tabIndex={0}
