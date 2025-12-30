@@ -43,12 +43,12 @@ export default function HomePage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #6a1b9a 0%, #ffd700 100%)",
+        background: "#fff",
         fontFamily: "Playfair Display, Georgia, serif",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         padding: "0 1rem",
       }}
     >
@@ -58,8 +58,8 @@ export default function HomePage() {
             fontFamily: 'Playfair Display, Georgia, serif',
             fontSize: '3.2rem',
             fontWeight: 900,
-            color: '#ffd700',
-            textShadow: '0 2px 24px #6a1b9a',
+            color: '#6a1b9a',
+            textShadow: '0 2px 24px #ffd700',
             letterSpacing: 2,
             textAlign: 'center',
             margin: 0,
@@ -73,7 +73,7 @@ export default function HomePage() {
         style={{
           fontFamily: 'Inter, Arial, sans-serif',
           fontSize: '1.15rem',
-          color: '#fff8dc',
+          color: '#6a1b9a',
           marginBottom: '16px',
           textAlign: 'center',
           maxWidth: 480,
@@ -81,15 +81,21 @@ export default function HomePage() {
       >
         Navigating the future of work and AI—resources, insights, and support for everyone.
       </div>
+
+      {/* Photo Gallery Section */}
+      <section style={{ display: 'flex', gap: 32, justifyContent: 'center', margin: '32px 0' }}>
+        <img src="/ai-community-hub.jpg" alt="AI Community Hub" style={{ width: 260, height: 180, objectFit: 'cover', borderRadius: 16, boxShadow: '0 2px 16px #6a1b9a22', border: '3px solid #ffd700' }} />
+        <img src="/ai-use-cases.jpg" alt="AI Use Cases in Music and Medicine" style={{ width: 260, height: 180, objectFit: 'cover', borderRadius: 16, boxShadow: '0 2px 16px #6a1b9a22', border: '3px solid #ffd700' }} />
+      </section>
       <nav
         style={{
           display: 'flex',
           gap: 36,
-          background: 'rgba(106,27,154,0.85)', // purple
+          background: 'rgba(255, 215, 0, 0.08)', // subtle gold
           borderRadius: 18,
           padding: '16px 40px',
           marginBottom: 48,
-          boxShadow: '0 4px 24px #6a1b9a55',
+          boxShadow: '0 4px 24px #6a1b9a22',
           flexWrap: 'wrap',
           maxWidth: '100vw',
         }}
