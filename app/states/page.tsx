@@ -22,33 +22,33 @@ const STATES = [
 ];
 
 export default function StateJobsPage() {
-      // Example: Fetch BLS data for selected state (simplified)
-      const [blsData, setBlsData] = useState<any>(null);
-      const [loading, setLoading] = useState(false);
+  const [selectedState, setSelectedState] = useState(STATES[0]);
+  const [blsData, setBlsData] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
 
-      React.useEffect(() => {
-        async function fetchBLS() {
-          setLoading(true);
-          try {
-            // Example fetch for one series ID (replace with dynamic logic for real use)
-            const res = await fetch(BLS_API_URL, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                seriesid: [BLS_SERIES_ID],
-                startyear: "2025",
-                endyear: "2025"
-              })
-            });
-            const data = await res.json();
-            setBlsData(data);
-          } catch (err) {
-            setBlsData(null);
-          }
-          setLoading(false);
-        }
-        fetchBLS();
-      }, [selectedState]);
+  React.useEffect(() => {
+    async function fetchBLS() {
+      setLoading(true);
+      try {
+        // Example fetch for one series ID (replace with dynamic logic for real use)
+        const res = await fetch(BLS_API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            seriesid: [BLS_SERIES_ID],
+            startyear: "2025",
+            endyear: "2025"
+          })
+        });
+        const data = await res.json();
+        setBlsData(data);
+      } catch (err) {
+        setBlsData(null);
+      }
+      setLoading(false);
+    }
+    fetchBLS();
+  }, [selectedState]);
     // Sample data for cities with AI-driven layoffs
     const stateCityData: Record<string, { city: string; jobsAffected: number; categories: string[]; timeline: string; resources: string[]; news: string[]; }[]> = {
       "California": [
