@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
         <html lang="en">
-          <body className="min-h-screen bg-white text-gray-900" style={{background: '#fff', color: '#222'}}>
+          <body className="min-h-screen" style={{ background: '#F7F5F2', color: '#222' }}>
             {/* Elegant Header */}
             <header className="w-full py-8 text-center">
               <h1 className="text-4xl md:text-5xl font-serif tracking-wide drop-shadow-lg">
