@@ -8,8 +8,12 @@ export default function HomePage() {
 				<p className="text-xl md:text-2xl mb-8 font-medium" style={{ color: '#C2A86C' }}>
 					Navigating the future of work and AI—resources, insights, and support for everyone.
 				</p>
-				<p className="text-lg md:text-xl text-[#444]">
-					Explore jobs at risk, new AI-created roles, and state-by-state transitions. Use the navigation above to get started.
+				<p className="text-lg md:text-xl text-[#444] whitespace-pre-line">
+					Explore jobs at risk,
+					{'\n'}new AI-created roles,
+					{'\n'}and state-by-state transitions.
+					{'\n'}
+					Use the navigation above to get started.
 				</p>
 			</div>
 			<div className="flex flex-row justify-center gap-16 mt-8">
