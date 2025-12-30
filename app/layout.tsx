@@ -1,5 +1,6 @@
 
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NotificationBell, { Notification } from "../components/NotificationBell";
@@ -42,7 +43,9 @@ export default function RootLayout({
                 <a href="/jobs-at-risk" className="hover:text-yellow-300 transition">Jobs at Risk</a>
                 <a href="/transitional-paths" className="hover:text-yellow-300 transition">Transitional Paths</a>
                 <a href="/new-ai-jobs" className="hover:text-yellow-300 transition">New AI Jobs</a>
-                <a href="/training-hub" className="hover:text-yellow-300 transition">Training Hub</a>
+                <Link href="/training-hub" className="hover:text-yellow-300 transition">
+                  Training Hub
+                </Link>
                 <a href="/recovery" className="hover:text-yellow-300 transition">Recovery Hub</a>
                 
                 <a href="/contact" className="hover:text-yellow-300 transition">Contact</a>
