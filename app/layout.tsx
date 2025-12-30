@@ -19,6 +19,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AI Wilding",
   description: "A national atlas of AI transitions, jobs at risk, and new pathways.",
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Wilding — The Atlas of AI Transitions",
+    description: "Explore jobs at risk, new AI-created roles, and state-by-state transitions.",
+  },
 };
 
 export default function RootLayout({
