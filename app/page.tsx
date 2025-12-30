@@ -8,20 +8,7 @@ export default function HomePage() {
 	];
 	return (
 		<main className="min-h-screen flex flex-col items-center bg-[#F7F5F2] text-[#222] px-4">
-			<nav className="w-full flex justify-center mt-16 mb-12">
-				<div className="flex flex-row flex-wrap justify-center w-full max-w-5xl gap-8">
-					{tabs.map(tab => (
-						<a
-							key={tab.href}
-							href={tab.href}
-							className="text-2xl font-bold px-10 py-5 rounded-full bg-white shadow-lg border border-[#E0DDD8] transition-all duration-200 text-[#4B2E83] hover:text-[#C2A86C] hover:bg-[#F7F5F2] focus:outline-none focus:ring-4 focus:ring-[#C2A86C]/30 active:scale-95 text-center"
-							style={{ minWidth: 160, boxShadow: '0 2px 16px 0 rgba(76, 29, 149, 0.07)' }}
-						>
-							{tab.label}
-						</a>
-					))}
-				</div>
-			</nav>
+			{/* Navigation tabs removed; only global navigation in layout remains */}
 			<div className="max-w-2xl w-full flex flex-col items-center text-center py-12">
 				<h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight" style={{ color: '#4B2E83' }}>
 					Welcome to AI Wilding
