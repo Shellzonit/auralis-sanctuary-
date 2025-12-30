@@ -105,6 +105,11 @@ export default function TrainingHubPage() {
       <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }}>
         Training Hub: Upskill for the AI Future
       </h1>
+      <nav style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 32 }}>
+        <a href="/transitional-paths" style={{ padding: "8px 18px", borderRadius: 8, border: "none", background: "#6a1b9a", color: "#ffd700", fontWeight: 700, textDecoration: "none", boxShadow: "0 2px 8px #6a1b9a22" }}>
+          Next: Transitional Paths
+        </a>
+      </nav>
       <section style={{ maxWidth: 900, background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
         <p style={{ color: "#fff8dc", fontSize: "1.08rem", marginBottom: 18 }}>
           <strong>Where can people train?</strong> Explore top online courses, local programs, and government retraining resources. Whether you want to learn AI, robotics, data science, or digital skills, there are options for every background and budget.
