@@ -62,11 +62,11 @@ export default function HomePage() {
       {/* Elegant Photo Gallery Section */}
       <section className="flex flex-col md:flex-row gap-10 justify-center items-center my-12 w-full">
         <div className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 border border-yellow-100 max-w-2xl w-full">
-          <Image src="/ai-community-hub.jpg" alt="AI Community Hub" width={1000} height={600} className="rounded-xl object-cover mb-2 w-full h-auto" />
+          <Image src="/ai-community-hub.jpg" alt="AI Community Hub" width={3000} height={1800} className="rounded-xl object-cover mb-2 w-full h-auto" />
           <span className="text-base text-yellow-800 font-medium">AI Community Hub</span>
         </div>
         <div className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 border border-yellow-100 max-w-2xl w-full">
-          <Image src="/ai-use-cases.jpg" alt="AI Use Cases in Music and Medicine" width={1000} height={600} className="rounded-xl object-cover mb-2 w-full h-auto" />
+          <Image src="/ai-use-cases.jpg" alt="AI Use Cases in Music and Medicine" width={3000} height={1800} className="rounded-xl object-cover mb-2 w-full h-auto" />
           <span className="text-base text-yellow-800 font-medium">AI Use Cases: Music & Medicine</span>
         </div>
       </section>
