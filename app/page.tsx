@@ -16,7 +16,5 @@ export default function HomePage() {
     margin: 0,
     display: 'inline-block',
   };
-  return (
-    <main />;
-  );
+  return <main />;
 }
