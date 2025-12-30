@@ -3,6 +3,23 @@
 import Link from "next/link";
 
 export default function HomePage() {
+    const tabStyle = {
+      color: '#ffd700',
+      fontWeight: 700,
+      fontSize: '1.15rem',
+      textDecoration: 'none',
+      padding: '8px 18px',
+      borderRadius: 8,
+      background: 'rgba(255,255,255,0.08)',
+      boxShadow: '0 2px 8px #b71c1c22',
+      transition: 'background 0.2s',
+      border: 'none',
+      outline: 'none',
+      cursor: 'pointer',
+      letterSpacing: '.04em',
+      margin: 0,
+      display: 'inline-block',
+    };
   return (
     <main
       style={{
@@ -71,70 +88,6 @@ export default function HomePage() {
       >
         Welcome to <span style={{ color: '#ffd700', fontWeight: 700 }}>AI Wilding</span>, your sophisticated atlas for navigating the future of work and AI-driven transitions. Explore states, discover jobs at risk, and find new opportunities with style and clarity.
       </section>
-    </main>
-  );
-}
-        {/* ...existing code for tab navigation... */}
-      </nav>
-      {/* Ai Wilding Large Centered Header */}
-      <div style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 0,
-        marginBottom: 12,
-      }}>
-        <span
-          style={{
-            fontFamily: 'Playfair Display, Inter, sans-serif',
-            fontWeight: 900,
-            fontSize: 'clamp(4rem, 12vw, 8rem)',
-            letterSpacing: '.13em',
-            background: 'linear-gradient(90deg, #00f2ff 0%, #ffe082 60%, #ff6ec4 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            textShadow: '0 6px 48px #00f2ff88, 0 2px 0 #fff2',
-            filter: 'drop-shadow(0 0 32px #ffe08288)',
-            transition: 'background 0.8s',
-            animation: 'aiGlow 2.5s infinite alternate',
-            marginBottom: 0,
-            textAlign: 'center',
-            width: '100%',
-            lineHeight: 1.05,
-          }}
-        >
-          Ai Wilding
-        </span>
-        <style>{`
-          @keyframes aiGlow {
-            0% { filter: drop-shadow(0 0 32px #00f2ff88); }
-            100% { filter: drop-shadow(0 0 64px #ff6ec488); }
-          }
-        `}</style>
-        {/* Sanctuary smaller below */}
-        <span
-          style={{
-            fontFamily: 'Playfair Display, Georgia, serif',
-            fontSize: '1.5rem',
-            fontWeight: 700,
-            letterSpacing: '.06em',
-            color: '#ffe082',
-            textShadow: '0 2px 12px #000a, 0 1px 0 #fff2',
-            marginTop: 10,
-            marginBottom: 0,
-            textAlign: 'center',
-            opacity: 0.92,
-          }}
-        >
-          SANCTUARY
-        </span>
-      </div>
-      {/* Sanctuary Title moved above, now removed here */}
-      <div style={{ fontSize: 24, color: '#f7fafc', opacity: 0.85, marginBottom: 32, fontWeight: 600, letterSpacing: '.04em' }}>
-        AI & Innovation
-      </div>
       {/* Chat Preview */}
       <div style={{ width: "100%", maxWidth: 420, background: "#23242b", border: "1px solid #31323a", borderRadius: 16, padding: 20, boxShadow: "0 2px 16px #0004", textAlign: "left", marginTop: 12 }}>
         <div style={{ fontWeight: 700, fontSize: 15, color: "#ffe082", marginBottom: 10 }}>Chat Preview</div>
