@@ -74,50 +74,6 @@ export default function HomePage() {
     </main>
   );
 }
-
-const tabStyle = {
-  color: '#ffd700',
-  fontWeight: 700,
-  fontSize: 20,
-  fontFamily: 'Playfair Display, Georgia, serif',
-  textDecoration: 'none',
-  padding: '8px 18px',
-  borderRadius: 10,
-  background: 'rgba(255,255,255,0.08)',
-  transition: 'background .18s, color .18s',
-  boxShadow: '0 2px 8px #b71c1c22',
-};
-"use client";
-import Link from "next/link";
-
-const tabs = [
-  { label: "Home", href: "/" },
-  { label: "Chat", href: "/chat" },
-  { label: "Showcase", href: "/showcase" },
-  { label: "Email", href: "/email" },
-  { label: "Spotlight", href: "/spotlight" },
-  { label: "Sharing", href: "/sharing" },
-  { label: "About", href: "/about" },
-  { label: "Legacy", href: "/legacy" },
-  { label: "Privacy", href: "/privacy" },
-];
-
-export default function Home() {
-  return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#181a20",
-        color: "#f7fafc",
-        fontFamily: "Inter, sans-serif",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "0 1rem",
-      }}
-    >
-      {/* Tabs - now above Sanctuary/Ai Wilding */}
-      <nav style={{ width: "100%", display: "flex", justifyContent: "center", gap: 24, marginTop: 32, marginBottom: 32 }}>
         {tabs.map(tab => (
           <Link
             key={tab.href}
