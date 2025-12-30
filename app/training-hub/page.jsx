@@ -24,7 +24,7 @@ export default function Page() {
 					textShadow: "0 2px 16px #6a1b9a",
 				}}
 			>
-				Training Hub: Upskill for the AI Future
+				Transitional Phasing Hub
 			</h1>
 			<section
 				style={{
@@ -43,9 +43,9 @@ export default function Page() {
 						marginBottom: 18,
 					}}
 				>
-					Welcome to the Training Hub! Here you’ll find the best resources to
-					help you transition into AI and tech-driven careers, whether you’re
-					just starting out or looking to upskill.
+					Transitional phasing helps workers move from traditional jobs to new
+					roles created by AI and automation. This hub provides guidance,
+					resources, and real-world examples to support your career transition.
 				</p>
 				<h2
 					style={{
@@ -54,7 +54,7 @@ export default function Page() {
 						marginBottom: 8,
 					}}
 				>
-					Where to Train
+					What is Transitional Phasing?
 				</h2>
 				<ul
 					style={{
@@ -63,15 +63,10 @@ export default function Page() {
 						marginBottom: 18,
 					}}
 				>
-					<li>Top online courses: Coursera, Udemy, edX, LinkedIn Learning</li>
-					<li>
-						College certificate programs: MIT xPro, Stanford Online, Georgia Tech
-						Analytics
-					</li>
-					<li>
-						Company partnerships: Google Career Certificates, Amazon AWS Academy
-					</li>
-					<li>Local programs: Community colleges, government retraining</li>
+					<li>Step-by-step career transition plans</li>
+					<li>Upskilling and reskilling resources</li>
+					<li>Industry-specific guidance</li>
+					<li>Mentorship and peer support</li>
 				</ul>
 				<h2
 					style={{
@@ -80,7 +75,7 @@ export default function Page() {
 						marginBottom: 8,
 					}}
 				>
-					Easy Certificates for AI Jobs
+					How Transitional Phasing Works
 				</h2>
 				<ul
 					style={{
@@ -88,19 +83,11 @@ export default function Page() {
 						fontSize: "1rem",
 					}}
 				>
-					<li>
-						IBM Data Science Professional Certificate (Coursera) – Beginner
-						friendly
-					</li>
-					<li>
-						Google Data Analytics Professional Certificate (Coursera) –
-						Entry-level
-					</li>
-					<li>Machine Learning A-Z™ (Udemy) – No prerequisites</li>
-					<li>HarvardX Data Science Certificate (edX) – Self-paced</li>
-					<li>
-						Google Career Certificates – IT, Data Analytics, Project Management
-					</li>
+					<li>Identify your current skills and interests</li>
+					<li>Explore new roles and industries</li>
+					<li>Take targeted training and certification programs</li>
+					<li>Connect with mentors and support groups</li>
+					<li>Apply for transitional jobs and internships</li>
 				</ul>
 				<h2
 					style={{
@@ -109,7 +96,7 @@ export default function Page() {
 						marginBottom: 8,
 					}}
 				>
-					How to Train
+					Success Stories
 				</h2>
 				<ul
 					style={{
@@ -117,11 +104,10 @@ export default function Page() {
 						fontSize: "1rem",
 					}}
 				>
-					<li>Online, self-paced courses for flexibility</li>
-					<li>In-person classes at local colleges and training centers</li>
-					<li>Government-supported retraining and job placement</li>
-					<li>Industry certifications for specialized skills</li>
-					<li>Project-based learning and internships</li>
+					<li>Retail worker to AI customer support specialist</li>
+					<li>Truck driver to logistics coordinator</li>
+					<li>Factory worker to robot technician</li>
+					<li>Bank teller to digital banking advisor</li>
 				</ul>
 				<h2
 					style={{
@@ -130,7 +116,7 @@ export default function Page() {
 						marginBottom: 8,
 					}}
 				>
-					Skill Tracks
+					Get Started
 				</h2>
 				<ul
 					style={{
@@ -138,51 +124,10 @@ export default function Page() {
 						fontSize: "1rem",
 					}}
 				>
-					<li>AI & Machine Learning</li>
-					<li>Data Science & Analytics</li>
-					<li>Robotics & Automation</li>
-					<li>Digital Marketing & Content</li>
-					<li>Customer Service & Support</li>
-				</ul>
-				<h2
-					style={{
-						color: "#ffd700",
-						fontSize: "1.15rem",
-						marginBottom: 8,
-					}}
-				>
-					Will There Be a Nearly Even Trade of Jobs?
-				</h2>
-				<p
-					style={{
-						color: "#fff8dc",
-						fontSize: "1rem",
-					}}
-				>
-					Many traditional jobs are being automated, but new AI roles are
-					emerging. With effective retraining, most displaced workers can
-					transition to future-ready careers. The trade isn’t always perfectly
-					even, but proactive training and support make a big difference.
-				</p>
-				<h2
-					style={{
-						color: "#ffd700",
-						fontSize: "1.15rem",
-						marginBottom: 8,
-					}}
-				>
-					Guidance & Support
-				</h2>
-				<ul
-					style={{
-						color: "#fff8dc",
-						fontSize: "1rem",
-					}}
-				>
-					<li>Take a skill assessment to find your best track</li>
-					<li>Connect with career counselors and mentors</li>
-					<li>Read success stories for inspiration</li>
-					<li>Stay updated on new training programs and job trends</li>
+					<li>Take a skills assessment</li>
+					<li>Find training programs and certifications</li>
+					<li>Join a mentorship or peer support group</li>
+					<li>Explore transitional job listings</li>
 				</ul>
 			</section>
 		</main>
