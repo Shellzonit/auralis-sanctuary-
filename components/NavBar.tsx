@@ -117,8 +117,6 @@ export default function NavBar() {
           <Link href="/new-ai-jobs" className="hover:text-blue-600">
             New AI Jobs
           </Link>
-
-
         </div>
 
         {/* Mobile Menu Placeholder */}
