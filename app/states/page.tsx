@@ -85,7 +85,6 @@ export default function StateJobsPage() {
         { city: "Detroit", jobsAffected: 700, categories: ["Manufacturing", "Transport"], timeline: "Q1-Q2 2025", resources: ["Detroit Retraining"], news: ["Auto plants use AI robots"] },
       ],
     };
-  const [selectedState, setSelectedState] = useState(STATES[0]);
 
   return (
     <main
