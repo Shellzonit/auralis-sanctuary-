@@ -34,44 +34,7 @@ export default function HomePage() {
         padding: "0 1rem",
       }}
     >
-      {/* Large Site Name */}
-      <h1
-        style={{
-          fontFamily: 'Playfair Display, Georgia, serif',
-          fontSize: '4rem',
-          fontWeight: 900,
-          color: '#ffd700',
-          margin: '48px 0 24px 0',
-          textShadow: '0 2px 24px #b71c1c',
-          letterSpacing: 2,
-          textAlign: 'center',
-        }}
-      >
-        AI Wilding
-      </h1>
-
-      {/* Tab Navigation */}
-      <nav
-        style={{
-          display: 'flex',
-          gap: 24,
-          background: 'rgba(106,27,154,0.85)', // purple
-          borderRadius: 16,
-          padding: '12px 32px',
-          marginBottom: 48,
-          boxShadow: '0 4px 24px #6a1b9a55',
-        }}
-      >
-        <Link href="/" style={tabStyle}>Home</Link>
-        <Link href="/states" style={tabStyle}>States</Link>
-        <Link href="/jobs-at-risk" style={tabStyle}>Jobs at Risk</Link>
-        <Link href="/transitional-paths" style={tabStyle}>Transitional Paths</Link>
-        <Link href="/new-ai-jobs" style={tabStyle}>New AI Jobs</Link>
-        <Link href="/training" style={tabStyle}>Training Hub</Link>
-        <Link href="/recovery" style={tabStyle}>Recovery Hub</Link>
-        <Link href="/about" style={tabStyle}>About</Link>
-        <Link href="/contact" style={tabStyle}>Contact</Link>
-      </nav>
+      {/* Large Site Name and Tab Navigation removed for a cleaner homepage */}
 
       {/* Sophisticated Welcome Section */}
       <section
