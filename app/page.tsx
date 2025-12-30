@@ -25,23 +25,38 @@ export default function HomePage() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
         padding: "0 1rem",
       }}
     >
-      <h1
+      <div
         style={{
-          fontFamily: 'Playfair Display, Georgia, serif',
-          fontSize: '3.5rem',
-          fontWeight: 900,
-          color: '#ffd700',
-          margin: '48px 0 24px 0',
-          textShadow: '0 2px 24px #6a1b9a',
-          letterSpacing: 2,
-          textAlign: 'center',
+          background: 'linear-gradient(90deg, #6a1b9a 0%, #ffd700 100%)',
+          borderRadius: 24,
+          boxShadow: '0 4px 32px #6a1b9a55',
+          padding: '48px 64px',
+          marginBottom: 48,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        AI Wilding
-      </h1>
+        <h1
+          style={{
+            fontFamily: 'Playfair Display, Georgia, serif',
+            fontSize: '3.5rem',
+            fontWeight: 900,
+            color: '#ffd700',
+            textShadow: '0 2px 24px #6a1b9a',
+            letterSpacing: 2,
+            textAlign: 'center',
+            margin: 0,
+          }}
+        >
+          AI Wilding
+        </h1>
+      </div>
       <nav
         style={{
           display: 'flex',
