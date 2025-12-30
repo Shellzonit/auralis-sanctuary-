@@ -9,13 +9,10 @@ export default function HomePage() {
   // Professional, intuitive tab order
   const tabs = [
     { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/features', label: 'Features' },
     { href: '/resources', label: 'Resources' },
     { href: '/events', label: 'Events' },
     { href: '/success-stories', label: 'Success Stories' },
     { href: '/faq', label: 'FAQ' },
-    { href: '/contact', label: 'Contact' },
   ];
   return (
     <main className="min-h-screen bg-white font-sans flex flex-col items-center px-2">
@@ -62,12 +59,12 @@ export default function HomePage() {
       {/* Elegant Photo Gallery Section */}
       <section className="flex flex-col md:flex-row gap-10 justify-center items-center my-12 w-full">
         <div className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 border border-yellow-100 max-w-2xl w-full">
-          <Image src="/ai-community-hub.jpg" alt="AI Community Hub" width={3000} height={1800} className="rounded-xl object-cover mb-2 w-full h-auto" />
-          <span className="text-base text-yellow-800 font-medium">AI Community Hub</span>
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1000&q=80" alt="Modern AI Workspace" className="rounded-xl object-cover mb-2 w-full h-auto" width="1000" height="600" />
+          <span className="text-base text-yellow-800 font-medium">Modern AI Workspace</span>
         </div>
         <div className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 border border-yellow-100 max-w-2xl w-full">
-          <Image src="/ai-use-cases.jpg" alt="AI Use Cases in Music and Medicine" width={3000} height={1800} className="rounded-xl object-cover mb-2 w-full h-auto" />
-          <span className="text-base text-yellow-800 font-medium">AI Use Cases: Music & Medicine</span>
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80" alt="Collaboration and Innovation" className="rounded-xl object-cover mb-2 w-full h-auto" width="1000" height="600" />
+          <span className="text-base text-yellow-800 font-medium">Collaboration and Innovation</span>
         </div>
       </section>
     </main>
