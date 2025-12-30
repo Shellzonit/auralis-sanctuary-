@@ -1,3 +1,4 @@
+// Homepage intentionally left blank for redesign
 "use client";
 import Link from "next/link";
 

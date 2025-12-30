@@ -1,3 +1,4 @@
+// Page intentionally left blank
 import './legacy.css';
 
 export default function LegacyPage() {
