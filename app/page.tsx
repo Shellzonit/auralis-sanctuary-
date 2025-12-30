@@ -26,7 +26,8 @@ export default function HomePage() {
 				</p>
 			</section>
 		</main>
-	);
+		);
+}
 
 
 
