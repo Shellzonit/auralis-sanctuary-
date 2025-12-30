@@ -30,7 +30,7 @@ export default function ContentTutorialPage() {
         </div>
       </section>
       <div className="text-center mt-10">
-        <a href="/" className="text-red-300 underline text-lg">← Back to Homepage</a>
+        {/* Removed 'Back to Homepage' link as part of homepage cleanup */}
       </div>
     </main>
   );
