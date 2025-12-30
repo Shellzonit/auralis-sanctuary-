@@ -2,6 +2,36 @@
 import React from "react";
 
 const TRAINING_PROGRAMS = [
+    {
+      name: "MIT xPro AI & Machine Learning Certificate",
+      url: "https://xpro.mit.edu/courses/course-v1:xPRO+AI001+2021_T1/home",
+      type: "College Certificate",
+      description: "Professional certificate in AI and machine learning from MIT."
+    },
+    {
+      name: "Stanford Online AI Graduate Certificate",
+      url: "https://online.stanford.edu/programs/artificial-intelligence-graduate-certificate",
+      type: "College Certificate",
+      description: "Graduate-level AI certificate from Stanford University."
+    },
+    {
+      name: "Georgia Tech Online Master of Science in Analytics",
+      url: "https://omsanalytics.gatech.edu/",
+      type: "College Degree",
+      description: "Affordable online master's degree in analytics from Georgia Tech."
+    },
+    {
+      name: "Amazon AWS Academy",
+      url: "https://aws.amazon.com/training/awsacademy/",
+      type: "Company Partnership",
+      description: "Cloud and AI training through college partnerships with Amazon AWS."
+    },
+    {
+      name: "Google Career Certificates (Coursera)",
+      url: "https://grow.google/certificates/",
+      type: "Company Partnership",
+      description: "Google partners with colleges to offer career certificates in IT, data analytics, and more."
+    },
   {
     name: "Coursera AI & Data Science",
     url: "https://www.coursera.org/browse/data-science",
@@ -84,7 +114,9 @@ export default function TrainingHubPage() {
             <li key={program.name} style={{ marginBottom: 8 }}>
               <a href={program.url} target="_blank" rel="noopener noreferrer" style={{ color: "#ffd700", fontWeight: 700 }}>
                 {program.name}
-              </a> <span style={{ color: "#fff8dc" }}>({program.type})</span> - {program.description}
+              </a> <span style={{ color: program.type === "College Certificate" || program.type === "College Degree" ? "#fbc02d" : program.type === "Company Partnership" ? "#d32f2f" : "#fff8dc" }}>
+                ({program.type})
+              </span> - {program.description}
             </li>
           ))}
         </ul>
