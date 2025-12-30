@@ -34,28 +34,7 @@ export default function HomePage() {
         padding: "0 1rem",
       }}
     >
-      {/* Tab Navigation */}
-      <nav
-        style={{
-          display: 'flex',
-          gap: 24,
-          background: 'rgba(106,27,154,0.85)', // purple
-          borderRadius: 16,
-          padding: '12px 32px',
-          marginBottom: 48,
-          boxShadow: '0 4px 24px #6a1b9a55',
-        }}
-      >
-        <a href="/" style={tabStyle}>Home</a>
-        <a href="/states" style={tabStyle}>States</a>
-        <a href="/jobs-at-risk" style={tabStyle}>Jobs at Risk</a>
-        <a href="/transitional-paths" style={tabStyle}>Transitional Paths</a>
-        <a href="/new-ai-jobs" style={tabStyle}>New AI Jobs</a>
-        <a href="/training" style={tabStyle}>Training Hub</a>
-        <a href="/recovery" style={tabStyle}>Recovery Hub</a>
-        <a href="/about" style={tabStyle}>About</a>
-        <a href="/contact" style={tabStyle}>Contact</a>
-      </nav>
+      {/* Tab Navigation removed for a clean homepage */}
 
       {/* Welcome section removed for a cleaner homepage */}
       {/* Chat Preview */}
