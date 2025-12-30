@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Auralis Sanctuary",
-  description: "A mythic, minimalist creative sanctuary",
+  title: "AI Wilding",
+  description: "A national atlas of AI transitions, jobs at risk, and new pathways.",
 };
 
 export default function RootLayout({
