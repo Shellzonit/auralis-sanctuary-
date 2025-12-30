@@ -100,8 +100,6 @@ export default function HomePage() {
           { href: '/jobs-at-risk', label: 'Jobs at Risk' },
           { href: '/transitional-paths', label: 'Transitional Paths' },
           { href: '/new-ai-jobs', label: 'New AI Jobs' },
-          { href: '/training', label: 'Training Hub' },
-          { href: '/recovery', label: 'Recovery Hub' },
           { href: '/about', label: 'About' },
           { href: '/contact', label: 'Contact' },
         ].map((tab, idx) => {
