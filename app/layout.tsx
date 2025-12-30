@@ -53,6 +53,10 @@ export default function RootLayout({
               {children}
             </main>
             <div className="blue-streak" />
+            {/* Footer */}
+            <footer className="w-full py-6 text-center text-sm bg-white/10 mt-12">
+              <span className="text-purple-100">This website was created using Next.js, React, Tailwind CSS, and deployed with Vercel.</span>
+            </footer>
       </body>
     </html>
   );
