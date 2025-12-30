@@ -51,7 +51,7 @@ export default function FAQPage() {
         </section>
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4 text-purple-200">Who can I contact for more help?</h2>
-          <p className="mb-6 text-purple-100">If you need more assistance, visit our Contact or Feedback page to reach out. We’re here to support your journey.</p>
+          <p className="mb-6 text-purple-100">If you need more assistance, you can email us at <a href="mailto:your@email.com" className="text-yellow-200 underline">your@email.com</a> or use the Feedback button below. We’re here to support your journey.</p>
         </section>
         {/* ...existing code... */}
         <div className="mt-12 text-center">
