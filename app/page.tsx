@@ -18,13 +18,13 @@ export default function HomePage() {
     <main className="min-h-screen bg-white font-sans flex flex-col items-center px-2">
       {/* Tabs Bar */}
       <nav className="w-full flex justify-center mt-10 mb-12">
-        <ul className="flex flex-wrap gap-2 bg-white border border-yellow-300 rounded-full px-8 py-3 shadow-lg">
+        <ul className="flex flex-wrap gap-4 bg-white border border-yellow-300 rounded-full px-12 py-5 shadow-2xl">
           {tabs.map(tab => (
             <li key={tab.href}>
               <a
                 href={tab.href}
-                className="text-base md:text-lg font-semibold px-6 py-2 rounded-full transition-colors text-yellow-800 hover:bg-yellow-100 hover:text-yellow-900 focus:bg-yellow-200 focus:text-yellow-900 outline-none tracking-wide"
-                style={{ letterSpacing: '.03em' }}
+                className="text-2xl md:text-3xl font-bold px-10 py-4 rounded-full transition-colors text-yellow-800 hover:bg-yellow-100 hover:text-yellow-900 focus:bg-yellow-200 focus:text-yellow-900 outline-none tracking-wide shadow"
+                style={{ letterSpacing: '.04em' }}
               >
                 {tab.label}
               </a>
@@ -58,13 +58,13 @@ export default function HomePage() {
 
       {/* Elegant Photo Gallery Section */}
       <section className="flex flex-col md:flex-row gap-10 justify-center items-center my-12 w-full">
-        <div className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 border border-yellow-100 max-w-2xl w-full">
-          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1000&q=80" alt="Modern AI Workspace" className="rounded-xl object-cover mb-2 w-full h-auto" width="1000" height="600" />
-          <span className="text-base text-yellow-800 font-medium">Modern AI Workspace</span>
+        <div className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 border border-yellow-100 max-w-md w-full">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="AI in the Workplace" className="rounded-xl object-cover mb-2 w-full h-auto" width="400" height="250" />
+          <span className="text-base text-yellow-800 font-medium">AI in the Workplace</span>
         </div>
-        <div className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 border border-yellow-100 max-w-2xl w-full">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80" alt="Collaboration and Innovation" className="rounded-xl object-cover mb-2 w-full h-auto" width="1000" height="600" />
-          <span className="text-base text-yellow-800 font-medium">Collaboration and Innovation</span>
+        <div className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 border border-yellow-100 max-w-md w-full">
+          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="AI and Jobs" className="rounded-xl object-cover mb-2 w-full h-auto" width="400" height="250" />
+          <span className="text-base text-yellow-800 font-medium">AI and Jobs</span>
         </div>
       </section>
     </main>
