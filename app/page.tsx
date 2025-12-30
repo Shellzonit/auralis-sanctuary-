@@ -1,32 +1,48 @@
-
-"use client";
-import React from "react";
-import Image from "next/image";
-import SanctuaryLogo from "../components/SanctuaryLogo";
-
 export default function HomePage() {
-  return (
-    <main className="min-h-screen font-sans flex flex-col items-center px-2" style={{ backgroundColor: '#F7F5F2', color: '#222' }}>
-      <div className="flex flex-col items-center mb-10">
-        <h1 className="font-serif text-6xl md:text-7xl font-extrabold tracking-wide text-center drop-shadow-lg whitespace-pre-line leading-tight mb-2" style={{ color: '#C2A86C' }}>
-          AI Wilding
-        </h1>
-        <div className="font-sans text-xl text-center max-w-2xl mb-2" style={{ color: '#222' }}>
-          Navigating the future of work and AI—resources, insights, and support for everyone.
-        </div>
-      </div>
-
-      {/* Elegant Photo Gallery Section */}
-      <section className="flex flex-col md:flex-row gap-10 justify-center items-center my-12 w-full">
-        <div className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 border border-peach-100 max-w-md w-full">
-          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="AI in the Workplace" className="rounded-xl object-cover mb-2 w-full h-auto" width="400" height="250" />
-          <span className="text-base font-medium" style={{ color: '#222' }}>AI in the Workplace</span>
-        </div>
-        <div className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 border border-peach-100 max-w-md w-full">
-          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="AI and Jobs" className="rounded-xl object-cover mb-2 w-full h-auto" width="400" height="250" />
-          <span className="text-base font-medium" style={{ color: '#222' }}>AI and Jobs</span>
-        </div>
-      </section>
-      </main>
-  );
+	const tabs = [
+		{ href: '/', label: 'Home' },
+		{ href: '/states', label: 'States' },
+		{ href: '/jobs-at-risk', label: 'Jobs at Risk' },
+		{ href: '/transitional-paths', label: 'Transitional Paths' },
+		{ href: '/new-ai-jobs', label: 'New AI Jobs' },
+	];
+	return (
+		<main className="min-h-screen flex flex-col items-center bg-[#F7F5F2] text-[#222] px-4">
+			<nav className="w-full flex justify-center py-8">
+				<div className="flex flex-row space-x-16">
+					{tabs.map(tab => (
+						<a
+							key={tab.href}
+							href={tab.href}
+							className="text-2xl font-bold px-8 py-4 rounded-lg bg-white shadow transition hover:text-[#C2A86C] text-[#4B2E83]"
+						>
+							{tab.label}
+						</a>
+					))}
+				</div>
+			</nav>
+			<div className="max-w-2xl w-full flex flex-col items-center text-center py-12">
+				<h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight" style={{ color: '#4B2E83' }}>
+					Welcome to AI Wilding
+				</h1>
+				<p className="text-xl md:text-2xl mb-8 font-medium" style={{ color: '#C2A86C' }}>
+					Navigating the future of work and AI—resources, insights, and support for everyone.
+				</p>
+				<p className="text-lg md:text-xl text-[#444]">
+					Explore jobs at risk, new AI-created roles, and state-by-state transitions. Use the navigation above to get started.
+				</p>
+			</div>
+			<div className="flex flex-row justify-center gap-16 mt-8">
+				<div className="flex flex-col items-center">
+					<img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Jobs" className="rounded-xl object-cover mb-2 w-[340px] h-[220px]" />
+					<span className="text-lg font-semibold mt-2" style={{ color: '#4B2E83' }}>Jobs</span>
+				</div>
+				<div className="flex flex-col items-center">
+					<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="AI" className="rounded-xl object-cover mb-2 w-[340px] h-[220px]" />
+					<span className="text-lg font-semibold mt-2" style={{ color: '#4B2E83' }}>AI</span>
+				</div>
+			</div>
+		</main>
+	);
 }
+
