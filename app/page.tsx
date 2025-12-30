@@ -3,6 +3,23 @@
 import Link from "next/link";
 
 export default function HomePage() {
+            const tabStyle = {
+              color: '#ffd700',
+              fontWeight: 700,
+              fontSize: '1.15rem',
+              textDecoration: 'none',
+              padding: '8px 18px',
+              borderRadius: 8,
+              background: 'rgba(106,27,154,0.10)', // purple tint
+              boxShadow: '0 2px 8px #6a1b9a22',
+              transition: 'background 0.2s',
+              border: 'none',
+              outline: 'none',
+              cursor: 'pointer',
+              letterSpacing: '.04em',
+              margin: 0,
+              display: 'inline-block',
+            };
         const tabStyle = {
           color: '#ffd700',
           fontWeight: 700,
@@ -34,24 +51,30 @@ export default function HomePage() {
         padding: "0 1rem",
       }}
     >
-      {/* Large Site Name and Tab Navigation removed for a cleaner homepage */}
-
-      {/* Sophisticated Welcome Section */}
-      <section
+      {/* Tab Navigation */}
+      <nav
         style={{
-          background: 'rgba(106,27,154,0.10)', // purple tint
-          borderRadius: 18,
-          padding: '32px 40px',
-          maxWidth: 700,
-          boxShadow: '0 2px 24px #6a1b9a33',
-          color: '#6a1b9a',
-          fontSize: 22,
-          fontFamily: 'Playfair Display, Georgia, serif',
-          textAlign: 'center',
+          display: 'flex',
+          gap: 24,
+          background: 'rgba(106,27,154,0.85)', // purple
+          borderRadius: 16,
+          padding: '12px 32px',
+          marginBottom: 48,
+          boxShadow: '0 4px 24px #6a1b9a55',
         }}
       >
-        Welcome to <span style={{ color: '#ffd700', fontWeight: 700 }}>AI Wilding</span>, your sophisticated atlas for navigating the future of work and AI-driven transitions. Explore states, discover jobs at risk, and find new opportunities with style and clarity.
-      </section>
+        <a href="/" style={tabStyle}>Home</a>
+        <a href="/states" style={tabStyle}>States</a>
+        <a href="/jobs-at-risk" style={tabStyle}>Jobs at Risk</a>
+        <a href="/transitional-paths" style={tabStyle}>Transitional Paths</a>
+        <a href="/new-ai-jobs" style={tabStyle}>New AI Jobs</a>
+        <a href="/training" style={tabStyle}>Training Hub</a>
+        <a href="/recovery" style={tabStyle}>Recovery Hub</a>
+        <a href="/about" style={tabStyle}>About</a>
+        <a href="/contact" style={tabStyle}>Contact</a>
+      </nav>
+
+      {/* Welcome section removed for a cleaner homepage */}
       {/* Chat Preview */}
       <div style={{ width: "100%", maxWidth: 420, background: "#23242b", border: "1px solid #31323a", borderRadius: 16, padding: 20, boxShadow: "0 2px 16px #0004", textAlign: "left", marginTop: 12 }}>
         <div style={{ fontWeight: 700, fontSize: 15, color: "#ffe082", marginBottom: 10 }}>Chat Preview</div>
