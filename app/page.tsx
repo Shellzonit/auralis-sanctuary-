@@ -32,7 +32,7 @@ export default function HomePage() {
   };
 
   // Custom hook for hover effect
-  function useHover() {
+  function useHover(): [boolean, () => void, () => void] {
     const [isHovered, setHovered] = React.useState(false);
     const onMouseEnter = () => setHovered(true);
     const onMouseLeave = () => setHovered(false);
