@@ -125,6 +125,16 @@ export default function TrainingHubPage() {
             </li>
           ))}
         </ul>
+        <div style={{ margin: "32px 0 0 0", padding: "18px", background: "rgba(255,255,255,0.10)", borderRadius: 12, boxShadow: "0 2px 8px #6a1b9a22" }}>
+          <h2 style={{ color: "#ffd700", fontSize: "1.15rem", marginBottom: 8 }}>Easy Certificates for AI Jobs</h2>
+          <ul style={{ color: "#fff8dc", fontSize: "1rem" }}>
+            <li><a href="https://www.coursera.org/professional-certificates/ibm-data-science" target="_blank" rel="noopener noreferrer" style={{ color: "#ffd700", fontWeight: 700 }}>IBM Data Science Professional Certificate</a> (Coursera) – No degree required, beginner friendly.</li>
+            <li><a href="https://www.coursera.org/professional-certificates/google-data-analytics" target="_blank" rel="noopener noreferrer" style={{ color: "#ffd700", fontWeight: 700 }}>Google Data Analytics Professional Certificate</a> (Coursera) – Entry-level, flexible schedule.</li>
+            <li><a href="https://www.udemy.com/course/machinelearning/" target="_blank" rel="noopener noreferrer" style={{ color: "#ffd700", fontWeight: 700 }}>Machine Learning A-Z™: Hands-On Python & R In Data Science</a> (Udemy) – No prerequisites, practical projects.</li>
+            <li><a href="https://www.edx.org/professional-certificate/harvardx-data-science" target="_blank" rel="noopener noreferrer" style={{ color: "#ffd700", fontWeight: 700 }}>HarvardX Data Science Professional Certificate</a> (edX) – Beginner friendly, self-paced.</li>
+            <li><a href="https://grow.google/certificates/" target="_blank" rel="noopener noreferrer" style={{ color: "#ffd700", fontWeight: 700 }}>Google Career Certificates</a> – IT Support, Data Analytics, Project Management, and more.</li>
+          </ul>
+        </div>
         <p style={{ color: "#ffd700", fontSize: "1.05rem", marginBottom: 8 }}><strong>How do people train?</strong></p>
         <ul style={{ color: "#fff8dc", fontSize: "1rem" }}>
           <li>Online, self-paced courses for flexibility</li>
