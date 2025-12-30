@@ -42,12 +42,12 @@ export default function RootLayout({
             </header>
             {/* Navigation Bar */}
             <header className="bg-[#F7F5F2] border-b border-[#E0DDD8] py-5">
-              <nav className="flex justify-center space-x-12 text-lg">
-                <a href="/" className="text-[#4B2E83] hover:text-[#C2A86C] transition">Home</a>
-                <a href="/states" className="text-[#4B2E83] hover:text-[#C2A86C] transition">States</a>
-                <a href="/jobs-at-risk" className="text-[#4B2E83] hover:text-[#C2A86C] transition">Jobs at Risk</a>
-                <a href="/transitional-paths" className="text-[#4B2E83] hover:text-[#C2A86C] transition">Transitional Paths</a>
-                <a href="/new-ai-jobs" className="text-[#4B2E83] hover:text-[#C2A86C] transition">New AI Jobs</a>
+              <nav className="flex justify-center space-x-8 text-lg">
+                <a href="/" className="px-6 py-2 rounded font-bold text-[#4B2E83] hover:text-[#C2A86C] transition bg-white shadow-sm">Home</a>
+                <a href="/states" className="px-6 py-2 rounded font-bold text-[#4B2E83] hover:text-[#C2A86C] transition bg-white shadow-sm">States</a>
+                <a href="/jobs-at-risk" className="px-6 py-2 rounded font-bold text-[#4B2E83] hover:text-[#C2A86C] transition bg-white shadow-sm">Jobs at Risk</a>
+                <a href="/transitional-paths" className="px-6 py-2 rounded font-bold text-[#4B2E83] hover:text-[#C2A86C] transition bg-white shadow-sm">Transitional Paths</a>
+                <a href="/new-ai-jobs" className="px-6 py-2 rounded font-bold text-[#4B2E83] hover:text-[#C2A86C] transition bg-white shadow-sm">New AI Jobs</a>
               </nav>
             </header>
             {/* Page Content */}
