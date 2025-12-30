@@ -43,10 +43,7 @@ export default function RootLayout({
                 <a href="/jobs-at-risk" className="hover:text-yellow-300 transition">Jobs at Risk</a>
                 <a href="/transitional-paths" className="hover:text-yellow-300 transition">Transitional Paths</a>
                 <a href="/new-ai-jobs" className="hover:text-yellow-300 transition">New AI Jobs</a>
-                <Link href="/training-hub" className="hover:text-yellow-300 transition">
-                  Training Hub
-                </Link>
-                <a href="/recovery" className="hover:text-yellow-300 transition">Recovery Hub</a>
+                
                 
                 <a href="/contact" className="hover:text-yellow-300 transition">Contact</a>
               </div>
