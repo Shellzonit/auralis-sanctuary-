@@ -9,22 +9,22 @@ export default function HomePage() {
   // Professional, intuitive tab order
   const tabs = [
     { href: '/', label: 'Home' },
-    { href: '/resources', label: 'Resources' },
-    { href: '/events', label: 'Events' },
-    { href: '/success-stories', label: 'Success Stories' },
-    { href: '/faq', label: 'FAQ' },
+    { href: '/states', label: 'States' },
+    { href: '/jobs-at-risk', label: 'Jobs at Risk' },
+    { href: '/transitional-paths', label: 'Transitional Paths' },
+    { href: '/new-ai-jobs', label: 'New AI Jobs' },
   ];
   return (
     <main className="min-h-screen font-sans flex flex-col items-center px-2" style={{ backgroundColor: '#F7F5F2', color: '#222' }}>
       {/* Tabs Bar */}
-      <nav className="w-full flex justify-center mt-8 mb-10">
-        <ul className="flex flex-row flex-wrap justify-center w-full max-w-5xl gap-6 px-4 py-3 bg-peach-100 rounded-2xl shadow-xl border border-peach-200">
+      <nav className="w-full flex justify-center mt-8 mb-12">
+        <ul className="flex flex-row flex-wrap justify-center w-full max-w-6xl gap-8 px-6 py-5 bg-peach-100 rounded-3xl shadow-2xl border border-peach-200">
           {tabs.map(tab => (
-            <li key={tab.href} className="flex-1 flex justify-center min-w-[160px] mb-2">
+            <li key={tab.href} className="flex-1 flex justify-center min-w-[200px] mb-2">
               <a
                 href={tab.href}
-                className="text-2xl md:text-3xl font-bold px-8 py-3 rounded-full transition-colors text-peach-900 bg-peach-200 hover:bg-peach-300 hover:text-peach-800 focus:bg-white focus:text-peach-700 outline-none tracking-wide shadow-md border-2 border-peach-300"
-                style={{ letterSpacing: '.06em', minWidth: 140, boxShadow: '0 2px 8px rgba(255, 183, 149, 0.10)' }}
+                className="text-3xl md:text-4xl font-extrabold px-12 py-6 rounded-full transition-colors text-peach-900 bg-peach-200 hover:bg-peach-300 hover:text-peach-800 focus:bg-white focus:text-peach-700 outline-none tracking-wide shadow-lg border-2 border-peach-300"
+                style={{ letterSpacing: '.07em', minWidth: 180, boxShadow: '0 4px 16px rgba(255, 183, 149, 0.13)' }}
               >
                 {tab.label}
               </a>
