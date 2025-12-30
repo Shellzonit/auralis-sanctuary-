@@ -119,9 +119,6 @@ export default function NavBar() {
           </Link>
 
 
-          <Link href="/contact" className="hover:text-blue-600">
-            Contact
-          </Link>
         </div>
 
         {/* Mobile Menu Placeholder */}
