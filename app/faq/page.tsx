@@ -9,6 +9,17 @@ export default function FAQPage() {
     setFeedbackSent(true);
   };
 
+  // Email form state
+  const [form, setForm] = React.useState({ name: '', email: '', message: '' });
+  const [formSent, setFormSent] = React.useState(false);
+  const handleFormChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setFormSent(true);
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-700 to-yellow-400 text-white py-12 px-4">
       <div className="max-w-3xl mx-auto">
@@ -51,17 +62,47 @@ export default function FAQPage() {
         </section>
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4 text-purple-200">Who can I contact for more help?</h2>
-          <p className="mb-6 text-purple-100">If you need more assistance, you can email us at <a href="mailto:your@email.com" className="text-yellow-200 underline">your@email.com</a> or use the Feedback button below. We’re here to support your journey.</p>
+          <p className="mb-6 text-purple-100">If you need more assistance, use the Feedback button below or contact me on <a href="https://x.com/Shellzonit" target="_blank" rel="noopener" className="text-yellow-200 underline">X (@Shellzonit)</a>. We’re here to support your journey.</p>
         </section>
         {/* ...existing code... */}
         <div className="mt-12 text-center">
-          <button
-            className="bg-yellow-300 text-purple-900 px-4 py-2 rounded shadow hover:bg-yellow-400 transition"
-            onClick={handleFeedback}
-            disabled={feedbackSent}
-          >
-            {feedbackSent ? 'Thank you for your feedback!' : 'Send Feedback'}
-          </button>
+          <form className="max-w-md mx-auto bg-white/10 p-6 rounded-lg shadow-lg" onSubmit={handleFormSubmit}>
+            <h3 className="text-xl font-bold mb-4 text-yellow-200">Email Us</h3>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={form.name}
+              onChange={handleFormChange}
+              className="w-full mb-3 px-3 py-2 rounded bg-purple-900 text-white border border-yellow-200 focus:outline-none"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={form.email}
+              onChange={handleFormChange}
+              className="w-full mb-3 px-3 py-2 rounded bg-purple-900 text-white border border-yellow-200 focus:outline-none"
+              required
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              value={form.message}
+              onChange={handleFormChange}
+              className="w-full mb-3 px-3 py-2 rounded bg-purple-900 text-white border border-yellow-200 focus:outline-none"
+              rows={4}
+              required
+            />
+            <button
+              type="submit"
+              className="bg-yellow-300 text-purple-900 px-4 py-2 rounded shadow hover:bg-yellow-400 transition w-full font-bold"
+              disabled={formSent}
+            >
+              {formSent ? 'Message Sent! (Demo)' : 'Send Message'}
+            </button>
+          </form>
         </div>
       </div>
     </main>
