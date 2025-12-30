@@ -12,10 +12,10 @@ export default function FAQPage() {
   // Email form state
   const [form, setForm] = React.useState({ name: '', email: '', message: '' });
   const [formSent, setFormSent] = React.useState(false);
-  const handleFormChange = (e) => {
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormSent(true);
   };
