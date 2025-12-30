@@ -118,9 +118,6 @@ export default function NavBar() {
             New AI Jobs
           </Link>
 
-          <Link href="/about" className="hover:text-blue-600">
-            About
-          </Link>
 
           <Link href="/contact" className="hover:text-blue-600">
             Contact
