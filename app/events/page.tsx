@@ -1,10 +1,14 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function EventsPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-700 to-yellow-400 text-white py-12 px-4">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold mb-8 text-center text-yellow-300">Events & Webinars</h1>
+        <div className="flex flex-col items-center mb-8">
+          <Image src="/photo2.jpg" alt="Events and Webinars" width={420} height={260} className="rounded-xl shadow border-4 border-yellow-300 object-cover mb-4" />
+        </div>
         <p className="mb-8 text-lg text-purple-100 text-center">Discover upcoming career fairs, webinars, and networking opportunities to help you transition and grow in the AI era.</p>
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4 text-purple-200">Upcoming Career Fairs & Webinars</h2>

@@ -1,9 +1,13 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ResourcesPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-700 to-yellow-400 text-white py-12 px-4">
       <div className="max-w-3xl mx-auto">
+        <div className="flex flex-col items-center mb-8">
+          <Image src="/ai-use-cases.jpg" alt="AI Use Cases" width={420} height={260} className="rounded-xl shadow border-4 border-yellow-300 object-cover mb-4" />
+        </div>
         <h1 className="text-4xl font-bold mb-8 text-center text-yellow-300">Resources for Career Transition</h1>
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4 text-purple-200">Job Boards & Career Sites</h2>

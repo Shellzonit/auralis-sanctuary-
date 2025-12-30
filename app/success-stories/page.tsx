@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 const STORIES = [
   {
@@ -52,6 +53,9 @@ export default function SuccessStoriesPage() {
       <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }}>
         Success Stories
       </h1>
+      <div className="flex flex-col items-center mb-8">
+        <Image src="/photo1.jpg" alt="Success Story" width={420} height={260} className="rounded-xl shadow border-4 border-yellow-300 object-cover mb-4" />
+      </div>
       <section style={{ maxWidth: 900, background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
         <p style={{ color: "#fff8dc", fontSize: "1.08rem", marginBottom: 18 }}>
           Real stories of people who successfully transitioned to new careers in the age of AI and automation.
