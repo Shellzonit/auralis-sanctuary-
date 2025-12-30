@@ -74,34 +74,7 @@ export default function HomePage() {
     </main>
   );
 }
-        {tabs.map(tab => (
-          <Link
-            key={tab.href}
-            href={tab.href}
-            style={{ textDecoration: "none" }}
-          >
-            <span
-              style={{
-                color: "#f7fafc",
-                background: "#23242b",
-                borderRadius: 18,
-                padding: "0.7rem 2.2rem",
-                fontWeight: 600,
-                fontSize: 18,
-                letterSpacing: ".04em",
-                border: "2px solid #31323a",
-                boxShadow: "0 2px 12px 0 #0006",
-                transition: "all .18s cubic-bezier(.4,0,.2,1)",
-                margin: 0,
-                display: "inline-block",
-              }}
-              onMouseOver={e => { e.currentTarget.style.background = "#2a2b33"; }}
-              onMouseOut={e => { e.currentTarget.style.background = "#23242b"; }}
-            >
-              {tab.label}
-            </span>
-          </Link>
-        ))}
+        {/* ...existing code for tab navigation... */}
       </nav>
       {/* Ai Wilding Large Centered Header */}
       <div style={{
