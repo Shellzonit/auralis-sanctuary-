@@ -17,14 +17,14 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-white font-sans flex flex-col items-center px-2">
       {/* Tabs Bar */}
-      <nav className="w-full flex justify-center mt-10 mb-12">
-        <ul className="flex flex-wrap gap-4 bg-white border border-yellow-300 rounded-full px-12 py-5 shadow-2xl">
+      <nav className="w-full flex justify-center mt-6 mb-6">
+        <ul className="flex flex-row justify-between w-full max-w-5xl gap-12 px-8 bg-blue-100 border border-blue-300 rounded-full shadow-2xl">
           {tabs.map(tab => (
-            <li key={tab.href}>
+            <li key={tab.href} className="flex-1 text-center">
               <a
                 href={tab.href}
-                className="text-2xl md:text-3xl font-bold px-10 py-4 rounded-full transition-colors text-yellow-800 hover:bg-yellow-100 hover:text-yellow-900 focus:bg-yellow-200 focus:text-yellow-900 outline-none tracking-wide shadow"
-                style={{ letterSpacing: '.04em' }}
+                className="text-3xl md:text-4xl font-extrabold px-0 py-4 rounded transition-colors text-blue-900 hover:bg-blue-200 hover:text-blue-800 focus:bg-blue-300 focus:text-blue-900 outline-none tracking-wider"
+                style={{ letterSpacing: '.07em', display: 'inline-block', minWidth: 120 }}
               >
                 {tab.label}
               </a>
@@ -33,12 +33,9 @@ export default function HomePage() {
         </ul>
       </nav>
       <div className="flex flex-col items-center mb-10">
-        <div className="flex flex-col md:flex-row items-center gap-8 mb-4">
-          <SanctuaryLogo />
-          <h1 className="font-serif text-5xl md:text-6xl font-extrabold text-yellow-700 tracking-wide text-center drop-shadow-lg whitespace-pre-line leading-tight">
-            AI Wilding
-          </h1>
-        </div>
+        <h1 className="font-serif text-6xl md:text-7xl font-extrabold text-yellow-700 tracking-wide text-center drop-shadow-lg whitespace-pre-line leading-tight mb-2">
+          AI Wilding
+        </h1>
         <div className="font-sans text-xl text-yellow-900 text-center max-w-2xl mb-2">
           Navigating the future of work and AI—resources, insights, and support for everyone.
         </div>
