@@ -15,7 +15,7 @@ export default function HomePage() {
     { href: '/faq', label: 'FAQ' },
   ];
   return (
-    <main className="min-h-screen bg-white font-sans flex flex-col items-center px-2">
+    <main className="min-h-screen font-sans flex flex-col items-center px-2" style={{ backgroundColor: '#121110' }}>
       {/* Tabs Bar */}
       <nav className="w-full flex justify-center mt-8 mb-10">
         <ul className="flex flex-row flex-wrap justify-center w-full max-w-5xl gap-6 px-4 py-3 bg-peach-100 rounded-2xl shadow-xl border border-peach-200">
