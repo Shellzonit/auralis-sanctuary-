@@ -1,26 +1,6 @@
 export default function HomePage() {
-	const tabs = [
-		{ href: '/', label: 'Home' },
-		{ href: '/states', label: 'States' },
-		{ href: '/jobs-at-risk', label: 'Jobs at Risk' },
-		{ href: '/transitional-paths', label: 'Transitional Paths' },
-		{ href: '/new-ai-jobs', label: 'New AI Jobs' },
-	];
 	return (
 		<main className="min-h-screen flex flex-col items-center bg-[#F7F5F2] text-[#222] px-4">
-			<nav className="w-full flex justify-center py-8">
-				<div className="flex flex-row space-x-16">
-					{tabs.map(tab => (
-						<a
-							key={tab.href}
-							href={tab.href}
-							className="text-2xl font-bold px-8 py-4 rounded-lg bg-white shadow transition hover:text-[#C2A86C] text-[#4B2E83]"
-						>
-							{tab.label}
-						</a>
-					))}
-				</div>
-			</nav>
 			<div className="max-w-2xl w-full flex flex-col items-center text-center py-12">
 				<h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight" style={{ color: '#4B2E83' }}>
 					Welcome to AI Wilding
