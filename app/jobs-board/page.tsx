@@ -84,7 +84,7 @@ export default function JobsBoardPage() {
             <div key={msg.id} className="border-2 border-yellow-400 rounded-lg p-3 bg-white/90 shadow-md">
               <div className="flex justify-between items-center mb-1">
                 <span className="font-semibold text-purple-800">{msg.name}</span>
-                <span className="text-xs text-yellow-700">{new Date(msg.createdAt || msg.created_at).toLocaleString()}</span>
+                <span className="text-xs text-yellow-700">{new Date(msg.createdAt).toLocaleString()}</span>
               </div>
               <div className="text-purple-900 whitespace-pre-line">{msg.message}</div>
             </div>
