@@ -1,3 +1,4 @@
+import React from "react";
 import SanctuaryLogo from "../components/SanctuaryLogo";
 
 export default function HomePage() {
