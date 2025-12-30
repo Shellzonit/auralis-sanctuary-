@@ -6,7 +6,6 @@ export async function GET(req: NextRequest) {
   // Add your site routes here
   const pages = [
     '',
-    '/about',
     '/art',
     '/artist',
     '/auth',

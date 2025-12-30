@@ -15,7 +15,6 @@ export default function NavTabs() {
     { href: "/sharing", label: "Sharing" },
     { href: "/showcase", label: "Showcase" },
     { href: "/spotlight", label: "Spotlight" },
-    { href: "/about", label: "About Us" },
     { href: "/legacy", label: "Legacy" },
     { href: "/privacy", label: "Privacy" },
   ];
