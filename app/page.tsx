@@ -62,4 +62,6 @@ export default function HomePage() {
           <h3 style={{ color: '#ffd700', fontWeight: 700, fontSize: 22, marginBottom: 16 }}>General Discussion Board</h3>
           <ThreadedChat />
         </section>
+      </main>
+    </div>
 
