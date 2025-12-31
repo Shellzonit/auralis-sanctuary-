@@ -8,6 +8,7 @@ export default function TransitionalPhasingJobs() {
     { label: "Email", href: "/email" },
     { label: "Spotlight", href: "/spotlight" },
     { label: "Sharing", href: "/sharing" },
+    { label: "About", href: "/about" },
     { label: "Legacy", href: "/legacy" },
     { label: "Privacy", href: "/privacy" },
   ];

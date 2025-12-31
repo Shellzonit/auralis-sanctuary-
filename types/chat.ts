@@ -6,4 +6,3 @@ export type ChatMessage = {
   threadId: string;
   parentId?: string | null;
 };
-

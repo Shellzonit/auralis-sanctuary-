@@ -6,15 +6,14 @@ export default function NavTabs() {
   const pathname = usePathname();
   const tabs = [
     { href: "/", label: "Home" },
+    { href: "/chat", label: "Chat" },
     { href: "/content", label: "Content" },
     { href: "/artist-intros", label: "Artist Intros" },
     { href: "/mail", label: "Email" },
     { href: "/games", label: "Games" },
     { href: "/license", label: "Licensing" },
-    { href: "/sharing", label: "Sharing" },
-    { href: "/showcase", label: "Showcase" },
     { href: "/spotlight", label: "Spotlight" },
-    { href: "/jobs-board", label: "Jobs Board" },
+    { href: "/about", label: "About Us" },
     { href: "/legacy", label: "Legacy" },
     { href: "/privacy", label: "Privacy" },
   ];
@@ -25,7 +24,7 @@ export default function NavTabs() {
           const isActive =
             tab.href === "/"
               ? pathname === "/"
-              : pathname && pathname.startsWith(tab.href);
+              : pathname.startsWith(tab.href);
           return (
             <li key={tab.href}>
               <Link
