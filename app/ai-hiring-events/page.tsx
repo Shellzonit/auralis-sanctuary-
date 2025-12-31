@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function AIHiringEventsPage() {
   return (
@@ -41,7 +42,24 @@ export default function AIHiringEventsPage() {
             <div style={{ color: '#C2A86C', fontSize: '1rem', marginBottom: 4 }}>Virtual booths, global employers, and live Q&amp;A sessions.</div>
           </li>
         </ul>
-        <div style={{ color: '#fff8dc', fontSize: '1rem', marginTop: 24, textAlign: 'center', maxWidth: 600 }}>
+        {/* Chatbot link */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24, marginBottom: 8 }}>
+          <Link href="/chatbot-demo" style={{
+            background: '#ffd700',
+            color: '#232526',
+            fontWeight: 700,
+            borderRadius: 8,
+            padding: '12px 28px',
+            fontSize: '1.08rem',
+            textDecoration: 'none',
+            boxShadow: '0 2px 8px #6a1b9a22',
+            transition: 'background 0.2s',
+            display: 'inline-block',
+          }}>
+            💬 Try the AI Chatbot — Ask about jobs & events
+          </Link>
+        </div>
+        <div style={{ color: '#fff8dc', fontSize: '1rem', marginTop: 12, textAlign: 'center', maxWidth: 600 }}>
           <strong>Want to host an event?</strong> Contact us to feature your AI hiring event here!
         </div>
       </section>
