@@ -156,9 +156,12 @@ const JOB_SUGGESTIONS = [
 
 export default function ChatbotDemo() {
   const [visitorNum, setVisitorNum] = useState<number | null>(null);
-  const [messages, setMessages] = useState<{from: string, text: string}[]>([]);
+  // Threaded messages: { id, from, text, parentId }
+  const [messages, setMessages] = useState<Array<{id: number, from: string, text: string, parentId?: number}>>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [replyTo, setReplyTo] = useState<number | null>(null);
+  const nextId = React.useRef(1);
 
   // On mount, increment and get visitor number from localStorage
   useEffect(() => {
@@ -172,12 +175,13 @@ export default function ChatbotDemo() {
     } catch {}
     setVisitorNum(num);
     setMessages([
-      { from: "bot", text: `Welcome! You are visitor number ${num} on this browser. Ask me anything about this site, AI jobs, or events.` }
+      { id: 0, from: "Mr. Job Nanny", text: `Welcome! You are visitor number ${num} on this browser. Ask me anything about this site, AI jobs, or events.`, parentId: undefined }
     ]);
+    nextId.current = 1;
     recordChatbotVisit();
   }, []);
 
-    function getBotResponse(userMsg: string) {
+  function getBotResponse(userMsg: string) {
       const msg = userMsg.toLowerCase();
       // 1. Announcement/news match
       if (/(news|announcement|update|what's new|latest)/.test(msg)) {
@@ -260,15 +264,45 @@ export default function ChatbotDemo() {
     e.preventDefault();
     if (!input.trim()) return;
     const userMsg = input.trim();
-    setMessages(msgs => [...msgs, { from: "user", text: userMsg }]);
+    const msgId = nextId.current++;
+    setMessages(msgs => [...msgs, { id: msgId, from: "You", text: userMsg, parentId: replyTo ?? undefined }]);
     setInput("");
     setLoading(true);
     setTimeout(() => {
       const botReply = getBotResponse(userMsg);
-      setMessages(msgs => [...msgs, { from: "bot", text: botReply }]);
+      setMessages(msgs => [
+        ...msgs,
+        { id: nextId.current++, from: "Mr. Job Nanny", text: botReply, parentId: replyTo ?? undefined }
+      ]);
       setLoading(false);
+      setReplyTo(null);
     }, 600);
   };
+
+  // Render threaded messages (one level deep)
+  function renderMessages(parentId?: number) {
+    return messages
+      .filter(m => m.parentId === parentId)
+      .map(m => (
+        <div key={m.id} style={{ marginLeft: parentId !== undefined ? 32 : 0, marginBottom: 8 }}>
+          <div style={{
+            textAlign: m.from === "Mr. Job Nanny" ? "left" : "right",
+            color: m.from === "Mr. Job Nanny" ? "#ffd700" : "#fff8dc",
+            fontWeight: m.from === "Mr. Job Nanny" ? 700 : 400,
+            background: m.from === "Mr. Job Nanny" ? "rgba(255,215,0,0.08)" : "rgba(255,255,255,0.05)",
+            borderRadius: 8,
+            padding: "8px 12px",
+            display: 'inline-block',
+            maxWidth: 380
+          }}>
+            <span style={{ fontSize: 13, opacity: 0.7 }}>{m.from}</span><br />
+            {m.text}
+          </div>
+          <button onClick={() => setReplyTo(m.id)} style={{ marginLeft: 8, fontSize: 12, color: '#ffd700', background: 'none', border: 'none', cursor: 'pointer' }}>Reply</button>
+          {renderMessages(m.id)}
+        </div>
+      ));
+  }
 
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem" }}>
@@ -293,22 +327,20 @@ export default function ChatbotDemo() {
       </div>
       <section style={{ maxWidth: 500, width: '100%', background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
         <div style={{ minHeight: 220, marginBottom: 16 }}>
-          {messages.map((msg, i) => (
-            <div key={i} style={{
-              textAlign: msg.from === "bot" ? "left" : "right",
-              color: msg.from === "bot" ? "#ffd700" : "#fff8dc",
-              margin: '8px 0',
-              fontWeight: msg.from === "bot" ? 700 : 400
-            }}>{msg.text}</div>
-          ))}
-          {loading && <div style={{ color: '#ffd700', fontStyle: 'italic' }}>Bot is typing…</div>}
+          {renderMessages(undefined)}
+          {loading && <div style={{ color: '#ffd700', fontStyle: 'italic' }}>Mr. Job Nanny is typing…</div>}
         </div>
         <form onSubmit={handleSend} style={{ display: 'flex', gap: 8 }}>
+          {replyTo !== null && (
+            <span style={{ color: '#ffd700', fontSize: 13, alignSelf: 'center' }}>
+              Replying to message #{replyTo} <button type="button" onClick={() => setReplyTo(null)} style={{ color: '#fff8dc', background: 'none', border: 'none', marginLeft: 4, cursor: 'pointer' }}>Cancel</button>
+            </span>
+          )}
           <input
             value={input}
             onChange={e => setInput(e.target.value)}
             style={{ flex: 1, borderRadius: 8, border: '1.5px solid #ffd700', padding: '10px 14px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }}
-            placeholder="Type your question..."
+            placeholder={replyTo !== null ? "Type your reply..." : "Type your question..."}
             disabled={loading}
             autoFocus
           />
