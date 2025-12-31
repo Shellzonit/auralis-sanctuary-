@@ -23,12 +23,13 @@ export default function ChatWidget() {
 
   function handleSend() {
     if (!input.trim()) return;
-    const userMessage = { sender: 'user', text: input };
-    setMessages(msgs => [...msgs, userMessage]);
+    const userMessage: Message = { sender: 'user', text: input };
+    setMessages((msgs: Message[]) => [...msgs, userMessage]);
     setInput('');
     // Simulate bot reply
     setTimeout(() => {
-      setMessages(msgs => [...msgs, { sender: 'bot', text: getBotReply(input) }]);
+      const botMessage: Message = { sender: 'bot', text: getBotReply(input) };
+      setMessages((msgs: Message[]) => [...msgs, botMessage]);
     }, 700);
   }
 
