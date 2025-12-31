@@ -1,19 +1,4 @@
-  {
-    q: "How is AI used in games?",
-    a: "AI is revolutionizing game development by powering smarter NPCs, procedural content generation, adaptive difficulty, and even game testing. AI tools help designers create more immersive and dynamic experiences. Careers include AI Game Designer, Game AI Programmer, and Narrative Designer."
-  },
-  {
-    q: "How is AI used in music?",
-    a: "AI is transforming music by enabling generative composition, intelligent mixing, and personalized recommendations. Artists use AI to create new sounds, collaborate with virtual musicians, and analyze trends. Careers include AI Music Producer, Sound Designer, and Music Data Analyst."
-  },
-  {
-    keyword: "games",
-    suggestion: "Explore roles like AI Game Designer, Game AI Programmer, and Narrative Designer. AI is used for smarter NPCs, procedural worlds, and player analytics in the gaming industry."
-  },
-  {
-    keyword: "music",
-    suggestion: "Consider careers such as AI Music Producer, Sound Designer, or Music Data Analyst. AI is used for generative music, intelligent mixing, and music recommendation systems."
-  },
+
 "use client";
 import React, { useState } from "react";
 
@@ -21,6 +6,14 @@ import React, { useState } from "react";
 // Latest announcement/news (update this string as needed)
 const ANNOUNCEMENT = "🎉 Happy New Year 2026! Check out our upcoming AI Hiring Events and new job listings for the year ahead. Stay tuned for more updates!";
 const FAQS = [
+    {
+      q: "How is AI used in games?",
+      a: "AI is revolutionizing game development by powering smarter NPCs, procedural content generation, adaptive difficulty, and even game testing. AI tools help designers create more immersive and dynamic experiences. Careers include AI Game Designer, Game AI Programmer, and Narrative Designer."
+    },
+    {
+      q: "How is AI used in music?",
+      a: "AI is transforming music by enabling generative composition, intelligent mixing, and personalized recommendations. Artists use AI to create new sounds, collaborate with virtual musicians, and analyze trends. Careers include AI Music Producer, Sound Designer, and Music Data Analyst."
+    },
   {
     q: "What is this site about?",
     a: "Auralis Sanctuary is a creative sanctuary dedicated to helping you thrive in the age of AI. We offer curated AI job listings, hiring events, resources, and community support for creative and technical talent. Whether you're looking to start a new career, upskill, or connect with others, you'll find guidance and opportunities here."
@@ -48,6 +41,14 @@ const FAQS = [
 ];
 
 const JOB_SUGGESTIONS = [
+    {
+      keyword: "games",
+      suggestion: "Explore roles like AI Game Designer, Game AI Programmer, and Narrative Designer. AI is used for smarter NPCs, procedural worlds, and player analytics in the gaming industry."
+    },
+    {
+      keyword: "music",
+      suggestion: "Consider careers such as AI Music Producer, Sound Designer, or Music Data Analyst. AI is used for generative music, intelligent mixing, and music recommendation systems."
+    },
   {
     keyword: "creative",
     suggestion: "You might enjoy roles like Generative Content Creator, AI Art Director, or AI Trainer. These positions blend creativity with technology and are in high demand. Check the New AI Jobs page for more."
