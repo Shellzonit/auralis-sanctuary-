@@ -203,7 +203,13 @@ export default function ChatbotDemo() {
           return "Many entry-level AI jobs such as AI Trainer or Generative Content Creator require less training and are open to beginners. Look for roles that focus on data labeling, content creation, or supporting AI teams. Check the New AI Jobs page for more details.";
         }
       }
-      // 2. AI job definitions, qualifications, and pay
+      // 2. List all AI jobs if user asks for a list
+      if (
+        (msg.includes("ai jobs") || msg.includes("list ai jobs") || msg.includes("all ai jobs") || msg.includes("what are the ai jobs") || msg.includes("show ai jobs") || msg.includes("available ai jobs") || msg.includes("types of ai jobs") || msg.includes("what do ai jobs do") || msg.includes("what is an ai job") || msg.includes("what are ai careers") || msg.includes("explain ai jobs") || msg.includes("tell me about ai jobs"))
+      ) {
+        return `AI jobs are roles that involve working with artificial intelligence technologies, such as building, training, or applying AI models and systems. Here are some AI jobs you can explore:\n\n${NEW_AI_JOBS.map(job => `• ${job.title}`).join("\n")}\n\nYou can ask about any job above to learn more about its responsibilities, required skills, and pay.`;
+      }
+      // 3. AI job definitions, qualifications, and pay
       for (const job of NEW_AI_JOBS) {
         const jobName = job.title.toLowerCase();
         // Certification or training questions
@@ -224,7 +230,23 @@ export default function ChatbotDemo() {
           return `**${job.title}**\n\n${job.description}\n\n**Required Skills:** ${job.skills.join(", ")}\n**Industries:** ${job.industries.join(", ")}\n**Example Employers:** ${job.employers.join(", ")}\n**Training Resources:** ${job.resources.join(", ")}\n**Typical Pay Range:** ${job.pay}`;
         }
       }
-      // 3. FAQ match
+      // 4. General site/about questions
+      if (
+        msg.includes("about this site") ||
+        msg.includes("what is this site") ||
+        msg.includes("what does this site do") ||
+        msg.includes("what is sanctuary") ||
+        msg.includes("what is auralis sanctuary") ||
+        msg.includes("what does this website do") ||
+        msg.includes("tell me about this site") ||
+        msg.includes("site purpose") ||
+        msg.includes("site info") ||
+        msg.includes("website info") ||
+        msg.includes("what is this for")
+      ) {
+        return "Auralis Sanctuary is a creative sanctuary dedicated to helping you thrive in the age of AI. We offer curated AI job listings, hiring events, resources, and community support for creative and technical talent. Whether you're looking to start a new career, upskill, or connect with others, you'll find guidance and opportunities here.";
+      }
+      // 5. FAQ match
       const faq = FAQS.find(f => msg.includes(f.q.toLowerCase().split(" ")[0]));
       if (faq) return faq.a;
       // 4. Job suggestion
