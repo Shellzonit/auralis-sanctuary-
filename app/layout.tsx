@@ -41,14 +41,14 @@ export default function RootLayout({
               </h1>
             </header>
             {/* Navigation Bar */}
-            <header className="bg-[#F7F5F2] border-b border-[#E0DDD8] py-8">
+            <header className="bg-transparent border-b border-[#E0DDD8] py-8">
               <nav className="w-full flex justify-between items-center text-2xl gap-0">
                 <div className="w-full flex flex-row">
-                  <a href="/" className="flex-1 text-center px-0 py-5 rounded-none font-extrabold text-[#4B2E83] hover:text-[#C2A86C] transition bg-white shadow-none border-r border-[#E0DDD8] first:rounded-l-xl last:rounded-r-xl first:border-l last:border-r-0">Home</a>
-                  <a href="/states" className="flex-1 text-center px-0 py-5 rounded-none font-extrabold text-[#4B2E83] hover:text-[#C2A86C] transition bg-white shadow-none border-r border-[#E0DDD8] last:rounded-r-xl last:border-r-0">States</a>
-                  <a href="/jobs-at-risk" className="flex-1 text-center px-0 py-5 rounded-none font-extrabold text-[#4B2E83] hover:text-[#C2A86C] transition bg-white shadow-none border-r border-[#E0DDD8] last:rounded-r-xl last:border-r-0">Jobs at Risk</a>
-                  <a href="/transitional-paths" className="flex-1 text-center px-0 py-5 rounded-none font-extrabold text-[#4B2E83] hover:text-[#C2A86C] transition bg-white shadow-none border-r border-[#E0DDD8] last:rounded-r-xl last:border-r-0">Transitional Paths</a>
-                  <a href="/new-ai-jobs" className="flex-1 text-center px-0 py-5 rounded-none font-extrabold text-[#4B2E83] hover:text-[#C2A86C] transition bg-white shadow-none last:rounded-r-xl">New AI Jobs</a>
+                  <a href="/" className="flex-1 text-center px-0 py-7 rounded-none font-extrabold text-3xl md:text-4xl text-white hover:text-[#C2A86C] transition bg-transparent shadow-none border-r border-[#E0DDD8] first:rounded-l-xl last:rounded-r-xl first:border-l last:border-r-0">Home</a>
+                  <a href="/states" className="flex-1 text-center px-0 py-7 rounded-none font-extrabold text-3xl md:text-4xl text-white hover:text-[#C2A86C] transition bg-transparent shadow-none border-r border-[#E0DDD8] last:rounded-r-xl last:border-r-0">States</a>
+                  <a href="/jobs-at-risk" className="flex-1 text-center px-0 py-7 rounded-none font-extrabold text-3xl md:text-4xl text-white hover:text-[#C2A86C] transition bg-transparent shadow-none border-r border-[#E0DDD8] last:rounded-r-xl last:border-r-0">Jobs at Risk</a>
+                  <a href="/transitional-paths" className="flex-1 text-center px-0 py-7 rounded-none font-extrabold text-3xl md:text-4xl text-white hover:text-[#C2A86C] transition bg-transparent shadow-none border-r border-[#E0DDD8] last:rounded-r-xl last:border-r-0">Transitional Paths</a>
+                  <a href="/new-ai-jobs" className="flex-1 text-center px-0 py-7 rounded-none font-extrabold text-3xl md:text-4xl text-white hover:text-[#C2A86C] transition bg-transparent shadow-none last:rounded-r-xl">New AI Jobs</a>
                 </div>
               </nav>
             </header>
