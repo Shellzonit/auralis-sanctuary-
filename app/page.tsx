@@ -63,7 +63,6 @@ export default function HomePage() {
           <span>Major cities and regions where AI is actively used in industry, research, and society.</span>
         </div>
       </section>
-      </section>
     </main>
   );
 }
