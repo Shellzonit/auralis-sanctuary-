@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { encryptFernet } from "../../lib/fernetEncrypt";
 import { NEW_AI_JOBS } from "../new-ai-jobs/page";
 
 // Record a visit to the chatbot page
@@ -172,7 +173,37 @@ export default function ChatbotDemo() {
     skills: ""
   });
   const [resumeDraft, setResumeDraft] = useState<string | null>(null);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [contactForm, setContactForm] = useState({ name: "", email: "", message: "" });
+  const [contactSent, setContactSent] = useState(false);
   const nextId = React.useRef(1);
+    function handleContactFormChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+      const { name, value } = e.target;
+      setContactForm(f => ({ ...f, [name]: value }));
+    }
+
+    async function handleContactSubmit(e: React.FormEvent) {
+      e.preventDefault();
+      try {
+        const key = process.env.NEXT_PUBLIC_FERNET_KEY || '';
+        const encrypted = encryptFernet(JSON.stringify(contactForm), key);
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ encrypted }),
+        });
+        if (res.ok) {
+          setContactSent(true);
+          setContactForm({ name: "", email: "", message: "" });
+        } else {
+          setContactSent(false);
+          alert('Failed to send message. Please try again later.');
+        }
+      } catch {
+        setContactSent(false);
+        alert('Failed to send message. Please try again later.');
+      }
+    }
   function handleResumeFormChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
     setResumeForm(f => ({ ...f, [name]: value }));
@@ -347,12 +378,39 @@ export default function ChatbotDemo() {
       }}>
         {ANNOUNCEMENT}
       </div>
-      <button
-        style={{ background: '#ffd700', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '10px 18px', border: 'none', cursor: 'pointer', marginBottom: 16 }}
-        onClick={() => { setShowResumeForm(v => !v); setResumeDraft(null); }}
-      >
-        {showResumeForm ? "Close Resume Writer" : "Write My Resume"}
-      </button>
+      <div style={{ display: 'flex', gap: 16, marginBottom: 16 }}>
+        <button
+          style={{ background: '#ffd700', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '10px 18px', border: 'none', cursor: 'pointer' }}
+          onClick={() => { setShowResumeForm(v => !v); setResumeDraft(null); }}
+        >
+          {showResumeForm ? "Close Resume Writer" : "Write My Resume"}
+        </button>
+        <button
+          style={{ background: '#6a1b9a', color: '#ffd700', fontWeight: 700, borderRadius: 8, padding: '10px 18px', border: 'none', cursor: 'pointer' }}
+          onClick={() => { setShowContactForm(v => !v); setContactSent(false); }}
+        >
+          {showContactForm ? "Close Contact Form" : "Contact the Creator"}
+        </button>
+      </div>
+      {showContactForm && (
+        <section style={{ maxWidth: 500, width: '100%', background: "rgba(255,255,255,0.13)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
+          <h2 style={{ color: '#ffd700', fontSize: 20, marginBottom: 12 }}>Contact Mr. Job Nanny (Personal Assistant)</h2>
+          <div style={{ color: '#fff8dc', fontSize: 15, marginBottom: 14, background: 'rgba(34,34,48,0.7)', borderRadius: 8, padding: 12 }}>
+            Mr. Job Nanny is the creator's friendly personal assistant—always here to help! If you have a question, feedback, or just want to say hello, simply send your message below. Mr. Nanny will make sure it reaches the creator, privately and securely.<br /><br />
+            <span role="img" aria-label="lock">🔒</span> For your peace of mind, your message will be <strong>encrypted</strong> before it leaves your browser. Only the creator can read it—nobody else (not even Mr. Job Nanny) can see your message in transit. This is part of our strict privacy controls.
+          </div>
+          {contactSent ? (
+            <div style={{ color: '#ffd700', fontWeight: 700, margin: '16px 0' }}>Thank you! Your message has been received. Mr. Job Nanny will make sure it gets to the creator—privately and securely.</div>
+          ) : (
+            <form onSubmit={handleContactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <input name="name" value={contactForm.name} onChange={handleContactFormChange} placeholder="Your Name" required style={{ borderRadius: 8, border: '1.5px solid #ffd700', padding: '8px 12px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }} />
+              <input name="email" type="email" value={contactForm.email} onChange={handleContactFormChange} placeholder="Your Email" required style={{ borderRadius: 8, border: '1.5px solid #ffd700', padding: '8px 12px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }} />
+              <textarea name="message" value={contactForm.message} onChange={handleContactFormChange} placeholder="Your Message" rows={4} required style={{ borderRadius: 8, border: '1.5px solid #ffd700', padding: '8px 12px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }} />
+              <button type="submit" style={{ background: '#ffd700', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '10px 18px', border: 'none', cursor: 'pointer', marginTop: 8 }}>Send Message</button>
+            </form>
+          )}
+        </section>
+      )}
       {showResumeForm && (
         <section style={{ maxWidth: 500, width: '100%', background: "rgba(255,255,255,0.13)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
           <h2 style={{ color: '#ffd700', fontSize: 20, marginBottom: 12 }}>Resume Writer (Private & Secure)</h2>
