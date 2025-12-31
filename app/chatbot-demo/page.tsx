@@ -1,16 +1,6 @@
 
 "use client";
 
-// Interview reminder state
-const [interviewStep, setInterviewStep] = useState<number | null>(null);
-const [interviewInfo, setInterviewInfo] = useState<{date: string, time: string, company: string, email: string}>({date: '', time: '', company: '', email: ''});
-// Job alert subscription state
-const [alertStep, setAlertStep] = useState<number | null>(null);
-const [alertPrefs, setAlertPrefs] = useState<{skills: string, email: string}>({skills: '', email: ''});
-// Skill gap analysis state
-const [gapStep, setGapStep] = useState<number | null>(null);
-const [gapInfo, setGapInfo] = useState<{target: string, skills: string}>({target: '', skills: ''});
-
 import React, { useState, useEffect } from "react";
 import { encryptFernet } from "../../lib/fernetEncrypt";
 import { NEW_AI_JOBS } from "../new-ai-jobs/page";
@@ -166,6 +156,15 @@ const JOB_SUGGESTIONS = [
 
 
 export default function ChatbotDemo() {
+  // Interview reminder state
+  const [interviewStep, setInterviewStep] = useState<number | null>(null);
+  const [interviewInfo, setInterviewInfo] = useState<{date: string, time: string, company: string, email: string}>({date: '', time: '', company: '', email: ''});
+  // Job alert subscription state
+  const [alertStep, setAlertStep] = useState<number | null>(null);
+  const [alertPrefs, setAlertPrefs] = useState<{skills: string, email: string}>({skills: '', email: ''});
+  // Skill gap analysis state
+  const [gapStep, setGapStep] = useState<number | null>(null);
+  const [gapInfo, setGapInfo] = useState<{target: string, skills: string}>({target: '', skills: ''});
   const [visitorNum, setVisitorNum] = useState<number | null>(null);
   // Threaded messages: { id, from, text, parentId }
   const [messages, setMessages] = useState<Array<{id: number, from: string, text: string, parentId?: number}>>([]);
