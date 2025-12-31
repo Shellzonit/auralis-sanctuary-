@@ -6,6 +6,10 @@ import React, { useState } from "react";
 // Latest announcement/news (update this string as needed)
 const ANNOUNCEMENT = "🎉 Happy New Year 2026! Check out our upcoming AI Hiring Events and new job listings for the year ahead. Stay tuned for more updates!";
 const FAQS = [
+      {
+        q: "What was the first AI-generated song?",
+        a: "The first known AI-generated song was created in 1956 by researchers at Bell Labs using an IBM 704 computer. The program, written by Lejaren Hiller and Leonard Isaacson, generated a piece called the 'Illiac Suite' for string quartet. This marked the beginning of computer-generated music and showed that AI could be used creatively in music composition, a trend that has grown for decades."
+      },
     {
       q: "How is AI used in games?",
       a: "AI is revolutionizing game development by powering smarter NPCs, procedural content generation, adaptive difficulty, and even game testing. AI tools help designers create more immersive and dynamic experiences. Careers include AI Game Designer, Game AI Programmer, and Narrative Designer."
