@@ -5,47 +5,40 @@ export default function AIHiringEventsPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #6a1b9a 0%, #ffd700 100%)",
-        fontFamily: "Playfair Display, Georgia, serif",
+        background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)",
+        fontFamily: "Inter, Arial, sans-serif",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         padding: "0 1rem",
+        position: 'relative',
       }}
     >
-      <h1
-        style={{
-          fontFamily: 'Playfair Display, Georgia, serif',
-          fontSize: '3rem',
-          fontWeight: 900,
-          color: '#ffd700',
-          letterSpacing: 2,
-          textShadow: '0 2px 16px #2a1a4d',
-          margin: '48px 0 16px 0',
-        }}
-      >
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }}>
         AI Hiring Events
       </h1>
-      <p style={{ color: "#fff8dc", fontSize: "1.15rem", marginBottom: 24, maxWidth: 700, textAlign: 'center' }}>
-        Discover upcoming AI hiring events, job fairs, and networking opportunities for creative and technical talent. Stay tuned for updates and new event listings!
-      </p>
-      <section style={{ maxWidth: 700, width: '100%', background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
-        <h2 style={{ color: '#ffd700', fontWeight: 700, fontSize: '1.5rem', marginBottom: 18 }}>Upcoming Events (2026)</h2>
+      <section style={{ maxWidth: 900, background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
+        <p style={{ color: "#fff8dc", fontSize: "1.08rem", marginBottom: 18 }}>
+          Discover upcoming AI hiring events, job fairs, and networking opportunities for creative and technical talent. Each event includes details, location, and participation info.
+        </p>
         <ul style={{ listStyle: 'none', padding: 0 }}>
-          <li style={{ marginBottom: 18 }}>
-            <strong>AI Career Expo 2026</strong><br />
-            <span style={{ color: '#fff8dc' }}>March 15, 2026 &mdash; San Francisco, CA &amp; Virtual</span><br />
-            <span style={{ color: '#C2A86C' }}>Workshops, recruiter networking, portfolio reviews, and live AI demos.</span>
+          <li style={{ marginBottom: 24, background: "rgba(106,27,154,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
+            <h2 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: 6 }}>AI Career Expo 2026</h2>
+            <div style={{ color: '#fff8dc', fontSize: '1rem', marginBottom: 4 }}><strong>Date:</strong> March 15, 2026</div>
+            <div style={{ color: '#fff8dc', fontSize: '1rem', marginBottom: 4 }}><strong>Location:</strong> San Francisco, CA & Virtual</div>
+            <div style={{ color: '#C2A86C', fontSize: '1rem', marginBottom: 4 }}>Workshops, recruiter networking, portfolio reviews, and live AI demos.</div>
           </li>
-          <li style={{ marginBottom: 18 }}>
-            <strong>Women in AI Hiring Summit</strong><br />
-            <span style={{ color: '#fff8dc' }}>April 10, 2026 &mdash; New York, NY</span><br />
-            <span style={{ color: '#C2A86C' }}>Panels, speed interviews, and mentorship for women in AI.</span>
+          <li style={{ marginBottom: 24, background: "rgba(106,27,154,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
+            <h2 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: 6 }}>Women in AI Hiring Summit</h2>
+            <div style={{ color: '#fff8dc', fontSize: '1rem', marginBottom: 4 }}><strong>Date:</strong> April 10, 2026</div>
+            <div style={{ color: '#fff8dc', fontSize: '1rem', marginBottom: 4 }}><strong>Location:</strong> New York, NY</div>
+            <div style={{ color: '#C2A86C', fontSize: '1rem', marginBottom: 4 }}>Panels, speed interviews, and mentorship for women in AI.</div>
           </li>
-          <li style={{ marginBottom: 18 }}>
-            <strong>Remote AI Talent Fair</strong><br />
-            <span style={{ color: '#fff8dc' }}>May 2, 2026 &mdash; Online</span><br />
-            <span style={{ color: '#C2A86C' }}>Virtual booths, global employers, and live Q&amp;A sessions.</span>
+          <li style={{ marginBottom: 24, background: "rgba(106,27,154,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
+            <h2 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: 6 }}>Remote AI Talent Fair</h2>
+            <div style={{ color: '#fff8dc', fontSize: '1rem', marginBottom: 4 }}><strong>Date:</strong> May 2, 2026</div>
+            <div style={{ color: '#fff8dc', fontSize: '1rem', marginBottom: 4 }}><strong>Location:</strong> Online</div>
+            <div style={{ color: '#C2A86C', fontSize: '1rem', marginBottom: 4 }}>Virtual booths, global employers, and live Q&amp;A sessions.</div>
           </li>
         </ul>
         <div style={{ color: '#fff8dc', fontSize: '1rem', marginTop: 24, textAlign: 'center', maxWidth: 600 }}>
