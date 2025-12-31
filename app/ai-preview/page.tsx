@@ -51,7 +51,7 @@ export default function AIPreview() {
         Sneak Peek: AI Conversations
       </h1>
       <p style={{ color: "#fff8dc", fontSize: "1.08rem", marginBottom: 18, maxWidth: 700, textAlign: 'center' }}>
-        Explore trending questions about AI from across our message boards. Here’s what people are asking today and tomorrow:
+        Explore trending questions about AI. Here’s what people are asking today and tomorrow:
       </p>
       <section style={{ maxWidth: 700, width: '100%', background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
         {filtered.length === 0 ? (
@@ -70,7 +70,7 @@ export default function AIPreview() {
         )}
       </section>
       <div style={{ color: '#fff8dc', fontSize: '1rem', marginTop: 24, textAlign: 'center', maxWidth: 600 }}>
-        <strong>Want to join the conversation?</strong> Stay tuned for our upcoming message boards and chat features!
+        <strong>Want to join the conversation?</strong> Stay tuned for more interactive features!
       </div>
     </main>
   );
