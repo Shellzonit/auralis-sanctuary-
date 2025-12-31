@@ -35,9 +35,51 @@ export default function HomePage() {
             <p style={{ marginTop: 0, fontSize: '1.15rem', maxWidth: 360, textAlign: 'center', color: '#fff8dc', marginBottom: 24 }}>
               Explore transitional paths, discover new AI jobs, and protect creative legacy.
             </p>
-            <blockquote style={{ fontStyle: 'italic', color: '#ffd700', marginTop: 24, textAlign: 'center', fontSize: '1.1rem' }}>
-              "The future belongs to those who create, adapt, and inspire—together with AI."
-            </blockquote>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', marginTop: 24 }}>
+              {/* Left diagonal testimonial */}
+              <div style={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                transform: 'translate(-80%, -30%) rotate(-8deg)',
+                background: 'rgba(44,44,44,0.92)',
+                color: '#ffd700',
+                padding: '18px 32px',
+                borderRadius: 16,
+                fontStyle: 'italic',
+                fontSize: '1.05rem',
+                boxShadow: '0 2px 12px #2a1a4d33',
+                maxWidth: 260,
+                zIndex: 1,
+                borderLeft: '4px solid #ffd700',
+              }}>
+                “AI helped me transition my creative skills into a new career I never imagined.”
+                <div style={{ fontWeight: 700, marginTop: 8, fontSize: '0.95rem', color: '#fff8dc' }}>— Taylor, Designer</div>
+              </div>
+              <blockquote style={{ fontStyle: 'italic', color: '#ffd700', textAlign: 'center', fontSize: '1.1rem', margin: 0 }}>
+                "The future belongs to those who create, adapt, and inspire—together with AI."
+              </blockquote>
+              {/* Right diagonal testimonial */}
+              <div style={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                transform: 'translate(80%, -30%) rotate(8deg)',
+                background: 'rgba(44,44,44,0.92)',
+                color: '#ffd700',
+                padding: '18px 32px',
+                borderRadius: 16,
+                fontStyle: 'italic',
+                fontSize: '1.05rem',
+                boxShadow: '0 2px 12px #2a1a4d33',
+                maxWidth: 260,
+                zIndex: 1,
+                borderRight: '4px solid #ffd700',
+              }}>
+                “Joining the AI Wilding community gave me hope and real opportunities.”
+                <div style={{ fontWeight: 700, marginTop: 8, fontSize: '0.95rem', color: '#fff8dc' }}>— Morgan, Writer</div>
+              </div>
+            </div>
 
 
             {/* Gold Tabs: 2 left, 2 right, gold underline */}
