@@ -21,11 +21,16 @@ export async function POST(req: NextRequest) {
     if (!content) {
       return NextResponse.json({ error: 'Missing content' }, { status: 400 });
     }
-    const result = await pool.query(
-      'INSERT INTO messages (content, author, avatar) VALUES ($1, $2, $3) RETURNING *',
-      [content, author || null, avatar || null]
-    );
-    return NextResponse.json(result.rows[0]);
+    try {
+      const result = await pool.query(
+        'INSERT INTO messages (content, author, avatar) VALUES ($1, $2, $3) RETURNING *',
+        [content, author || null, avatar || null]
+      );
+      return NextResponse.json(result.rows[0]);
+    } catch (dbError) {
+      console.error('DB INSERT ERROR:', dbError);
+      return NextResponse.json({ error: 'Failed to add message', details: String(dbError) }, { status: 500 });
+    }
   } catch (error) {
     console.error('MESSAGES API ERROR:', error);
     return NextResponse.json({ error: 'Failed to add message', details: String(error) }, { status: 500 });
