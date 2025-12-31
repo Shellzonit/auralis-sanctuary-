@@ -1,6 +1,24 @@
 
 "use client";
+
 import React, { useState, useEffect } from "react";
+import { NEW_AI_JOBS } from "../new-ai-jobs/page";
+
+// Record a visit to the chatbot page
+async function recordChatbotVisit() {
+  try {
+    await fetch("/api/visit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+        path: typeof window !== 'undefined' ? window.location.pathname : '/chatbot-demo'
+      })
+    });
+  } catch (e) {
+    // Optionally log error
+  }
+}
 
 // Simple FAQ and AI job/event recommender chatbot
 // Latest announcement/news (update this string as needed)
@@ -156,23 +174,65 @@ export default function ChatbotDemo() {
     setMessages([
       { from: "bot", text: `Welcome! You are visitor number ${num} on this browser. Ask me anything about this site, AI jobs, or events.` }
     ]);
+    recordChatbotVisit();
   }, []);
 
-  function getBotResponse(userMsg: string) {
-    const msg = userMsg.toLowerCase();
-    // 1. Announcement/news match
-    if (/(news|announcement|update|what's new|latest)/.test(msg)) {
-      return ANNOUNCEMENT;
+    function getBotResponse(userMsg: string) {
+      const msg = userMsg.toLowerCase();
+      // 1. Announcement/news match
+      if (/(news|announcement|update|what's new|latest)/.test(msg)) {
+        return ANNOUNCEMENT;
+      }
+      // Who is the site owner/creator/admin
+      if ((msg.includes("who runs") || msg.includes("who is behind") || msg.includes("who created") || msg.includes("who made") || msg.includes("site owner") || msg.includes("admin") || msg.includes("creator") || msg.includes("who are you") || msg.includes("who am i") || msg.includes("who is the owner") || msg.includes("who is the admin") || msg.includes("who is the creator") || msg.includes("who is shellzonit") || msg.includes("what are you")) && (msg.includes("site") || msg.includes("website") || msg.includes("chatbot") || msg.includes("sanctuary") || msg.includes("auralis") || msg.includes("shellzonit") || msg.includes("you") || msg.includes("admin") || msg.includes("owner") || msg.includes("creator"))) {
+        return "This website and chatbot were created and are managed by Shellzonit (also known as @shellzonit on X/Twitter). Shellzonit is a creative technologist and community builder focused on helping people thrive in the age of AI. You can reach out for questions, feedback, or collaboration via X (formerly Twitter) at @shellzonit.";
+      }
+
+      // How can a person help train the chatbot/AI and can it lead to a career
+      if ((msg.includes("train you") || msg.includes("train the ai") || msg.includes("train chatbot") || msg.includes("help train") || msg.includes("how can i train") || msg.includes("can i train") || msg.includes("be used to train") || msg.includes("data labeling") || msg.includes("ai trainer") || msg.includes("become an ai trainer") || msg.includes("can i work as ai trainer") || msg.includes("can i get a job training ai"))) {
+        return "People play a crucial role in training AI and chatbots! You can help by labeling data, providing feedback on AI outputs, or participating in user studies. This process is called 'data annotation' or 'AI training.' Many companies hire 'AI Trainers' or 'Data Annotators' to improve AI systems. These roles often require attention to detail and basic computer skills, and can be a great entry point into an AI career. Over time, you can advance to more specialized roles in AI development, quality assurance, or data science. Check out the 'AI Trainer' job in the New AI Jobs section for more info and resources on how to get started.";
+      }
+      // Easiest AI career question
+      if ((msg.includes("easiest") || msg.includes("easy") || msg.includes("least training") || msg.includes("minimal training") || msg.includes("no experience") || msg.includes("beginner")) && (msg.includes("ai career") || msg.includes("ai job") || msg.includes("ai field") || msg.includes("ai work"))) {
+        // Find the job with the lowest barrier to entry (based on pay and required skills)
+        const entryJobs = NEW_AI_JOBS.filter(job => job.pay && (job.pay.includes("40,000") || job.pay.includes("60,000") || job.title.toLowerCase().includes("trainer") || job.title.toLowerCase().includes("content creator")));
+        if (entryJobs.length > 0) {
+          const easiest = entryJobs[0];
+          return `One of the easiest AI careers to start with minimal training is **${easiest.title}**. ${easiest.description} This role often requires only basic skills such as ${easiest.skills.join(", ")}, and you can get started with resources like: ${easiest.resources.join(", ")}. Typical pay ranges from ${easiest.pay}.`;
+        } else {
+          return "Many entry-level AI jobs such as AI Trainer or Generative Content Creator require less training and are open to beginners. Look for roles that focus on data labeling, content creation, or supporting AI teams. Check the New AI Jobs page for more details.";
+        }
+      }
+      // 2. AI job definitions, qualifications, and pay
+      for (const job of NEW_AI_JOBS) {
+        const jobName = job.title.toLowerCase();
+        // Certification or training questions
+        if (
+          (msg.includes("certification") || msg.includes("certificate") || msg.includes("certify") || msg.includes("training") || msg.includes("course") || msg.includes("learn") || msg.includes("where can i get certified") || msg.includes("how do i get certified")) &&
+          msg.includes(jobName)
+        ) {
+          return `To get certified or trained for the role of **${job.title}**, you can explore these recommended resources: ${job.resources.join(", " )}. These programs and courses are a great way to build the skills needed for this job. Check their official websites for details on certification requirements and enrollment.`;
+        }
+        // General job info
+        if (
+          msg.includes(jobName) ||
+          (msg.includes("define") && msg.includes(jobName)) ||
+          (msg.includes("qualification") && msg.includes(jobName)) ||
+          (msg.includes("pay") && msg.includes(jobName)) ||
+          (msg.includes("salary") && msg.includes(jobName))
+        ) {
+          return `**${job.title}**\n\n${job.description}\n\n**Required Skills:** ${job.skills.join(", ")}\n**Industries:** ${job.industries.join(", ")}\n**Example Employers:** ${job.employers.join(", ")}\n**Training Resources:** ${job.resources.join(", ")}\n**Typical Pay Range:** ${job.pay}`;
+        }
+      }
+      // 3. FAQ match
+      const faq = FAQS.find(f => msg.includes(f.q.toLowerCase().split(" ")[0]));
+      if (faq) return faq.a;
+      // 4. Job suggestion
+      const jobSuggestion = JOB_SUGGESTIONS.find(j => msg.includes(j.keyword));
+      if (jobSuggestion) return jobSuggestion.suggestion;
+      // 5. Fallback
+      return "I'm here to help with questions about AI jobs, events, and resources! Try asking about careers, events, or training. For the latest news, ask 'What's new?'";
     }
-    // 2. FAQ match
-    const faq = FAQS.find(f => msg.includes(f.q.toLowerCase().split(" ")[0]));
-    if (faq) return faq.a;
-    // 3. Job suggestion
-    const job = JOB_SUGGESTIONS.find(j => msg.includes(j.keyword));
-    if (job) return job.suggestion;
-    // 4. Fallback
-    return "I'm here to help with questions about AI jobs, events, and resources! Try asking about careers, events, or training. For the latest news, ask 'What's new?'";
-  }
 
   const handleSend = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
