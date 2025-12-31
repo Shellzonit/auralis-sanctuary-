@@ -50,8 +50,8 @@ export default function HomePage() {
             Explore transitional paths, discover new AI jobs, and protect creative legacy.
           </p>
           <Image
-            src="/openart-image_J9ncrrgy_1766070827956_raw.jpg"
-            alt="AI Generated Art"
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+            alt="AI Art - Unsplash"
             width={320}
             height={200}
             style={{ borderRadius: 16, boxShadow: '0 2px 16px #2a1a4d55', margin: '0 0 0 0' }}
