@@ -6,6 +6,14 @@ import React, { useState } from "react";
 // Latest announcement/news (update this string as needed)
 const ANNOUNCEMENT = "🎉 Happy New Year 2026! Check out our upcoming AI Hiring Events and new job listings for the year ahead. Stay tuned for more updates!";
 const FAQS = [
+        {
+          q: "How has AI already been used in games?",
+          a: "AI has played a major role in games for decades. Classic examples include the ghosts in Pac-Man (1980), which use simple AI to chase the player, and the adaptive enemies in the 'Halo' series. Modern games use AI for NPC behavior, procedural world generation (like in 'Minecraft'), and even for testing and balancing gameplay. AI helps create more immersive, challenging, and dynamic experiences."
+        },
+        {
+          q: "How has AI already been used in movies?",
+          a: "AI is widely used in movies for visual effects, animation, and even scriptwriting. For example, AI-powered software helps create realistic CGI characters and environments, as seen in movies like 'Avengers: Endgame' and 'The Lion King' (2019). AI is also used for deepfake technology, voice synthesis, and editing. Some filmmakers experiment with AI-generated scripts and storyboards, pushing the boundaries of creativity in cinema."
+        },
       {
         q: "What was the first AI-generated song?",
         a: "The first known AI-generated song was created in 1956 by researchers at Bell Labs using an IBM 704 computer. The program, written by Lejaren Hiller and Leonard Isaacson, generated a piece called the 'Illiac Suite' for string quartet. This marked the beginning of computer-generated music and showed that AI could be used creatively in music composition, a trend that has grown for decades."
