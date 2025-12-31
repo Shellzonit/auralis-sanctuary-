@@ -38,6 +38,20 @@ export default function HomePage() {
             <blockquote style={{ fontStyle: 'italic', color: '#ffd700', marginTop: 24, textAlign: 'center', fontSize: '1.1rem' }}>
               "The future belongs to those who create, adapt, and inspire—together with AI."
             </blockquote>
+
+            {/* Gold Tabs */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 32, margin: '32px 0 0 0' }}>
+              <button style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>Overview</button>
+              <button style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>Resources</button>
+              <button style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>Community</button>
+            </div>
+
+            {/* AI Wilding Title */}
+            <div style={{ marginTop: 40, textAlign: 'center' }}>
+              <span style={{ fontSize: '3rem', fontWeight: 900, color: '#ffd700', letterSpacing: 2, textShadow: '0 2px 16px #2a1a4d' }}>
+                AI Wilding
+              </span>
+            </div>
           </div>
 
       </main>
