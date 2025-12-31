@@ -4,6 +4,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabaseClient';
 
 const tabs = [
   { href: '/', label: 'Home' },
@@ -83,13 +84,16 @@ function MessageBoard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+
   async function fetchMessages() {
-    try {
-      const res = await fetch('/api/messages');
-      const data = await res.json();
-      setMessages(Array.isArray(data) ? data : []);
-    } catch (e) {
+    const { data, error } = await supabase
+      .from('messages')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) {
       setError('Failed to load messages');
+    } else {
+      setMessages(data || []);
     }
   }
 
@@ -101,22 +105,15 @@ function MessageBoard() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    try {
-      const res = await fetch('/api/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content, author }),
-      });
-      if (!res.ok) {
-        const err = await res.json();
-        setError(err.error || 'Failed to post message');
-      } else {
-        setContent('');
-        setAuthor('');
-        fetchMessages();
-      }
-    } catch (e) {
+    const { error } = await supabase
+      .from('messages')
+      .insert([{ content, author }]);
+    if (error) {
       setError('Failed to post message');
+    } else {
+      setContent('');
+      setAuthor('');
+      fetchMessages();
     }
     setLoading(false);
   }
