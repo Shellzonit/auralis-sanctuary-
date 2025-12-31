@@ -1,6 +1,17 @@
 // Page intentionally left blank
 "use client";
 
+// Page intentionally left blank or add a placeholder UI
+export default function ChatPage() {
+  return (
+    <div className="flex flex-col h-screen max-w-2xl mx-auto p-6 bg-gradient-to-br from-[#0f2027] via-[#2c5364] to-[#232526] shadow-2xl rounded-3xl border border-cyan-400/30 backdrop-blur-xl relative overflow-hidden">
+      <h1 className="text-4xl font-extrabold mb-6 text-center text-cyan-300 tracking-widest drop-shadow-glow">Chat Coming Soon</h1>
+      <div className="text-cyan-200 text-center">This feature is currently unavailable.</div>
+    </div>
+  );
+}
+"use client";
+
 
 
 import { useEffect, useRef, useState, FormEvent } from "react";
