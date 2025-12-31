@@ -14,20 +14,7 @@ const tabs = [
 export default function HomePage() {
   return (
     <div className="bg-[#F7F5F2] min-h-screen text-[#4B2E83]">
-      {/* Navigation */}
-      <header className="border-b border-[#E0DDD8] py-5">
-        <nav className="flex justify-center gap-12 text-[22px] font-medium">
-          {tabs.map((tab) => (
-            <a
-              key={tab.href}
-              href={tab.href}
-              className="hover:text-[#C2A86C] transition"
-            >
-              {tab.label}
-            </a>
-          ))}
-        </nav>
-      </header>
+
 
       {/* Main content */}
       <main className="flex flex-col items-center justify-center py-20">
