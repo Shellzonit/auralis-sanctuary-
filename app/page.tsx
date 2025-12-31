@@ -47,42 +47,6 @@ export default function HomePage() {
     };
   }, []);
 
-  // Real-time animated counter state
-  const [count, setCount] = useState<number>(1234567);
-  useEffect(() => {
-    let isMounted = true;
-    // Ably real-time subscription for counter
-    const ably = getAblyClient();
-    const channel = ably.channels.get('ai-helped-counter');
-    channel.subscribe('update', (msg: any) => {
-      if (isMounted && typeof msg.data === 'number') {
-        setCount(prev => {
-          // Animate from prev to new value
-          const start = prev;
-          const end = msg.data;
-          const duration = 2000;
-          let startTime: number | null = null;
-          function animate(timestamp: number) {
-            if (!startTime) startTime = timestamp;
-            const progress = Math.min((timestamp - startTime) / duration, 1);
-            const current = Math.floor(start + (end - start) * progress);
-            setCount(current);
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            }
-          }
-          requestAnimationFrame(animate);
-          return prev; // will be updated by animation
-        });
-      }
-    });
-    // Optionally, fetch latest on mount
-    channel.publish('get-latest', {});
-    return () => {
-      isMounted = false;
-      channel.unsubscribe();
-    };
-  }, []);
 
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative' }}>
@@ -102,13 +66,6 @@ export default function HomePage() {
           alt="AI innovation art, neural networks, digital brain, futuristic"
           style={{ borderRadius: 16, boxShadow: "0 2px 16px #C2A86C55", objectFit: "cover", width: "100%", maxWidth: 600, height: 220, margin: "0 auto 24px auto", border: "2px solid #C2A86C40" }}
         />
-      </section>
-      {/* Real-time Animated AI Impact Counter */}
-      <section style={{ width: '100%', maxWidth: 900, display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 32 }}>
-        <div style={{ background: 'rgba(255,255,255,0.10)', borderRadius: 16, padding: '18px 36px', boxShadow: '0 2px 16px #C2A86C33', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <span style={{ color: '#C2A86C', fontSize: '2.2rem', fontWeight: 800, letterSpacing: 1, textShadow: '0 2px 12px #2a1a4d' }}>{count.toLocaleString()}</span>
-          <span style={{ color: '#fff8dc', fontSize: '1.1rem', marginTop: 4, fontWeight: 500 }}>People helped by AI</span>
-        </div>
       </section>
       {/* Recent AI Breakthroughs / News Headlines */}
       <section style={{ width: '100%', maxWidth: 900, display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 32 }}>
