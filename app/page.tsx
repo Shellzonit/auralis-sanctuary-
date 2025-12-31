@@ -24,21 +24,7 @@ export default function HomePage() {
         fontFamily: "Inter, Arial, sans-serif",
       }}
     >
-      <header style={{ borderBottom: '1px solid #232526', padding: '20px 0' }}>
-        <nav style={{ display: 'flex', justifyContent: 'center', gap: 48, fontSize: 22, fontWeight: 500 }}>
-          {tabs.map((tab) => (
-            <a
-              key={tab.href}
-              href={tab.href}
-              style={{ color: '#ffd700', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseOver={e => (e.currentTarget.style.color = '#C2A86C')}
-              onMouseOut={e => (e.currentTarget.style.color = '#ffd700')}
-            >
-              {tab.label}
-            </a>
-          ))}
-        </nav>
-      </header>
+
 
       <main style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', padding: '48px 0', minHeight: '80vh', boxSizing: 'border-box' }}>
         {/* Left column: Welcome, description, image */}
@@ -49,13 +35,9 @@ export default function HomePage() {
           <p style={{ marginTop: 0, fontSize: '1.15rem', maxWidth: 360, textAlign: 'center', color: '#fff8dc', marginBottom: 24 }}>
             Explore transitional paths, discover new AI jobs, and protect creative legacy.
           </p>
-          <Image
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
-            alt="AI Art - Unsplash"
-            width={320}
-            height={200}
-            style={{ borderRadius: 16, boxShadow: '0 2px 16px #2a1a4d55', margin: '0 0 0 0' }}
-          />
+          <blockquote style={{ fontStyle: 'italic', color: '#ffd700', marginTop: 24, textAlign: 'center', fontSize: '1.1rem' }}>
+            "The future belongs to those who create, adapt, and inspire—together with AI."
+          </blockquote>
         </div>
         {/* Right column: General Discussion Board */}
         <section style={{ flex: '1 1 400px', minWidth: 340, maxWidth: 600, background: '#18191aee', borderRadius: 16, boxShadow: '0 2px 16px #2a1a4d55', padding: 32, marginLeft: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
