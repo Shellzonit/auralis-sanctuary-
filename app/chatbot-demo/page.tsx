@@ -1,6 +1,9 @@
+
 import React, { useState } from "react";
 
 // Simple FAQ and AI job/event recommender chatbot
+// Latest announcement/news (update this string as needed)
+const ANNOUNCEMENT = "🎉 Happy New Year 2026! Check out our upcoming AI Hiring Events and new job listings for the year ahead. Stay tuned for more updates!";
 const FAQS = [
   {
     q: "What is this site about?",
@@ -47,14 +50,19 @@ export default function ChatbotDemo() {
   const [loading, setLoading] = useState(false);
 
   function getBotResponse(userMsg) {
-    // 1. FAQ match
-    const faq = FAQS.find(f => userMsg.toLowerCase().includes(f.q.toLowerCase().split(" ")[0]));
+    const msg = userMsg.toLowerCase();
+    // 1. Announcement/news match
+    if (/(news|announcement|update|what's new|latest)/.test(msg)) {
+      return ANNOUNCEMENT;
+    }
+    // 2. FAQ match
+    const faq = FAQS.find(f => msg.includes(f.q.toLowerCase().split(" ")[0]));
     if (faq) return faq.a;
-    // 2. Job suggestion
-    const job = JOB_SUGGESTIONS.find(j => userMsg.toLowerCase().includes(j.keyword));
+    // 3. Job suggestion
+    const job = JOB_SUGGESTIONS.find(j => msg.includes(j.keyword));
     if (job) return job.suggestion;
-    // 3. Fallback
-    return "I'm here to help with questions about AI jobs, events, and resources! Try asking about careers, events, or training.";
+    // 4. Fallback
+    return "I'm here to help with questions about AI jobs, events, and resources! Try asking about careers, events, or training. For the latest news, ask 'What's new?'";
   }
 
   const handleSend = (e) => {
@@ -76,6 +84,22 @@ export default function ChatbotDemo() {
       <h1 style={{ fontSize: "2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }}>
         Chatbot Demo: AI Jobs & FAQ
       </h1>
+      {/* Announcement/news banner */}
+      <div style={{
+        background: "#ffd700",
+        color: "#232526",
+        borderRadius: 10,
+        padding: "10px 18px",
+        fontWeight: 700,
+        marginBottom: 18,
+        boxShadow: "0 2px 12px #6a1b9a22",
+        maxWidth: 520,
+        width: "100%",
+        textAlign: "center",
+        letterSpacing: 0.1,
+      }}>
+        {ANNOUNCEMENT}
+      </div>
       <section style={{ maxWidth: 500, width: '100%', background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
         <div style={{ minHeight: 220, marginBottom: 16 }}>
           {messages.map((msg, i) => (
@@ -103,7 +127,7 @@ export default function ChatbotDemo() {
         </form>
       </section>
       <div style={{ color: '#fff8dc', fontSize: '1rem', marginTop: 24, textAlign: 'center', maxWidth: 600 }}>
-        <strong>How it works:</strong> This chatbot answers FAQs and suggests AI jobs/events based on your interests. Try asking about jobs, events, or how to get started!
+        <strong>How it works:</strong> This chatbot answers FAQs, shares the latest news, and suggests AI jobs/events based on your interests. Try asking about jobs, events, news, or how to get started!
       </div>
     </main>
   );
