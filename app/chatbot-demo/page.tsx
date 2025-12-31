@@ -49,7 +49,7 @@ export default function ChatbotDemo() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  function getBotResponse(userMsg) {
+  function getBotResponse(userMsg: string) {
     const msg = userMsg.toLowerCase();
     // 1. Announcement/news match
     if (/(news|announcement|update|what's new|latest)/.test(msg)) {
