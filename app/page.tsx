@@ -58,10 +58,8 @@ export default function HomePage() {
           Explore transitional paths, discover new AI jobs, and protect creative legacy.
         </p>
 
-        // ...existing code...
-                    <section style={{ marginTop: 48, width: '100%', maxWidth: 600, background: '#18191aee', borderRadius: 16, boxShadow: '0 2px 16px #2a1a4d55', padding: 24 }}>
-                      <h3 style={{ color: '#ffd700', fontWeight: 700, fontSize: 22, marginBottom: 16 }}>General Discussion Board</h3>
-                      <ThreadedChat />
-                    </section>
-            value={content}
+        <section style={{ marginTop: 48, width: '100%', maxWidth: 600, background: '#18191aee', borderRadius: 16, boxShadow: '0 2px 16px #2a1a4d55', padding: 24 }}>
+          <h3 style={{ color: '#ffd700', fontWeight: 700, fontSize: 22, marginBottom: 16 }}>General Discussion Board</h3>
+          <ThreadedChat />
+        </section>
 
