@@ -31,6 +31,62 @@ const aiQuestions = [
     question: "How do I get started with open-source AI models?",
     date: "2025-12-31",
     board: "AI Learning"
+  },
+  // Expanded questions
+  {
+    question: "What AI tools are best for small business automation?",
+    date: "2025-12-31",
+    board: "AI Tools"
+  },
+  {
+    question: "How can I transition from graphic design to AI-driven creative roles?",
+    date: "2025-12-31",
+    board: "Career Transitions"
+  },
+  {
+    question: "What are the ethical concerns with AI in hiring?",
+    date: "2026-01-01",
+    board: "AI Ethics"
+  },
+  {
+    question: "How do I prepare my portfolio for AI-related jobs?",
+    date: "2025-12-31",
+    board: "Job Search"
+  },
+  {
+    question: "What programming languages are most useful for AI in 2026?",
+    date: "2026-01-01",
+    board: "AI Learning"
+  },
+  {
+    question: "How can AI help with mental health support?",
+    date: "2025-12-31",
+    board: "AI & Society"
+  },
+  {
+    question: "What are the risks of deepfake technology?",
+    date: "2026-01-01",
+    board: "AI & Media"
+  },
+  {
+    question: "How do I get started with AI-powered music creation?",
+    date: "2025-12-31",
+    board: "AI & Art"
+  },
+  {
+    question: "What certifications are valuable for AI careers?",
+    date: "2026-01-01",
+    board: "AI Careers"
+  },
+  {
+    question: "How can teachers use AI to personalize learning?",
+    date: "2025-12-31",
+    board: "AI & Education"
+  },
+  {
+    question: "What are the best online resources for learning about AI safety?",
+    date: "2026-01-01",
+    board: "AI Safety"
   }
 ];
 
