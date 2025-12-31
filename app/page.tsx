@@ -24,7 +24,7 @@ export default function HomePage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #6a1b9a 0%, #ffd700 100%)",
+        background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)",
         fontFamily: "Playfair Display, Georgia, serif",
         display: "flex",
         flexDirection: "column",
@@ -69,13 +69,13 @@ export default function HomePage() {
         <a href="/contact" style={tabStyle}>Contact</a>
       </nav>
       <section style={{
-        background: 'rgba(255,255,255,0.13)',
+        background: 'rgba(34,34,48,0.93)',
         borderRadius: 16,
         padding: '24px 32px',
         maxWidth: 600,
         margin: '48px auto 48px auto',
-        boxShadow: '0 2px 16px #6a1b9a22',
-        color: '#232526',
+        boxShadow: '0 2px 16px #6a1b9a44',
+        color: '#ffd700',
         textAlign: 'center',
         fontSize: '1.15rem',
         lineHeight: 1.7,
