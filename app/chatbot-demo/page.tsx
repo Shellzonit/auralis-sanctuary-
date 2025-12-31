@@ -65,7 +65,7 @@ export default function ChatbotDemo() {
     return "I'm here to help with questions about AI jobs, events, and resources! Try asking about careers, events, or training. For the latest news, ask 'What's new?'";
   }
 
-  const handleSend = (e) => {
+  const handleSend = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input.trim()) return;
     const userMsg = input.trim();
