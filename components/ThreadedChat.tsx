@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ChatFileUpload from './ChatFileUpload';
 
 interface Message {
   id: string;
@@ -77,6 +78,7 @@ export default function ThreadedChat() {
           </button>
         )}
       </div>
+      <ChatFileUpload />
     </section>
   );
 }

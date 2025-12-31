@@ -63,6 +63,7 @@ export default function HomePage() {
           <ThreadedChat />
         </section>
       </main>
-    </div>
+    </div>;
+}
 
 
