@@ -111,16 +111,7 @@ export default function HomePage() {
           <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Forbes_Magazine_Logo.svg" alt="Forbes" className="h-8 grayscale contrast-125" />
         </div>
       </section>
-      <style jsx global>{`
-        @keyframes gradient {
-          0% {background-position: 0% 50%;}
-          50% {background-position: 100% 50%;}
-          100% {background-position: 0% 50%;}
-        }
-        .animate-gradient {
-          animation: gradient 12s ease-in-out infinite;
-        }
-      `}</style>
+      {/* Gradient animation CSS moved to globals.css for server compatibility */}
     </main>
   );
 }
