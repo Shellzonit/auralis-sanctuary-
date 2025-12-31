@@ -6,6 +6,10 @@ import React, { useState } from "react";
 // Latest announcement/news (update this string as needed)
 const ANNOUNCEMENT = "🎉 Happy New Year 2026! Check out our upcoming AI Hiring Events and new job listings for the year ahead. Stay tuned for more updates!";
 const FAQS = [
+                  {
+                    q: "How does this website handle privacy and user data?",
+                    a: "Your privacy is important! This website does not collect personal data from visitors unless you choose to contact us or submit information. We comply with privacy laws such as GDPR and CCPA where applicable. For more details, see our Privacy Policy page or contact us with any questions."
+                  },
                 {
                   q: "How can I get in touch with the site owner?",
                   a: "You can reach out on X (formerly Twitter) at @shellzonit. Feel free to send a message or mention for questions, feedback, or collaboration!"
