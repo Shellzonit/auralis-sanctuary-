@@ -8,7 +8,7 @@ const tabs = [
   { href: '/states', label: 'States' },
   { href: '/jobs-at-risk', label: 'Jobs at Risk' },
   { href: '/transitional-paths', label: 'Transitional Paths' },
-  // Removed one tab for simplicity
+  { href: '/new-ai-jobs', label: 'New AI Jobs' },
 ];
 
 export default function HomePage() {
@@ -42,8 +42,8 @@ export default function HomePage() {
           Sanctuary
         </h1>
         <Image
-          src="/ai-community-hub.jpg"
-          alt="AI Community Hub"
+          src="/openart-image_J9ncrrgy_1766070827956_raw.jpg"
+          alt="AI Generated Art"
           width={320}
           height={200}
           style={{ borderRadius: 16, boxShadow: '0 2px 16px #2a1a4d55', margin: '32px 0' }}
