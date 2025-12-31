@@ -1,14 +1,15 @@
-    // Interview reminder state
-    const [interviewStep, setInterviewStep] = useState<number | null>(null);
-    const [interviewInfo, setInterviewInfo] = useState<{date: string, time: string, company: string, email: string}>({date: '', time: '', company: '', email: ''});
-  // Job alert subscription state
-  const [alertStep, setAlertStep] = useState<number | null>(null);
-  const [alertPrefs, setAlertPrefs] = useState<{skills: string, email: string}>({skills: '', email: ''});
-  // Skill gap analysis state
-  const [gapStep, setGapStep] = useState<number | null>(null);
-  const [gapInfo, setGapInfo] = useState<{target: string, skills: string}>({target: '', skills: ''});
 
 "use client";
+
+// Interview reminder state
+const [interviewStep, setInterviewStep] = useState<number | null>(null);
+const [interviewInfo, setInterviewInfo] = useState<{date: string, time: string, company: string, email: string}>({date: '', time: '', company: '', email: ''});
+// Job alert subscription state
+const [alertStep, setAlertStep] = useState<number | null>(null);
+const [alertPrefs, setAlertPrefs] = useState<{skills: string, email: string}>({skills: '', email: ''});
+// Skill gap analysis state
+const [gapStep, setGapStep] = useState<number | null>(null);
+const [gapInfo, setGapInfo] = useState<{target: string, skills: string}>({target: '', skills: ''});
 
 import React, { useState, useEffect } from "react";
 import { encryptFernet } from "../../lib/fernetEncrypt";
