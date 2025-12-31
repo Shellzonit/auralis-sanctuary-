@@ -6,7 +6,7 @@ const Globe = dynamic(() => import('react-globe.gl'), { ssr: false });
 
 export default function EarthGlobe() {
   // Example markers
-  const markers = [
+  const markers: { lat: number; lng: number; size: number; color: string; label: string }[] = [
     { lat: 37.7749, lng: -122.4194, size: 0.2, color: 'red', label: 'San Francisco' },
     { lat: 51.5074, lng: -0.1278, size: 0.2, color: 'blue', label: 'London' },
     { lat: 35.6895, lng: 139.6917, size: 0.2, color: 'green', label: 'Tokyo' },
