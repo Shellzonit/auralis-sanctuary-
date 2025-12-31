@@ -2,7 +2,9 @@
 
 
 import dynamic from 'next/dynamic';
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
+import { getAblyClient } from '../lib/ablyClient';
+import ChatWidget from '../components/ChatWidget';
 
 const Globe = dynamic(() => import('react-globe.gl'), { ssr: false });
 
@@ -10,20 +12,77 @@ const Globe = dynamic(() => import('react-globe.gl'), { ssr: false });
 
 
 export default function HomePage() {
-  // Example data: major AI hubs and cities
+  // Dynamic AI locations state
   type AILocation = { lat: number; lng: number; name: string; description: string };
-  const aiLocations: AILocation[] = useMemo(() => [
-    { lat: 37.7749, lng: -122.4194, name: 'San Francisco, USA', description: 'AI Startups, Tech Giants' },
-    { lat: 40.7128, lng: -74.0060, name: 'New York, USA', description: 'Finance, AI Labs' },
-    { lat: 51.5074, lng: -0.1278, name: 'London, UK', description: 'AI Research, FinTech' },
-    { lat: 48.8566, lng: 2.3522, name: 'Paris, France', description: 'AI Research, Robotics' },
-    { lat: 35.6895, lng: 139.6917, name: 'Tokyo, Japan', description: 'Robotics, AI Industry' },
-    { lat: 31.2304, lng: 121.4737, name: 'Shanghai, China', description: 'AI Startups, Smart Cities' },
-    { lat: 28.6139, lng: 77.2090, name: 'Delhi, India', description: 'AI Research, Startups' },
-    { lat: -33.8688, lng: 151.2093, name: 'Sydney, Australia', description: 'AI in Healthcare' },
-    { lat: 52.5200, lng: 13.4050, name: 'Berlin, Germany', description: 'AI Startups, Research' },
-    { lat: -23.5505, lng: -46.6333, name: 'São Paulo, Brazil', description: 'AI in Industry' },
-  ], []);
+  const [aiLocations, setAiLocations] = useState<AILocation[]>([]);
+  useEffect(() => {
+    let isMounted = true;
+    // fallback static data
+    const fallback = [
+      { lat: 37.7749, lng: -122.4194, name: 'San Francisco, USA', description: 'AI Startups, Tech Giants' },
+      { lat: 40.7128, lng: -74.0060, name: 'New York, USA', description: 'Finance, AI Labs' },
+      { lat: 51.5074, lng: -0.1278, name: 'London, UK', description: 'AI Research, FinTech' },
+      { lat: 48.8566, lng: 2.3522, name: 'Paris, France', description: 'AI Research, Robotics' },
+      { lat: 35.6895, lng: 139.6917, name: 'Tokyo, Japan', description: 'Robotics, AI Industry' },
+      { lat: 31.2304, lng: 121.4737, name: 'Shanghai, China', description: 'AI Startups, Smart Cities' },
+      { lat: 28.6139, lng: 77.2090, name: 'Delhi, India', description: 'AI Research, Startups' },
+      { lat: -33.8688, lng: 151.2093, name: 'Sydney, Australia', description: 'AI in Healthcare' },
+      { lat: 52.5200, lng: 13.4050, name: 'Berlin, Germany', description: 'AI Startups, Research' },
+      { lat: -23.5505, lng: -46.6333, name: 'São Paulo, Brazil', description: 'AI in Industry' }
+    ];
+    setAiLocations(fallback);
+    // Ably real-time subscription
+    const ably = getAblyClient();
+    const channel = ably.channels.get('ai-locations');
+    channel.subscribe('update', (msg: any) => {
+      if (isMounted && Array.isArray(msg.data)) {
+        setAiLocations(msg.data);
+      }
+    });
+    // Optionally, fetch latest on mount
+    channel.publish('get-latest', {});
+    return () => {
+      isMounted = false;
+      channel.unsubscribe();
+    };
+  }, []);
+
+  // Real-time animated counter state
+  const [count, setCount] = useState<number>(1234567);
+  useEffect(() => {
+    let isMounted = true;
+    // Ably real-time subscription for counter
+    const ably = getAblyClient();
+    const channel = ably.channels.get('ai-helped-counter');
+    channel.subscribe('update', (msg: any) => {
+      if (isMounted && typeof msg.data === 'number') {
+        setCount(prev => {
+          // Animate from prev to new value
+          const start = prev;
+          const end = msg.data;
+          const duration = 2000;
+          let startTime: number | null = null;
+          function animate(timestamp: number) {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const current = Math.floor(start + (end - start) * progress);
+            setCount(current);
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          }
+          requestAnimationFrame(animate);
+          return prev; // will be updated by animation
+        });
+      }
+    });
+    // Optionally, fetch latest on mount
+    channel.publish('get-latest', {});
+    return () => {
+      isMounted = false;
+      channel.unsubscribe();
+    };
+  }, []);
 
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative' }}>
@@ -43,6 +102,26 @@ export default function HomePage() {
           alt="AI innovation art, neural networks, digital brain, futuristic"
           style={{ borderRadius: 16, boxShadow: "0 2px 16px #C2A86C55", objectFit: "cover", width: "100%", maxWidth: 600, height: 220, margin: "0 auto 24px auto", border: "2px solid #C2A86C40" }}
         />
+      </section>
+      {/* Real-time Animated AI Impact Counter */}
+      <section style={{ width: '100%', maxWidth: 900, display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 32 }}>
+        <div style={{ background: 'rgba(255,255,255,0.10)', borderRadius: 16, padding: '18px 36px', boxShadow: '0 2px 16px #C2A86C33', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <span style={{ color: '#C2A86C', fontSize: '2.2rem', fontWeight: 800, letterSpacing: 1, textShadow: '0 2px 12px #2a1a4d' }}>{count.toLocaleString()}</span>
+          <span style={{ color: '#fff8dc', fontSize: '1.1rem', marginTop: 4, fontWeight: 500 }}>People helped by AI</span>
+        </div>
+      </section>
+      {/* Recent AI Breakthroughs / News Headlines */}
+      <section style={{ width: '100%', maxWidth: 900, display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 32 }}>
+        <div style={{ background: 'rgba(255,255,255,0.10)', borderRadius: 16, padding: '18px 36px', boxShadow: '0 2px 16px #C2A86C33', width: '100%' }}>
+          <h2 style={{ color: '#C2A86C', fontSize: '1.3rem', fontWeight: 700, marginBottom: 12, textAlign: 'center', letterSpacing: 1 }}>Recent AI Breakthroughs</h2>
+          <ul style={{ color: '#fff8dc', fontSize: '1.08rem', lineHeight: 1.6, margin: 0, padding: 0, listStyle: 'none' }}>
+            <li style={{ marginBottom: 8 }}><b>AI-powered cancer detection</b> achieves record accuracy in clinical trials (2025).</li>
+            <li style={{ marginBottom: 8 }}><b>OpenAI releases GPT-5</b>, enabling real-time multilingual conversation and advanced reasoning.</li>
+            <li style={{ marginBottom: 8 }}><b>AI-driven climate modeling</b> helps predict and mitigate extreme weather events globally.</li>
+            <li style={{ marginBottom: 8 }}><b>Autonomous vehicles</b> reach 99.99% safety milestone in urban environments.</li>
+            <li><b>AI translation tools</b> break language barriers for millions in education and healthcare.</li>
+          </ul>
+        </div>
       </section>
       {/* Interactive Globe showing AI usage locations */}
       <section style={{ width: '100%', maxWidth: 900, background: 'rgba(255,255,255,0.04)', borderRadius: 16, padding: 24, boxShadow: '0 2px 16px #4B2E8322', marginBottom: 32, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -64,6 +143,7 @@ export default function HomePage() {
           <span>Major cities and regions where AI is actively used in industry, research, and society.</span>
         </div>
       </section>
+      <ChatWidget />
     </main>
   );
 }
