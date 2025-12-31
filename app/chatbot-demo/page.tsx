@@ -6,6 +6,22 @@ import React, { useState } from "react";
 // Latest announcement/news (update this string as needed)
 const ANNOUNCEMENT = "🎉 Happy New Year 2026! Check out our upcoming AI Hiring Events and new job listings for the year ahead. Stay tuned for more updates!";
 const FAQS = [
+            {
+              q: "What are some ethical concerns with AI?",
+              a: "AI raises important ethical questions, such as bias in algorithms, privacy, job displacement, and decision transparency. It's important for developers and users to consider fairness, accountability, and the societal impact of AI systems. Many organizations are working on guidelines and best practices to ensure responsible AI use."
+            },
+            {
+              q: "How does AI impact jobs and society?",
+              a: "AI is transforming many industries, automating repetitive tasks, and creating new job opportunities. While some jobs may be replaced, many new roles are emerging in AI development, data analysis, and creative fields. Society benefits from AI in healthcare, education, and accessibility, but it's important to address challenges like inequality and retraining."
+            },
+            {
+              q: "How can I start learning about AI?",
+              a: "If you're a beginner, start with online courses like Coursera's 'AI for Everyone' or free resources from Google and Microsoft. Intermediate learners can explore Python programming, machine learning basics, and hands-on projects. Advanced users might dive into deep learning, research papers, or contribute to open source AI projects. Our Resources page has more suggestions!"
+            },
+            {
+              q: "Does using AI make you less intelligent?",
+              a: "No, using AI does not make you less intelligent! AI is a tool that can help you be more productive, creative, and informed. Just like calculators or computers, AI assists with complex tasks and frees you to focus on higher-level thinking. The key is to use AI thoughtfully and continue learning alongside it."
+            },
           {
             q: "Who are the largest companies hiring for AI jobs?",
             a: "Some of the largest companies hiring for AI roles include Google, Microsoft, Amazon, Meta (Facebook), Apple, NVIDIA, and OpenAI. Many other tech giants, startups, and companies in healthcare, finance, and automotive are also investing heavily in AI talent. These organizations seek AI engineers, data scientists, researchers, and creative technologists to drive innovation."
