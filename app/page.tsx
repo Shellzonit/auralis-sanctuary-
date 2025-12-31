@@ -11,7 +11,8 @@ const Globe = dynamic(() => import('react-globe.gl'), { ssr: false });
 
 export default function HomePage() {
   // Example data: major AI hubs and cities
-  const aiLocations = useMemo(() => [
+  type AILocation = { lat: number; lng: number; name: string; description: string };
+  const aiLocations: AILocation[] = useMemo(() => [
     { lat: 37.7749, lng: -122.4194, name: 'San Francisco, USA', description: 'AI Startups, Tech Giants' },
     { lat: 40.7128, lng: -74.0060, name: 'New York, USA', description: 'Finance, AI Labs' },
     { lat: 51.5074, lng: -0.1278, name: 'London, UK', description: 'AI Research, FinTech' },
