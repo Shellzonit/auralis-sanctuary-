@@ -31,9 +31,7 @@ export default function HomePage() {
           <p className="text-xl md:text-2xl text-[#F7F5F2] text-center mb-2 font-medium relative z-10">Explore transitional paths, discover new AI jobs, and protect creative legacy.</p>
         </div>
       </main>
-      <footer className="w-full py-6 text-center text-sm bg-[#18191a]/80 mt-auto border-t border-[#C2A86C]/30">
-        <span className="text-[#C2A86C]">This website was created using <b>Next.js</b>, <b>React</b>, <b>Tailwind CSS</b>, and deployed with <b>Vercel</b>.</span>
-      </footer>
+      {/* Footer removed as requested */}
     </div>
   );
 }
