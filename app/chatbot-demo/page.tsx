@@ -161,7 +161,29 @@ export default function ChatbotDemo() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [replyTo, setReplyTo] = useState<number | null>(null);
+  const [showResumeForm, setShowResumeForm] = useState(false);
+  const [resumeForm, setResumeForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    summary: "",
+    experience: "",
+    education: "",
+    skills: ""
+  });
+  const [resumeDraft, setResumeDraft] = useState<string | null>(null);
   const nextId = React.useRef(1);
+  function handleResumeFormChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const { name, value } = e.target;
+    setResumeForm(f => ({ ...f, [name]: value }));
+  }
+
+  function handleResumeSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const { name, email, phone, summary, experience, education, skills } = resumeForm;
+    const draft = `${name}\n${email} | ${phone}\n\nProfessional Summary:\n${summary}\n\nExperience:\n${experience}\n\nEducation:\n${education}\n\nSkills:\n${skills}`;
+    setResumeDraft(draft);
+  }
 
   // On mount, increment and get visitor number from localStorage
   useEffect(() => {
@@ -325,6 +347,36 @@ export default function ChatbotDemo() {
       }}>
         {ANNOUNCEMENT}
       </div>
+      <button
+        style={{ background: '#ffd700', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '10px 18px', border: 'none', cursor: 'pointer', marginBottom: 16 }}
+        onClick={() => { setShowResumeForm(v => !v); setResumeDraft(null); }}
+      >
+        {showResumeForm ? "Close Resume Writer" : "Write My Resume"}
+      </button>
+      {showResumeForm && (
+        <section style={{ maxWidth: 500, width: '100%', background: "rgba(255,255,255,0.13)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
+          <h2 style={{ color: '#ffd700', fontSize: 20, marginBottom: 12 }}>Resume Writer (Private & Secure)</h2>
+          <form onSubmit={handleResumeSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <input name="name" value={resumeForm.name} onChange={handleResumeFormChange} placeholder="Full Name" required style={{ borderRadius: 8, border: '1.5px solid #ffd700', padding: '8px 12px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }} />
+            <input name="email" value={resumeForm.email} onChange={handleResumeFormChange} placeholder="Email" required style={{ borderRadius: 8, border: '1.5px solid #ffd700', padding: '8px 12px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }} />
+            <input name="phone" value={resumeForm.phone} onChange={handleResumeFormChange} placeholder="Phone" required style={{ borderRadius: 8, border: '1.5px solid #ffd700', padding: '8px 12px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }} />
+            <textarea name="summary" value={resumeForm.summary} onChange={handleResumeFormChange} placeholder="Professional Summary" rows={2} required style={{ borderRadius: 8, border: '1.5px solid #ffd700', padding: '8px 12px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }} />
+            <textarea name="experience" value={resumeForm.experience} onChange={handleResumeFormChange} placeholder="Experience (jobs, roles, dates)" rows={3} required style={{ borderRadius: 8, border: '1.5px solid #ffd700', padding: '8px 12px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }} />
+            <textarea name="education" value={resumeForm.education} onChange={handleResumeFormChange} placeholder="Education (schools, degrees, dates)" rows={2} required style={{ borderRadius: 8, border: '1.5px solid #ffd700', padding: '8px 12px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }} />
+            <textarea name="skills" value={resumeForm.skills} onChange={handleResumeFormChange} placeholder="Skills (comma separated)" rows={2} required style={{ borderRadius: 8, border: '1.5px solid #ffd700', padding: '8px 12px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }} />
+            <button type="submit" style={{ background: '#ffd700', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '10px 18px', border: 'none', cursor: 'pointer', marginTop: 8 }}>Generate Resume Draft</button>
+          </form>
+          {resumeDraft && (
+            <div style={{ background: '#232526', color: '#ffd700', borderRadius: 8, padding: 16, marginTop: 18, whiteSpace: 'pre-wrap', fontFamily: 'monospace', fontSize: 15 }}>
+              <strong>Resume Draft:</strong>
+              <br />
+              {resumeDraft}
+              <br />
+              <button onClick={() => { navigator.clipboard.writeText(resumeDraft); }} style={{ marginTop: 10, background: '#ffd700', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '6px 14px', border: 'none', cursor: 'pointer' }}>Copy to Clipboard</button>
+            </div>
+          )}
+        </section>
+      )}
       <section style={{ maxWidth: 500, width: '100%', background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
         <div style={{ minHeight: 220, marginBottom: 16 }}>
           {renderMessages(undefined)}
@@ -350,7 +402,20 @@ export default function ChatbotDemo() {
         </form>
       </section>
       <div style={{ color: '#fff8dc', fontSize: '1rem', marginTop: 24, textAlign: 'center', maxWidth: 600 }}>
-        <strong>How it works:</strong> This chatbot answers FAQs, shares the latest news, and suggests AI jobs/events based on your interests. Try asking about jobs, events, news, or how to get started!
+        <strong>Meet Mr. Job Nanny: Your Private AI Career Assistant</strong>
+        <ul style={{ textAlign: 'left', margin: '16px auto', maxWidth: 520, color: '#fff8dc', fontSize: '1rem', lineHeight: 1.6 }}>
+          <li>Ask questions about AI jobs, qualifications, pay, and career paths.</li>
+          <li>Get instant answers to FAQs about the site, AI, and hiring events.</li>
+          <li>Receive personalized job suggestions based on your interests or skills.</li>
+          <li>Explore the latest news and announcements about AI careers and events.</li>
+          <li>Start a threaded chat for deeper, organized conversations.</li>
+          <li>Use the secure, in-app Resume Writer to create and copy your resume—no accounts, no sharing, fully private.</li>
+          <li>Get tips on resume building, interview prep, and career transitions.</li>
+          <li>Enjoy a safe, supportive, and privacy-first environment—Mr. Job Nanny never shares your data.</li>
+        </ul>
+        <div style={{ color: '#ffd700', fontWeight: 700, marginTop: 8 }}>
+          <span role="img" aria-label="lock">🔒</span> We are strong respecters of your privacy. All resume writing and chat features are private and secure—your data is never shared or sent anywhere without your consent.
+        </div>
       </div>
     </main>
   );
