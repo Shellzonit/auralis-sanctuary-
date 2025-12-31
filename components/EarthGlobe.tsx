@@ -13,18 +13,23 @@ export default function EarthGlobe() {
   ];
 
   return (
-    <div style={{ width: '100%', height: '600px', background: '#111', borderRadius: 16, overflow: 'hidden' }}>
-      <Globe
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
-        pointsData={markers}
-        pointLat={d => d.lat}
-        pointLng={d => d.lng}
-        pointColor={d => d.color}
-        pointAltitude={d => d.size}
-        pointLabel={d => d.label}
-        width={undefined}
-        height={undefined}
-      />
-    </div>
+  return (
+    <>
+      <div style={{ width: '100%', height: '600px', background: '#111', borderRadius: 16, overflow: 'hidden' }}>
+        <Globe
+          globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
+          pointsData={markers}
+          pointLat={d => d.lat}
+          pointLng={d => d.lng}
+          pointColor={d => d.color}
+          pointAltitude={d => d.size}
+          pointLabel={d => d.label}
+          width={undefined}
+          height={undefined}
+        />
+      </div>
+      <hr style={{ margin: '32px 0', border: 'none', borderTop: '2px solid #333', width: '100%' }} />
+    </>
+  );
   );
 }
