@@ -10,8 +10,8 @@ export default function HomePage() {
       {/* Futuristic AI image */}
       <div className="flex justify-center pt-16 pb-8">
         <img
-          src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80"
-          alt="Futuristic AI generated art"
+          src="https://images.unsplash.com/photo-1508385082359-f48b1cbe8c8a?auto=format&fit=crop&w=900&q=80"
+          alt="AI generated art showing artificial intelligence, neural networks, and digital innovation"
           className="rounded-3xl shadow-2xl object-cover w-full max-w-2xl h-[260px] border-4 border-[#4B2E83]/40"
         />
       </div>
