@@ -1,0 +1,12 @@
+[
+  { "lat": 37.7749, "lng": -122.4194, "name": "San Francisco, USA", "description": "AI Startups, Tech Giants" },
+  { "lat": 40.7128, "lng": -74.0060, "name": "New York, USA", "description": "Finance, AI Labs" },
+  { "lat": 51.5074, "lng": -0.1278, "name": "London, UK", "description": "AI Research, FinTech" },
+  { "lat": 48.8566, "lng": 2.3522, "name": "Paris, France", "description": "AI Research, Robotics" },
+  { "lat": 35.6895, "lng": 139.6917, "name": "Tokyo, Japan", "description": "Robotics, AI Industry" },
+  { "lat": 31.2304, "lng": 121.4737, "name": "Shanghai, China", "description": "AI Startups, Smart Cities" },
+  { "lat": 28.6139, "lng": 77.2090, "name": "Delhi, India", "description": "AI Research, Startups" },
+  { "lat": -33.8688, "lng": 151.2093, "name": "Sydney, Australia", "description": "AI in Healthcare" },
+  { "lat": 52.5200, "lng": 13.4050, "name": "Berlin, Germany", "description": "AI Startups, Research" },
+  { "lat": -23.5505, "lng": -46.6333, "name": "São Paulo, Brazil", "description": "AI in Industry" }
+]
