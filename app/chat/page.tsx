@@ -54,18 +54,35 @@ export default function ChatPage() {
     let onMessage: any;
     (async () => {
       ably = getAblyClient();
+      console.log('[Ably] Client initialized:', ably);
       channelRef.current = ably.channels.get(CHANNEL_NAME);
+      console.log('[Ably] Subscribing to channel:', CHANNEL_NAME);
       onMessage = (msg: any) => {
+        console.log('[Ably] Message received:', msg.data);
         setMessages((prev) => [...prev, msg.data]);
       };
-      channelRef.current.subscribe("message", onMessage);
+      channelRef.current.subscribe("message", onMessage, (err: any) => {
+        if (err) {
+          console.error('[Ably] Subscribe error:', err);
+        } else {
+          console.log('[Ably] Subscribed to channel successfully');
+        }
+      });
+      ably.connection.on('connected', () => {
+        console.log('[Ably] Connection established');
+      });
+      ably.connection.on('failed', (err: any) => {
+        console.error('[Ably] Connection failed:', err);
+      });
     })();
     return () => {
       if (channelRef.current && onMessage) {
         channelRef.current.unsubscribe("message", onMessage);
+        console.log('[Ably] Unsubscribed from channel');
       }
       if (ably) {
         ably.close();
+        console.log('[Ably] Client closed');
       }
     };
   }, []);
@@ -86,6 +103,9 @@ export default function ChatPage() {
     channelRef.current.publish("message", message, (err: any) => {
       if (err) {
         alert("Failed to send message: " + err.message);
+        console.error('[Ably] Publish error:', err);
+      } else {
+        console.log('[Ably] Message published:', message);
       }
     });
     setInput("");
