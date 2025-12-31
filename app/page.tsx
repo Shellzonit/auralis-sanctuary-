@@ -8,19 +8,28 @@ const tabs = [
   { href: '/states', label: 'States' },
   { href: '/jobs-at-risk', label: 'Jobs at Risk' },
   { href: '/transitional-paths', label: 'Transitional Paths' },
-  { href: '/new-ai-jobs', label: 'New AI Jobs' },
+  // Removed one tab for simplicity
 ];
 
 export default function HomePage() {
   return (
-    <div className="bg-[#F7F5F2] min-h-screen text-[#4B2E83]">
-      <header className="border-b border-[#E0DDD8] py-5">
-        <nav className="flex justify-center gap-12 text-[22px] font-medium">
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)",
+        color: "#fff8dc",
+        fontFamily: "Inter, Arial, sans-serif",
+      }}
+    >
+      <header style={{ borderBottom: '1px solid #232526', padding: '20px 0' }}>
+        <nav style={{ display: 'flex', justifyContent: 'center', gap: 48, fontSize: 22, fontWeight: 500 }}>
           {tabs.map((tab) => (
             <a
               key={tab.href}
               href={tab.href}
-              className="hover:text-[#C2A86C] transition"
+              style={{ color: '#ffd700', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseOver={e => (e.currentTarget.style.color = '#C2A86C')}
+              onMouseOut={e => (e.currentTarget.style.color = '#ffd700')}
             >
               {tab.label}
             </a>
@@ -29,14 +38,20 @@ export default function HomePage() {
       </header>
 
       <main className="flex flex-col items-center justify-center py-20">
+        <h1 style={{ marginTop: 32, fontSize: '2.2rem', fontWeight: 800, color: '#C2A86C', textShadow: '0 2px 16px #2a1a4d' }}>
+          Sanctuary
+        </h1>
         <Image
-          src="/your-logo-file-name.png" // replace with actual filename
-          alt="Sanctuary Logo"
-          width={200}
+          src="/ai-community-hub.jpg"
+          alt="AI Community Hub"
+          width={320}
           height={200}
+          style={{ borderRadius: 16, boxShadow: '0 2px 16px #2a1a4d55', margin: '32px 0' }}
         />
-        <h1 className="mt-8 text-3xl font-semibold">Welcome to the AI Wilding Sanctuary</h1>
-        <p className="mt-4 text-lg max-w-xl text-center text-[#4B2E83]">
+        <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#C2A86C', textShadow: '0 2px 16px #2a1a4d', marginBottom: 0 }}>
+          Welcome
+        </h2>
+        <p style={{ marginTop: 16, fontSize: '1.15rem', maxWidth: 600, textAlign: 'center', color: '#fff8dc' }}>
           Explore transitional paths, discover new AI jobs, and protect creative legacy.
         </p>
       </main>
