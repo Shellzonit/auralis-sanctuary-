@@ -65,6 +65,27 @@ export default function HomePage() {
               <span style={{ fontSize: '3rem', fontWeight: 900, color: '#ffd700', letterSpacing: 2, textShadow: '0 2px 16px #2a1a4d' }}>
                 AI Wilding
               </span>
+              <div style={{ marginTop: 24 }}>
+                <a href="/ai-hiring-events" style={{
+                  display: 'inline-block',
+                  background: '#ffd700',
+                  color: '#232526',
+                  border: 'none',
+                  borderRadius: 8,
+                  padding: '10px 36px',
+                  fontWeight: 700,
+                  fontSize: 20,
+                  textDecoration: 'none',
+                  boxShadow: '0 2px 8px #ffd70055',
+                  cursor: 'pointer',
+                  transition: 'background 0.2s, color 0.2s',
+                }}
+                  onMouseOver={e => { (e.currentTarget as HTMLElement).style.background = '#C2A86C'; }}
+                  onMouseOut={e => { (e.currentTarget as HTMLElement).style.background = '#ffd700'; }}
+                >
+                  AI Hiring Events
+                </a>
+              </div>
             </div>
           </div>
 
