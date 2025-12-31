@@ -4,7 +4,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import ThreadedChat from '../components/ThreadedChat';
+
 
 const tabs = [
   { href: '/', label: 'Home' },
@@ -39,11 +39,7 @@ export default function HomePage() {
               "The future belongs to those who create, adapt, and inspire—together with AI."
             </blockquote>
           </div>
-        {/* Right column: General Discussion Board */}
-        <section style={{ flex: '1 1 400px', minWidth: 340, maxWidth: 600, background: '#18191aee', borderRadius: 16, boxShadow: '0 2px 16px #2a1a4d55', padding: 32, marginLeft: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          <h3 style={{ color: '#ffd700', fontWeight: 700, fontSize: 22, marginBottom: 16 }}>General Discussion Board</h3>
-          <ThreadedChat />
-        </section>
+
       </main>
     </div>
   );
