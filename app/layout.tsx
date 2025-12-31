@@ -33,6 +33,23 @@ export default function RootLayout({
       >
         <NavBar />
         {children}
+        <footer
+          style={{
+            width: '100%',
+            background: 'rgba(106,27,154,0.85)',
+            color: '#ffd700',
+            textAlign: 'center',
+            fontSize: '1rem',
+            padding: '18px 0 14px 0',
+            marginTop: 48,
+            letterSpacing: 0.2,
+            fontWeight: 500,
+            position: 'relative',
+            zIndex: 10,
+          }}
+        >
+          Built with Next.js, React, and Python/Flask. All sensitive information is encrypted and your privacy is always respected.
+        </footer>
         <div className="blue-streak" />
       </body>
     </html>
