@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Simple FAQ and AI job/event recommender chatbot
 // Latest announcement/news (update this string as needed)
@@ -135,12 +135,28 @@ const JOB_SUGGESTIONS = [
   }
 ];
 
+
 export default function ChatbotDemo() {
-  const [messages, setMessages] = useState([
-    { from: "bot", text: "Hi! Ask me anything about this site, AI jobs, or events." }
-  ]);
+  const [visitorNum, setVisitorNum] = useState<number | null>(null);
+  const [messages, setMessages] = useState<{from: string, text: string}[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // On mount, increment and get visitor number from localStorage
+  useEffect(() => {
+    let num = 1;
+    try {
+      const stored = localStorage.getItem("chatbot-visitor-num");
+      if (stored) {
+        num = parseInt(stored, 10) + 1;
+      }
+      localStorage.setItem("chatbot-visitor-num", num.toString());
+    } catch {}
+    setVisitorNum(num);
+    setMessages([
+      { from: "bot", text: `Welcome! You are visitor number ${num} on this browser. Ask me anything about this site, AI jobs, or events.` }
+    ]);
+  }, []);
 
   function getBotResponse(userMsg: string) {
     const msg = userMsg.toLowerCase();
