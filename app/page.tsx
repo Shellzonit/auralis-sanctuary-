@@ -39,11 +39,25 @@ export default function HomePage() {
               "The future belongs to those who create, adapt, and inspire—together with AI."
             </blockquote>
 
-            {/* Gold Tabs */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 32, margin: '32px 0 0 0' }}>
-              <button style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>Overview</button>
-              <button style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>Resources</button>
-              <button style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>Community</button>
+
+            {/* Gold Tabs: 2 left, 2 right, gold underline */}
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 64, margin: '32px 0 0 0' }}>
+              {/* Left group */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+                <div style={{ display: 'flex', gap: 24 }}>
+                  <a href="/states" style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, textDecoration: 'none', boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>States</a>
+                  <a href="/jobs-at-risk" style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, textDecoration: 'none', boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>Jobs at Risk</a>
+                </div>
+                <div style={{ height: 4, width: '100%', background: '#ffd700', borderRadius: 2, marginTop: 4 }} />
+              </div>
+              {/* Right group */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+                <div style={{ display: 'flex', gap: 24 }}>
+                  <a href="/transitional-paths" style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, textDecoration: 'none', boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>Transitional Paths</a>
+                  <a href="/new-ai-jobs" style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, textDecoration: 'none', boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>New AI Jobs</a>
+                </div>
+                <div style={{ height: 4, width: '100%', background: '#ffd700', borderRadius: 2, marginTop: 4 }} />
+              </div>
             </div>
 
             {/* AI Wilding Title */}
