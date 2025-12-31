@@ -177,6 +177,8 @@ export default function ChatbotDemo() {
   const [contactForm, setContactForm] = useState({ name: "", email: "", message: "" });
   const [contactSent, setContactSent] = useState(false);
   const nextId = React.useRef(1);
+  // Track last seen job ID for alerts
+  const lastJobId = React.useRef<number | null>(null);
     function handleContactFormChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
       const { name, value } = e.target;
       setContactForm(f => ({ ...f, [name]: value }));
@@ -232,6 +234,39 @@ export default function ChatbotDemo() {
     ]);
     nextId.current = 1;
     recordChatbotVisit();
+
+    // Poll for new jobs every 60 seconds
+    let pollInterval: NodeJS.Timeout;
+    async function pollJobs() {
+      try {
+        const res = await fetch("/api/jobs", { headers: { "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY || "" } });
+        if (res.ok) {
+          const jobs = await res.json();
+          if (Array.isArray(jobs) && jobs.length > 0) {
+            const newest = jobs[jobs.length - 1];
+            if (lastJobId.current === null) {
+              lastJobId.current = newest.id;
+            } else if (newest.id !== lastJobId.current) {
+              // New job detected
+              setMessages(msgs => [
+                ...msgs,
+                {
+                  id: nextId.current++,
+                  from: "Mr. Job Nanny",
+                  text: `🚨 New AI Job Posted: ${newest.title} at ${newest.company || "Unknown Company"}. Check the New AI Jobs page for details!`,
+                  parentId: undefined
+                }
+              ]);
+              lastJobId.current = newest.id;
+            }
+          }
+        }
+      } catch {}
+    }
+    pollInterval = setInterval(pollJobs, 60000); // 60 seconds
+    // Initial poll
+    pollJobs();
+    return () => clearInterval(pollInterval);
   }, []);
 
   function getBotResponse(userMsg: string) {
@@ -358,8 +393,8 @@ export default function ChatbotDemo() {
   }
 
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem" }}>
-      <h1 style={{ fontSize: "2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }}>
+    <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem" }} role="main" aria-label="AI Jobs Chatbot Demo">
+      <h1 style={{ fontSize: "2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }} tabIndex={0} aria-label="Chatbot Demo: AI Jobs and FAQ">
         Chatbot Demo: AI Jobs & FAQ
       </h1>
       {/* Announcement/news banner */}
@@ -375,23 +410,27 @@ export default function ChatbotDemo() {
         width: "100%",
         textAlign: "center",
         letterSpacing: 0.1,
-      }}>
+      }} role="status" aria-live="polite">
         {ANNOUNCEMENT}
       </div>
-      <div style={{ display: 'flex', gap: 16, marginBottom: 16 }}>
+      <nav aria-label="Main actions" style={{ display: 'flex', gap: 16, marginBottom: 16 }}>
         <button
           style={{ background: '#ffd700', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '10px 18px', border: 'none', cursor: 'pointer' }}
           onClick={() => { setShowResumeForm(v => !v); setResumeDraft(null); }}
+          aria-pressed={showResumeForm}
+          aria-label={showResumeForm ? "Close Resume Writer" : "Open Resume Writer"}
         >
           {showResumeForm ? "Close Resume Writer" : "Write My Resume"}
         </button>
         <button
           style={{ background: '#6a1b9a', color: '#ffd700', fontWeight: 700, borderRadius: 8, padding: '10px 18px', border: 'none', cursor: 'pointer' }}
           onClick={() => { setShowContactForm(v => !v); setContactSent(false); }}
+          aria-pressed={showContactForm}
+          aria-label={showContactForm ? "Close Contact Form" : "Open Contact Form"}
         >
           {showContactForm ? "Close Contact Form" : "Contact the Creator"}
         </button>
-      </div>
+      </nav>
       {showContactForm && (
         <section style={{ maxWidth: 500, width: '100%', background: "rgba(255,255,255,0.13)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
           <h2 style={{ color: '#ffd700', fontSize: 20, marginBottom: 12 }}>Contact Mr. Job Nanny (Personal Assistant)</h2>
