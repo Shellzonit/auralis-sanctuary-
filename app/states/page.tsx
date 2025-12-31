@@ -100,7 +100,7 @@ export default function StateJobsPage() {
     >
       {/* Jobs at Risk Tab Button in Corner */}
       <a href="/jobs-at-risk" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#C2A86C', color: '#232526', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #C2A86C55', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#C2A86C';e.currentTarget.style.color='#232526';}}>Jobs at Risk &rarr;</a>
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }}>
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#C2A86C", margin: "32px 0 16px 0", textShadow: "0 2px 16px #2a1a4d" }}>
         State AI Job Transitions
       </h1>
       <nav style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 32 }}>
