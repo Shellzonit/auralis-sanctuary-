@@ -51,12 +51,12 @@ export default function HomePage() {
           <Globe
             globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
             pointsData={aiLocations}
-            pointLat={(d: AILocation) => d.lat}
-            pointLng={(d: AILocation) => d.lng}
+            pointLat={d => (d as any).lat}
+            pointLng={d => (d as any).lng}
             pointColor={() => '#C2A86C'}
             pointAltitude={() => 0.08}
             pointRadius={() => 0.18}
-            pointLabel={(d: AILocation) => `<b>${d.name}</b><br/>${d.description}`}
+            pointLabel={d => `<b>${(d as any).name}</b><br/>${(d as any).description}`}
             backgroundColor="rgba(0,0,0,0)"
           />
         </div>
