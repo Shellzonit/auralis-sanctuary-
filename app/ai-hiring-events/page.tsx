@@ -69,6 +69,26 @@ export default function AIHiringEventsPage() {
           <li>Get feedback and tips from industry experts</li>
         </ul>
       </section>
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '32px 0 0 0' }}>
+        <a href="/chat" style={{
+          background: '#ffd700',
+          color: '#232526',
+          border: 'none',
+          borderRadius: 8,
+          padding: '12px 36px',
+          fontWeight: 700,
+          fontSize: 20,
+          textDecoration: 'none',
+          boxShadow: '0 2px 8px #ffd70055',
+          cursor: 'pointer',
+          transition: 'background 0.2s, color 0.2s',
+        }}
+          onMouseOver={e => { (e.currentTarget as HTMLElement).style.background = '#C2A86C'; }}
+          onMouseOut={e => { (e.currentTarget as HTMLElement).style.background = '#ffd700'; }}
+        >
+          General Chat
+        </a>
+      </div>
     </main>
   );
 }
