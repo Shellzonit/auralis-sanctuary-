@@ -24,7 +24,7 @@ export default function NavTabs() {
           const isActive =
             tab.href === "/"
               ? pathname === "/"
-              : pathname.startsWith(tab.href);
+              : !!pathname && pathname.startsWith(tab.href);
           return (
             <li key={tab.href}>
               <Link
