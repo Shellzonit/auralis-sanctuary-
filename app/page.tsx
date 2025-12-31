@@ -26,7 +26,7 @@
         </div>
       </section>
 
-import { HomeIcon } from "../components/NavTabIcons";
+
 
 export default function HomePage() {
   return (
@@ -34,10 +34,6 @@ export default function HomePage() {
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 -z-10 animate-gradient bg-gradient-to-br from-[#f7f5f2] via-[#e0e7ff] to-[#c2a86c]/30 opacity-90" style={{backgroundSize: '200% 200%'}} />
       <section className="flex flex-col justify-center items-center max-w-2xl w-full py-12">
-        {/* Small Home Icon */}
-        <div className="mb-4">
-          <HomeIcon />
-        </div>
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#4B2E83] mb-2 text-center leading-tight">
           Welcome to AI Wilding
         </h1>
