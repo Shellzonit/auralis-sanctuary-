@@ -1,182 +1,91 @@
+"use client";
 
-'use client';
-
-
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-
-
-const tabs = [
-  { href: '/', label: 'Home' },
-  { href: '/states', label: 'States' },
-  { href: '/jobs-at-risk', label: 'Jobs at Risk' },
-  { href: '/transitional-paths', label: 'Transitional Paths' },
-  { href: '/new-ai-jobs', label: 'New AI Jobs' },
-];
+import Link from "next/link";
 
 export default function HomePage() {
+  const tabStyle = {
+    color: '#ffd700',
+    fontWeight: 700,
+    fontSize: '1.15rem',
+    textDecoration: 'none',
+    padding: '8px 18px',
+    borderRadius: 8,
+    background: 'rgba(106,27,154,0.10)', // purple tint
+    boxShadow: '0 2px 8px #6a1b9a22',
+    transition: 'background 0.2s',
+    border: 'none',
+    outline: 'none',
+    cursor: 'pointer',
+    letterSpacing: '.04em',
+    margin: 0,
+    display: 'inline-block',
+  };
   return (
-    <div
+    <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)",
-        color: "#fff8dc",
-        fontFamily: "Inter, Arial, sans-serif",
+        background: "linear-gradient(135deg, #6a1b9a 0%, #ffd700 100%)",
+        fontFamily: "Playfair Display, Georgia, serif",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "0 1rem",
       }}
     >
-      <style>{`
-        @media (max-width: 700px) {
-          .homepage-main {
-            flex-direction: column !important;
-            align-items: stretch !important;
-            padding: 24px 0 !important;
-          }
-          .homepage-left {
-            margin-right: 0 !important;
-            max-width: 100% !important;
-            padding: 18px 8px !important;
-          }
-          .gold-tab-group {
-            flex-direction: column !important;
-            gap: 16px !important;
-            align-items: center !important;
-          }
-          .gold-tab-group > div {
-            width: 100% !important;
-            justify-content: center !important;
-          }
-          .gold-tab-group a {
-            width: 90vw !important;
-            font-size: 1.1rem !important;
-            padding: 12px 0 !important;
-            margin-bottom: 8px !important;
-          }
-          .ai-wilding-title {
-            font-size: 2rem !important;
-          }
-          .testimonial-left, .testimonial-right {
-            position: static !important;
-            transform: none !important;
-            margin: 18px 0 !important;
-            max-width: 95vw !important;
-            text-align: center !important;
-            border-left: none !important;
-            border-right: none !important;
-            border-top: 4px solid #ffd700 !important;
-            border-bottom: 4px solid #ffd700 !important;
-          }
-        }
-      `}</style>
-
-
-      <main className="homepage-main" style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', padding: '48px 0', minHeight: '80vh', boxSizing: 'border-box' }}>
-        {/* Left column: Welcome, description, image */}
-          <div className="homepage-left" style={{ flex: '0 0 420px', maxWidth: 420, display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'rgba(24,25,26,0.95)', borderRadius: 18, boxShadow: '0 2px 16px #2a1a4d33', padding: 32, marginRight: 40 }}>
-            <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#C2A86C', textShadow: '0 2px 16px #2a1a4d', marginBottom: 12, textAlign: 'center' }}>
-              Welcome
-            </h2>
-            <p style={{ marginTop: 0, fontSize: '1.15rem', maxWidth: 360, textAlign: 'center', color: '#fff8dc', marginBottom: 24 }}>
-              Explore transitional paths, discover new AI jobs, and protect creative legacy.
-            </p>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', marginTop: 24 }}>
-              {/* Left diagonal testimonial */}
-              <div className="testimonial-left" style={{
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                transform: 'translate(-120%, -50%) rotate(-8deg)',
-                background: 'rgba(44,44,44,0.92)',
-                color: '#ffd700',
-                padding: '18px 32px',
-                borderRadius: 16,
-                fontStyle: 'italic',
-                fontSize: '1.05rem',
-                boxShadow: '0 2px 12px #2a1a4d33',
-                maxWidth: 260,
-                zIndex: 1,
-                borderLeft: '4px solid #ffd700',
-              }}>
-                “AI helped me transition my creative skills into a new career I never imagined.”
-                <div style={{ fontWeight: 700, marginTop: 8, fontSize: '0.95rem', color: '#fff8dc' }}>— Taylor, Designer</div>
-              </div>
-              <blockquote style={{ fontStyle: 'italic', color: '#ffd700', textAlign: 'center', fontSize: '1.1rem', margin: 0 }}>
-                "The future belongs to those who create, adapt, and inspire—together with AI."
-              </blockquote>
-              {/* Right diagonal testimonial */}
-              <div className="testimonial-right" style={{
-                position: 'absolute',
-                right: 0,
-                top: 0,
-                transform: 'translate(120%, -50%) rotate(8deg)',
-                background: 'rgba(44,44,44,0.92)',
-                color: '#ffd700',
-                padding: '18px 32px',
-                borderRadius: 16,
-                fontStyle: 'italic',
-                fontSize: '1.05rem',
-                boxShadow: '0 2px 12px #2a1a4d33',
-                maxWidth: 260,
-                zIndex: 1,
-                borderRight: '4px solid #ffd700',
-              }}>
-                “Joining the AI Wilding community gave me hope and real opportunities.”
-                <div style={{ fontWeight: 700, marginTop: 8, fontSize: '0.95rem', color: '#fff8dc' }}>— Morgan, Writer</div>
-              </div>
-            </div>
-
-
-            {/* Gold Tabs: 2 left, 2 right, gold underline */}
-            <div className="gold-tab-group" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 64, margin: '32px 0 0 0' }}>
-              {/* Left group */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-                <div style={{ display: 'flex', gap: 24 }}>
-                  <a href="/states" style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, textDecoration: 'none', boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>States</a>
-                  <a href="/jobs-at-risk" style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, textDecoration: 'none', boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>Jobs at Risk</a>
-                </div>
-                <div style={{ height: 4, width: '100%', background: '#ffd700', borderRadius: 2, marginTop: 4 }} />
-              </div>
-              {/* Right group */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-                <div style={{ display: 'flex', gap: 24 }}>
-                  <a href="/transitional-paths" style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, textDecoration: 'none', boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>Transitional Paths</a>
-                  <a href="/new-ai-jobs" style={{ background: '#ffd700', color: '#232526', border: 'none', borderRadius: 8, padding: '12px 32px', fontWeight: 700, fontSize: 18, textDecoration: 'none', boxShadow: '0 2px 8px #ffd70055', cursor: 'pointer' }}>New AI Jobs</a>
-                </div>
-                <div style={{ height: 4, width: '100%', background: '#ffd700', borderRadius: 2, marginTop: 4 }} />
-              </div>
-            </div>
-
-            {/* AI Wilding Title */}
-            <div style={{ marginTop: 40, textAlign: 'center' }}>
-              <span className="ai-wilding-title" style={{ fontSize: '3rem', fontWeight: 900, color: '#ffd700', letterSpacing: 2, textShadow: '0 2px 16px #2a1a4d' }}>
-                AI Wilding
-              </span>
-              <div style={{ marginTop: 24 }}>
-                <a href="/ai-hiring-events" style={{
-                  display: 'inline-block',
-                  background: '#ffd700',
-                  color: '#232526',
-                  border: 'none',
-                  borderRadius: 8,
-                  padding: '10px 36px',
-                  fontWeight: 700,
-                  fontSize: 20,
-                  textDecoration: 'none',
-                  boxShadow: '0 2px 8px #ffd70055',
-                  cursor: 'pointer',
-                  transition: 'background 0.2s, color 0.2s',
-                }}
-                  onMouseOver={e => { (e.currentTarget as HTMLElement).style.background = '#C2A86C'; }}
-                  onMouseOut={e => { (e.currentTarget as HTMLElement).style.background = '#ffd700'; }}
-                >
-                  AI Hiring Events
-                </a>
-              </div>
-            </div>
-          </div>
-
-      </main>
-    </div>
+      <h1
+        style={{
+          fontFamily: 'Playfair Display, Georgia, serif',
+          fontSize: '3.5rem',
+          fontWeight: 900,
+          color: '#ffd700',
+          margin: '48px 0 24px 0',
+          textShadow: '0 2px 24px #6a1b9a',
+          letterSpacing: 2,
+          textAlign: 'center',
+        }}
+      >
+        AI Wilding
+      </h1>
+      <nav
+        style={{
+          display: 'flex',
+          gap: 24,
+          background: 'rgba(106,27,154,0.85)', // purple
+          borderRadius: 16,
+          padding: '12px 32px',
+          marginBottom: 48,
+          boxShadow: '0 4px 24px #6a1b9a55',
+        }}
+      >
+        <a href="/" style={tabStyle}>Home</a>
+        <a href="/states" style={tabStyle}>States</a>
+        <a href="/countries" style={tabStyle}>Countries</a>
+        <a href="/jobs-at-risk" style={tabStyle}>Jobs at Risk</a>
+        <a href="/transitional-paths" style={tabStyle}>Transitional Paths</a>
+        <a href="/new-ai-jobs" style={tabStyle}>New AI Jobs</a>
+        <a href="/training" style={tabStyle}>Training Hub</a>
+        <a href="/recovery" style={tabStyle}>Recovery Hub</a>
+        <a href="/about" style={tabStyle}>About</a>
+        <a href="/contact" style={tabStyle}>Contact</a>
+      </nav>
+      <section style={{
+        background: 'rgba(255,255,255,0.13)',
+        borderRadius: 16,
+        padding: '24px 32px',
+        maxWidth: 600,
+        margin: '48px auto 48px auto',
+        boxShadow: '0 2px 16px #6a1b9a22',
+        color: '#232526',
+        textAlign: 'center',
+        fontSize: '1.15rem',
+        lineHeight: 1.7,
+      }}>
+        <strong style={{ color: '#ffd700', fontSize: '1.2rem' }}>Meet Mr. Job Nanny!</strong>
+        <br />
+        <span role="img" aria-label="nanny">🧑‍🦳</span> Mr. Job Nanny is your private AI career assistant. He can answer your questions about AI jobs, qualifications, pay, and career paths; suggest jobs based on your interests; help you write a resume securely in-app; and offer tips for interviews and career growth. All conversations and resume writing are private—your data is never shared.
+        <br /><br />
+        <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>Chat with Mr. Job Nanny</Link>
+      </section>
+    </main>
   );
 }
-
-
