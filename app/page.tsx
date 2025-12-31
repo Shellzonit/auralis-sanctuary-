@@ -7,32 +7,23 @@ import Image from 'next/image';
 
 export default function HomePage() {
   return (
-    <div className="relative bg-gradient-to-br from-[#0a141a] via-[#18191a] to-[#2a1a4d] min-h-screen text-[#F7F5F2] flex flex-col overflow-hidden">
+    <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative' }}>
       {/* States Tab Button in Corner */}
-      <a href="/states" className="absolute top-6 right-8 z-20 px-6 py-2 bg-[#C2A86C] text-[#232526] font-bold rounded-full shadow-lg hover:bg-[#F7F5F2] hover:text-[#4B2E83] transition-all text-lg">States &rarr;</a>
-      {/* Glowing Card */}
-      <main className="flex flex-1 flex-col items-center justify-center px-4 pt-16">
-        <div className="relative w-full max-w-xl bg-white/10 rounded-3xl shadow-2xl flex flex-col items-center p-10 border border-[#C2A86C]/30 backdrop-blur-md">
-          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-[#C2A86C]/40 via-[#4B2E83]/30 to-[#00eaff]/30 blur-2xl opacity-60 z-0" />
-          <Image
-            src="/your-logo-file-name.png" // replace with actual filename
-            alt="Sanctuary Logo"
-            width={120}
-            height={120}
-            className="mb-6 relative z-10 drop-shadow-glow"
-          />
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#C2A86C] text-center mb-8 tracking-tight relative z-10 drop-shadow-glow">Welcome to the AI Wilding Sanctuary</h1>
-          {/* AI Innovation Image */}
-          <img
-            src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80"
-            alt="AI innovation art, neural networks, digital brain, futuristic"
-            className="rounded-2xl shadow-xl object-cover w-full max-w-lg h-[220px] mb-8 border-2 border-[#C2A86C]/40 relative z-10"
-          />
-          <p className="text-xl md:text-2xl text-[#F7F5F2] text-center mb-2 font-medium relative z-10">Explore transitional paths, discover new AI jobs, and protect creative legacy.</p>
-        </div>
-      </main>
-      {/* Footer removed as requested */}
-    </div>
+      <a href="/states" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#C2A86C', color: '#232526', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #C2A86C55', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#C2A86C';e.currentTarget.style.color='#232526';}}>States &rarr;</a>
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#C2A86C", margin: "32px 0 16px 0", textShadow: "0 2px 16px #2a1a4d" }}>
+        Welcome to the AI Wilding Sanctuary
+      </h1>
+      <section style={{ maxWidth: 900, background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #4B2E8322", marginBottom: 32 }}>
+        <p style={{ color: "#fff8dc", fontSize: "1.08rem", marginBottom: 18 }}>
+          Explore transitional paths, discover new AI jobs, and protect creative legacy. This site is your atlas for navigating the future of work in the age of artificial intelligence.
+        </p>
+        <img
+          src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80"
+          alt="AI innovation art, neural networks, digital brain, futuristic"
+          style={{ borderRadius: 16, boxShadow: "0 2px 16px #C2A86C55", objectFit: "cover", width: "100%", maxWidth: 600, height: 220, margin: "0 auto 24px auto", border: "2px solid #C2A86C40" }}
+        />
+      </section>
+    </main>
   );
 }
 
