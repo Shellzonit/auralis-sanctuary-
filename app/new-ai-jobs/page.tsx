@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-const NEW_AI_JOBS = [
+export const NEW_AI_JOBS = [
   {
     title: "AI Engineer",
     description: "Designs, builds, and deploys AI models and systems for various applications.",
