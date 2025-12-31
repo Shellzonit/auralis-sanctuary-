@@ -18,11 +18,11 @@ export default function EarthGlobe() {
         <Globe
           globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
           pointsData={markers}
-          pointLat={d => d.lat}
-          pointLng={d => d.lng}
-          pointColor={d => d.color}
-          pointAltitude={d => d.size}
-          pointLabel={d => d.label}
+          pointLat={(d: { lat: number }) => d.lat}
+          pointLng={(d: { lng: number }) => d.lng}
+          pointColor={(d: { color: string }) => d.color}
+          pointAltitude={(d: { size: number }) => d.size}
+          pointLabel={(d: { label: string }) => d.label}
           width={undefined}
           height={undefined}
         />
