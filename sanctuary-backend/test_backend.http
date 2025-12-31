@@ -1,0 +1,36 @@
+### List all chat rooms
+GET http://127.0.0.1:5000/api/rooms
+
+### Create a new chat room
+POST http://127.0.0.1:5000/api/rooms
+Content-Type: application/json
+
+{
+  "name": "General"
+}
+
+### List messages in a room
+GET http://127.0.0.1:5000/api/rooms/1/messages
+
+### Post a message to a room
+POST http://127.0.0.1:5000/api/rooms/1/messages
+Content-Type: application/json
+
+{
+  "author": "Alice",
+  "message": "Hello, world!"
+}
+
+### List all AI jobs
+GET http://127.0.0.1:5000/api/jobs
+
+### Add a new AI job
+POST http://127.0.0.1:5000/api/jobs
+Content-Type: application/json
+
+{
+  "title": "AI Engineer",
+  "company": "OpenAI",
+  "description": "Build and deploy AI models.",
+  "pay": "$120k-$180k"
+}
