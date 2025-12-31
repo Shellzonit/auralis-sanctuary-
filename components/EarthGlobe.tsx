@@ -13,7 +13,6 @@ export default function EarthGlobe() {
   ];
 
   return (
-  return (
     <>
       <div style={{ width: '100%', height: '600px', background: '#111', borderRadius: 16, overflow: 'hidden' }}>
         <Globe
@@ -30,6 +29,5 @@ export default function EarthGlobe() {
       </div>
       <hr style={{ margin: '32px 0', border: 'none', borderTop: '2px solid #333', width: '100%' }} />
     </>
-  );
   );
 }
