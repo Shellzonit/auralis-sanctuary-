@@ -82,7 +82,16 @@ export default function HomePage() {
       }}>
         <strong style={{ color: '#ffd700', fontSize: '1.2rem' }}>Meet Mr. Job Nanny!</strong>
         <br />
-        <span role="img" aria-label="nanny">🧑‍🦳</span> Mr. Job Nanny is your private AI career assistant. He can answer your questions about AI jobs, qualifications, pay, and career paths; suggest jobs based on your interests; help you write a resume securely in-app; and offer tips for interviews and career growth. All conversations and resume writing are private—your data is never shared.
+        <span role="img" aria-label="nanny">🧑‍🦳</span> Mr. Job Nanny is your personal, privacy-first AI job assistant. He helps you discover new AI jobs, analyze your skill gaps, set interview reminders, and get personalized job alerts—all in a safe, supportive environment. Mr. Nanny can:
+        <ul style={{ margin: '8px 0 8px 24px', color: '#fff8dc' }}>
+          <li>Suggest jobs and career paths based on your interests and skills</li>
+          <li>Analyze your resume and offer actionable feedback</li>
+          <li>Help you identify missing skills or certifications for your dream job</li>
+          <li>Send you interview reminders (with a friendly disclaimer!)</li>
+          <li>Alert you to new job postings in chat or by email</li>
+          <li>Answer your questions about pay, qualifications, and career growth</li>
+        </ul>
+        <span style={{ color: '#ffd700', fontWeight: 600 }}>Your privacy is always protected—your data stays on your device unless you choose to share it.</span>
         <br /><br />
         <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>Chat with Mr. Job Nanny</Link>
       </section>

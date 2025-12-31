@@ -1,3 +1,12 @@
+    // Interview reminder state
+    const [interviewStep, setInterviewStep] = useState<number | null>(null);
+    const [interviewInfo, setInterviewInfo] = useState<{date: string, time: string, company: string, email: string}>({date: '', time: '', company: '', email: ''});
+  // Job alert subscription state
+  const [alertStep, setAlertStep] = useState<number | null>(null);
+  const [alertPrefs, setAlertPrefs] = useState<{skills: string, email: string}>({skills: '', email: ''});
+  // Skill gap analysis state
+  const [gapStep, setGapStep] = useState<number | null>(null);
+  const [gapInfo, setGapInfo] = useState<{target: string, skills: string}>({target: '', skills: ''});
 
 "use client";
 
@@ -159,6 +168,9 @@ export default function ChatbotDemo() {
   const [visitorNum, setVisitorNum] = useState<number | null>(null);
   // Threaded messages: { id, from, text, parentId }
   const [messages, setMessages] = useState<Array<{id: number, from: string, text: string, parentId?: number}>>([]);
+  // For career quiz state
+  const [quizStep, setQuizStep] = useState<number | null>(null);
+  const [quizAnswers, setQuizAnswers] = useState<{[key: string]: string}>({});
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [replyTo, setReplyTo] = useState<number | null>(null);
@@ -211,15 +223,61 @@ export default function ChatbotDemo() {
     setResumeForm(f => ({ ...f, [name]: value }));
   }
 
+  const [resumeFeedback, setResumeFeedback] = useState<string[]>([]);
   function handleResumeSubmit(e: React.FormEvent) {
     e.preventDefault();
     const { name, email, phone, summary, experience, education, skills } = resumeForm;
     const draft = `${name}\n${email} | ${phone}\n\nProfessional Summary:\n${summary}\n\nExperience:\n${experience}\n\nEducation:\n${education}\n\nSkills:\n${skills}`;
     setResumeDraft(draft);
+    // Simple rule-based feedback
+    const feedback: string[] = [];
+    if (!name.trim()) feedback.push("Missing full name.");
+    if (!email.trim() || !email.includes('@')) feedback.push("Missing or invalid email address.");
+    if (!phone.trim() || phone.length < 7) feedback.push("Missing or incomplete phone number.");
+    if (!summary.trim() || summary.length < 30) feedback.push("Professional summary is too short. Aim for at least 2-3 sentences about your background and goals.");
+    if (!experience.trim() || experience.length < 30) feedback.push("Experience section is too short. List at least one job, role, or project with details.");
+    if (!education.trim()) feedback.push("Missing education section.");
+    if (!skills.trim() || skills.split(',').length < 3) feedback.push("List at least 3 relevant skills, separated by commas.");
+    if (/\b(responsible for|duties included|tasked with)\b/i.test(experience)) feedback.push("Use strong action verbs (e.g., 'led', 'created', 'improved') instead of phrases like 'responsible for'.");
+    setResumeFeedback(feedback);
   }
 
   // On mount, increment and get visitor number from localStorage
   useEffect(() => {
+        // Interview reminder: check daily if any reminders are due today and send email
+        function checkInterviewReminders() {
+          try {
+            const reminders = JSON.parse(localStorage.getItem('interview-reminders') || '[]');
+            const today = new Date().toISOString().slice(0, 10);
+            reminders.forEach(async (rem: any) => {
+              if (rem.date === today && !rem.sent) {
+                // Send email via API
+                await fetch('/api/interview-reminder', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ email: rem.email, date: rem.date, time: rem.time, company: rem.company }),
+                });
+                // Mark as sent
+                rem.sent = true;
+                setMessages(msgs => [
+                  ...msgs,
+                  {
+                    id: nextId.current++,
+                    from: "Mr. Job Nanny",
+                    text: `📧 Reminder: You have a job interview${rem.company ? ' at ' + rem.company : ''} today at ${rem.time}. Check your email for tips and encouragement! Good luck!`,
+                    parentId: undefined
+                  }
+                ]);
+              }
+            });
+            // Save updated reminders
+            localStorage.setItem('interview-reminders', JSON.stringify(reminders));
+          } catch {}
+        }
+        // Run on mount and every hour
+        checkInterviewReminders();
+        const reminderInterval = setInterval(checkInterviewReminders, 60 * 60 * 1000);
+        // ...existing code...
     let num = 1;
     try {
       const stored = localStorage.getItem("chatbot-visitor-num");
@@ -248,15 +306,40 @@ export default function ChatbotDemo() {
               lastJobId.current = newest.id;
             } else if (newest.id !== lastJobId.current) {
               // New job detected
-              setMessages(msgs => [
-                ...msgs,
-                {
-                  id: nextId.current++,
-                  from: "Mr. Job Nanny",
-                  text: `🚨 New AI Job Posted: ${newest.title} at ${newest.company || "Unknown Company"}. Check the New AI Jobs page for details!`,
-                  parentId: undefined
-                }
-              ]);
+              // Check for job alert preferences
+              let alertPrefs = null;
+              try {
+                const stored = localStorage.getItem('job-alert-prefs');
+                if (stored) alertPrefs = JSON.parse(stored);
+              } catch {}
+              let matched = false;
+              if (alertPrefs && alertPrefs.skills) {
+                const skillsArr = alertPrefs.skills.toLowerCase().split(/[, ]+/).filter(Boolean);
+                const jobText = `${newest.title} ${newest.description} ${newest.skills ? newest.skills.join(' ') : ''}`.toLowerCase();
+                matched = skillsArr.some((skill: string) => jobText.includes(skill));
+              }
+              if (matched) {
+                setMessages(msgs => [
+                  ...msgs,
+                  {
+                    id: nextId.current++,
+                    from: "Mr. Job Nanny",
+                    text: `🔔 Job Alert! A new job matching your interests was posted: ${newest.title} at ${newest.company || "Unknown Company"}. Check the New AI Jobs page for details!`,
+                    parentId: undefined
+                  }
+                ]);
+                // (Optional) Email notification logic can be added here
+              } else {
+                setMessages(msgs => [
+                  ...msgs,
+                  {
+                    id: nextId.current++,
+                    from: "Mr. Job Nanny",
+                    text: `🚨 New AI Job Posted: ${newest.title} at ${newest.company || "Unknown Company"}. Check the New AI Jobs page for details!`,
+                    parentId: undefined
+                  }
+                ]);
+              }
               lastJobId.current = newest.id;
             }
           }
@@ -266,11 +349,179 @@ export default function ChatbotDemo() {
     pollInterval = setInterval(pollJobs, 60000); // 60 seconds
     // Initial poll
     pollJobs();
-    return () => clearInterval(pollInterval);
+    return () => {
+      clearInterval(pollInterval);
+      clearInterval(reminderInterval);
+    };
   }, []);
 
   function getBotResponse(userMsg: string) {
+    // msg is declared once at the top of getBotResponse
+    // Skill gap analysis trigger
+    if (/(skill gap|missing skills|what skills do i need|skills for|how do i qualify|how to qualify|how to get|how to become|how do i become|what do i need to become|what do i need for|how to get hired|how to get a job)/.test(userMsg.toLowerCase())) {
+      setGapStep(0);
+      setGapInfo({target: '', skills: ''});
+      return "Let's do a Skill Gap Analysis!\n\nWhat is your target job or job title? (e.g., 'AI Engineer', 'Prompt Engineer', 'AI Artist')";
+    }
+    // If in skill gap analysis mode
+    if (gapStep !== null) {
+      if (gapStep === 0) {
+        setGapInfo(prev => ({...prev, target: userMsg.trim()}));
+        setGapStep(1);
+        return "Great! List your current skills, experience, or certifications (comma-separated, e.g., 'Python, SQL, Photoshop, Coursera ML cert')";
+      }
+      if (gapStep === 1) {
+        setGapInfo(prev => ({...prev, skills: userMsg.trim()}));
+        setGapStep(2);
+        // Analyze skill gap using NEW_AI_JOBS if possible
+        const target = userMsg.trim().toLowerCase();
+        let job = null;
+        for (const j of NEW_AI_JOBS) {
+          if (j.title.toLowerCase() === gapInfo.target.toLowerCase() || gapInfo.target.toLowerCase().includes(j.title.toLowerCase())) {
+            job = j;
+            break;
+          }
+        }
+        let userSkills = gapInfo.skills.toLowerCase().split(/[, ]+/).filter(Boolean);
+        let missing: string[] = [];
+        let suggestions = '';
+        if (job) {
+          missing = job.skills.filter(s => !userSkills.includes(s.toLowerCase()));
+          suggestions = missing.length > 0
+            ? `To qualify for ${job.title}, consider building these skills: ${missing.join(', ')}.`
+            : `You already have most of the key skills for ${job.title}! Consider strengthening your portfolio or getting certified.`;
+          if (job.resources && job.resources.length > 0) {
+            suggestions += `\nRecommended resources: ${job.resources.join(', ')}`;
+          }
+        } else {
+          suggestions = "I couldn't find that job in my database, but focus on learning the most in-demand skills for your target role. Check job listings for required skills and consider online courses or certifications.";
+        }
+        setGapStep(null);
+        return suggestions + "\n\nIf you want to analyze another job, just type 'skill gap'.";
+      }
+      return "Please enter your target job or your current skills.";
+    }
+                        // Interview reminder trigger
+                        if (/(remind me about my interview|interview reminder|schedule interview reminder|job interview reminder)/.test(msg)) {
+                          setInterviewStep(0);
+                          setInterviewInfo({date: '', time: '', company: '', email: ''});
+                          return "Let's set up your interview reminder!\n\nWhat is the date of your interview? (YYYY-MM-DD)";
+                        }
+                        // If in interview reminder mode
+                        if (interviewStep !== null) {
+                          if (interviewStep === 0 && /^\d{4}-\d{2}-\d{2}$/.test(userMsg.trim())) {
+                            setInterviewInfo(prev => ({...prev, date: userMsg.trim()}));
+                            setInterviewStep(1);
+                            return "What time is your interview? (e.g., 14:00 or 2:00 PM)";
+                          }
+                          if (interviewStep === 1 && userMsg.trim()) {
+                            setInterviewInfo(prev => ({...prev, time: userMsg.trim()}));
+                            setInterviewStep(2);
+                            return "What is the company or job title for this interview? (Or type 'skip')";
+                          }
+                          if (interviewStep === 2) {
+                            setInterviewInfo(prev => ({...prev, company: userMsg.trim() === 'skip' ? '' : userMsg.trim()}));
+                            setInterviewStep(3);
+                            return "What email address should I send your reminder to?";
+                          }
+                          if (interviewStep === 3 && /.+@.+\..+/.test(userMsg.trim())) {
+                            setInterviewInfo(prev => ({...prev, email: userMsg.trim()}));
+                            setInterviewStep(null);
+                            // Save reminder to localStorage (can be extended to backend)
+                            try {
+                              const reminders = JSON.parse(localStorage.getItem('interview-reminders') || '[]');
+                              reminders.push({...interviewInfo, email: userMsg.trim()});
+                              localStorage.setItem('interview-reminders', JSON.stringify(reminders));
+                            } catch {}
+                            return `You're all set! I'll send you a reminder email on ${interviewInfo.date} for your interview${interviewInfo.company ? ' at ' + interviewInfo.company : ''}. Good luck!\n\n⚠️ Please note: While I do my best to remind you, always have a backup plan and set your own reminders. Auralis Sanctuary and Mr. Job Nanny are not liable for any missed appointments or technical issues. Stay prepared for unforeseen circumstances!`;
+                          }
+                          return "Please enter the requested info (date, time, company, or email).";
+                        }
+                  // Job alert subscription trigger
+                  if (/(subscribe to job alerts|job alerts|alert me about jobs|notify me about jobs|job notification|job notifications)/.test(msg)) {
+                    setAlertStep(0);
+                    setAlertPrefs({skills: '', email: ''});
+                    return "Let's set up your personalized job alerts!\n\nWhat skills, job titles, or interests should I watch for? (e.g., 'data science, AI trainer, remote')";
+                  }
+                  // If in job alert subscription mode
+                  if (alertStep !== null) {
+                    if (alertStep === 0) {
+                      setAlertPrefs(prev => ({...prev, skills: userMsg}));
+                      setAlertStep(1);
+                      return "Great! Would you like to receive job alerts by email as well? If yes, please enter your email address. If not, type 'skip'.";
+                    }
+                    if (alertStep === 1) {
+                      let email = '';
+                      if (userMsg.toLowerCase() !== 'skip' && /.+@.+\..+/.test(userMsg.trim())) {
+                        email = userMsg.trim();
+                      }
+                      setAlertPrefs(prev => ({...prev, email}));
+                      setAlertStep(null);
+                      // Save to localStorage for now (can be extended to backend)
+                      try {
+                        localStorage.setItem('job-alert-prefs', JSON.stringify({skills: alertPrefs.skills, email}));
+                      } catch {}
+                      return `You're all set! I'll alert you in chat whenever a new job matches: ${alertPrefs.skills}${email ? ` and send email alerts to: ${email}` : ''}. You can update your preferences anytime by typing 'job alerts'.`;
+                    }
+                    return "Please enter your skills/interests or type 'skip' for email.";
+                  }
+            // Career quiz trigger
+            if (/(career test|career quiz|ai job quiz|ai job test|what ai job is right for me|what ai career|suggest ai job|find my ai job|find my ai career|quiz)/.test(msg)) {
+              setQuizStep(0);
+              setQuizAnswers({});
+              return "Let's find out which AI career field might suit you best!\n\nQuestion 1: Which activity sounds most interesting to you?\nA) Solving puzzles and coding\nB) Creating art, music, or stories\nC) Teaching or helping others learn\nD) Organizing projects and leading teams\nE) Analyzing data and finding patterns\n(Type A, B, C, D, or E)";
+            }
+            // If in quiz mode, handle quiz steps
+            if (quizStep !== null) {
+              // Step 0: Expect A-E answer
+              if (quizStep === 0 && /^[abcde]$/i.test(msg.trim())) {
+                const answer1 = msg.trim().toUpperCase();
+                setQuizAnswers(prev => ({ ...prev, q1: answer1 }));
+                setQuizStep(1);
+                return "Question 2: Which skill do you want to develop most?\nA) Programming and algorithms\nB) Creative thinking and design\nC) Communication and teaching\nD) Leadership and management\nE) Data analysis and statistics\n(Type A, B, C, D, or E)";
+              }
+              // Step 1: Expect A-E answer
+              if (quizStep === 1 && /^[abcde]$/i.test(msg.trim())) {
+                const answer2 = msg.trim().toUpperCase();
+                setQuizAnswers(prev => ({ ...prev, q2: answer2 }));
+                setQuizStep(2);
+                return "Question 3: What motivates you most?\nA) Building things that work\nB) Expressing ideas creatively\nC) Helping others grow\nD) Achieving goals as a team\nE) Discovering insights from information\n(Type A, B, C, D, or E)";
+              }
+              // Step 2: Expect A-E answer, then give result
+              if (quizStep === 2 && /^[abcde]$/i.test(msg.trim())) {
+                const answer3 = msg.trim().toUpperCase();
+                const allAnswers = { ...quizAnswers, q3: answer3 };
+                setQuizAnswers({});
+                setQuizStep(null);
+                // Tally answers
+                const counts: {[key: string]: number} = {A:0, B:0, C:0, D:0, E:0};
+                Object.values(allAnswers).forEach(a => { if (counts[a]) counts[a]++; });
+                // Find max
+                let maxKey = 'A';
+                let maxVal = 0;
+                for (const k in counts) { if (counts[k] > maxVal) { maxKey = k; maxVal = counts[k]; } }
+                // Suggest field
+                let suggestion = '';
+                if (maxKey === 'A') suggestion = 'AI Engineer, Machine Learning Engineer, or Software Developer. You enjoy building and problem-solving!';
+                else if (maxKey === 'B') suggestion = 'AI Content Creator, AI Artist, or Creative Technologist. You thrive in creative, expressive roles!';
+                else if (maxKey === 'C') suggestion = 'AI Trainer, Curriculum Designer, or Community Manager. You like helping others learn and grow!';
+                else if (maxKey === 'D') suggestion = 'AI Project Manager or Team Lead. You excel at organizing and leading teams!';
+                else if (maxKey === 'E') suggestion = 'Data Scientist, AI Analyst, or Researcher. You love working with data and finding insights!';
+                return `Based on your answers, you might enjoy a career as a ${suggestion}\n\nRemember, this is just a starting point—explore, experiment, and keep learning! If you want to try the quiz again, just type 'career quiz'.`;
+              }
+              // If invalid answer
+              return "Please answer with A, B, C, D, or E.";
+            }
       const msg = userMsg.toLowerCase();
+      // 0. Directly handle 'new jobs', 'latest jobs', 'open jobs', etc.
+      if (/(new jobs|latest jobs|open jobs|recent jobs|current jobs|job openings|job posts|job listings|jobs available|jobs now|hiring now)/.test(msg)) {
+        if (NEW_AI_JOBS && NEW_AI_JOBS.length > 0) {
+          const latestJobs = NEW_AI_JOBS.slice(-5).map(job => `• ${job.title} (${job.employers[0] || ''})`).join("\n");
+          return `Here are the latest AI job openings:\n\n${latestJobs}\n\nAs your job coach, I recommend reviewing each job description carefully and matching your skills to the requirements. Remember to tailor your resume for each application, highlight your achievements, and don't hesitate to reach out for networking or informational interviews. Stay positive—every application is a step forward!\n\nSee the New AI Jobs page for more, or ask about any job above for details or coaching tips!`;
+        } else {
+          return "There are currently no new jobs posted. As your job coach, I encourage you to keep building your skills and networking. Use this time to update your resume, learn something new, or connect with others in your field. Your next opportunity could be just around the corner!";
+        }
+      }
       // 1. Announcement/news match
       if (/(news|announcement|update|what's new|latest)/.test(msg)) {
         return ANNOUNCEMENT;
@@ -297,9 +548,9 @@ export default function ChatbotDemo() {
       }
       // 2. List all AI jobs if user asks for a list
       if (
-        (msg.includes("ai jobs") || msg.includes("list ai jobs") || msg.includes("all ai jobs") || msg.includes("what are the ai jobs") || msg.includes("show ai jobs") || msg.includes("available ai jobs") || msg.includes("types of ai jobs") || msg.includes("what do ai jobs do") || msg.includes("what is an ai job") || msg.includes("what are ai careers") || msg.includes("explain ai jobs") || msg.includes("tell me about ai jobs"))
+        (msg.includes("ai jobs") || msg.includes("list ai jobs") || msg.includes("all ai jobs") || msg.includes("what are the ai jobs") || msg.includes("show ai jobs") || msg.includes("available ai jobs") || msg.includes("types of ai jobs") || msg.includes("what do ai jobs do") || msg.includes("what is an ai job") || msg.includes("what are ai careers") || msg.includes("explain ai jobs") || msg.includes("tell me about ai jobs") || msg.includes("job list") || msg.includes("job options") || msg.includes("job roles"))
       ) {
-        return `AI jobs are roles that involve working with artificial intelligence technologies, such as building, training, or applying AI models and systems. Here are some AI jobs you can explore:\n\n${NEW_AI_JOBS.map(job => `• ${job.title}`).join("\n")}\n\nYou can ask about any job above to learn more about its responsibilities, required skills, and pay.`;
+        return `AI jobs are roles that involve working with artificial intelligence technologies, such as building, training, or applying AI models and systems. Here are some AI jobs you can explore:\n\n${NEW_AI_JOBS.map(job => `• ${job.title}`).join("\n")}\n\nAs your job coach, I suggest exploring roles that match your interests and strengths. If you need help choosing a path, ask me for advice! Remember to set small, achievable goals and celebrate your progress. You can ask about any job above to learn more about its responsibilities, required skills, and pay, or for tips on how to get started.`;
       }
       // 3. AI job definitions, qualifications, and pay
       for (const job of NEW_AI_JOBS) {
@@ -309,7 +560,7 @@ export default function ChatbotDemo() {
           (msg.includes("certification") || msg.includes("certificate") || msg.includes("certify") || msg.includes("training") || msg.includes("course") || msg.includes("learn") || msg.includes("where can i get certified") || msg.includes("how do i get certified")) &&
           msg.includes(jobName)
         ) {
-          return `To get certified or trained for the role of **${job.title}**, you can explore these recommended resources: ${job.resources.join(", " )}. These programs and courses are a great way to build the skills needed for this job. Check their official websites for details on certification requirements and enrollment.`;
+          return `To get certified or trained for the role of **${job.title}**, you can explore these recommended resources: ${job.resources.join(", " )}. As your job coach, I recommend starting with a beginner-friendly course and building your skills step by step. Practice what you learn, and don't hesitate to ask for help or join a study group. Every bit of progress counts!`;
         }
         // General job info
         if (
@@ -319,7 +570,7 @@ export default function ChatbotDemo() {
           (msg.includes("pay") && msg.includes(jobName)) ||
           (msg.includes("salary") && msg.includes(jobName))
         ) {
-          return `**${job.title}**\n\n${job.description}\n\n**Required Skills:** ${job.skills.join(", ")}\n**Industries:** ${job.industries.join(", ")}\n**Example Employers:** ${job.employers.join(", ")}\n**Training Resources:** ${job.resources.join(", ")}\n**Typical Pay Range:** ${job.pay}`;
+          return `**${job.title}**\n\n${job.description}\n\n**Required Skills:** ${job.skills.join(", ")}\n**Industries:** ${job.industries.join(", ")}\n**Example Employers:** ${job.employers.join(", ")}\n**Training Resources:** ${job.resources.join(", ")}\n**Typical Pay Range:** ${job.pay}\n\nJob Coach Tip: If this job interests you, start by learning the top required skills and updating your resume to highlight relevant experience. Reach out to people in the field for advice, and remember—confidence grows with practice and persistence!`;
         }
       }
       // 4. General site/about questions
@@ -338,13 +589,13 @@ export default function ChatbotDemo() {
       ) {
         return "Auralis Sanctuary is a creative sanctuary dedicated to helping you thrive in the age of AI. We offer curated AI job listings, hiring events, resources, and community support for creative and technical talent. Whether you're looking to start a new career, upskill, or connect with others, you'll find guidance and opportunities here.";
       }
-      // 5. FAQ match
-      const faq = FAQS.find(f => msg.includes(f.q.toLowerCase().split(" ")[0]));
-      if (faq) return faq.a;
-      // 4. Job suggestion
+      // 5. Job suggestion
       const jobSuggestion = JOB_SUGGESTIONS.find(j => msg.includes(j.keyword));
       if (jobSuggestion) return jobSuggestion.suggestion;
-      // 5. Fallback
+      // 6. FAQ match (moved lower so job logic takes priority)
+      const faq = FAQS.find(f => msg.includes(f.q.toLowerCase().split(" ")[0]));
+      if (faq) return faq.a;
+      // 7. Fallback
       return "I'm here to help with questions about AI jobs, events, and resources! Try asking about careers, events, or training. For the latest news, ask 'What's new?'";
     }
 
@@ -357,7 +608,8 @@ export default function ChatbotDemo() {
     setInput("");
     setLoading(true);
     setTimeout(() => {
-      const botReply = getBotResponse(userMsg);
+        // Pass quiz state to bot response
+        const botReply = getBotResponse(userMsg);
       setMessages(msgs => [
         ...msgs,
         { id: nextId.current++, from: "Mr. Job Nanny", text: botReply, parentId: replyTo ?? undefined }
@@ -470,6 +722,14 @@ export default function ChatbotDemo() {
               {resumeDraft}
               <br />
               <button onClick={() => { navigator.clipboard.writeText(resumeDraft); }} style={{ marginTop: 10, background: '#ffd700', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '6px 14px', border: 'none', cursor: 'pointer' }}>Copy to Clipboard</button>
+              {resumeFeedback.length > 0 && (
+                <div style={{ marginTop: 18, background: '#18191a', color: '#ffb300', borderRadius: 8, padding: 12, fontSize: 15 }}>
+                  <strong>Mr. Job Nanny's Suggestions:</strong>
+                  <ul style={{ margin: '8px 0 0 18px', padding: 0 }}>
+                    {resumeFeedback.map((fb, i) => <li key={i}>{fb}</li>)}
+                  </ul>
+                </div>
+              )}
             </div>
           )}
         </section>
