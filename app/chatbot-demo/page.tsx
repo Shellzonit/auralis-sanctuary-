@@ -357,7 +357,7 @@ export default function ChatbotDemo() {
   }, []);
 
   function getBotResponse(userMsg: string) {
-    // msg is declared once at the top of getBotResponse
+    const msg = userMsg.toLowerCase();
     // Skill gap analysis trigger
     if (/(skill gap|missing skills|what skills do i need|skills for|how do i qualify|how to qualify|how to get|how to become|how do i become|what do i need to become|what do i need for|how to get hired|how to get a job)/.test(userMsg.toLowerCase())) {
       setGapStep(0);
@@ -513,7 +513,7 @@ export default function ChatbotDemo() {
               // If invalid answer
               return "Please answer with A, B, C, D, or E.";
             }
-      const msg = userMsg.toLowerCase();
+      // msg already declared at the top of getBotResponse
       // 0. Directly handle 'new jobs', 'latest jobs', 'open jobs', etc.
       if (/(new jobs|latest jobs|open jobs|recent jobs|current jobs|job openings|job posts|job listings|jobs available|jobs now|hiring now)/.test(msg)) {
         if (NEW_AI_JOBS && NEW_AI_JOBS.length > 0) {
