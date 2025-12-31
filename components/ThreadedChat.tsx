@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { getAblyClient } from '../lib/ablyClient';
 import ChatFileUpload from './ChatFileUpload';
 
 interface Message {
@@ -12,10 +13,26 @@ function generateId() {
   return Math.random().toString(36).substr(2, 9);
 }
 
+
 export default function ThreadedChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [replyTo, setReplyTo] = useState<string | null>(null);
+  const ablyChannelRef = useRef<any>(null);
+
+  // Subscribe to Ably channel on mount
+  useEffect(() => {
+    const ably = getAblyClient();
+    const channel = ably.channels.get("threaded-chat");
+    ablyChannelRef.current = channel;
+    const onMessage = (msg: any) => {
+      setMessages((prev) => [...prev, msg.data]);
+    };
+    channel.subscribe("message", onMessage);
+    return () => {
+      channel.unsubscribe("message", onMessage);
+    };
+  }, []);
 
   function handleSend() {
     if (!input.trim()) return;
@@ -25,7 +42,10 @@ export default function ThreadedChat() {
       text: input,
       createdAt: new Date().toISOString(),
     };
-    setMessages((msgs) => [...msgs, newMsg]);
+    // Publish to Ably so all users receive
+    if (ablyChannelRef.current) {
+      ablyChannelRef.current.publish("message", newMsg);
+    }
     setInput("");
     setReplyTo(null);
   }
