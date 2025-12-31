@@ -18,6 +18,28 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AI Wilding",
   description: "A mythic, minimalist creative sanctuary",
+  openGraph: {
+    title: "AI Wilding",
+    description: "A mythic, minimalist creative sanctuary for AI jobs, creativity, and community.",
+    url: "https://aiwilding.com/",
+    siteName: "AI Wilding",
+    images: [
+      {
+        url: "/ai-use-cases.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AI Wilding Sanctuary Preview"
+      }
+    ],
+    locale: "en_US",
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Wilding",
+    description: "A mythic, minimalist creative sanctuary for AI jobs, creativity, and community.",
+    images: ["/ai-use-cases.jpg"]
+  }
 };
 
 export default function RootLayout({
