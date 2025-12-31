@@ -6,6 +6,14 @@ import React, { useState } from "react";
 // Latest announcement/news (update this string as needed)
 const ANNOUNCEMENT = "🎉 Happy New Year 2026! Check out our upcoming AI Hiring Events and new job listings for the year ahead. Stay tuned for more updates!";
 const FAQS = [
+          {
+            q: "Who are the largest companies hiring for AI jobs?",
+            a: "Some of the largest companies hiring for AI roles include Google, Microsoft, Amazon, Meta (Facebook), Apple, NVIDIA, and OpenAI. Many other tech giants, startups, and companies in healthcare, finance, and automotive are also investing heavily in AI talent. These organizations seek AI engineers, data scientists, researchers, and creative technologists to drive innovation."
+          },
+          {
+            q: "Why are plumbers and other blue-collar jobs important for AI and data centers?",
+            a: "AI relies on massive data centers that require constant maintenance. Plumbers, electricians, HVAC technicians, and other skilled trades are essential for keeping these facilities running. They install and repair cooling systems, manage water and power infrastructure, and ensure the physical environment is safe for servers. As AI grows, so does the demand for blue-collar workers to support the technology behind the scenes."
+          },
         {
           q: "How has AI already been used in games?",
           a: "AI has played a major role in games for decades. Classic examples include the ghosts in Pac-Man (1980), which use simple AI to chase the player, and the adaptive enemies in the 'Halo' series. Modern games use AI for NPC behavior, procedural world generation (like in 'Minecraft'), and even for testing and balancing gameplay. AI helps create more immersive, challenging, and dynamic experiences."
