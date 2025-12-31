@@ -24,11 +24,54 @@ export default function HomePage() {
         fontFamily: "Inter, Arial, sans-serif",
       }}
     >
+      <style>{`
+        @media (max-width: 700px) {
+          .homepage-main {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            padding: 24px 0 !important;
+          }
+          .homepage-left {
+            margin-right: 0 !important;
+            max-width: 100% !important;
+            padding: 18px 8px !important;
+          }
+          .gold-tab-group {
+            flex-direction: column !important;
+            gap: 16px !important;
+            align-items: center !important;
+          }
+          .gold-tab-group > div {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+          .gold-tab-group a {
+            width: 90vw !important;
+            font-size: 1.1rem !important;
+            padding: 12px 0 !important;
+            margin-bottom: 8px !important;
+          }
+          .ai-wilding-title {
+            font-size: 2rem !important;
+          }
+          .testimonial-left, .testimonial-right {
+            position: static !important;
+            transform: none !important;
+            margin: 18px 0 !important;
+            max-width: 95vw !important;
+            text-align: center !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-top: 4px solid #ffd700 !important;
+            border-bottom: 4px solid #ffd700 !important;
+          }
+        }
+      `}</style>
 
 
-      <main style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', padding: '48px 0', minHeight: '80vh', boxSizing: 'border-box' }}>
+      <main className="homepage-main" style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', padding: '48px 0', minHeight: '80vh', boxSizing: 'border-box' }}>
         {/* Left column: Welcome, description, image */}
-          <div style={{ flex: '0 0 420px', maxWidth: 420, display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'rgba(24,25,26,0.95)', borderRadius: 18, boxShadow: '0 2px 16px #2a1a4d33', padding: 32, marginRight: 40 }}>
+          <div className="homepage-left" style={{ flex: '0 0 420px', maxWidth: 420, display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'rgba(24,25,26,0.95)', borderRadius: 18, boxShadow: '0 2px 16px #2a1a4d33', padding: 32, marginRight: 40 }}>
             <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#C2A86C', textShadow: '0 2px 16px #2a1a4d', marginBottom: 12, textAlign: 'center' }}>
               Welcome
             </h2>
@@ -37,7 +80,7 @@ export default function HomePage() {
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', marginTop: 24 }}>
               {/* Left diagonal testimonial */}
-              <div style={{
+              <div className="testimonial-left" style={{
                 position: 'absolute',
                 left: 0,
                 top: 0,
@@ -60,7 +103,7 @@ export default function HomePage() {
                 "The future belongs to those who create, adapt, and inspire—together with AI."
               </blockquote>
               {/* Right diagonal testimonial */}
-              <div style={{
+              <div className="testimonial-right" style={{
                 position: 'absolute',
                 right: 0,
                 top: 0,
@@ -83,7 +126,7 @@ export default function HomePage() {
 
 
             {/* Gold Tabs: 2 left, 2 right, gold underline */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 64, margin: '32px 0 0 0' }}>
+            <div className="gold-tab-group" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 64, margin: '32px 0 0 0' }}>
               {/* Left group */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
                 <div style={{ display: 'flex', gap: 24 }}>
@@ -104,7 +147,7 @@ export default function HomePage() {
 
             {/* AI Wilding Title */}
             <div style={{ marginTop: 40, textAlign: 'center' }}>
-              <span style={{ fontSize: '3rem', fontWeight: 900, color: '#ffd700', letterSpacing: 2, textShadow: '0 2px 16px #2a1a4d' }}>
+              <span className="ai-wilding-title" style={{ fontSize: '3rem', fontWeight: 900, color: '#ffd700', letterSpacing: 2, textShadow: '0 2px 16px #2a1a4d' }}>
                 AI Wilding
               </span>
               <div style={{ marginTop: 24 }}>
