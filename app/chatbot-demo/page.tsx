@@ -1,3 +1,19 @@
+  {
+    q: "How is AI used in games?",
+    a: "AI is revolutionizing game development by powering smarter NPCs, procedural content generation, adaptive difficulty, and even game testing. AI tools help designers create more immersive and dynamic experiences. Careers include AI Game Designer, Game AI Programmer, and Narrative Designer."
+  },
+  {
+    q: "How is AI used in music?",
+    a: "AI is transforming music by enabling generative composition, intelligent mixing, and personalized recommendations. Artists use AI to create new sounds, collaborate with virtual musicians, and analyze trends. Careers include AI Music Producer, Sound Designer, and Music Data Analyst."
+  },
+  {
+    keyword: "games",
+    suggestion: "Explore roles like AI Game Designer, Game AI Programmer, and Narrative Designer. AI is used for smarter NPCs, procedural worlds, and player analytics in the gaming industry."
+  },
+  {
+    keyword: "music",
+    suggestion: "Consider careers such as AI Music Producer, Sound Designer, or Music Data Analyst. AI is used for generative music, intelligent mixing, and music recommendation systems."
+  },
 "use client";
 import React, { useState } from "react";
 
@@ -7,38 +23,66 @@ const ANNOUNCEMENT = "🎉 Happy New Year 2026! Check out our upcoming AI Hiring
 const FAQS = [
   {
     q: "What is this site about?",
-    a: "Auralis Sanctuary is a creative sanctuary focused on AI jobs, hiring events, and resources for the future workforce."
+    a: "Auralis Sanctuary is a creative sanctuary dedicated to helping you thrive in the age of AI. We offer curated AI job listings, hiring events, resources, and community support for creative and technical talent. Whether you're looking to start a new career, upskill, or connect with others, you'll find guidance and opportunities here."
   },
   {
     q: "How do I find AI jobs?",
-    a: "Visit the New AI Jobs page for a curated list of emerging roles, required skills, and employers."
+    a: "Visit the New AI Jobs page for a curated list of emerging roles, required skills, and employers. You can filter jobs by interest, skill set, or location. We regularly update listings to reflect the latest opportunities in AI, creative tech, and related fields."
   },
   {
     q: "What are AI hiring events?",
-    a: "AI hiring events are job fairs and networking opportunities where you can meet recruiters and learn about AI careers."
+    a: "AI hiring events are job fairs, networking sessions, and workshops where you can meet recruiters, learn about open positions, and connect with industry leaders. Many events are hybrid or virtual, making it easy to participate from anywhere. Check the AI Hiring Events page for upcoming dates and details."
   },
   {
     q: "How can I prepare for an AI career?",
-    a: "Explore our resources, attend events, and check out recommended training programs on the site."
+    a: "Explore our resources section for recommended courses, training programs, and articles. Attend hiring events to network and learn from experts. Consider building a portfolio of projects, contributing to open source, and staying updated on AI trends. We also share tips on resume building and interview prep."
+  },
+  {
+    q: "Can I get career advice?",
+    a: "Absolutely! Ask me about career paths, required skills, or how to transition into AI roles. You can also reach out through our contact page for personalized advice or mentorship opportunities."
+  },
+  {
+    q: "Are there opportunities for beginners?",
+    a: "Yes! Many AI jobs and events welcome beginners and those from non-technical backgrounds. Look for roles like AI Content Curator, Prompt Engineer, or Community Manager. Our resources page highlights beginner-friendly learning paths."
   }
 ];
 
 const JOB_SUGGESTIONS = [
   {
     keyword: "creative",
-    suggestion: "You might enjoy roles like Generative Content Creator or AI Trainer. Check the New AI Jobs page for more."
+    suggestion: "You might enjoy roles like Generative Content Creator, AI Art Director, or AI Trainer. These positions blend creativity with technology and are in high demand. Check the New AI Jobs page for more."
   },
   {
     keyword: "coding",
-    suggestion: "Consider AI Engineer or Machine Learning Engineer. See the New AI Jobs page for details."
+    suggestion: "Consider roles such as AI Engineer, Machine Learning Engineer, or Data Scientist. These jobs require programming skills and offer opportunities to work on cutting-edge projects. See the New AI Jobs page for details."
   },
   {
     keyword: "education",
-    suggestion: "AI Curriculum Designer and Prompt Engineer are great options."
+    suggestion: "AI Curriculum Designer, Prompt Engineer, and AI Literacy Advocate are great options for those passionate about teaching and learning."
   },
   {
     keyword: "remote",
-    suggestion: "Many AI jobs and events are remote-friendly. Look for Remote AI Talent Fair on the events page."
+    suggestion: "Many AI jobs and events are remote-friendly. Look for Remote AI Talent Fair and virtual networking sessions on the events page."
+  },
+  {
+    keyword: "manager",
+    suggestion: "AI Project Manager and Community Manager roles are perfect for those with leadership and organizational skills."
+  },
+  {
+    keyword: "art",
+    suggestion: "Explore opportunities as an AI Art Curator, Digital Artist, or Creative Technologist. The intersection of art and AI is growing rapidly."
+  },
+  {
+    keyword: "writing",
+    suggestion: "AI Content Writer, Technical Writer, and Prompt Engineer are excellent roles for strong communicators."
+  },
+  {
+    keyword: "events",
+    suggestion: "Check out upcoming AI Career Expos, Women in AI Summits, and virtual talent fairs. These events offer networking, workshops, and direct access to recruiters."
+  },
+  {
+    keyword: "beginner",
+    suggestion: "If you're just starting out, look for internships, junior roles, or volunteer opportunities in AI projects. Many companies offer mentorship and training for beginners."
   }
 ];
 
