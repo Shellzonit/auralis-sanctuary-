@@ -445,6 +445,9 @@ export default function MrJobNanny() {
 
   function getBotResponse(userMsg: string) {
     const msg = userMsg.toLowerCase();
+    const fitnessKeywords = [
+      "exercise", "workout", "weight", "active", "steps", "water", "sleep", "snack", "recover", "motivate", "family", "older", "track", "fit", "move", "chore", "gym", "beginner", "at home", "quick", "energy"
+    ];
     // Mode switch triggers
     if (/switch to weight|weight mode|health mode|be my health coach|be my weight coach|weight loss assistant|help with weight|help with health/.test(msg)) {
       setMode('weight');
@@ -474,9 +477,6 @@ export default function MrJobNanny() {
               return "You are in Weight Loss & Health Coach mode. Ask me about exercise, healthy habits, or motivation—or type 'switch to job mode' to return to career coaching.";
             }
         // Fitness/health FAQ interactive matching (job mode)
-        const fitnessKeywords = [
-          "exercise", "workout", "weight", "active", "steps", "water", "sleep", "snack", "recover", "motivate", "family", "older", "track", "fit", "move", "chore", "gym", "beginner", "at home", "quick", "energy"
-        ];
         if (mode === 'job' && fitnessKeywords.some(k => msg.includes(k))) {
           // Try to find a matching FAQ
           const fitnessFaq = FAQS.find(f => {
