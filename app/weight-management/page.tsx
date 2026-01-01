@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 const workoutTips = [
   "Take a brisk walk around your neighborhood or a local park.",
