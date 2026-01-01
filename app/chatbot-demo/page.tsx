@@ -1,3 +1,4 @@
+"use client";
 // Macronutrient info for common foods (per serving)
 const FOOD_MACROS: { [food: string]: { protein: number, carbs: number, fat: number } } = {
   "apple": { protein: 0.5, carbs: 25, fat: 0.3 },
