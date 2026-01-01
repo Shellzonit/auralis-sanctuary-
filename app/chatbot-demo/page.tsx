@@ -655,9 +655,9 @@ export default function ChatbotDemo() {
   }
 
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem" }} role="main" aria-label="AI Jobs Chatbot Demo">
-      <h1 style={{ fontSize: "2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }} tabIndex={0} aria-label="Chatbot Demo: AI Jobs and FAQ">
-        Chatbot Demo: AI Jobs & FAQ
+    <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem" }} role="main" aria-label="AI Jobs Chatbot">
+      <h1 style={{ fontSize: "2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }} tabIndex={0} aria-label="AI Jobs and FAQ">
+        AI Jobs & FAQ
       </h1>
       {/* Announcement/news banner */}
       <div style={{
@@ -695,13 +695,13 @@ export default function ChatbotDemo() {
       </nav>
       {showContactForm && (
         <section style={{ maxWidth: 500, width: '100%', background: "rgba(255,255,255,0.13)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
-          <h2 style={{ color: '#ffd700', fontSize: 20, marginBottom: 12 }}>Contact Mr. Job Nanny (Personal Assistant)</h2>
+          <h2 style={{ color: '#ffd700', fontSize: 20, marginBottom: 12 }}>Contact Your Personal Assistant</h2>
           <div style={{ color: '#fff8dc', fontSize: 15, marginBottom: 14, background: 'rgba(34,34,48,0.7)', borderRadius: 8, padding: 12 }}>
-            Mr. Job Nanny is the creator's friendly personal assistant—always here to help! If you have a question, feedback, or just want to say hello, simply send your message below. Mr. Nanny will make sure it reaches the creator, privately and securely.<br /><br />
-            <span role="img" aria-label="lock">🔒</span> For your peace of mind, your message will be <strong>encrypted</strong> before it leaves your browser. Only the creator can read it—nobody else (not even Mr. Job Nanny) can see your message in transit. This is part of our strict privacy controls.
+            Your personal assistant is always here to help! If you have a question, feedback, or just want to say hello, simply send your message below. Your assistant will make sure it reaches the creator, privately and securely.<br /><br />
+            <span role="img" aria-label="lock">🔒</span> For your peace of mind, your message will be <strong>encrypted</strong> before it leaves your browser. Only the creator can read it—nobody else can see your message in transit. This is part of our strict privacy controls.
           </div>
           {contactSent ? (
-            <div style={{ color: '#ffd700', fontWeight: 700, margin: '16px 0' }}>Thank you! Your message has been received. Mr. Job Nanny will make sure it gets to the creator—privately and securely.</div>
+            <div style={{ color: '#ffd700', fontWeight: 700, margin: '16px 0' }}>Thank you! Your message has been received. Your assistant will make sure it gets to the creator—privately and securely.</div>
           ) : (
             <form onSubmit={handleContactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               <input name="name" value={contactForm.name} onChange={handleContactFormChange} placeholder="Your Name" required style={{ borderRadius: 8, border: '1.5px solid #ffd700', padding: '8px 12px', fontSize: '1rem', background: '#18191a', color: '#fff8dc' }} />
