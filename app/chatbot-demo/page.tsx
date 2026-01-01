@@ -1,3 +1,29 @@
+// Health & weight management tips for Mr. Nanny
+const WORKOUT_TIPS = [
+  "Take a brisk walk around your neighborhood or a local park.",
+  "Dance to your favorite song for 5 minutes.",
+  "Try a short yoga or stretching routine.",
+  "Do a quick set of bodyweight exercises: squats, push-ups, lunges.",
+  "Play with your pet or kids—movement counts!",
+  "Clean or organize a room—turn chores into movement.",
+  "Take the stairs instead of the elevator.",
+  "Try a 7-minute workout app or video.",
+  "Do jumping jacks or march in place during TV commercials.",
+  "Go for a bike ride or gentle jog.",
+];
+
+const HEALTH_TIPS = [
+  "Aim for 7-8 hours of sleep each night for better health.",
+  "Drink a glass of water before each meal.",
+  "Add a fruit or vegetable to every meal.",
+  "Limit sugary drinks and snacks—choose whole foods instead.",
+  "Eat slowly and mindfully to enjoy your food.",
+  "Plan healthy snacks for busy days.",
+  "Try to keep a regular sleep schedule, even on weekends.",
+  "Swap fried foods for grilled or baked options.",
+  "Take short breaks to stretch and move during your day.",
+  "Celebrate small wins—every healthy choice counts!",
+];
 
 "use client";
 
@@ -25,6 +51,66 @@ async function recordChatbotVisit() {
 // Latest announcement/news (update this string as needed)
 const ANNOUNCEMENT = "🎉 Happy New Year 2026! Check out our upcoming AI Hiring Events and new job listings for the year ahead. Stay tuned for more updates!";
 const FAQS = [
+                    {
+                      q: "What are some fun ways to stay active if I don’t like the gym?",
+                      a: "Try dancing, playing with pets or kids, cleaning, gardening, or taking walks in nature. Even chores and games count as movement!"
+                    },
+                    {
+                      q: "How can I exercise at home with no equipment?",
+                      a: "Bodyweight exercises like squats, lunges, push-ups, and stretching routines are great. You can also use household items for resistance or follow online workout videos."
+                    },
+                    {
+                      q: "What are quick workouts I can do during a busy day?",
+                      a: "Try a 7-minute workout, dance to a favorite song, do jumping jacks during TV commercials, or take short walks. Small bursts of movement add up!"
+                    },
+                    {
+                      q: "How can I make daily chores count as exercise?",
+                      a: "Vacuuming, mopping, organizing, and yard work all burn calories and build strength. Turn chores into a workout by moving energetically and setting a timer."
+                    },
+                    {
+                      q: "What are some beginner-friendly exercises for weight loss?",
+                      a: "Walking, gentle jogging, dancing, yoga, and bodyweight routines are safe for beginners. Start slow and build up as you feel comfortable."
+                    },
+                    {
+                      q: "How do I stay motivated to move more?",
+                      a: "Set small goals, celebrate progress, invite friends or family to join, and choose activities you enjoy. Track your habits and reward yourself for consistency!"
+                    },
+                    {
+                      q: "Can you suggest activities for families to get fit together?",
+                      a: "Go for walks, play active games, dance, bike ride, or do simple home workouts together. Make movement fun and part of your routine!"
+                    },
+                    {
+                      q: "How much water should I drink each day?",
+                      a: "Aim for 6-8 cups (about 1.5-2 liters) daily, more if you’re active or it’s hot. Listen to your body and drink when thirsty."
+                    },
+                    {
+                      q: "What’s a healthy sleep routine for better fitness?",
+                      a: "Try to get 7-8 hours of sleep each night, keep a regular schedule, and create a relaxing bedtime routine. Good sleep helps recovery and energy."
+                    },
+                    {
+                      q: "How do I track my progress without a fitness tracker?",
+                      a: "Log your meals, weight, and habits in a journal or app. Track steps by counting walks, and celebrate small wins. Consistency matters most!"
+                    },
+                    {
+                      q: "What are creative ways to get more steps in?",
+                      a: "Take the stairs, walk during phone calls, park farther away, or explore new places on foot. Every step counts!"
+                    },
+                    {
+                      q: "How can I fit exercise into my work-from-home schedule?",
+                      a: "Schedule short movement breaks, stretch between meetings, and use chores or errands as opportunities to move. Even 5 minutes helps!"
+                    },
+                    {
+                      q: "What are healthy snack ideas for energy?",
+                      a: "Try fruit, nuts, yogurt, veggies with hummus, or whole grain crackers. Plan snacks ahead for busy days."
+                    },
+                    {
+                      q: "How do I recover from a workout?",
+                      a: "Drink water, eat a balanced meal, stretch, and get enough sleep. Listen to your body and rest when needed."
+                    },
+                    {
+                      q: "What are tips for staying active as I get older?",
+                      a: "Choose low-impact activities like walking, swimming, or yoga. Focus on flexibility, balance, and strength. Stay social and keep moving!"
+                    },
                   {
                     q: "How does this website handle privacy and user data?",
                     a: "Your privacy is important! This website does not collect personal data from visitors unless you choose to contact us or submit information. We comply with privacy laws such as GDPR and CCPA where applicable. For more details, see our Privacy Policy page or contact us with any questions."
@@ -156,6 +242,8 @@ const JOB_SUGGESTIONS = [
 
 
 export default function MrJobNanny() {
+    // Mode: 'job' or 'weight'
+    const [mode, setMode] = useState<'job' | 'weight'>('job');
   // Interview reminder state
   const [interviewStep, setInterviewStep] = useState<number | null>(null);
   const [interviewInfo, setInterviewInfo] = useState<{date: string, time: string, company: string, email: string}>({date: '', time: '', company: '', email: ''});
@@ -356,6 +444,59 @@ export default function MrJobNanny() {
   }, []);
 
   function getBotResponse(userMsg: string) {
+            // Mode switch triggers
+            if (/switch to weight|weight mode|health mode|be my health coach|be my weight coach|weight loss assistant|help with weight|help with health/.test(msg)) {
+              setMode('weight');
+              return "You are now in Weight Loss & Health Coach mode. I can help with creative exercise ideas, healthy habits, and motivation. Remember: Always consult your doctor before starting any weight loss or exercise program, especially if you have health conditions or concerns.";
+            }
+            if (/switch to job|job mode|career mode|be my job coach|be my career coach|job assistant|help with jobs|help with career/.test(msg)) {
+              setMode('job');
+              return "You are now in Job & Career Assistant mode. I can help with AI jobs, career advice, resume tips, and more. If you want to switch back to health coaching, just ask!";
+            }
+            // In weight mode, prioritize health/fitness answers
+            if (mode === 'weight') {
+              if (fitnessKeywords.some(k => msg.includes(k))) {
+                const fitnessFaq = FAQS.find(f => {
+                  const q = f.q.toLowerCase();
+                  return fitnessKeywords.some(k => q.includes(k) && msg.includes(k));
+                });
+                if (fitnessFaq) return fitnessFaq.a + "\n\n(Always consult your doctor before starting any new health or weight program.)";
+                if (msg.includes("workout") || msg.includes("exercise") || msg.includes("move") || msg.includes("active")) {
+                  return `Here's a creative workout idea: ${WORKOUT_TIPS[Math.floor(Math.random() * WORKOUT_TIPS.length)]}\n\n(Always consult your doctor before starting any new health or weight program.)`;
+                }
+                if (msg.includes("health") || msg.includes("tip") || msg.includes("energy") || msg.includes("snack")) {
+                  return `Here's a health tip: ${HEALTH_TIPS[Math.floor(Math.random() * HEALTH_TIPS.length)]}\n\n(Always consult your doctor before starting any new health or weight program.)`;
+                }
+                return "Staying active and healthy can be fun and creative! Ask me for a workout idea, health tip, or advice on tracking your habits.\n\n(Always consult your doctor before starting any new health or weight program.)";
+              }
+              // If not a fitness/health question, gently prompt about mode
+              return "You are in Weight Loss & Health Coach mode. Ask me about exercise, healthy habits, or motivation—or type 'switch to job mode' to return to career coaching.";
+            }
+        // Fitness/health FAQ interactive matching (job mode)
+        const fitnessKeywords = [
+          "exercise", "workout", "weight", "active", "steps", "water", "sleep", "snack", "recover", "motivate", "family", "older", "track", "fit", "move", "chore", "gym", "beginner", "at home", "quick", "energy"
+        ];
+        if (mode === 'job' && fitnessKeywords.some(k => msg.includes(k))) {
+          // Try to find a matching FAQ
+          const fitnessFaq = FAQS.find(f => {
+            const q = f.q.toLowerCase();
+            return fitnessKeywords.some(k => q.includes(k) && msg.includes(k));
+          });
+          if (fitnessFaq) return fitnessFaq.a;
+          // If no direct FAQ match, offer a random tip
+          if (msg.includes("workout") || msg.includes("exercise") || msg.includes("move") || msg.includes("active")) {
+            return `Here's a creative workout idea: ${WORKOUT_TIPS[Math.floor(Math.random() * WORKOUT_TIPS.length)]}`;
+          }
+          if (msg.includes("health") || msg.includes("tip") || msg.includes("energy") || msg.includes("snack")) {
+            return `Here's a health tip: ${HEALTH_TIPS[Math.floor(Math.random() * HEALTH_TIPS.length)]}`;
+          }
+          return "Staying active and healthy can be fun and creative! Ask me for a workout idea, health tip, or advice on tracking your habits.";
+        }
+      // Mode switch UI
+      const modeLabel = mode === 'job' ? 'Job & Career Assistant' : 'Weight Loss & Health Coach';
+      const modeDesc = mode === 'job'
+        ? 'Ask about AI jobs, careers, resumes, and events. Type "switch to weight mode" to get health and fitness coaching.'
+        : 'Ask about exercise, healthy habits, or motivation. Type "switch to job mode" to return to career coaching.';
     const msg = userMsg.toLowerCase();
     // Skill gap analysis trigger
     if (/(skill gap|missing skills|what skills do i need|skills for|how do i qualify|how to qualify|how to get|how to become|how do i become|what do i need to become|what do i need for|how to get hired|how to get a job)/.test(userMsg.toLowerCase())) {
@@ -656,9 +797,15 @@ export default function MrJobNanny() {
 
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem" }} role="main" aria-label="AI Jobs Chatbot">
-      <h1 style={{ fontSize: "2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }} tabIndex={0} aria-label="AI Jobs and FAQ">
-        AI Jobs & FAQ
+      <h1 style={{ fontSize: "2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }} tabIndex={0} aria-label={modeLabel}>
+        {modeLabel}
       </h1>
+      <div style={{ color: '#ffd700', fontWeight: 600, marginBottom: 12, fontSize: 16 }}>{modeDesc}</div>
+      {mode === 'weight' && (
+        <div style={{ color: '#ffb300', fontWeight: 700, marginBottom: 12, fontSize: 15 }}>
+          <span role="img" aria-label="warning">⚠️</span> Always consult your doctor before starting any weight loss or exercise program, especially if you have health conditions or concerns.
+        </div>
+      )}
       {/* Announcement/news banner */}
       <div style={{
         background: "#ffd700",
