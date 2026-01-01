@@ -9,7 +9,6 @@ export async function GET(req: NextRequest) {
     '/art',
     '/artist',
     '/auth',
-    '/chat',
     '/content',
     '/email',
     '/feedback',

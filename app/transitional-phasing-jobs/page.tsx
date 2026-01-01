@@ -3,7 +3,6 @@ export default function TransitionalPhasingJobs() {
 // ...existing code...
   const tabs = [
     { label: "Home", href: "/" },
-    { label: "Chat", href: "/chat" },
     { label: "Showcase", href: "/showcase" },
     { label: "Email", href: "/email" },
     { label: "Spotlight", href: "/spotlight" },

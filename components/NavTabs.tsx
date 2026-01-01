@@ -6,7 +6,6 @@ export default function NavTabs() {
   const pathname = usePathname();
   const tabs = [
     { href: "/", label: "Home" },
-    { href: "/chat", label: "Chat" },
     { href: "/content", label: "Content" },
     { href: "/artist-intros", label: "Artist Intros" },
     { href: "/mail", label: "Email" },
