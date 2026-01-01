@@ -1,3 +1,4 @@
+"use client";
 // Macronutrient info for common foods (per serving)
 const FOOD_MACROS: { [food: string]: { protein: number, carbs: number, fat: number } } = {
   "apple": { protein: 0.5, carbs: 25, fat: 0.3 },
@@ -82,7 +83,6 @@ const FOOD_CALORIES: { [food: string]: number } = {
   "popcorn (1 cup, air-popped)": 30,
   "energy bar": 250
 };
-"use client";
 // Health & weight management tips for Mr. Nanny
 const WORKOUT_TIPS = [
   "Take a brisk walk around your neighborhood or a local park.",
