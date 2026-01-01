@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -21,11 +20,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Wilding",
     description: "A mythic, minimalist creative sanctuary for AI jobs, creativity, and community.",
-    url: "https://aiwilding.com/",
+    url: "https://www.AIWilding.com/",
     siteName: "AI Wilding",
     images: [
       {
-        url: "/ai-use-cases.jpg",
+        url: "https://www.AIWilding.com/ai-use-cases.jpg",
         width: 1200,
         height: 630,
         alt: "AI Wilding Sanctuary Preview"
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Wilding",
     description: "A mythic, minimalist creative sanctuary for AI jobs, creativity, and community.",
-    images: ["/ai-use-cases.jpg"]
+    images: ["https://www.AIWilding.com/ai-use-cases.jpg"]
   }
 };
 
