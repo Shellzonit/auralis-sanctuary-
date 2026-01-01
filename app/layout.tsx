@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "AI Wilding",
     images: [
       {
-        url: "https://www.AIWilding.com/ai-use-cases.jpg",
+        url: "/BCO.436bd64f-0acc-4437-a5c3-15269bfdf309.png",
         width: 1200,
         height: 630,
         alt: "AI Wilding Sanctuary Preview"
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Wilding",
     description: "A mythic, minimalist creative sanctuary for AI jobs, creativity, and community.",
-    images: ["https://www.AIWilding.com/ai-use-cases.jpg"]
+    images: ["/BCO.436bd64f-0acc-4437-a5c3-15269bfdf309.png"]
   }
 };
 
