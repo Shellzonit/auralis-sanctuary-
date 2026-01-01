@@ -444,20 +444,21 @@ export default function MrJobNanny() {
   }, []);
 
   function getBotResponse(userMsg: string) {
-            // Mode switch triggers
-            if (/switch to weight|weight mode|health mode|be my health coach|be my weight coach|weight loss assistant|help with weight|help with health/.test(msg)) {
-              setMode('weight');
-              return "You are now in Weight Loss & Health Coach mode. I can help with creative exercise ideas, healthy habits, and motivation. Remember: Always consult your doctor before starting any weight loss or exercise program, especially if you have health conditions or concerns.";
-            }
-            if (/switch to job|job mode|career mode|be my job coach|be my career coach|job assistant|help with jobs|help with career/.test(msg)) {
-              setMode('job');
-              return "You are now in Job & Career Assistant mode. I can help with AI jobs, career advice, resume tips, and more. If you want to switch back to health coaching, just ask!";
-            }
-            // In weight mode, prioritize health/fitness answers
-            if (mode === 'weight') {
-              if (fitnessKeywords.some(k => msg.includes(k))) {
-                const fitnessFaq = FAQS.find(f => {
-                  const q = f.q.toLowerCase();
+    const msg = userMsg.toLowerCase();
+    // Mode switch triggers
+    if (/switch to weight|weight mode|health mode|be my health coach|be my weight coach|weight loss assistant|help with weight|help with health/.test(msg)) {
+      setMode('weight');
+      return "You are now in Weight Loss & Health Coach mode. I can help with creative exercise ideas, healthy habits, and motivation. Remember: Always consult your doctor before starting any weight loss or exercise program, especially if you have health conditions or concerns.";
+    }
+    if (/switch to job|job mode|career mode|be my job coach|be my career coach|job assistant|help with jobs|help with career/.test(msg)) {
+      setMode('job');
+      return "You are now in Job & Career Assistant mode. I can help with AI jobs, career advice, resume tips, and more. If you want to switch back to health coaching, just ask!";
+    }
+    // In weight mode, prioritize health/fitness answers
+    if (mode === 'weight') {
+      if (fitnessKeywords.some(k => msg.includes(k))) {
+        const fitnessFaq = FAQS.find(f => {
+          const q = f.q.toLowerCase();
                   return fitnessKeywords.some(k => q.includes(k) && msg.includes(k));
                 });
                 if (fitnessFaq) return fitnessFaq.a + "\n\n(Always consult your doctor before starting any new health or weight program.)";
