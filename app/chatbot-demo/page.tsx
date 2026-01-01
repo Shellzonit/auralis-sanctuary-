@@ -155,7 +155,7 @@ const JOB_SUGGESTIONS = [
 ];
 
 
-export default function ChatbotDemo() {
+export default function MrJobNanny() {
   // Interview reminder state
   const [interviewStep, setInterviewStep] = useState<number | null>(null);
   const [interviewInfo, setInterviewInfo] = useState<{date: string, time: string, company: string, email: string}>({date: '', time: '', company: '', email: ''});
