@@ -1,3 +1,5 @@
+
+"use client";
 // Health & weight management tips for Mr. Nanny
 const WORKOUT_TIPS = [
   "Take a brisk walk around your neighborhood or a local park.",
@@ -24,8 +26,6 @@ const HEALTH_TIPS = [
   "Take short breaks to stretch and move during your day.",
   "Celebrate small wins—every healthy choice counts!",
 ];
-
-"use client";
 
 import React, { useState, useEffect } from "react";
 import { encryptFernet } from "../../lib/fernetEncrypt";
