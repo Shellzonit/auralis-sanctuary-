@@ -1,3 +1,87 @@
+// Macronutrient info for common foods (per serving)
+const FOOD_MACROS: { [food: string]: { protein: number, carbs: number, fat: number } } = {
+  "apple": { protein: 0.5, carbs: 25, fat: 0.3 },
+  "banana": { protein: 1.3, carbs: 27, fat: 0.3 },
+  "orange": { protein: 1.2, carbs: 15.4, fat: 0.2 },
+  "egg": { protein: 6, carbs: 1, fat: 5 },
+  "slice of bread": { protein: 2.7, carbs: 14, fat: 1.1 },
+  "chicken breast (100g)": { protein: 31, carbs: 0, fat: 3.6 },
+  "chicken thigh (100g)": { protein: 25, carbs: 0, fat: 9 },
+  "turkey breast (100g)": { protein: 29, carbs: 0, fat: 1 },
+  "lean ground beef (100g)": { protein: 26, carbs: 0, fat: 15 },
+  "regular ground beef (100g)": { protein: 26, carbs: 0, fat: 20 },
+  "pork chop (100g)": { protein: 25, carbs: 0, fat: 14 },
+  "bacon (1 slice)": { protein: 3, carbs: 0.1, fat: 3.3 },
+  "ham (100g)": { protein: 18, carbs: 1.5, fat: 7 },
+  "salmon (100g)": { protein: 20, carbs: 0, fat: 13 },
+  "beef steak (100g)": { protein: 25, carbs: 0, fat: 19 },
+  "sausage (1 link)": { protein: 5, carbs: 1, fat: 16 },
+  "hot dog": { protein: 5, carbs: 2, fat: 13 },
+  "rice (1 cup cooked)": { protein: 4, carbs: 45, fat: 0.4 },
+  "broccoli (1 cup)": { protein: 2.5, carbs: 6, fat: 0.3 },
+  "avocado (whole)": { protein: 3, carbs: 12, fat: 22 },
+  "almonds (1 oz)": { protein: 6, carbs: 6, fat: 14 },
+  "carrot (medium)": { protein: 0.6, carbs: 6, fat: 0.1 },
+  "potato (medium)": { protein: 3, carbs: 26, fat: 0.2 },
+  "cheese (1 oz)": { protein: 7, carbs: 1, fat: 9 },
+  "milk (1 cup)": { protein: 8, carbs: 12, fat: 5 },
+  "oatmeal (1 cup cooked)": { protein: 6, carbs: 27, fat: 3 },
+  "tofu (100g)": { protein: 8, carbs: 2, fat: 4 },
+  "peanut butter (1 tbsp)": { protein: 4, carbs: 3, fat: 8 },
+  "yogurt (plain, 1 cup)": { protein: 10, carbs: 10, fat: 0.4 },
+  "granola bar": { protein: 2, carbs: 18, fat: 4 },
+  "donut (plain)": { protein: 2, carbs: 22, fat: 11 },
+  "donut (glazed)": { protein: 3, carbs: 31, fat: 14 },
+  "potato chips (1 oz)": { protein: 2, carbs: 15, fat: 10 },
+  "pretzels (1 oz)": { protein: 2.5, carbs: 23, fat: 0.8 },
+  "chocolate bar (regular)": { protein: 3, carbs: 25, fat: 13 },
+  "cookie (chocolate chip)": { protein: 1, carbs: 10, fat: 4 },
+  "crackers (5 pieces)": { protein: 1, carbs: 10, fat: 2 },
+  "popcorn (1 cup, air-popped)": { protein: 1, carbs: 6, fat: 0.1 },
+  "energy bar": { protein: 10, carbs: 30, fat: 5 }
+};
+// Common foods and their approximate calorie counts per serving
+const FOOD_CALORIES: { [food: string]: number } = {
+  "apple": 95,
+  "banana": 105,
+  "orange": 62,
+  "egg": 70,
+  "slice of bread": 80,
+  "chicken breast (100g)": 165,
+  "chicken thigh (100g)": 209,
+  "turkey breast (100g)": 135,
+  "lean ground beef (100g)": 217,
+  "regular ground beef (100g)": 250,
+  "pork chop (100g)": 231,
+  "bacon (1 slice)": 42,
+  "ham (100g)": 145,
+  "salmon (100g)": 208,
+  "beef steak (100g)": 250,
+  "sausage (1 link)": 180,
+  "hot dog": 150,
+  "rice (1 cup cooked)": 200,
+  "broccoli (1 cup)": 30,
+  "avocado (whole)": 240,
+  "almonds (1 oz)": 160,
+  "carrot (medium)": 25,
+  "potato (medium)": 110,
+  "cheese (1 oz)": 115,
+  "milk (1 cup)": 120,
+  "oatmeal (1 cup cooked)": 150,
+  "tofu (100g)": 76,
+  "peanut butter (1 tbsp)": 95,
+  "yogurt (plain, 1 cup)": 100,
+  "granola bar": 120,
+  "donut (plain)": 195,
+  "donut (glazed)": 260,
+  "potato chips (1 oz)": 150,
+  "pretzels (1 oz)": 110,
+  "chocolate bar (regular)": 210,
+  "cookie (chocolate chip)": 80,
+  "crackers (5 pieces)": 70,
+  "popcorn (1 cup, air-popped)": 30,
+  "energy bar": 250
+};
 "use client";
 // Health & weight management tips for Mr. Nanny
 const WORKOUT_TIPS = [
@@ -15,6 +99,8 @@ const WORKOUT_TIPS = [
 
 const HEALTH_TIPS = [
   "Aim for 7-8 hours of sleep each night for better health.",
+  "Prioritize rest and recovery—your body and mind need downtime to function at their best.",
+  "Quality sleep helps your body repair, boosts your immune system, and supports weight loss.",
   "Drink a glass of water before each meal.",
   "Add a fruit or vegetable to every meal.",
   "Limit sugary drinks and snacks—choose whole foods instead.",
@@ -24,6 +110,9 @@ const HEALTH_TIPS = [
   "Swap fried foods for grilled or baked options.",
   "Take short breaks to stretch and move during your day.",
   "Celebrate small wins—every healthy choice counts!",
+  "Combine foods rich in antioxidants (like berries, leafy greens, and nuts) with healthy fats (like olive oil or avocado) to help reduce inflammation.",
+  "Pair colorful vegetables with lean proteins and whole grains for meals that support lower inflammation.",
+  "Spices like turmeric and ginger, when added to meals, can help fight inflammation naturally.",
 ];
 
 import React, { useState, useEffect } from "react";
@@ -50,6 +139,14 @@ async function recordChatbotVisit() {
 // Latest announcement/news (update this string as needed)
 const ANNOUNCEMENT = "🎉 Happy New Year 2026! Check out our upcoming AI Hiring Events and new job listings for the year ahead. Stay tuned for more updates!";
 const FAQS = [
+  {
+    q: "Why is rest important for health and weight loss?",
+    a: "Rest is essential for your body to recover, repair muscles, balance hormones, and support your immune system. Quality sleep helps with weight loss, reduces stress, and improves mood and focus. Aim for 7-8 hours of sleep each night and listen to your body when it needs downtime."
+  },
+  {
+    q: "What foods can I combine to reduce inflammation?",
+    a: "To help reduce inflammation, combine foods rich in antioxidants (like berries, leafy greens, and nuts) with healthy fats (like olive oil or avocado). Pair colorful vegetables with lean proteins and whole grains. Spices like turmeric and ginger can also help fight inflammation naturally."
+  },
                     {
                       q: "What are some fun ways to stay active if I don’t like the gym?",
                       a: "Try dancing, playing with pets or kids, cleaning, gardening, or taking walks in nature. Even chores and games count as movement!"
@@ -449,6 +546,60 @@ export default function MrJobNanny() {
 
   function getBotResponse(userMsg: string) {
     const msg = userMsg.toLowerCase();
+    // Special diet guidance trigger
+    if (msg.includes("vegetarian") || msg.includes("vegan") || msg.includes("gluten-free") || msg.includes("dairy-free") || msg.includes("special diet") || msg.includes("allergy")) {
+      return (
+        "Special diets can help meet health needs or personal values.\n\n" +
+        "Vegetarian: No meat, but may include eggs/dairy. Focus on beans, lentils, tofu, nuts, whole grains, fruits, and veggies.\n" +
+        "Vegan: No animal products at all. Get protein from beans, lentils, tofu, tempeh, nuts, and seeds. Watch for vitamin B12, iron, and calcium—consider fortified foods or supplements.\n" +
+        "Gluten-free: Avoid wheat, barley, rye. Choose rice, corn, quinoa, potatoes, and gluten-free oats.\n" +
+        "Dairy-free: Avoid milk, cheese, yogurt. Use plant milks (soy, almond, oat), and check labels for hidden dairy.\n\n" +
+        "For allergies or medical diets, always read labels and consult a healthcare professional or dietitian for safe, balanced options."
+      );
+    }
+    // Vitamin and mineral info trigger
+    if (msg.includes("vitamin") || msg.includes("mineral") || msg.includes("micronutrient") || msg.includes("nutrient deficiency") || msg.includes("what does vitamin")) {
+      return (
+        "Vitamins and minerals (micronutrients) are essential for your body to function well. For example: Vitamin C (in citrus fruits, peppers) supports immunity; Vitamin D (from sunlight, fortified foods) helps bones; Iron (in red meat, beans, spinach) carries oxygen in your blood; Calcium (in dairy, leafy greens) builds strong bones; Potassium (in bananas, potatoes) helps muscles and nerves.\n\n" +
+        "A varied diet with plenty of fruits, vegetables, whole grains, lean proteins, and dairy usually provides all the vitamins and minerals you need. If you suspect a deficiency, consult your doctor before taking supplements."
+      );
+    }
+    // Portion size and meal timing advice trigger
+    if (msg.includes("portion size") || msg.includes("serving size") || msg.includes("how much should i eat") || msg.includes("meal timing") || msg.includes("when should i eat") || msg.includes("how often should i eat")) {
+      return (
+        "Portion sizes depend on your age, activity level, and health goals, but here are some general tips: Use your hand as a guide—protein (palm), carbs (cupped hand), fats (thumb), and veggies (fist). Fill half your plate with vegetables, a quarter with lean protein, and a quarter with whole grains or starchy foods.\n\n" +
+        "For meal timing, aim for 3 balanced meals per day, and add healthy snacks if you're hungry between meals. Eating at regular times can help with energy and appetite control. Listen to your body's hunger and fullness cues, and try not to skip meals."
+      );
+    }
+    // Macronutrient info trigger
+    if (msg.includes("macronutrient") || msg.includes("macros") || msg.includes("protein") || msg.includes("carb") || msg.includes("fat")) {
+      const foodNames = Object.keys(FOOD_MACROS);
+      const found = foodNames.find(food => msg.includes(food.split(" ")[0]));
+      if (found) {
+        const macros = FOOD_MACROS[found];
+        return `A typical serving of ${found} contains about ${macros.protein}g protein, ${macros.carbs}g carbs, and ${macros.fat}g fat. (Values are approximate and can vary by preparation.)`;
+      } else {
+        return "I can provide macronutrient info (protein, carbs, fat) for common foods like apple, chicken breast, rice, bread, and more. Please ask about a specific food!";
+      }
+    }
+    // Lean meat explanation trigger
+    if (msg.includes("lean meat") || msg.includes("not lean meat") || msg.includes("difference between lean and")) {
+      return (
+        "Lean meat refers to cuts of meat that have lower fat content. Examples include skinless chicken breast, turkey breast, and lean cuts of beef or pork. Lean meats are lower in calories and saturated fat, making them a healthier choice for heart health and weight management.\n\n" +
+        "Non-lean meats (like regular ground beef, pork belly, or processed meats like sausage and bacon) have higher fat and calorie content. Choosing lean meats can help reduce your intake of saturated fat and calories."
+      );
+    }
+    // Calorie lookup trigger
+    if (msg.includes("calorie") || msg.includes("calories") || msg.includes("how many calories") || msg.includes("calorie count")) {
+      // Try to extract food name from the message
+      const foodNames = Object.keys(FOOD_CALORIES);
+      const found = foodNames.find(food => msg.includes(food.split(" ")[0]));
+      if (found) {
+        return `A typical serving of ${found} contains about ${FOOD_CALORIES[found]} calories. (Values are approximate and can vary by preparation.)`;
+      } else {
+        return "I can provide calorie counts for common foods like apple, banana, egg, bread, chicken breast, rice, and more. Please ask about a specific food!";
+      }
+    }
     const fitnessKeywords = [
       "exercise", "workout", "weight", "active", "steps", "water", "sleep", "snack", "recover", "motivate", "family", "older", "track", "fit", "move", "chore", "gym", "beginner", "at home", "quick", "energy"
     ];
@@ -463,23 +614,44 @@ export default function MrJobNanny() {
     }
     // In weight mode, prioritize health/fitness answers
     if (mode === 'weight') {
-      if (fitnessKeywords.some(k => msg.includes(k))) {
+      // Diet/meal plan/nutrition triggers
+      if (msg.includes("diet plan") || msg.includes("meal plan") || msg.includes("write a diet") || msg.includes("write a meal plan") || msg.includes("plan my meals") || msg.includes("nutrition plan") || msg.includes("nutrition advice")) {
+        return (
+          "I'm happy to offer general healthy eating tips, but I can't provide personalized diet or meal plans. For a safe and effective diet, it's best to consult a registered dietitian or healthcare professional who can tailor advice to your needs.\n\n" +
+          "General tips: Focus on a variety of colorful vegetables, lean proteins, whole grains, healthy fats (like olive oil, nuts, and avocado), and stay hydrated. Limit processed foods, added sugars, and excess salt.\n\n" +
+          "(Always consult your doctor or a registered dietitian before making significant changes to your diet or health routine.)"
+        );
+      }
+      if (fitnessKeywords.some(k => msg.includes(k)) || msg.includes("rest") || msg.includes("sleep") || msg.includes("inflammation") || msg.includes("anti-inflammatory") || msg.includes("combine foods") || msg.includes("food pair") || msg.includes("recovery")) {
+        // Try to find a matching FAQ
         const fitnessFaq = FAQS.find(f => {
           const q = f.q.toLowerCase();
-                  return fitnessKeywords.some(k => q.includes(k) && msg.includes(k));
-                });
-                if (fitnessFaq) return fitnessFaq.a + "\n\n(Always consult your doctor before starting any new health or weight program.)";
-                if (msg.includes("workout") || msg.includes("exercise") || msg.includes("move") || msg.includes("active")) {
-                  return `Here's a creative workout idea: ${WORKOUT_TIPS[Math.floor(Math.random() * WORKOUT_TIPS.length)]}\n\n(Always consult your doctor before starting any new health or weight program.)`;
-                }
-                if (msg.includes("health") || msg.includes("tip") || msg.includes("energy") || msg.includes("snack")) {
-                  return `Here's a health tip: ${HEALTH_TIPS[Math.floor(Math.random() * HEALTH_TIPS.length)]}\n\n(Always consult your doctor before starting any new health or weight program.)`;
-                }
-                return "Staying active and healthy can be fun and creative! Ask me for a workout idea, health tip, or advice on tracking your habits.\n\n(Always consult your doctor before starting any new health or weight program.)";
-              }
-              // If not a fitness/health question, gently prompt about mode
-              return "You are in Weight Loss & Health Coach mode. Ask me about exercise, healthy habits, or motivation—or type 'switch to job mode' to return to career coaching.";
-            }
+          return (
+            fitnessKeywords.some(k => q.includes(k) && msg.includes(k)) ||
+            (q.includes("rest") && msg.includes("rest")) ||
+            (q.includes("sleep") && msg.includes("sleep")) ||
+            (q.includes("inflammation") && msg.includes("inflammation")) ||
+            (q.includes("combine") && msg.includes("combine"))
+          );
+        });
+        if (fitnessFaq) return fitnessFaq.a + "\n\n(Always consult your doctor before starting any new health or weight program.)";
+        if (msg.includes("workout") || msg.includes("exercise") || msg.includes("move") || msg.includes("active")) {
+          return `Here's a creative workout idea: ${WORKOUT_TIPS[Math.floor(Math.random() * WORKOUT_TIPS.length)]}\n\n(Always consult your doctor before starting any new health or weight program.)`;
+        }
+        if (msg.includes("rest") || msg.includes("sleep")) {
+          return `Rest is essential for your body to recover, repair muscles, balance hormones, and support your immune system. Quality sleep helps with weight loss, reduces stress, and improves mood and focus. Aim for 7-8 hours of sleep each night and listen to your body when it needs downtime.\n\n(Always consult your doctor before starting any new health or weight program.)`;
+        }
+        if (msg.includes("inflammation") || msg.includes("anti-inflammatory") || msg.includes("combine foods") || msg.includes("food pair")) {
+          return `To help reduce inflammation, combine foods rich in antioxidants (like berries, leafy greens, and nuts) with healthy fats (like olive oil or avocado). Pair colorful vegetables with lean proteins and whole grains. Spices like turmeric and ginger can also help fight inflammation naturally.\n\n(Always consult your doctor before starting any new health or weight program.)`;
+        }
+        if (msg.includes("health") || msg.includes("tip") || msg.includes("energy") || msg.includes("snack")) {
+          return `Here's a health tip: ${HEALTH_TIPS[Math.floor(Math.random() * HEALTH_TIPS.length)]}\n\n(Always consult your doctor before starting any new health or weight program.)`;
+        }
+        return "Staying active and healthy can be fun and creative! Ask me for a workout idea, health tip, or advice on tracking your habits.\n\n(Always consult your doctor before starting any new health or weight program.)";
+      }
+      // If not a fitness/health question, gently prompt about mode
+      return "You are in Weight Loss & Health Coach mode. Ask me about exercise, healthy habits, or motivation—or type 'switch to job mode' to return to career coaching.";
+    }
         // Fitness/health FAQ interactive matching (job mode)
         if (mode === 'job' && fitnessKeywords.some(k => msg.includes(k))) {
           // Try to find a matching FAQ
