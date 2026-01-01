@@ -444,7 +444,7 @@ export default function MrJobNanny() {
   }, []);
 
   function getBotResponse(userMsg: string) {
-    // const msg = userMsg.toLowerCase(); // Removed duplicate declaration
+    const msg = userMsg.toLowerCase();
     // Mode switch triggers
     if (/switch to weight|weight mode|health mode|be my health coach|be my weight coach|weight loss assistant|help with weight|help with health/.test(msg)) {
       setMode('weight');
@@ -498,7 +498,7 @@ export default function MrJobNanny() {
       const modeDesc = mode === 'job'
         ? 'Ask about AI jobs, careers, resumes, and events. Type "switch to weight mode" to get health and fitness coaching.'
         : 'Ask about exercise, healthy habits, or motivation. Type "switch to job mode" to return to career coaching.';
-    const msg = userMsg.toLowerCase();
+    // const msg = userMsg.toLowerCase(); // Removed duplicate declaration
     // Skill gap analysis trigger
     if (/(skill gap|missing skills|what skills do i need|skills for|how do i qualify|how to qualify|how to get|how to become|how do i become|what do i need to become|what do i need for|how to get hired|how to get a job)/.test(userMsg.toLowerCase())) {
       setGapStep(0);
