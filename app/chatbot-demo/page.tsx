@@ -1,4 +1,3 @@
-
 "use client";
 // Health & weight management tips for Mr. Nanny
 const WORKOUT_TIPS = [
@@ -244,6 +243,11 @@ const JOB_SUGGESTIONS = [
 export default function MrJobNanny() {
     // Mode: 'job' or 'weight'
     const [mode, setMode] = useState<'job' | 'weight'>('job');
+    // Mode label and description for UI
+    const modeLabel = mode === 'job' ? 'Job & Career Assistant' : 'Weight Loss & Health Coach';
+    const modeDesc = mode === 'job'
+      ? 'Ask about AI jobs, careers, resumes, and events. Type "switch to weight mode" to get health and fitness coaching.'
+      : 'Ask about exercise, healthy habits, or motivation. Type "switch to job mode" to return to career coaching.';
   // Interview reminder state
   const [interviewStep, setInterviewStep] = useState<number | null>(null);
   const [interviewInfo, setInterviewInfo] = useState<{date: string, time: string, company: string, email: string}>({date: '', time: '', company: '', email: ''});
@@ -496,10 +500,6 @@ export default function MrJobNanny() {
       // Mode switch UI
       // (moved modeLabel and modeDesc to component scope)
       // Mode label and description for UI
-      const modeLabel = mode === 'job' ? 'Job & Career Assistant' : 'Weight Loss & Health Coach';
-      const modeDesc = mode === 'job'
-        ? 'Ask about AI jobs, careers, resumes, and events. Type "switch to weight mode" to get health and fitness coaching.'
-        : 'Ask about exercise, healthy habits, or motivation. Type "switch to job mode" to return to career coaching.';
     // const msg = userMsg.toLowerCase(); // Removed duplicate declaration
     // Skill gap analysis trigger
     if (/(skill gap|missing skills|what skills do i need|skills for|how do i qualify|how to qualify|how to get|how to become|how do i become|what do i need to become|what do i need for|how to get hired|how to get a job)/.test(userMsg.toLowerCase())) {
