@@ -444,7 +444,7 @@ export default function MrJobNanny() {
   }, []);
 
   function getBotResponse(userMsg: string) {
-    // const msg = userMsg.toLowerCase(); // Removed duplicate declaration
+    const msg = userMsg.toLowerCase();
     // Mode switch triggers
     if (/switch to weight|weight mode|health mode|be my health coach|be my weight coach|weight loss assistant|help with weight|help with health/.test(msg)) {
       setMode('weight');
