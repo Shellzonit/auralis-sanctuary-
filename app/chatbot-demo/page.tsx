@@ -494,6 +494,8 @@ export default function MrJobNanny() {
           return "Staying active and healthy can be fun and creative! Ask me for a workout idea, health tip, or advice on tracking your habits.";
         }
       // Mode switch UI
+      // (moved modeLabel and modeDesc to component scope)
+      // Mode label and description for UI
       const modeLabel = mode === 'job' ? 'Job & Career Assistant' : 'Weight Loss & Health Coach';
       const modeDesc = mode === 'job'
         ? 'Ask about AI jobs, careers, resumes, and events. Type "switch to weight mode" to get health and fitness coaching.'
