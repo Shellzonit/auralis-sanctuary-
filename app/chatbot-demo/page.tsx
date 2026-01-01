@@ -83,7 +83,7 @@ const FAQS = [
     },
   {
     q: "What is this site about?",
-    a: "Auralis Sanctuary is a creative sanctuary dedicated to helping you thrive in the age of AI. We offer curated AI job listings, hiring events, resources, and community support for creative and technical talent. Whether you're looking to start a new career, upskill, or connect with others, you'll find guidance and opportunities here."
+    a: "AI Wilding is a creative sanctuary dedicated to helping you thrive in the age of AI. We offer curated AI job listings, hiring events, resources, and community support for creative and technical talent. Whether you're looking to start a new career, upskill, or connect with others, you'll find guidance and opportunities here."
   },
   {
     q: "How do I find AI jobs?",
@@ -433,7 +433,7 @@ export default function ChatbotDemo() {
                               reminders.push({...interviewInfo, email: userMsg.trim()});
                               localStorage.setItem('interview-reminders', JSON.stringify(reminders));
                             } catch {}
-                            return `You're all set! I'll send you a reminder email on ${interviewInfo.date} for your interview${interviewInfo.company ? ' at ' + interviewInfo.company : ''}. Good luck!\n\n⚠️ Please note: While I do my best to remind you, always have a backup plan and set your own reminders. Auralis Sanctuary and Mr. Job Nanny are not liable for any missed appointments or technical issues. Stay prepared for unforeseen circumstances!`;
+                            return `You're all set! I'll send you a reminder email on ${interviewInfo.date} for your interview${interviewInfo.company ? ' at ' + interviewInfo.company : ''}. Good luck!\n\n⚠️ Please note: While I do my best to remind you, always have a backup plan and set your own reminders. AI Wilding and Mr. Job Nanny are not liable for any missed appointments or technical issues. Stay prepared for unforeseen circumstances!`;
                           }
                           return "Please enter the requested info (date, time, company, or email).";
                         }
@@ -579,7 +579,7 @@ export default function ChatbotDemo() {
         msg.includes("what is this site") ||
         msg.includes("what does this site do") ||
         msg.includes("what is sanctuary") ||
-        msg.includes("what is auralis sanctuary") ||
+        msg.includes("what is ai wilding") ||
         msg.includes("what does this website do") ||
         msg.includes("tell me about this site") ||
         msg.includes("site purpose") ||
@@ -587,7 +587,17 @@ export default function ChatbotDemo() {
         msg.includes("website info") ||
         msg.includes("what is this for")
       ) {
-        return "Auralis Sanctuary is a creative sanctuary dedicated to helping you thrive in the age of AI. We offer curated AI job listings, hiring events, resources, and community support for creative and technical talent. Whether you're looking to start a new career, upskill, or connect with others, you'll find guidance and opportunities here.";
+        return "AI Wilding is a creative sanctuary dedicated to helping you thrive in the age of AI. We offer curated AI job listings, hiring events, resources, and community support for creative and technical talent. Whether you're looking to start a new career, upskill, or connect with others, you'll find guidance and opportunities here. What makes AI Wilding different from other job sites? We focus on privacy-first design, actionable coaching, and creative empowerment. Your data is never sold or shared, and you get personalized job alerts, skill gap analysis, interview reminders, and resume feedback—all in a supportive, creative environment.";
+      }
+      // 4b. What makes this site different
+      if (
+        msg.includes("what makes this site different") ||
+        msg.includes("how is this site different") ||
+        msg.includes("why is this site unique") ||
+        msg.includes("how is this different from other job sites") ||
+        msg.includes("what's special about this site")
+      ) {
+        return "AI Wilding stands out from other job sites by putting your privacy, creativity, and growth first. Unlike traditional job boards, we never sell or share your data. You get personalized job alerts, skill gap analysis, interview reminders, and resume feedback—all in a creative, supportive environment. Mr. Job Nanny acts as your personal job coach, helping you build confidence, skills, and connections for the future of work.";
       }
       // 5. Job suggestion
       const jobSuggestion = JOB_SUGGESTIONS.find(j => msg.includes(j.keyword));
