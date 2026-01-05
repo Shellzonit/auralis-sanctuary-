@@ -66,16 +66,16 @@ export default function JobsAtRiskPage() {
             {filteredJobs.map(job => (
               <div key={job.title + job.location} style={{ background: "rgba(106,27,154,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
                 <h3 style={{ color: "#ffd700", fontSize: "1.1rem", marginBottom: 6 }}>{job.title} <span style={{ color: job.risk === "High" ? "#d32f2f" : job.risk === "Medium" ? "#fbc02d" : "#388e3c", fontWeight: 700, marginLeft: 8 }}>({job.risk} Risk)</span></h3>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Industry:</strong> {job.industry}</div>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Location:</strong> {job.location} {job.global ? "(Global)" : ""}</div>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Factors:</strong> {job.factors.join(", ")}</div>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Timeline:</strong> {job.timeline}</div>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Workers affected:</strong> {job.affected.toLocaleString()}</div>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>News:</strong> {job.news.join(", ")}</div>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Resources:</strong> {job.resources.join(", ")}</div>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Success stories:</strong> {job.stories.join(", ")}</div>
+                <div style={{ color: "#18191a", fontSize: "1rem", marginBottom: 4 }}><strong>Industry:</strong> {job.industry}</div>
+                <div style={{ color: "#18191a", fontSize: "1rem", marginBottom: 4 }}><strong>Location:</strong> {job.location} {job.global ? "(Global)" : ""}</div>
+                <div style={{ color: "#18191a", fontSize: "1rem", marginBottom: 4 }}><strong>Factors:</strong> {job.factors.join(", ")}</div>
+                <div style={{ color: "#18191a", fontSize: "1rem", marginBottom: 4 }}><strong>Timeline:</strong> {job.timeline}</div>
+                <div style={{ color: "#18191a", fontSize: "1rem", marginBottom: 4 }}><strong>Workers affected:</strong> {job.affected.toLocaleString()}</div>
+                <div style={{ color: "#18191a", fontSize: "1rem", marginBottom: 4 }}><strong>News:</strong> {job.news.join(", ")}</div>
+                <div style={{ color: "#18191a", fontSize: "1rem", marginBottom: 4 }}><strong>Resources:</strong> {job.resources.join(", ")}</div>
+                <div style={{ color: "#18191a", fontSize: "1rem", marginBottom: 4 }}><strong>Success stories:</strong> {job.stories.join(", ")}</div>
                 <div style={{ color: "#ffd700", fontSize: "1rem", marginTop: 8 }}><strong>Reclassification Risk:</strong> {job.reclassification ? "Likely" : "Unlikely"}</div>
-                <div style={{ color: "#fff8dc", fontSize: "0.98rem", marginBottom: 2 }}>{job.explanation}</div>
+                <div style={{ color: "#18191a", fontSize: "0.98rem", marginBottom: 2 }}>{job.explanation}</div>
               </div>
             ))}
           </div>
