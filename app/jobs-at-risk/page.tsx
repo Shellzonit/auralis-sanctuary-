@@ -45,16 +45,19 @@ export default function JobsAtRiskPage() {
           <strong>Reclassification risk</strong> means a job is likely to change in nature, with workers moving to related roles (e.g., cashiers becoming customer support, truck drivers managing fleets). Use the filters below to explore jobs by risk level, industry, and location.
         </p>
       </section>
-      <nav style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 32 }}>
-        <select value={riskFilter} onChange={e => setRiskFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "none", background: "#ffd700", color: "#18191a", fontWeight: 700 }}>
+      <nav style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 32, alignItems: 'center' }}>
+        <label style={{ fontWeight: 700, color: '#ffd700', marginRight: 8 }}>Risk:</label>
+        <select value={riskFilter} onChange={e => setRiskFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "2px solid #ffd700", background: "#fffbe6", color: "#18191a", fontWeight: 700, fontSize: '1.08rem', marginRight: 16 }}>
           <option value="">All Risks</option>
           {RISK_LEVELS.map(risk => <option key={risk} value={risk}>{risk}</option>)}
         </select>
-        <select value={industryFilter} onChange={e => setIndustryFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "none", background: "#ffd700", color: "#18191a", fontWeight: 700 }}>
+        <label style={{ fontWeight: 700, color: '#ffd700', marginRight: 8 }}>Industry:</label>
+        <select value={industryFilter} onChange={e => setIndustryFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "2px solid #ffd700", background: "#fffbe6", color: "#18191a", fontWeight: 700, fontSize: '1.08rem', marginRight: 16 }}>
           <option value="">All Industries</option>
           {INDUSTRIES.map(ind => <option key={ind} value={ind}>{ind}</option>)}
         </select>
-        <select value={locationFilter} onChange={e => setLocationFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "none", background: "#ffd700", color: "#18191a", fontWeight: 700 }}>
+        <label style={{ fontWeight: 700, color: '#ffd700', marginRight: 8 }}>Location:</label>
+        <select value={locationFilter} onChange={e => setLocationFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "2px solid #ffd700", background: "#fffbe6", color: "#18191a", fontWeight: 700, fontSize: '1.08rem' }}>
           <option value="">All Locations</option>
           {LOCATIONS.map(loc => <option key={loc} value={loc}>{loc}</option>)}
         </select>
@@ -80,10 +83,10 @@ export default function JobsAtRiskPage() {
             ))}
           </div>
         ) : (
-          <p style={{ color: "#fff8dc" }}>No jobs found for selected filters.</p>
+          <p style={{ color: "#d32f2f", fontWeight: 700 }}>No jobs found for selected filters.</p>
         )}
-        <div style={{ marginTop: 24, color: "#fff8dc", fontSize: "0.95rem" }}>
-          <strong>Sources:</strong> U.S. Bureau of Labor Statistics, OECD, World Economic Forum, news reports
+        <div style={{ marginTop: 24, color: "#ffd700", fontSize: "1rem", fontWeight: 700 }}>
+          <strong>Sources:</strong> <span style={{ color: '#18191a', fontWeight: 400 }}>U.S. Bureau of Labor Statistics, OECD, World Economic Forum, news reports</span>
         </div>
       </section>
     </main>

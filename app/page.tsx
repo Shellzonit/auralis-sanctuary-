@@ -50,32 +50,28 @@ export default function HomePage() {
       >
         <span style={{ color: '#ffd700' }}>AI</span> Wilding
       </h1>
-      {/* AI Wilding Homepage Image */}
-      <div style={{ marginBottom: 32 }}>
-        <Image src="/Ai wilding.png" alt="AI Wilding" width={480} height={320} style={{ borderRadius: 18, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 48, marginBottom: 32 }}>
+        {/* Left tabs */}
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: 18, background: '#18191a', borderRadius: 16, padding: '18px 12px', boxShadow: '0 4px 24px #0002', minWidth: 180 }}>
+          <a href="/" style={tabStyle}>Home</a>
+          <a href="/states" style={tabStyle}>States</a>
+          <a href="/countries" style={tabStyle}>Countries</a>
+          <a href="/jobs-at-risk" style={tabStyle}>Jobs at Risk</a>
+          <a href="/transitional-paths" style={tabStyle}>Transitional Paths</a>
+        </nav>
+        {/* Center image */}
+        <div>
+          <Image src="/Ai wilding.png" alt="AI Wilding" width={480} height={320} style={{ borderRadius: 18, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+        </div>
+        {/* Right tabs */}
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: 18, background: '#18191a', borderRadius: 16, padding: '18px 12px', boxShadow: '0 4px 24px #0002', minWidth: 180 }}>
+          <a href="/new-ai-jobs" style={tabStyle}>New AI Jobs</a>
+          <a href="/training" style={tabStyle}>Training Hub</a>
+          <a href="/recovery" style={tabStyle}>Recovery Hub</a>
+          <a href="/about" style={tabStyle}>About</a>
+          <a href="/contact" style={tabStyle}>Contact</a>
+        </nav>
       </div>
-      <nav
-        style={{
-          display: 'flex',
-          gap: 24,
-          background: '#18191a',
-          borderRadius: 16,
-          padding: '12px 32px',
-          marginBottom: 48,
-          boxShadow: '0 4px 24px #0002',
-        }}
-      >
-        <a href="/" style={tabStyle}>Home</a>
-        <a href="/states" style={tabStyle}>States</a>
-        <a href="/countries" style={tabStyle}>Countries</a>
-        <a href="/jobs-at-risk" style={tabStyle}>Jobs at Risk</a>
-        <a href="/transitional-paths" style={tabStyle}>Transitional Paths</a>
-        <a href="/new-ai-jobs" style={tabStyle}>New AI Jobs</a>
-        <a href="/training" style={tabStyle}>Training Hub</a>
-        <a href="/recovery" style={tabStyle}>Recovery Hub</a>
-        <a href="/about" style={tabStyle}>About</a>
-        <a href="/contact" style={tabStyle}>Contact</a>
-      </nav>
       {/* Education Image */}
       <div style={{ margin: '24px 0 0 0' }}>
         <Image src="/education.png" alt="Education" width={420} height={260} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />

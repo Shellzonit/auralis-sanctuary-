@@ -1,3 +1,10 @@
+/* Universal font style for all text */
+html, body, h1, h2, h3, h4, h5, h6, p, a, li, td, th, input, button, select, textarea, label, span, div {
+  font-family: var(--font-geist-sans), 'Inter', 'Segoe UI', Arial, sans-serif !important;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: #18191a;
+}
 @keyframes gradient {
   0% {background-position: 0% 50%;}
   50% {background-position: 100% 50%;}
