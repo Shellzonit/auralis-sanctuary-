@@ -45,8 +45,7 @@ export default function HomePage() {
             <source src="/Mr.nanny%20video.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-        </div>
-      </div>
+          </div>
       <h1
         style={{
           fontFamily: 'Playfair Display, Georgia, serif',
