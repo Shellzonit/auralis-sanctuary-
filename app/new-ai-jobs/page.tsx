@@ -96,25 +96,25 @@ export const NEW_AI_JOBS = [
 
 export default function NewAIJobsPage() {
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative' }}>
+    <main style={{ minHeight: "100vh", background: "#fff", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative' }}>
       {/* AI Hiring Events Tab Button in Corner */}
       <a href="/ai-hiring-events" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#C2A86C', color: '#232526', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #C2A86C55', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#C2A86C';e.currentTarget.style.color='#232526';}}>AI Hiring Events &rarr;</a>
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1a4d" }}>
-        New AI Jobs & Careers
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
+        <span style={{ color: '#ffd700' }}>New AI Jobs & Careers</span>
       </h1>
-      <section style={{ maxWidth: 900, background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
-        <p style={{ color: "#fff8dc", fontSize: "1.08rem", marginBottom: 18 }}>
+      <section style={{ maxWidth: 900, background: '#f5faff', borderRadius: 16, padding: 24, boxShadow: '0 2px 16px #90caf922', marginBottom: 32 }}>
+        <p style={{ color: '#18191a', fontSize: '1.08rem', marginBottom: 18 }}>
           Discover emerging jobs and careers created by AI and automation. Each role includes a description, required skills, industries, example employers, and training resources to help you prepare for the future workforce.
         </p>
         {NEW_AI_JOBS.map((job) => (
-          <div key={job.title} style={{ background: "rgba(106,27,154,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22", marginBottom: 24 }}>
-            <h2 style={{ color: "#ffd700", fontSize: "1.2rem", marginBottom: 6 }}>{job.title}</h2>
-            <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Description:</strong> {job.description}</div>
-            <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Required Skills:</strong> {job.skills.join(", ")}</div>
-            <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Industries:</strong> {job.industries.join(", ")}</div>
-            <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Example Employers:</strong> {job.employers.join(", ")}</div>
-            <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}><strong>Training Resources:</strong> {job.resources.join(", ")}</div>
-            <div style={{ color: "#ffd700", fontSize: "1rem", marginBottom: 4 }}><strong>Typical Pay Range:</strong> {job.pay}</div>
+          <div key={job.title} style={{ background: '#fff', borderRadius: 12, padding: 18, boxShadow: '0 2px 8px #90caf922', marginBottom: 24 }}>
+            <h2 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: 6 }}>{job.title}</h2>
+            <div style={{ color: '#18191a', fontSize: '1rem', marginBottom: 4 }}><strong>Description:</strong> {job.description}</div>
+            <div style={{ color: '#18191a', fontSize: '1rem', marginBottom: 4 }}><strong>Required Skills:</strong> {job.skills.join(", ")}</div>
+            <div style={{ color: '#18191a', fontSize: '1rem', marginBottom: 4 }}><strong>Industries:</strong> {job.industries.join(", ")}</div>
+            <div style={{ color: '#18191a', fontSize: '1rem', marginBottom: 4 }}><strong>Example Employers:</strong> {job.employers.join(", ")}</div>
+            <div style={{ color: '#18191a', fontSize: '1rem', marginBottom: 4 }}><strong>Training Resources:</strong> {job.resources.join(", ")}</div>
+            <div style={{ color: '#ffd700', fontSize: '1rem', marginBottom: 4 }}><strong>Typical Pay Range:</strong> {job.pay}</div>
           </div>
         ))}
       </section>

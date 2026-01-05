@@ -57,16 +57,16 @@ export default function RecoveryHubPage() {
       </p>
       <section style={{ width: '100%', maxWidth: 800, display: 'flex', flexDirection: 'column', gap: 32 }}>
         {STORIES.map((s, i) => (
-          <div key={i} style={{ background: 'rgba(255,255,255,0.07)', borderRadius: 14, padding: 24, boxShadow: '0 2px 12px #6a1b9a22' }}>
+          <div key={i} style={{ background: '#f5faff', borderRadius: 14, padding: 24, boxShadow: '0 2px 12px #90caf922' }}>
             <h2 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: 8 }}>{s.title}</h2>
-            <div style={{ color: '#fff8dc', marginBottom: 8 }}>{s.text}</div>
-            <div style={{ color: '#ffd700', fontSize: '1rem' }}><strong>Before:</strong> <span style={{ color: '#fff8dc' }}>{s.before}</span></div>
-            <div style={{ color: '#ffd700', fontSize: '1rem' }}><strong>After:</strong> <span style={{ color: '#fff8dc' }}>{s.after}</span></div>
+            <div style={{ color: '#18191a', marginBottom: 8 }}>{s.text}</div>
+            <div style={{ color: '#ffd700', fontSize: '1rem' }}><strong>Before:</strong> <span style={{ color: '#18191a' }}>{s.before}</span></div>
+            <div style={{ color: '#ffd700', fontSize: '1rem' }}><strong>After:</strong> <span style={{ color: '#18191a' }}>{s.after}</span></div>
           </div>
         ))}
-        <div style={{ background: 'rgba(255,255,255,0.07)', borderRadius: 14, padding: 24 }}>
+        <div style={{ background: '#f5faff', borderRadius: 14, padding: 24 }}>
           <h2 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: 8 }}>Resources for Resilience</h2>
-          <ul style={{ color: '#fff8dc' }}>
+          <ul style={{ color: '#18191a' }}>
             {RESOURCES.map(r => <li key={r.name}><a href={r.url} target="_blank" rel="noopener noreferrer" style={{ color: '#ffd700', fontWeight: 600 }}>{r.name}</a></li>)}
           </ul>
         </div>
