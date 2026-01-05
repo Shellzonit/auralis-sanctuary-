@@ -27,7 +27,7 @@ export default function HomePage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #0a2540 0%, #e3f2fd 60%, #1976d2 100%)", // blue and white gradient
+        background: "#fff",
         fontFamily: "Playfair Display, Georgia, serif",
         display: "flex",
         flexDirection: "column",
@@ -36,32 +36,36 @@ export default function HomePage() {
       }}
     >
       {/* Homepage Icon */}
-      <div style={{ marginTop: 48, marginBottom: 8 }}>
-        <Image src="/icon.png" alt="Homepage Icon" width={120} height={120} priority style={{ borderRadius: 24, background: '#18191a' }} />
-        </div>
+      <div style={{ marginTop: 48, marginBottom: 8, background: '#18191a', borderRadius: 24, padding: 12, boxShadow: '0 2px 16px #0002' }}>
+        <Image src="/icon.png" alt="Homepage Icon" width={120} height={120} priority style={{ borderRadius: 18, background: 'transparent' }} />
+      </div>
       <h1
         style={{
           fontFamily: 'Playfair Display, Georgia, serif',
           fontSize: '3.5rem',
           fontWeight: 900,
-          color: '#1976d2', // blue
+          color: '#18191a',
           margin: '48px 0 24px 0',
-          textShadow: '0 2px 24px #e3f2fd', // white shadow
+          textShadow: '0 2px 24px #ffd70044', // subtle gold shadow
           letterSpacing: 2,
           textAlign: 'center',
         }}
       >
-        AI Wilding
+        <span style={{ color: '#ffd700' }}>AI</span> Wilding
       </h1>
+      {/* AI Wilding Homepage Image */}
+      <div style={{ marginBottom: 32 }}>
+        <Image src="/Ai wilding.png" alt="AI Wilding" width={480} height={320} style={{ borderRadius: 18, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+      </div>
       <nav
         style={{
           display: 'flex',
           gap: 24,
-          background: 'rgba(106,27,154,0.85)', // purple
+          background: '#18191a',
           borderRadius: 16,
           padding: '12px 32px',
           marginBottom: 48,
-          boxShadow: '0 4px 24px #6a1b9a55',
+          boxShadow: '0 4px 24px #0002',
         }}
       >
         <a href="/" style={tabStyle}>Home</a>
@@ -75,22 +79,27 @@ export default function HomePage() {
         <a href="/about" style={tabStyle}>About</a>
         <a href="/contact" style={tabStyle}>Contact</a>
       </nav>
+      {/* Education Image */}
+      <div style={{ margin: '24px 0 0 0' }}>
+        <Image src="/education.png" alt="Education" width={420} height={260} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+      </div>
       <section style={{
-        background: 'rgba(227,242,253,0.93)', // light blue/white
+        background: '#fff',
         borderRadius: 16,
         padding: '24px 32px',
         maxWidth: 600,
         margin: '48px auto 48px auto',
-        boxShadow: '0 2px 16px #1976d244', // blue shadow
-        color: '#0a2540', // dark blue text
+        boxShadow: '0 2px 16px #18191a22',
+        color: '#18191a',
         textAlign: 'center',
         fontSize: '1.15rem',
         lineHeight: 1.7,
+        border: '1.5px solid #ffd700',
       }}>
-        <strong style={{ color: '#1976d2', fontSize: '1.2rem' }}>Meet Mr. Job Nanny!</strong>
+        <strong style={{ color: '#ffd700', fontSize: '1.2rem' }}>Meet Mr. Job Nanny!</strong>
         <br />
         <span role="img" aria-label="nanny">🧑‍🦳</span> Mr. Job Nanny is your personal, privacy-first AI job assistant. He helps you discover new AI jobs, analyze your skill gaps, set interview reminders, and get personalized job alerts—all in a safe, supportive environment. Mr. Nanny can:
-        <ul style={{ margin: '8px 0 8px 24px', color: '#1976d2' }}>
+        <ul style={{ margin: '8px 0 8px 24px', color: '#18191a' }}>
           <li>Suggest jobs and career paths based on your interests and skills</li>
           <li>Analyze your resume and offer actionable feedback</li>
           <li>Help you identify missing skills or certifications for your dream job</li>
@@ -98,10 +107,14 @@ export default function HomePage() {
           <li>Alert you to new job postings in chat or by email</li>
           <li>Answer your questions about pay, qualifications, and career growth</li>
         </ul>
-        <span style={{ color: '#1976d2', fontWeight: 600 }}>Your privacy is always protected—your data stays on your device unless you choose to share it.</span>
+        <span style={{ color: '#ffd700', fontWeight: 600 }}>Your privacy is always protected—your data stays on your device unless you choose to share it.</span>
         <br /><br />
         <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>Chat with Mr. Job Nanny</Link>
       </section>
+      {/* Job Growth Image */}
+      <div style={{ margin: '48px 0 24px 0' }}>
+        <Image src="/job growth.png" alt="Job Growth" width={420} height={260} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+      </div>
     </main>
   );
 }

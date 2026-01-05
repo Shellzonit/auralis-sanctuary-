@@ -52,7 +52,7 @@ export default function TrainingHubPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)",
+        background: "#fff",
         fontFamily: "Inter, Arial, sans-serif",
         display: "flex",
         flexDirection: "column",
@@ -60,9 +60,13 @@ export default function TrainingHubPage() {
         padding: "0 1rem",
       }}
     >
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #2a1a4d" }}>
-        AI Training Hub
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
+        <span style={{ color: '#ffd700' }}>AI</span> Training Hub
       </h1>
+      {/* AI Wilding Training Image */}
+      <div style={{ marginBottom: 32 }}>
+        <img src="/Ai wilding (2).png" alt="AI Wilding Training" width={420} height={280} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+      </div>
       <p style={{ color: '#fff8dc', fontSize: '1.15rem', maxWidth: 700, textAlign: 'center', marginBottom: 32 }}>
         Start or advance your AI journey! Explore curated courses, certifications, learning paths, project ideas, and community resources for every skill level.
       </p>

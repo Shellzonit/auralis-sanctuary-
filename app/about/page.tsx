@@ -7,7 +7,7 @@ export default function AboutPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)",
+        background: "#fff",
         fontFamily: "Inter, Arial, sans-serif",
         display: "flex",
         flexDirection: "column",
@@ -15,9 +15,13 @@ export default function AboutPage() {
         padding: "0 1rem",
       }}
     >
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #2a1a4d" }}>
-        About the Creator
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
+        <span style={{ color: '#ffd700' }}>About</span> the Creator
       </h1>
+      {/* Educational Outlook Image */}
+      <div style={{ marginBottom: 32 }}>
+        <img src="/educational outlook.png" alt="Educational Outlook" width={420} height={280} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+      </div>
       <section style={{ maxWidth: 700, background: 'rgba(255,255,255,0.07)', borderRadius: 16, padding: 32, color: '#fff8dc', fontSize: '1.15rem', lineHeight: 1.7, boxShadow: '0 2px 16px #6a1b9a22', marginBottom: 32 }}>
         <p>
           <strong style={{ color: '#ffd700', fontSize: '1.2rem' }}>Fusing Art, Technology, and Empowerment</strong>
