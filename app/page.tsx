@@ -80,7 +80,6 @@ export default function HomePage() {
         {/* Center images: AI Wilding */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18 }}>
           <Image src="/Ai wilding.png" alt="AI Wilding" width={480} height={320} style={{ borderRadius: 18, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
-          <Image src="/Ai wilding (2).png" alt="AI Wilding 2" width={480} height={320} style={{ borderRadius: 18, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
         </div>
         {/* Right tabs */}
         <nav style={{
