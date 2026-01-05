@@ -190,20 +190,17 @@ export default function TrainingHubPage() {
 					gap: 32,
 					marginTop: 24,
 				}}
-							fontSize: "1.05rem",
-							lineHeight: 1.7,
-						}}
-					>
+			>
+				<div style={{ background: '#fff', borderRadius: 16, padding: 28, boxShadow: '0 2px 12px #ffd70022' }}>
+					<h2 style={{ color: '#ffd700', fontSize: '1.22rem', marginBottom: 12 }}>Featured Online Courses</h2>
+					<ul style={{ color: '#18191a', fontSize: '1.05rem', lineHeight: 1.7 }}>
 						{COURSES.map((c) => (
 							<li key={c.name}>
 								<a
 									href={c.url}
 									target="_blank"
 									rel="noopener noreferrer"
-									style={{
-										color: "#ffd700",
-										fontWeight: 600,
-									}}
+									style={{ color: '#ffd700', fontWeight: 600 }}
 								>
 									{c.name}
 								</a>
