@@ -67,7 +67,7 @@ export default function JobsAtRiskPage() {
         {filteredJobs.length ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             {filteredJobs.map(job => (
-              <div key={job.title + job.location} style={{ background: "rgba(106,27,154,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
+              <div key={job.title + job.location} style={{ background: "#e3f2fd", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #90caf922" }}>
                 <h3 style={{ color: "#ffd700", fontSize: "1.1rem", marginBottom: 6 }}>{job.title} <span style={{ color: job.risk === "High" ? "#d32f2f" : job.risk === "Medium" ? "#fbc02d" : "#388e3c", fontWeight: 700, marginLeft: 8 }}>({job.risk} Risk)</span></h3>
                 <div style={{ color: "#18191a", fontSize: "1rem", marginBottom: 4 }}><strong>Industry:</strong> {job.industry}</div>
                 <div style={{ color: "#18191a", fontSize: "1rem", marginBottom: 4 }}><strong>Location:</strong> {job.location} {job.global ? "(Global)" : ""}</div>
