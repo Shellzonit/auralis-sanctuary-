@@ -96,6 +96,9 @@ export default function StateJobsPage() {
         flexDirection: "column",
         alignItems: "center",
         padding: "0 1rem",
+        border: '3px solid #18191a', // black border
+        borderRadius: 24,
+        boxSizing: 'border-box',
       }}
     >
       {/* Jobs at Risk Tab Button in Corner */}
