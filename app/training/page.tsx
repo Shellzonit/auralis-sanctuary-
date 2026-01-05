@@ -75,29 +75,7 @@ export default function TrainingHubPage() {
           <h2 style={{ color: '#ffd700', fontSize: '1.22rem', marginBottom: 12 }}>Featured Online Courses</h2>
           <ul style={{ color: '#18191a', fontSize: '1.05rem', lineHeight: 1.7 }}>
             {COURSES.map(c => <li key={c.name}><a href={c.url} target="_blank" rel="noopener noreferrer" style={{ color: '#ffd700', fontWeight: 600 }}>{c.name}</a>: {c.desc}</li>)}
-          // Sample data for graph
-          const aiProgramsData = [
-            { year: 2023, count: 12 },
-            { year: 2024, count: 18 },
-            { year: 2025, count: 27 }
-          ];
-
-          return (
-            <main
-              style={{
-                minHeight: "100vh",
-                background: "#fff",
-                fontFamily: "Inter, Arial, sans-serif",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                padding: "0 1rem",
-              }}
-            >
-              <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
-                <span style={{ color: '#ffd700' }}>AI</span> Training Hub
-              </h1>
-              <div style={{ display: 'flex', flexDirection: 'row', width: '100%', maxWidth: 1200, justifyContent: 'center', alignItems: 'flex-start', gap: 32 }}>
+          // ...existing code...
                 <div style={{ flex: 2 }}>
                   {/* AI Wilding Training Image */}
                   <div style={{ marginBottom: 32 }}>
