@@ -106,7 +106,7 @@ export default function TrainingHubPage() {
                     ))}
                   </div>
                 </div>
-              </div>
+              {/* End flex row for image and graph */}
               <section style={{ width: '100%', maxWidth: 900, display: 'flex', flexDirection: 'column', gap: 32, marginTop: 24 }}>
                 <div style={{ background: '#fff', borderRadius: 16, padding: 28, boxShadow: '0 2px 12px #ffd70022' }}>
                   <h2 style={{ color: '#ffd700', fontSize: '1.22rem', marginBottom: 12 }}>Featured Online Courses</h2>
