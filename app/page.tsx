@@ -27,7 +27,7 @@ export default function HomePage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)",
+        background: "linear-gradient(135deg, #0a2540 0%, #e3f2fd 60%, #1976d2 100%)", // blue and white gradient
         fontFamily: "Playfair Display, Georgia, serif",
         display: "flex",
         flexDirection: "column",
@@ -44,9 +44,9 @@ export default function HomePage() {
           fontFamily: 'Playfair Display, Georgia, serif',
           fontSize: '3.5rem',
           fontWeight: 900,
-          color: '#ffd700',
+          color: '#1976d2', // blue
           margin: '48px 0 24px 0',
-          textShadow: '0 2px 24px #6a1b9a',
+          textShadow: '0 2px 24px #e3f2fd', // white shadow
           letterSpacing: 2,
           textAlign: 'center',
         }}
@@ -76,21 +76,21 @@ export default function HomePage() {
         <a href="/contact" style={tabStyle}>Contact</a>
       </nav>
       <section style={{
-        background: 'rgba(34,34,48,0.93)',
+        background: 'rgba(227,242,253,0.93)', // light blue/white
         borderRadius: 16,
         padding: '24px 32px',
         maxWidth: 600,
         margin: '48px auto 48px auto',
-        boxShadow: '0 2px 16px #6a1b9a44',
-        color: '#ffd700',
+        boxShadow: '0 2px 16px #1976d244', // blue shadow
+        color: '#0a2540', // dark blue text
         textAlign: 'center',
         fontSize: '1.15rem',
         lineHeight: 1.7,
       }}>
-        <strong style={{ color: '#ffd700', fontSize: '1.2rem' }}>Meet Mr. Job Nanny!</strong>
+        <strong style={{ color: '#1976d2', fontSize: '1.2rem' }}>Meet Mr. Job Nanny!</strong>
         <br />
         <span role="img" aria-label="nanny">🧑‍🦳</span> Mr. Job Nanny is your personal, privacy-first AI job assistant. He helps you discover new AI jobs, analyze your skill gaps, set interview reminders, and get personalized job alerts—all in a safe, supportive environment. Mr. Nanny can:
-        <ul style={{ margin: '8px 0 8px 24px', color: '#fff8dc' }}>
+        <ul style={{ margin: '8px 0 8px 24px', color: '#1976d2' }}>
           <li>Suggest jobs and career paths based on your interests and skills</li>
           <li>Analyze your resume and offer actionable feedback</li>
           <li>Help you identify missing skills or certifications for your dream job</li>
@@ -98,7 +98,7 @@ export default function HomePage() {
           <li>Alert you to new job postings in chat or by email</li>
           <li>Answer your questions about pay, qualifications, and career growth</li>
         </ul>
-        <span style={{ color: '#ffd700', fontWeight: 600 }}>Your privacy is always protected—your data stays on your device unless you choose to share it.</span>
+        <span style={{ color: '#1976d2', fontWeight: 600 }}>Your privacy is always protected—your data stays on your device unless you choose to share it.</span>
         <br /><br />
         <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>Chat with Mr. Job Nanny</Link>
       </section>
