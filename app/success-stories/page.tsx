@@ -49,15 +49,15 @@ const STORIES = [
 
 export default function SuccessStoriesPage() {
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #6a1b9a 0%, #ffd700 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem" }}>
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }}>
-        Success Stories
+    <main style={{ minHeight: "100vh", background: "#fff", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem" }}>
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
+        <span style={{ color: '#ffd700' }}>Success</span> Stories
       </h1>
       <div className="flex flex-col items-center mb-8">
-        <Image src="/photo1.jpg" alt="Success Story" width={420} height={260} className="rounded-xl shadow border-4 border-yellow-300 object-cover mb-4" />
+        <Image src="/photo1.jpg" alt="Success Story" width={420} height={260} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700', marginBottom: 24 }} />
       </div>
-      <section style={{ maxWidth: 900, background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
-        <p style={{ color: "#fff8dc", fontSize: "1.08rem", marginBottom: 18 }}>
+      <section style={{ maxWidth: 900, background: '#fff', borderRadius: 16, padding: 24, boxShadow: '0 2px 16px #18191a22', marginBottom: 32, color: '#18191a', border: '1.5px solid #ffd700' }}>
+        <p style={{ color: "#18191a", fontSize: "1.08rem", marginBottom: 18 }}>
           Real stories of people who successfully transitioned to new careers in the age of AI and automation.
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>

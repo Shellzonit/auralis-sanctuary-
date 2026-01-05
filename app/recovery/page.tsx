@@ -41,7 +41,7 @@ export default function RecoveryHubPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)",
+        background: "#fff",
         fontFamily: "Inter, Arial, sans-serif",
         display: "flex",
         flexDirection: "column",
@@ -49,10 +49,10 @@ export default function RecoveryHubPage() {
         padding: "0 1rem",
       }}
     >
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #2a1a4d" }}>
-        Recovery Hub: Success Stories & New Beginnings
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
+        <span style={{ color: '#ffd700' }}>Recovery Hub:</span> Success Stories & New Beginnings
       </h1>
-      <p style={{ color: '#fff8dc', fontSize: '1.15rem', maxWidth: 700, textAlign: 'center', marginBottom: 32 }}>
+      <p style={{ color: '#18191a', fontSize: '1.15rem', maxWidth: 700, textAlign: 'center', marginBottom: 32 }}>
         Discover real stories of people and communities who have thrived through change, and see how AI is creating new opportunities. Find resources for retraining, support, and inspiration.
       </p>
       <section style={{ width: '100%', maxWidth: 800, display: 'flex', flexDirection: 'column', gap: 32 }}>

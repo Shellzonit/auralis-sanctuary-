@@ -118,15 +118,6 @@ export default function NewAIJobsPage() {
           </div>
         ))}
       </section>
-      <section style={{ maxWidth: 900, marginBottom: 24, background: "rgba(255,255,255,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
-        <h2 style={{ color: "#ffd700", fontSize: "1.2rem", marginBottom: 8 }}>How to Prepare</h2>
-        <ul style={{ color: "#fff8dc", fontSize: "1rem" }}>
-          <li>Take online courses in AI, machine learning, and data science</li>
-          <li>Build projects and portfolios to showcase your skills</li>
-          <li>Network with professionals in emerging AI fields</li>
-          <li>Stay updated on industry trends and new roles</li>
-        </ul>
-      </section>
     </main>
   );
 }

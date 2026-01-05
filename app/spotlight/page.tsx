@@ -31,8 +31,8 @@ export default function SpotlightPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#181a20",
-        color: "#f7fafc",
+        background: "#fff",
+        color: "#18191a",
         fontFamily: "Inter, sans-serif",
         display: "flex",
         flexDirection: "column",
@@ -45,17 +45,17 @@ export default function SpotlightPage() {
         fontSize: '2.5rem',
         fontWeight: 800,
         letterSpacing: '.06em',
-        color: '#ffe082',
-        textShadow: '0 2px 16px #000a, 0 1px 0 #fff2',
+        color: '#18191a',
+        textShadow: '0 2px 16px #ffd70044',
         margin: '36px 0 18px 0',
         textAlign: 'center',
       }}>
-        Spotlight
+        <span style={{ color: '#ffd700' }}>Spotlight</span>
       </h1>
-      <div style={{ fontSize: 22, color: '#ffe082', fontWeight: 700, margin: '32px 0 12px', textAlign: 'center' }}>
+      <div style={{ fontSize: 22, color: '#ffd700', fontWeight: 700, margin: '32px 0 12px', textAlign: 'center' }}>
         User Leaderboard (by Clicks)
       </div>
-      <ol style={{ background: '#23242b', border: '2px solid #ffe082', borderRadius: 16, padding: 24, marginBottom: 36, width: '100%', maxWidth: 420, color: '#ffe082', fontSize: 18, fontWeight: 600 }}>
+      <ol style={{ background: '#fff', border: '2px solid #ffd700', borderRadius: 16, padding: 24, marginBottom: 36, width: '100%', maxWidth: 420, color: '#18191a', fontSize: 18, fontWeight: 600 }}>
         {leaderboard.map((user, idx) => (
           <li key={user.username} style={{ marginBottom: 10, display: 'flex', justifyContent: 'space-between' }}>
             <span>@{user.username}</span>

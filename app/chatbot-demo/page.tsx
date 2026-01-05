@@ -1090,6 +1090,21 @@ export default function MrJobNanny() {
           </button>
         </form>
       </section>
+      {/* Mr. Nanny Image */}
+      <div style={{ margin: '32px 0 0 0', textAlign: 'center' }}>
+        <img src="/Mr Nanny.png" alt="Mr. Nanny" width={180} height={180} style={{ borderRadius: 90, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700', marginBottom: 16 }} />
+      </div>
+      {/* Resume Image */}
+      <div style={{ margin: '0 0 0 0', textAlign: 'center' }}>
+        <img src="/Resume.png" alt="Resume Example" width={220} height={160} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700', marginBottom: 16 }} />
+      </div>
+      {/* Menu Preview for Upcoming Mr. Nanny App */}
+      <div style={{ margin: '0 0 24px 0', textAlign: 'center' }}>
+        <img src="/healthy.png" alt="Upcoming Mr. Nanny App Menu Preview" width={220} height={160} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700', marginBottom: 8 }} />
+        <div style={{ color: '#ffd700', fontWeight: 600, fontSize: 15, marginTop: 4 }}>
+          Preview: Menu items coming soon to the Mr. Nanny app!
+        </div>
+      </div>
       <div style={{ color: '#fff8dc', fontSize: '1rem', marginTop: 24, textAlign: 'center', maxWidth: 600 }}>
         <strong>Meet Mr. Job Nanny: Your Private AI Career Assistant</strong>
         <ul style={{ textAlign: 'left', margin: '16px auto', maxWidth: 520, color: '#fff8dc', fontSize: '1rem', lineHeight: 1.6 }}>

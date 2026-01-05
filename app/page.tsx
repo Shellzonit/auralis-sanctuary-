@@ -36,9 +36,6 @@ export default function HomePage() {
       }}
     >
       {/* Homepage Icon */}
-      <div style={{ marginTop: 48, marginBottom: 8, background: '#18191a', borderRadius: 24, padding: 12, boxShadow: '0 2px 16px #0002' }}>
-        <Image src="/icon.png" alt="Homepage Icon" width={120} height={120} priority style={{ borderRadius: 18, background: 'transparent' }} />
-      </div>
       <h1
         style={{
           fontFamily: 'Playfair Display, Georgia, serif',

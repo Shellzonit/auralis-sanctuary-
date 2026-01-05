@@ -103,6 +103,10 @@ export default function StateJobsPage() {
       <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#C2A86C", margin: "32px 0 16px 0", textShadow: "0 2px 16px #2a1a4d" }}>
         State AI Job Transitions
       </h1>
+      {/* Big City Image for AI in States */}
+      <div style={{ marginBottom: 32 }}>
+        <img src="/big cities.png" alt="Big City" width={480} height={280} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+      </div>
       <nav style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 32 }}>
         {STATES.map((state) => (
           <button
