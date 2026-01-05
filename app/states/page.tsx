@@ -107,22 +107,31 @@ export default function StateJobsPage() {
       <div style={{ marginBottom: 32 }}>
         <img src="/big cities.png" alt="Big City" width={480} height={280} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
       </div>
-      <nav style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 32 }}>
+      <nav style={{ display: "flex", gap: 18, flexWrap: "wrap", marginBottom: 40, justifyContent: 'center' }}>
         {STATES.map((state) => (
           <button
             key={state}
             onClick={() => setSelectedState(state)}
             style={{
-              fontSize: "0.95rem",
-              padding: "6px 16px",
-              borderRadius: 8,
-              background: selectedState === state ? "#ffd700" : "rgba(106,27,154,0.18)",
-              color: selectedState === state ? "#6a1b9a" : "#ffd700",
+              fontSize: "1.08rem",
+              padding: "10px 24px",
+              borderRadius: 10,
+              background: selectedState === state ? "#ffd700" : "#f5faff",
+              color: selectedState === state ? "#18191a" : "#18191a",
               fontWeight: 700,
-              border: "none",
-              boxShadow: selectedState === state ? "0 2px 8px #ffd70055" : "0 2px 8px #6a1b9a22",
+              border: selectedState === state ? "2px solid #ffd700" : "2px solid #ffd70044",
+              boxShadow: selectedState === state ? "0 2px 8px #ffd70055" : "0 2px 8px #90caf922",
               cursor: "pointer",
-              transition: "background 0.2s, color 0.2s",
+              transition: "background 0.2s, color 0.2s, border 0.2s",
+              marginBottom: 6,
+            }}
+            onMouseOver={e => {
+              e.currentTarget.style.background = '#ffe066';
+              e.currentTarget.style.border = '2px solid #ffd700';
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.background = selectedState === state ? '#ffd700' : '#f5faff';
+              e.currentTarget.style.border = selectedState === state ? '2px solid #ffd700' : '2px solid #ffd70044';
             }}
             aria-label={state}
           >
