@@ -54,36 +54,36 @@ const TRANSITIONAL_PATHS = [
 
 export default function TransitionalPathsPage() {
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative' }}>
+    <main style={{ minHeight: "100vh", background: "#fff", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative' }}>
       {/* New AI Jobs Tab Button in Corner */}
-      <a href="/new-ai-jobs" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#C2A86C', color: '#232526', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #C2A86C55', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#C2A86C';e.currentTarget.style.color='#232526';}}>New AI Jobs & Careers &rarr;</a>
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }}>
-        Transitional Paths for At-Risk Jobs
+      <a href="/new-ai-jobs" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#ffd700', color: '#18191a', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #ffd70055', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#ffd700';e.currentTarget.style.color='#18191a';}}>New AI Jobs & Careers &rarr;</a>
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
+        <span style={{ color: '#ffd700' }}>Transitional Paths</span> for At-Risk Jobs
       </h1>
       <section style={{ maxWidth: 900, background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
-        <p style={{ color: "#fff8dc", fontSize: "1.08rem", marginBottom: 18 }}>
+        <p style={{ color: "#18191a", fontSize: "1.08rem", marginBottom: 18 }}>
           This page lists practical career moves and upskilling options for workers whose jobs are at risk due to AI and automation. Explore transitional paths, required skills, resources, and real success stories for each role.
         </p>
         <table style={{ width: "100%", borderCollapse: "collapse", background: "rgba(255,255,255,0.03)", borderRadius: 12 }}>
           <thead>
-            <tr style={{ background: "#6a1b9a" }}>
-              <th style={{ color: "#ffd700", padding: "10px 8px" }}>Job</th>
-              <th style={{ color: "#ffd700", padding: "10px 8px" }}>Risk</th>
-              <th style={{ color: "#ffd700", padding: "10px 8px" }}>Transitional Paths</th>
-              <th style={{ color: "#ffd700", padding: "10px 8px" }}>Skills Needed</th>
-              <th style={{ color: "#ffd700", padding: "10px 8px" }}>Resources</th>
-              <th style={{ color: "#ffd700", padding: "10px 8px" }}>Success Story</th>
+            <tr style={{ background: "#ffd700" }}>
+              <th style={{ color: "#18191a", padding: "10px 8px" }}>Job</th>
+              <th style={{ color: "#18191a", padding: "10px 8px" }}>Risk</th>
+              <th style={{ color: "#18191a", padding: "10px 8px" }}>Transitional Paths</th>
+              <th style={{ color: "#18191a", padding: "10px 8px" }}>Skills Needed</th>
+              <th style={{ color: "#18191a", padding: "10px 8px" }}>Resources</th>
+              <th style={{ color: "#18191a", padding: "10px 8px" }}>Success Story</th>
             </tr>
           </thead>
           <tbody>
             {TRANSITIONAL_PATHS.map((item) => (
               <tr key={item.job} style={{ borderBottom: "1px solid #ffd70022" }}>
-                <td style={{ color: "#fff8dc", padding: "10px 8px" }}>{item.job}</td>
+                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.job}</td>
                 <td style={{ color: item.risk === "High" ? "#d32f2f" : "#fbc02d", fontWeight: 700, padding: "10px 8px" }}>{item.risk}</td>
-                <td style={{ color: "#fff8dc", padding: "10px 8px" }}>{item.paths.join(", ")}</td>
-                <td style={{ color: "#fff8dc", padding: "10px 8px" }}>{item.skills.join(", ")}</td>
-                <td style={{ color: "#fff8dc", padding: "10px 8px" }}>{item.resources.join(", ")}</td>
-                <td style={{ color: "#fff8dc", padding: "10px 8px" }}>{item.story}</td>
+                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.paths.join(", ")}</td>
+                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.skills.join(", ")}</td>
+                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.resources.join(", ")}</td>
+                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.story}</td>
               </tr>
             ))}
           </tbody>
@@ -91,7 +91,7 @@ export default function TransitionalPathsPage() {
       </section>
       <section style={{ maxWidth: 900, marginBottom: 24, background: "rgba(255,255,255,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
         <h2 style={{ color: "#ffd700", fontSize: "1.2rem", marginBottom: 8 }}>Guidance & Resources</h2>
-        <ul style={{ color: "#fff8dc", fontSize: "1rem" }}>
+        <ul style={{ color: "#18191a", fontSize: "1rem" }}>
           <li>Explore online courses for upskilling (Coursera, Udemy, LinkedIn Learning)</li>
           <li>Check local retraining programs and government support</li>
           <li>Connect with career counselors for personalized advice</li>

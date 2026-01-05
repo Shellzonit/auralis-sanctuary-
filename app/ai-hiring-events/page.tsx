@@ -18,10 +18,14 @@ export default function AIHiringEventsPage() {
       <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }}>
         AI Hiring Events
       </h1>
-      <section style={{ maxWidth: 900, background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
+        <section style={{ maxWidth: 900, marginBottom: 24, background: '#fff', borderRadius: 12, padding: 18, boxShadow: '0 2px 8px #18191a22', color: '#18191a', border: '1.5px solid #ffd700' }}>
         <p style={{ color: "#fff8dc", fontSize: "1.08rem", marginBottom: 18 }}>
           Discover upcoming AI hiring events, job fairs, and networking opportunities for creative and technical talent. Each event includes details, location, and participation info.
         </p>
+          <div style={{ display: 'flex', gap: 24, marginBottom: 24 }}>
+            <img src="/education.png" alt="Education" width={220} height={140} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+            <img src="/healthy.png" alt="Healthy" width={220} height={140} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+          </div>
         <ul style={{ listStyle: 'none', padding: 0 }}>
           <li style={{ marginBottom: 24, background: "rgba(106,27,154,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
             <h2 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: 6 }}>AI Career Expo 2026</h2>

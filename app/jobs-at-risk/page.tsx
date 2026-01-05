@@ -26,38 +26,43 @@ export default function JobsAtRiskPage() {
   );
 
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative' }}>
+    <main style={{ minHeight: "100vh", background: "#fff", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative' }}>
       {/* Transitional Paths Tab Button in Corner */}
-      <a href="/transitional-paths" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#C2A86C', color: '#232526', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #C2A86C55', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#C2A86C';e.currentTarget.style.color='#232526';}}>Transitional Paths &rarr;</a>
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }}>
-        Jobs at Risk (Global & USA)
+      <a href="/transitional-paths" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#ffd700', color: '#18191a', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #ffd70055', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#ffd700';e.currentTarget.style.color='#18191a';}}>Transitional Paths &rarr;</a>
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
+        <span style={{ color: '#ffd700' }}>Jobs at Risk</span> (Global & USA)
       </h1>
-      <section style={{ maxWidth: 900, marginBottom: 24, background: "rgba(255,255,255,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
-        <p style={{ color: "#fff8dc", fontSize: "1.08rem", marginBottom: 8 }}>
+      {/* Job Growth and Educational Outlook Images */}
+      <div style={{ display: 'flex', gap: 24, marginBottom: 24 }}>
+        <img src="/job growth.png" alt="Job Growth" width={220} height={140} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+        <img src="/educational outlook.png" alt="Educational Outlook" width={220} height={140} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+      </div>
+      <section style={{ maxWidth: 900, marginBottom: 24, background: '#fff', borderRadius: 12, padding: 18, boxShadow: '0 2px 8px #18191a22', color: '#18191a', border: '1.5px solid #ffd700' }}>
+        <p style={{ color: '#18191a', fontSize: '1.08rem', marginBottom: 8 }}>
           <strong>Which jobs are at risk?</strong> This page highlights jobs in America and globally that are most at risk due to AI, automation, and digital transformation. Risk levels are based on current trends, expert analysis, and news reports. Many roles may be <span style={{ color: "#ffd700" }}>reclassified</span> rather than eliminated, meaning workers could transition to new responsibilities as technology evolves.
         </p>
-        <p style={{ color: "#fff8dc", fontSize: "0.98rem" }}>
+        <p style={{ color: '#18191a', fontSize: '0.98rem' }}>
           <strong>Reclassification risk</strong> means a job is likely to change in nature, with workers moving to related roles (e.g., cashiers becoming customer support, truck drivers managing fleets). Use the filters below to explore jobs by risk level, industry, and location.
         </p>
       </section>
       <nav style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 32 }}>
-        <select value={riskFilter} onChange={e => setRiskFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "none", background: "#6a1b9a", color: "#ffd700", fontWeight: 700 }}>
+        <select value={riskFilter} onChange={e => setRiskFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "none", background: "#ffd700", color: "#18191a", fontWeight: 700 }}>
           <option value="">All Risks</option>
           {RISK_LEVELS.map(risk => <option key={risk} value={risk}>{risk}</option>)}
         </select>
-        <select value={industryFilter} onChange={e => setIndustryFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "none", background: "#6a1b9a", color: "#ffd700", fontWeight: 700 }}>
+        <select value={industryFilter} onChange={e => setIndustryFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "none", background: "#ffd700", color: "#18191a", fontWeight: 700 }}>
           <option value="">All Industries</option>
           {INDUSTRIES.map(ind => <option key={ind} value={ind}>{ind}</option>)}
         </select>
-        <select value={locationFilter} onChange={e => setLocationFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "none", background: "#6a1b9a", color: "#ffd700", fontWeight: 700 }}>
+        <select value={locationFilter} onChange={e => setLocationFilter(e.target.value)} style={{ padding: "6px 12px", borderRadius: 8, border: "none", background: "#ffd700", color: "#18191a", fontWeight: 700 }}>
           <option value="">All Locations</option>
           {LOCATIONS.map(loc => <option key={loc} value={loc}>{loc}</option>)}
         </select>
       </nav>
-      <section style={{ width: "100%", maxWidth: 900, background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
-        <h2 style={{ color: "#ffd700", fontSize: "1.3rem", marginBottom: 12 }}>Jobs at Risk List</h2>
+      <section style={{ width: '100%', maxWidth: 900, background: '#fff', borderRadius: 16, padding: 24, boxShadow: '0 2px 16px #18191a22', marginBottom: 32, color: '#18191a', border: '1.5px solid #ffd700' }}>
+        <h2 style={{ color: '#ffd700', fontSize: '1.3rem', marginBottom: 12 }}>Jobs at Risk List</h2>
         {filteredJobs.length ? (
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             {filteredJobs.map(job => (
               <div key={job.title + job.location} style={{ background: "rgba(106,27,154,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
                 <h3 style={{ color: "#ffd700", fontSize: "1.1rem", marginBottom: 6 }}>{job.title} <span style={{ color: job.risk === "High" ? "#d32f2f" : job.risk === "Medium" ? "#fbc02d" : "#388e3c", fontWeight: 700, marginLeft: 8 }}>({job.risk} Risk)</span></h3>

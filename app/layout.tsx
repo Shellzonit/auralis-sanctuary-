@@ -63,28 +63,43 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ position: "relative", minHeight: "100vh" }}
+        style={{
+          position: "relative",
+          minHeight: "100vh",
+          background: "#fff",
+          color: "#18191a",
+          fontFamily: "Inter, Arial, sans-serif",
+        }}
       >
         <NavBar />
-        {children}
+        <div style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          boxShadow: "0 2px 32px #ffd70022",
+          borderRadius: 18,
+          background: "#fff",
+          padding: "0 0 24px 0",
+        }}>
+          {children}
+        </div>
         <footer
           style={{
             width: '100%',
-            background: 'rgba(106,27,154,0.85)',
-            color: '#ffd700',
+            background: 'linear-gradient(90deg, #ffd700 0%, #18191a 100%)',
+            color: '#fff',
             textAlign: 'center',
-            fontSize: '1rem',
-            padding: '18px 0 14px 0',
+            fontSize: '1.08rem',
+            padding: '22px 0 18px 0',
             marginTop: 48,
             letterSpacing: 0.2,
             fontWeight: 500,
             position: 'relative',
             zIndex: 10,
+            boxShadow: '0 -2px 16px #ffd70044',
           }}
         >
-          Built with Next.js, React, and Python/Flask. All sensitive information is encrypted and your privacy is always respected.
+          Built with <span style={{ color: '#ffd700', fontWeight: 700 }}>Next.js</span>, <span style={{ color: '#ffd700', fontWeight: 700 }}>React</span>, and <span style={{ color: '#ffd700', fontWeight: 700 }}>Python/Flask</span>. All sensitive information is encrypted and your privacy is always respected.
         </footer>
-        <div className="blue-streak" />
       </body>
     </html>
   );
