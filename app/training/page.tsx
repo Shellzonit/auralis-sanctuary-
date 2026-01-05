@@ -28,7 +28,8 @@ const COURSES = [
 ];
 
 const CERTS = [
-	"use client";
+	{
+		name: "Google Professional Machine Learning Engineer",
 		url: "https://cloud.google.com/certification/machine-learning-engineer",
 	},
 	{
