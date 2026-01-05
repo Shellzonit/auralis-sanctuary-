@@ -87,8 +87,8 @@ export default function CountriesPage() {
         <span style={{ color: '#18191a', borderBottom: '4px solid #18191a', paddingBottom: 4 }}>AI Around the World</span>
       </h1>
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 24, marginBottom: 18 }}>
-        <img src="/ai homepage.png" alt="Homepage AI" width={220} height={120} style={{ borderRadius: 14, marginBottom: 8, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
-        <img src="/ai homepage 3.png" alt="Homepage AI 3" width={220} height={120} style={{ borderRadius: 14, marginBottom: 8, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
+        <img src="/ai around the world.png" alt="AI Around the World" width={260} height={140} style={{ borderRadius: 14, marginBottom: 8, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
+        <img src="/ai around the world 2.png" alt="AI Around the World 2" width={260} height={140} style={{ borderRadius: 14, marginBottom: 8, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
       </div>
       <p style={{ color: '#18191a', fontSize: '1.35rem', maxWidth: 700, textAlign: 'center', marginBottom: 36, lineHeight: 1.6 }}>
         Explore how different countries are leading, adopting, and regulating artificial intelligence. See top industries, events, and AI trends by country.
