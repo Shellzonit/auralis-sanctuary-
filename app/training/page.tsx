@@ -261,7 +261,10 @@ export default function TrainingHubPage() {
 					<h2
 						style={{
 							color: "#ffd700",
-							fontSize: "1.
+							fontSize: "1.22rem",
+							marginBottom: 12,
+						}}
+					>
 						Featured Online Courses
 					</h2>
 					<ul
