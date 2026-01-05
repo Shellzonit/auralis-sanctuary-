@@ -59,10 +59,10 @@ export default function TransitionalPathsPage() {
       <a href="/new-ai-jobs" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#ffd700', color: '#18191a', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #ffd70055', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#ffd700';e.currentTarget.style.color='#18191a';}}>New AI Jobs & Careers &rarr;</a>
       {/* Move title above bar chart for better hierarchy */}
       <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 48, marginBottom: 8 }}>
-        <h1 style={{ fontSize: "2.4rem", fontWeight: 900, color: "#18191a", margin: "0 0 8px 0", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1 }}>
+        <h1 style={{ fontSize: "2.4rem", fontWeight: 900, color: "#18191a", margin: "0 0 8px 32px", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1, alignSelf: 'flex-start' }}>
           <span style={{ color: '#ffd700', borderBottom: '4px solid #ffd700', paddingBottom: 4 }}>Transitional Paths</span> for At-Risk Jobs
         </h1>
-        <p style={{ color: "#18191a", fontSize: "1.13rem", marginBottom: 0, lineHeight: 1.6, maxWidth: 700, textAlign: 'center' }}>
+        <p style={{ color: "#18191a", fontSize: "1.13rem", marginBottom: 0, lineHeight: 1.6, maxWidth: 700, textAlign: 'center', marginLeft: 32 }}>
           This page lists practical career moves and upskilling options for workers whose jobs are at risk due to AI and automation. Explore transitional paths, required skills, resources, and real success stories for each role.
         </p>
       </div>
