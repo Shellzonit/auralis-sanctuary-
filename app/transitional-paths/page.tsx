@@ -76,7 +76,7 @@ export default function TransitionalPathsPage() {
                 transition: 'height 0.2s',
               }}></div>
               <span style={{ fontSize: '0.95rem', color: '#18191a', fontWeight: 600, textAlign: 'center' }}>{item.job}</span>
-              <span style={{ fontSize: '0.85rem', color: '#6a1b9a', fontWeight: 500' }}>{item.paths.length} paths</span>
+              <span style={{ fontSize: '0.85rem', color: '#6a1b9a', fontWeight: 500 }}>{item.paths.length} paths</span>
             </div>
           ))}
         </div>
