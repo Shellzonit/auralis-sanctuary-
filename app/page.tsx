@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 
+// Import Next.js Image component
+import Image from "next/image";
+
 export default function HomePage() {
   const tabStyle = {
     color: '#ffd700',
@@ -32,6 +35,18 @@ export default function HomePage() {
         padding: "0 1rem",
       }}
     >
+      {/* Homepage Icon */}
+      <div style={{ marginTop: 48, marginBottom: 8 }}>
+        <Image src="/icon.png" alt="Homepage Icon" width={120} height={120} priority style={{ borderRadius: 24, background: '#18191a' }} />
+        </div>
+        {/* Mr. Nanny Video */}
+        <div style={{ marginBottom: 24 }}>
+          <video width="360" height="240" controls style={{ borderRadius: 16, boxShadow: '0 2px 16px #6a1b9a44', background: '#18191a' }}>
+            <source src="/Mr.nanny%20video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
       <h1
         style={{
           fontFamily: 'Playfair Display, Georgia, serif',
