@@ -79,27 +79,31 @@ export default function CountriesPage() {
         border: '3px solid #18191a', // black border
         borderRadius: 24,
         boxSizing: 'border-box',
+        color: '#18191a',
+        fontSize: '1.25rem',
       }}
     >
-      <h1 style={{ fontSize: "2.5rem", fontWeight: 900, color: "#18191a", margin: "40px 0 18px 0", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1 }}>
-        <span style={{ color: '#ffd700', borderBottom: '4px solid #ffd700', paddingBottom: 4 }}>AI Around the World</span>
+      <h1 style={{ fontSize: "3rem", fontWeight: 900, color: "#18191a", margin: "40px 0 18px 0", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1 }}>
+        <span style={{ color: '#18191a', borderBottom: '4px solid #18191a', paddingBottom: 4 }}>AI Around the World</span>
       </h1>
-      <p style={{ color: '#18191a', fontSize: '1.18rem', maxWidth: 700, textAlign: 'center', marginBottom: 36, lineHeight: 1.6 }}>
+      <p style={{ color: '#18191a', fontSize: '1.35rem', maxWidth: 700, textAlign: 'center', marginBottom: 36, lineHeight: 1.6 }}>
         Explore how different countries are leading, adopting, and regulating artificial intelligence. See top industries, events, and AI trends by country.
       </p>
-      <div style={{ width: '100%', maxWidth: 820, display: 'flex', flexDirection: 'column', gap: 36 }}>
+      <div style={{ width: '100%', maxWidth: 820, display: 'flex', flexDirection: 'column', gap: 36, color: '#18191a', fontSize: '1.18rem' }}>
         {COUNTRY_AI_DATA.map((c) => (
           <section
             key={c.country}
             style={{
               background: '#f5faff',
               borderRadius: 16,
-              padding: 28,
+              padding: 32,
               boxShadow: '0 4px 18px #ffd70022',
               borderLeft: '8px solid #ffd700',
               transition: 'box-shadow 0.2s, transform 0.2s',
               position: 'relative',
               cursor: 'pointer',
+              color: '#18191a',
+              fontSize: '1.18rem',
             }}
             onMouseEnter={e => {
               e.currentTarget.style.boxShadow = '0 8px 32px #ffd70055';
@@ -110,9 +114,9 @@ export default function CountriesPage() {
               e.currentTarget.style.transform = 'none';
             }}
           >
-            <h2 style={{ color: '#18191a', fontSize: '1.45rem', fontWeight: 700, marginBottom: 10, letterSpacing: 0.5 }}>
-              <span style={{ color: '#ffd700', fontWeight: 900 }}>{c.country}</span>
-              <span style={{ color: '#18191a', fontWeight: 400, fontSize: '1.05rem', marginLeft: 8 }}>(AI Rank #{c.aiRank})</span>
+            <h2 style={{ color: '#18191a', fontSize: '2rem', fontWeight: 900, marginBottom: 10, letterSpacing: 0.5 }}>
+              <span style={{ color: '#18191a', fontWeight: 900 }}>{c.country}</span>
+              <span style={{ color: '#18191a', fontWeight: 700, fontSize: '1.15rem', marginLeft: 8 }}>(AI Rank #{c.aiRank})</span>
             </h2>
             {/* Country Images */}
             {c.country === 'Japan' && (
