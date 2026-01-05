@@ -70,7 +70,7 @@ export default function CountriesPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)",
+        background: "#fff",
         fontFamily: "Inter, Arial, sans-serif",
         display: "flex",
         flexDirection: "column",
@@ -78,22 +78,32 @@ export default function CountriesPage() {
         padding: "0 1rem",
       }}
     >
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #2a1a4d" }}>
-        AI Around the World
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
+        <span style={{ color: '#ffd700' }}>AI Around the World</span>
       </h1>
-      <p style={{ color: '#fff8dc', fontSize: '1.15rem', maxWidth: 700, textAlign: 'center', marginBottom: 32 }}>
+      <p style={{ color: '#18191a', fontSize: '1.15rem', maxWidth: 700, textAlign: 'center', marginBottom: 32 }}>
         Explore how different countries are leading, adopting, and regulating artificial intelligence. See top industries, events, and AI trends by country.
       </p>
       <div style={{ width: '100%', maxWidth: 800, display: 'flex', flexDirection: 'column', gap: 32 }}>
         {COUNTRY_AI_DATA.map((c) => (
-          <section key={c.country} style={{ background: 'rgba(255,255,255,0.07)', borderRadius: 14, padding: 24, boxShadow: '0 2px 12px #6a1b9a22' }}>
-            <h2 style={{ color: '#ffd700', fontSize: '1.3rem', marginBottom: 8 }}>{c.country} <span style={{ color: '#fff8dc', fontWeight: 400, fontSize: '1rem' }}>(AI Rank #{c.aiRank})</span></h2>
-            <ul style={{ color: '#fff8dc', marginBottom: 8 }}>
+          <section key={c.country} style={{ background: '#f5faff', borderRadius: 14, padding: 24, boxShadow: '0 2px 12px #90caf922' }}>
+            <h2 style={{ color: '#ffd700', fontSize: '1.3rem', marginBottom: 8 }}>{c.country} <span style={{ color: '#18191a', fontWeight: 400, fontSize: '1rem' }}>(AI Rank #{c.aiRank})</span></h2>
+            {/* Country Images */}
+            {c.country === 'Japan' && (
+              <img src="/japan.png" alt="Japan AI" width={180} height={110} style={{ borderRadius: 12, marginBottom: 12, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
+            )}
+            {c.country === 'China' && (
+              <img src="/china.png" alt="China AI" width={180} height={110} style={{ borderRadius: 12, marginBottom: 12, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
+            )}
+            {c.country === 'United Kingdom' && (
+              <img src="/uk.png" alt="UK AI" width={180} height={110} style={{ borderRadius: 12, marginBottom: 12, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
+            )}
+            <ul style={{ color: '#18191a', marginBottom: 8 }}>
               {c.highlights.map((h, i) => <li key={i}>{h}</li>)}
             </ul>
-            <div style={{ color: '#ffd700', marginBottom: 4 }}><strong>Key Industries:</strong> <span style={{ color: '#fff8dc' }}>{c.industries.join(', ')}</span></div>
-            <div style={{ color: '#ffd700', marginBottom: 4 }}><strong>Major Events:</strong> <span style={{ color: '#fff8dc' }}>{c.events.join(', ')}</span></div>
-            <div style={{ color: '#ffd700' }}><strong>Regulation:</strong> <span style={{ color: '#fff8dc' }}>{c.regulation}</span></div>
+            <div style={{ color: '#ffd700', marginBottom: 4 }}><strong>Key Industries:</strong> <span style={{ color: '#18191a' }}>{c.industries.join(', ')}</span></div>
+            <div style={{ color: '#ffd700', marginBottom: 4 }}><strong>Major Events:</strong> <span style={{ color: '#18191a' }}>{c.events.join(', ')}</span></div>
+            <div style={{ color: '#ffd700' }}><strong>Regulation:</strong> <span style={{ color: '#18191a' }}>{c.regulation}</span></div>
           </section>
         ))}
       </div>
