@@ -90,7 +90,7 @@ export default function StateJobsPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)",
+        background: "#fff",
         fontFamily: "Inter, Arial, sans-serif",
         display: "flex",
         flexDirection: "column",
@@ -100,8 +100,8 @@ export default function StateJobsPage() {
     >
       {/* Jobs at Risk Tab Button in Corner */}
       <a href="/jobs-at-risk" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#C2A86C', color: '#232526', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #C2A86C55', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#C2A86C';e.currentTarget.style.color='#232526';}}>Jobs at Risk &rarr;</a>
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#C2A86C", margin: "32px 0 16px 0", textShadow: "0 2px 16px #2a1a4d" }}>
-        State AI Job Transitions
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
+        <span style={{ color: '#ffd700' }}>State AI Job Transitions</span>
       </h1>
       {/* Big City Image for AI in States */}
       <div style={{ marginBottom: 32 }}>
@@ -131,47 +131,47 @@ export default function StateJobsPage() {
         ))}
       </nav>
       {/* Placeholder for cities, job categories, numbers, timeline, resources, news, map, contacts, and stories */}
-      <section style={{ width: "100%", maxWidth: 900, background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
+      <section style={{ width: "100%", maxWidth: 900, background: '#f5faff', borderRadius: 16, padding: 24, boxShadow: '0 2px 16px #90caf922', marginBottom: 32 }}>
         <h2 style={{ color: "#ffd700", fontSize: "1.3rem", marginBottom: 12 }}>{selectedState}: Cities & AI Job Impact</h2>
         {/* BLS API Data Display */}
-        <div style={{ marginBottom: 16, color: "#fff8dc", fontSize: "1rem" }}>
+        <div style={{ marginBottom: 16, color: "#18191a", fontSize: "1rem" }}>
           <strong>{BLS_ATTRIBUTION}</strong>
         </div>
         {loading ? (
-          <p style={{ color: "#fff8dc" }}>Loading BLS data...</p>
+          <p style={{ color: "#18191a" }}>Loading BLS data...</p>
         ) : blsData ? (
-          <pre style={{ background: "rgba(0,0,0,0.12)", color: "#ffd700", padding: 12, borderRadius: 8, fontSize: "0.95rem", maxHeight: 300, overflow: "auto" }}>
+          <pre style={{ background: "#e3f2fd", color: "#18191a", padding: 12, borderRadius: 8, fontSize: "0.95rem", maxHeight: 300, overflow: "auto" }}>
             {JSON.stringify(blsData, null, 2)}
           </pre>
         ) : (
-          <p style={{ color: "#fff8dc" }}>No BLS data available for {selectedState}.</p>
+          <p style={{ color: "#18191a" }}>No BLS data available for {selectedState}.</p>
         )}
         {/* Existing sample data for cities */}
         {stateCityData[selectedState]?.length ? (
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
             {stateCityData[selectedState].map((entry) => (
-              <div key={entry.city} style={{ background: "rgba(106,27,154,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
-                <h3 style={{ color: "#ffd700", fontSize: "1.1rem", marginBottom: 6 }}>{entry.city}</h3>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}>
+              <div key={entry.city} style={{ background: '#fff', borderRadius: 12, padding: 18, boxShadow: '0 2px 8px #90caf922' }}>
+                <h3 style={{ color: '#ffd700', fontSize: '1.1rem', marginBottom: 6 }}>{entry.city}</h3>
+                <div style={{ color: '#18191a', fontSize: '1rem', marginBottom: 4 }}>
                   <strong>Jobs affected:</strong> {entry.jobsAffected}
                 </div>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}>
+                <div style={{ color: '#18191a', fontSize: '1rem', marginBottom: 4 }}>
                   <strong>Categories:</strong> {entry.categories.join(", ")}
                 </div>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}>
+                <div style={{ color: '#18191a', fontSize: '1rem', marginBottom: 4 }}>
                   <strong>Timeline:</strong> {entry.timeline}
                 </div>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}>
+                <div style={{ color: '#18191a', fontSize: '1rem', marginBottom: 4 }}>
                   <strong>Resources:</strong> {entry.resources.join(", ")}
                 </div>
-                <div style={{ color: "#fff8dc", fontSize: "1rem", marginBottom: 4 }}>
+                <div style={{ color: '#18191a', fontSize: '1rem', marginBottom: 4 }}>
                   <strong>News:</strong> {entry.news.join(", ")}
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <p style={{ color: "#fff8dc" }}>
+          <p style={{ color: "#18191a" }}>
             No data available for {selectedState} yet.
           </p>
         )}
