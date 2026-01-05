@@ -106,10 +106,9 @@ export default function StateJobsPage() {
       <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
         <span style={{ color: '#ffd700' }}>State AI Job Transitions</span>
       </h1>
-      {/* State Images for AI in States */}
+      {/* State Image for AI in States */}
       <div style={{ display: 'flex', gap: 32, marginBottom: 32, flexWrap: 'wrap', justifyContent: 'center' }}>
-        <img src="/states.png" alt="States 1" width={340} height={220} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
-        <img src="/states 2.png" alt="States 2" width={340} height={220} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+        <img src="/states.png" alt="States" width={420} height={260} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
       </div>
       <nav style={{ display: "flex", gap: 18, flexWrap: "wrap", marginBottom: 40, justifyContent: 'center' }}>
         {STATES.map((state) => (
