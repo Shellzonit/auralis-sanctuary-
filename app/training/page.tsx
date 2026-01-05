@@ -1,8 +1,6 @@
 "use client";
 const COURSES = [
-	{
-		name: "AI For Everyone (Coursera)",
-		url: "https://www.coursera.org/learn/ai-for-everyone",
+	}
 		desc: "Beginner-friendly introduction to AI concepts and real-world impact.",
 	},
 	{
@@ -49,48 +47,6 @@ const CERTS = [
 const PATHS = [
 	{
 		name: "AI Engineer",
-		steps: [
-			"Learn Python basics",
-			"Study ML algorithms",
-			"Build projects with scikit-learn, TensorFlow, or PyTorch",
-			"Contribute to open source",
-			"Earn a certification",
-		],
-	},
-	{
-		name: "AI for Creatives",
-		steps: [
-			"Explore generative art tools",
-			"Learn prompt engineering",
-			"Experiment with AI music and writing",
-			"Build a creative AI portfolio",
-		],
-	},
-	{
-		name: "AI for Business",
-		steps: [
-			"Understand AI use cases",
-			"Take business-focused AI courses",
-			"Learn data analysis",
-			"Apply AI to real business problems",
-		],
-	},
-];
-
-const PROJECTS = [
-	"Build a chatbot for your website",
-	"Create an image classifier",
-	"Analyze a public dataset (Kaggle, UCI, etc.)",
-	"Experiment with generative AI art or music",
-	"Contribute to an open source AI project",
-];
-
-const TOOLS = [
-	"TensorFlow",
-	"PyTorch",
-	"scikit-learn",
-	"Hugging Face Transformers",
-	"OpenCV",
 	"Keras",
 ];
 
