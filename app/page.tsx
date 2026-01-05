@@ -27,7 +27,7 @@ export default function HomePage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#fff",
+        background: "#e53935", // red background
         fontFamily: "Playfair Display, Georgia, serif",
         display: "flex",
         flexDirection: "column",
