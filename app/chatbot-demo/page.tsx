@@ -290,49 +290,25 @@ const FAQS = [
 ];
 
 const JOB_SUGGESTIONS = [
-    {
-      keyword: "games",
-      suggestion: "Explore roles like AI Game Designer, Game AI Programmer, and Narrative Designer. AI is used for smarter NPCs, procedural worlds, and player analytics in the gaming industry."
-    },
-    {
-      keyword: "music",
-      suggestion: "Consider careers such as AI Music Producer, Sound Designer, or Music Data Analyst. AI is used for generative music, intelligent mixing, and music recommendation systems."
-    },
   {
-    keyword: "creative",
-    suggestion: "You might enjoy roles like Generative Content Creator, AI Art Director, or AI Trainer. These positions blend creativity with technology and are in high demand. Check the New AI Jobs page for more."
+    keyword: "customer support",
+    suggestion: "AI Customer Support Specialist: Handles customer inquiries using AI-powered support tools and chatbots. Skills: Communication, Problem Solving, AI Tools, Empathy."
   },
   {
-    keyword: "coding",
-    suggestion: "Consider roles such as AI Engineer, Machine Learning Engineer, or Data Scientist. These jobs require programming skills and offer opportunities to work on cutting-edge projects. See the New AI Jobs page for details."
+    keyword: "annotation",
+    suggestion: "Remote Data Annotation Specialist: Labels and annotates data for training AI models, often remote and entry-level. Skills: Attention to Detail, Basic Computer Skills, Domain Knowledge."
   },
   {
-    keyword: "education",
-    suggestion: "AI Curriculum Designer, Prompt Engineer, and AI Literacy Advocate are great options for those passionate about teaching and learning."
+    keyword: "marketing",
+    suggestion: "AI-Driven Marketing Apprentice: Assists in digital marketing campaigns using AI tools and analytics. Skills: Digital Marketing, AI Tools, Creativity, Analytics."
   },
   {
-    keyword: "remote",
-    suggestion: "Many AI jobs and events are remote-friendly. Look for Remote AI Talent Fair and virtual networking sessions on the events page."
+    keyword: "scribe",
+    suggestion: "Healthcare AI Scribe: Uses AI transcription tools to assist medical professionals in documentation. Skills: Medical Terminology, AI Tools, Typing, Attention to Detail."
   },
   {
-    keyword: "manager",
-    suggestion: "AI Project Manager and Community Manager roles are perfect for those with leadership and organizational skills."
-  },
-  {
-    keyword: "art",
-    suggestion: "Explore opportunities as an AI Art Curator, Digital Artist, or Creative Technologist. The intersection of art and AI is growing rapidly."
-  },
-  {
-    keyword: "writing",
-    suggestion: "AI Content Writer, Technical Writer, and Prompt Engineer are excellent roles for strong communicators."
-  },
-  {
-    keyword: "events",
-    suggestion: "Check out upcoming AI Career Expos, Women in AI Summits, and virtual talent fairs. These events offer networking, workshops, and direct access to recruiters."
-  },
-  {
-    keyword: "beginner",
-    suggestion: "If you're just starting out, look for internships, junior roles, or volunteer opportunities in AI projects. Many companies offer mentorship and training for beginners."
+    keyword: "project management",
+    suggestion: "AI Project Management Associate: Supports project managers in delivering AI projects and coordinating teams. Skills: Project Management, AI Concepts, Organization, Communication."
   }
 ];
 
@@ -418,7 +394,7 @@ export default function MrJobNanny() {
     const { name, email, phone, summary, experience, education, skills } = resumeForm;
     const draft = `${name}\n${email} | ${phone}\n\nProfessional Summary:\n${summary}\n\nExperience:\n${experience}\n\nEducation:\n${education}\n\nSkills:\n${skills}`;
     setResumeDraft(draft);
-    // Simple rule-based feedback
+    // Updated rule-based feedback with training page tips
     const feedback: string[] = [];
     if (!name.trim()) feedback.push("Missing full name.");
     if (!email.trim() || !email.includes('@')) feedback.push("Missing or invalid email address.");
@@ -428,6 +404,8 @@ export default function MrJobNanny() {
     if (!education.trim()) feedback.push("Missing education section.");
     if (!skills.trim() || skills.split(',').length < 3) feedback.push("List at least 3 relevant skills, separated by commas.");
     if (/\b(responsible for|duties included|tasked with)\b/i.test(experience)) feedback.push("Use strong action verbs (e.g., 'led', 'created', 'improved') instead of phrases like 'responsible for'.");
+    feedback.push("Tip: Review this week's new programs for relevant skills and certifications. Mention bootcamps, apprenticeships, or micro-credentials if completed.");
+    feedback.push("Tip: Highlight experience with AI tools, customer support, data annotation, marketing, project management, or healthcare scribe roles if applicable.");
     setResumeFeedback(feedback);
   }
 

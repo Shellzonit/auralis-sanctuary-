@@ -3,94 +3,49 @@ import React from "react";
 
 export const NEW_AI_JOBS = [
   {
-    title: "AI Engineer",
-    description: "Designs, builds, and deploys AI models and systems for various applications.",
-    skills: ["Python", "TensorFlow/PyTorch", "Data Science", "Model Deployment"],
-    industries: ["Tech", "Finance", "Healthcare", "Retail"],
-    employers: ["Google", "Microsoft", "Startups", "Banks"],
-    resources: ["Coursera AI Engineering", "DeepLearning.AI", "edX AI Programs"],
-    pay: "$120,000 - $180,000/year"
+    title: "AI Customer Support Specialist",
+    description: "Handles customer inquiries using AI-powered support tools and chatbots.",
+    skills: ["Communication", "Problem Solving", "AI Tools", "Empathy"],
+    industries: ["Tech", "Retail", "Finance"],
+    employers: ["AI Support Firms", "E-commerce", "Banks"],
+    resources: ["AI Customer Support Bootcamp", "Coursera AI For Everyone"],
+    pay: "$45,000 - $80,000/year"
   },
   {
-    title: "Machine Learning Engineer",
-    description: "Develops machine learning algorithms and integrates them into products and services.",
-    skills: ["Machine Learning", "Programming", "Data Analysis", "Cloud Platforms"],
-    industries: ["Tech", "Automotive", "Healthcare"],
-    employers: ["Tesla", "Amazon", "Healthcare Providers"],
-    resources: ["Udacity ML Nanodegree", "Kaggle Courses"],
-    pay: "$115,000 - $170,000/year"
-  },
-  {
-    title: "AI Product Manager",
-    description: "Leads the development and launch of AI-powered products, bridging tech and business.",
-    skills: ["Product Management", "AI Concepts", "Business Strategy", "User Research"],
-    industries: ["Tech", "Finance", "Retail"],
-    employers: ["Meta", "FinTechs", "Retail Chains"],
-    resources: ["Product School AI PM", "LinkedIn Learning"],
-    pay: "$130,000 - $200,000/year"
-  },
-  {
-    title: "Prompt Engineer",
-    description: "Crafts effective prompts for generative AI models to optimize outputs and user experience.",
-    skills: ["Language Skills", "AI Model Understanding", "Creativity", "Testing"],
-    industries: ["Tech", "Media", "Education"],
-    employers: ["OpenAI", "Content Studios", "EdTech"],
-    resources: ["OpenAI Prompt Engineering Guide", "YouTube Tutorials"],
-    pay: "$100,000 - $160,000/year"
-  },
-  {
-    title: "AI Ethicist",
-    description: "Ensures AI systems are fair, transparent, and aligned with ethical standards.",
-    skills: ["Ethics", "Policy", "AI Governance", "Communication"],
-    industries: ["Tech", "Government", "Healthcare"],
-    employers: ["NGOs", "Tech Giants", "Universities"],
-    resources: ["AI Ethics MOOC", "OECD AI Policy"],
-    pay: "$90,000 - $140,000/year"
-  },
-  {
-    title: "Generative Content Creator",
-    description: "Uses AI tools to produce text, images, video, and music for media and marketing.",
-    skills: ["Content Creation", "AI Tools", "Storytelling", "Editing"],
-    industries: ["Media", "Marketing", "Entertainment"],
-    employers: ["Agencies", "Studios", "Brands"],
-    resources: ["Canva AI Courses", "Adobe Firefly Tutorials"],
-    pay: "$60,000 - $120,000/year"
-  },
-  {
-    title: "AI Trainer",
-    description: "Trains AI models by labeling data, providing feedback, and refining outputs.",
-    skills: ["Attention to Detail", "Domain Knowledge", "Data Labeling"],
+    title: "Remote Data Annotation Specialist",
+    description: "Labels and annotates data for training AI models, often remote and entry-level.",
+    skills: ["Attention to Detail", "Basic Computer Skills", "Domain Knowledge"],
     industries: ["Tech", "Healthcare", "Finance"],
     employers: ["Annotation Firms", "Tech Companies"],
-    resources: ["Appen Training", "Scale AI Resources"],
-    pay: "$40,000 - $80,000/year"
+    resources: ["Remote Data Annotation Training", "Appen Training"],
+    pay: "$40,000 - $65,000/year"
   },
   {
-    title: "Robotics Technician",
-    description: "Maintains and repairs robots used in manufacturing, logistics, and healthcare.",
-    skills: ["Mechanical Skills", "Programming", "Diagnostics"],
-    industries: ["Manufacturing", "Logistics", "Healthcare"],
-    employers: ["Factories", "Hospitals", "Warehouses"],
-    resources: ["Robotics Certification", "Community College Programs"],
-    pay: "$55,000 - $95,000/year"
+    title: "AI-Driven Marketing Apprentice",
+    description: "Assists in digital marketing campaigns using AI tools and analytics.",
+    skills: ["Digital Marketing", "AI Tools", "Creativity", "Analytics"],
+    industries: ["Marketing", "Tech", "Retail"],
+    employers: ["Marketing Agencies", "Brands", "Startups"],
+    resources: ["AI-Driven Marketing Apprenticeship", "Canva AI Courses"],
+    pay: "$50,000 - $75,000/year"
   },
   {
-    title: "AI Security Analyst",
-    description: "Protects AI systems from cyber threats and ensures data privacy.",
-    skills: ["Cybersecurity", "AI Systems", "Risk Assessment"],
+    title: "Healthcare AI Scribe",
+    description: "Uses AI transcription tools to assist medical professionals in documentation.",
+    skills: ["Medical Terminology", "AI Tools", "Typing", "Attention to Detail"],
+    industries: ["Healthcare", "Tech"],
+    employers: ["Hospitals", "Clinics", "Telehealth"],
+    resources: ["Healthcare AI Scribe Training", "Coursera AI For Everyone"],
+    pay: "$38,000 - $60,000/year"
+  },
+  {
+    title: "AI Project Management Associate",
+    description: "Supports project managers in delivering AI projects and coordinating teams.",
+    skills: ["Project Management", "AI Concepts", "Organization", "Communication"],
     industries: ["Tech", "Finance", "Healthcare"],
-    employers: ["Banks", "Tech Firms", "Insurers"],
-    resources: ["Cybersecurity AI Courses", "SANS Institute"],
-    pay: "$110,000 - $160,000/year"
-  },
-  {
-    title: "AI Curriculum Designer",
-    description: "Creates educational programs and materials to teach AI concepts and skills.",
-    skills: ["Instructional Design", "AI Knowledge", "Teaching"],
-    industries: ["Education", "EdTech", "Corporate Training"],
-    employers: ["Schools", "EdTech Companies", "Universities"],
-    resources: ["edX AI Education", "ISTE AI Curriculum"],
-    pay: "$70,000 - $120,000/year"
+    employers: ["Tech Firms", "Consultancies", "Startups"],
+    resources: ["AI Project Management Micro-Credential", "Google Project Management"],
+    pay: "$60,000 - $90,000/year"
   }
 ];
 
