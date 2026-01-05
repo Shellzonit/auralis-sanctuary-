@@ -60,19 +60,40 @@ export default function TransitionalPathsPage() {
       <h1 style={{ fontSize: "2.4rem", fontWeight: 900, color: "#18191a", margin: "40px 0 18px 0", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1 }}>
         <span style={{ color: '#ffd700', borderBottom: '4px solid #ffd700', paddingBottom: 4 }}>Transitional Paths</span> for At-Risk Jobs
       </h1>
+      {/* Bar Chart for Transitional Paths per Job */}
+      <section style={{ maxWidth: 950, marginBottom: 18, background: '#f5faff', borderRadius: 14, padding: 22, boxShadow: '0 2px 8px #ffd70022', borderLeft: '6px solid #ffd700' }}>
+        <h2 style={{ color: '#ffd700', fontSize: '1.18rem', marginBottom: 10, fontWeight: 800 }}>Transitional Paths per Job</h2>
+        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 18, height: 120, paddingBottom: 12 }}>
+          {TRANSITIONAL_PATHS.map((item) => (
+            <div key={item.job} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 80 }}>
+              <div style={{
+                height: `${item.paths.length * 18 + 18}px`,
+                width: 32,
+                background: '#ffd700',
+                borderRadius: 8,
+                boxShadow: '0 2px 8px #ffd70055',
+                marginBottom: 6,
+                transition: 'height 0.2s',
+              }}></div>
+              <span style={{ fontSize: '0.95rem', color: '#18191a', fontWeight: 600, textAlign: 'center' }}>{item.job}</span>
+              <span style={{ fontSize: '0.85rem', color: '#6a1b9a', fontWeight: 500' }}>{item.paths.length} paths</span>
+            </div>
+          ))}
+        </div>
+      </section>
       <section style={{ maxWidth: 950, background: "#fffbe7", borderRadius: 18, padding: 32, boxShadow: "0 4px 24px #ffd70033", marginBottom: 36, borderLeft: '8px solid #ffd700' }}>
-        <p style={{ color: "#18191a", fontSize: "1.13rem", marginBottom: 22, lineHeight: 1.6 }}>
+        <p style={{ color: "#18191a", fontSize: "1.01rem", marginBottom: 22, lineHeight: 1.6 }}>
           This page lists practical career moves and upskilling options for workers whose jobs are at risk due to AI and automation. Explore transitional paths, required skills, resources, and real success stories for each role.
         </p>
-        <table style={{ width: "100%", borderCollapse: "collapse", background: "rgba(255,255,255,0.03)", borderRadius: 12, boxShadow: '0 2px 12px #ffd70022', overflow: 'hidden', border: '2px solid #ffd700' }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", background: "rgba(255,255,255,0.03)", borderRadius: 12, boxShadow: '0 2px 12px #ffd70022', overflow: 'hidden', border: '2px solid #ffd700', fontSize: '0.97rem' }}>
           <thead>
             <tr style={{ background: "#ffd700" }}>
-              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Job</th>
-              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Risk</th>
-              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Transitional Paths</th>
-              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Skills Needed</th>
-              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Resources</th>
-              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Success Story</th>
+              <th style={{ color: "#18191a", padding: "10px 8px", fontSize: '0.98rem', fontWeight: 700 }}>Job</th>
+              <th style={{ color: "#18191a", padding: "10px 8px", fontSize: '0.98rem', fontWeight: 700 }}>Risk</th>
+              <th style={{ color: "#18191a", padding: "10px 8px", fontSize: '0.98rem', fontWeight: 700 }}>Transitional Paths</th>
+              <th style={{ color: "#18191a", padding: "10px 8px", fontSize: '0.98rem', fontWeight: 700 }}>Skills Needed</th>
+              <th style={{ color: "#18191a", padding: "10px 8px", fontSize: '0.98rem', fontWeight: 700 }}>Resources</th>
+              <th style={{ color: "#18191a", padding: "10px 8px", fontSize: '0.98rem', fontWeight: 700 }}>Success Story</th>
             </tr>
           </thead>
           <tbody>
@@ -88,8 +109,8 @@ export default function TransitionalPathsPage() {
                 onMouseEnter={e => {e.currentTarget.style.background='#fff8dc';}}
                 onMouseLeave={e => {e.currentTarget.style.background=idx % 2 === 0 ? '#fffde7' : '#f5faff';}}
               >
-                <td style={{ color: "#18191a", padding: "12px 10px", fontWeight: 600 }}>{item.job}</td>
-                <td style={{ padding: "12px 10px" }}>
+                <td style={{ color: "#18191a", padding: "10px 8px", fontWeight: 600 }}>{item.job}</td>
+                <td style={{ padding: "10px 8px" }}>
                   <span style={{
                     display: 'inline-block',
                     padding: '4px 14px',
@@ -97,13 +118,13 @@ export default function TransitionalPathsPage() {
                     background: item.risk === "High" ? '#d32f2f' : '#fbc02d',
                     color: item.risk === "High" ? '#fff' : '#18191a',
                     fontWeight: 700,
-                    fontSize: '1rem',
+                    fontSize: '0.97rem',
                   }}>{item.risk}</span>
                 </td>
-                <td style={{ color: "#18191a", padding: "12px 10px" }}>{item.paths.join(", ")}</td>
-                <td style={{ color: "#18191a", padding: "12px 10px" }}>{item.skills.join(", ")}</td>
-                <td style={{ color: "#18191a", padding: "12px 10px" }}>{item.resources.join(", ")}</td>
-                <td style={{ color: "#6a1b9a", padding: "12px 10px", fontStyle: 'italic', fontWeight: 500 }}>{item.story}</td>
+                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.paths.join(", ")}</td>
+                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.skills.join(", ")}</td>
+                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.resources.join(", ")}</td>
+                <td style={{ color: "#6a1b9a", padding: "10px 8px", fontStyle: 'italic', fontWeight: 500 }}>{item.story}</td>
               </tr>
             ))}
           </tbody>
