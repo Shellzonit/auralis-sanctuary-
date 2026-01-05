@@ -57,41 +57,61 @@ export default function TransitionalPathsPage() {
     <main style={{ minHeight: "100vh", background: "#fff", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative' }}>
       {/* New AI Jobs Tab Button in Corner */}
       <a href="/new-ai-jobs" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#ffd700', color: '#18191a', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #ffd70055', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#ffd700';e.currentTarget.style.color='#18191a';}}>New AI Jobs & Careers &rarr;</a>
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
-        <span style={{ color: '#ffd700' }}>Transitional Paths</span> for At-Risk Jobs
+      <h1 style={{ fontSize: "2.4rem", fontWeight: 900, color: "#18191a", margin: "40px 0 18px 0", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1 }}>
+        <span style={{ color: '#ffd700', borderBottom: '4px solid #ffd700', paddingBottom: 4 }}>Transitional Paths</span> for At-Risk Jobs
       </h1>
-      <section style={{ maxWidth: 900, background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
-        <p style={{ color: "#18191a", fontSize: "1.08rem", marginBottom: 18 }}>
+      <section style={{ maxWidth: 950, background: "#fffbe7", borderRadius: 18, padding: 32, boxShadow: "0 4px 24px #ffd70033", marginBottom: 36, borderLeft: '8px solid #ffd700' }}>
+        <p style={{ color: "#18191a", fontSize: "1.13rem", marginBottom: 22, lineHeight: 1.6 }}>
           This page lists practical career moves and upskilling options for workers whose jobs are at risk due to AI and automation. Explore transitional paths, required skills, resources, and real success stories for each role.
         </p>
-        <table style={{ width: "100%", borderCollapse: "collapse", background: "rgba(255,255,255,0.03)", borderRadius: 12 }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", background: "rgba(255,255,255,0.03)", borderRadius: 12, boxShadow: '0 2px 12px #ffd70022', overflow: 'hidden', border: '2px solid #ffd700' }}>
           <thead>
             <tr style={{ background: "#ffd700" }}>
-              <th style={{ color: "#18191a", padding: "10px 8px" }}>Job</th>
-              <th style={{ color: "#18191a", padding: "10px 8px" }}>Risk</th>
-              <th style={{ color: "#18191a", padding: "10px 8px" }}>Transitional Paths</th>
-              <th style={{ color: "#18191a", padding: "10px 8px" }}>Skills Needed</th>
-              <th style={{ color: "#18191a", padding: "10px 8px" }}>Resources</th>
-              <th style={{ color: "#18191a", padding: "10px 8px" }}>Success Story</th>
+              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Job</th>
+              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Risk</th>
+              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Transitional Paths</th>
+              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Skills Needed</th>
+              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Resources</th>
+              <th style={{ color: "#18191a", padding: "12px 10px", fontSize: '1.08rem', fontWeight: 700 }}>Success Story</th>
             </tr>
           </thead>
           <tbody>
-            {TRANSITIONAL_PATHS.map((item) => (
-              <tr key={item.job} style={{ borderBottom: "1px solid #ffd70022" }}>
-                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.job}</td>
-                <td style={{ color: item.risk === "High" ? "#d32f2f" : "#fbc02d", fontWeight: 700, padding: "10px 8px" }}>{item.risk}</td>
-                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.paths.join(", ")}</td>
-                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.skills.join(", ")}</td>
-                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.resources.join(", ")}</td>
-                <td style={{ color: "#18191a", padding: "10px 8px" }}>{item.story}</td>
+            {TRANSITIONAL_PATHS.map((item, idx) => (
+              <tr
+                key={item.job}
+                style={{
+                  borderBottom: "1px solid #ffd70022",
+                  background: idx % 2 === 0 ? '#fffde7' : '#f5faff',
+                  transition: 'background 0.2s',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={e => {e.currentTarget.style.background='#fff8dc';}}
+                onMouseLeave={e => {e.currentTarget.style.background=idx % 2 === 0 ? '#fffde7' : '#f5faff';}}
+              >
+                <td style={{ color: "#18191a", padding: "12px 10px", fontWeight: 600 }}>{item.job}</td>
+                <td style={{ padding: "12px 10px" }}>
+                  <span style={{
+                    display: 'inline-block',
+                    padding: '4px 14px',
+                    borderRadius: 9999,
+                    background: item.risk === "High" ? '#d32f2f' : '#fbc02d',
+                    color: item.risk === "High" ? '#fff' : '#18191a',
+                    fontWeight: 700,
+                    fontSize: '1rem',
+                  }}>{item.risk}</span>
+                </td>
+                <td style={{ color: "#18191a", padding: "12px 10px" }}>{item.paths.join(", ")}</td>
+                <td style={{ color: "#18191a", padding: "12px 10px" }}>{item.skills.join(", ")}</td>
+                <td style={{ color: "#18191a", padding: "12px 10px" }}>{item.resources.join(", ")}</td>
+                <td style={{ color: "#6a1b9a", padding: "12px 10px", fontStyle: 'italic', fontWeight: 500 }}>{item.story}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </section>
-      <section style={{ maxWidth: 900, marginBottom: 24, background: "rgba(255,255,255,0.10)", borderRadius: 12, padding: 18, boxShadow: "0 2px 8px #6a1b9a22" }}>
-        <h2 style={{ color: "#ffd700", fontSize: "1.2rem", marginBottom: 8 }}>Guidance & Resources</h2>
-        <ul style={{ color: "#18191a", fontSize: "1rem" }}>
+      <section style={{ maxWidth: 950, marginBottom: 28, background: "#f5faff", borderRadius: 14, padding: 22, boxShadow: "0 2px 8px #ffd70022", borderLeft: '6px solid #ffd700' }}>
+        <h2 style={{ color: "#ffd700", fontSize: "1.22rem", marginBottom: 10, fontWeight: 800 }}>Guidance & Resources</h2>
+        <ul style={{ color: "#18191a", fontSize: "1.05rem", lineHeight: 1.7 }}>
           <li>Explore online courses for upskilling (Coursera, Udemy, LinkedIn Learning)</li>
           <li>Check local retraining programs and government support</li>
           <li>Connect with career counselors for personalized advice</li>
