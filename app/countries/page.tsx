@@ -76,6 +76,9 @@ export default function CountriesPage() {
         flexDirection: "column",
         alignItems: "center",
         padding: "0 1rem",
+        border: '3px solid #18191a', // black border
+        borderRadius: 24,
+        boxSizing: 'border-box',
       }}
     >
       <h1 style={{ fontSize: "2.5rem", fontWeight: 900, color: "#18191a", margin: "40px 0 18px 0", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1 }}>
