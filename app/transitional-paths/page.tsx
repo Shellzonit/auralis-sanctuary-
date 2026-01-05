@@ -57,9 +57,15 @@ export default function TransitionalPathsPage() {
     <main style={{ minHeight: "100vh", background: "#fff", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative' }}>
       {/* New AI Jobs Tab Button in Corner */}
       <a href="/new-ai-jobs" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#ffd700', color: '#18191a', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #ffd70055', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#ffd700';e.currentTarget.style.color='#18191a';}}>New AI Jobs & Careers &rarr;</a>
-      <h1 style={{ fontSize: "2.4rem", fontWeight: 900, color: "#18191a", margin: "40px 0 18px 0", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1 }}>
-        <span style={{ color: '#ffd700', borderBottom: '4px solid #ffd700', paddingBottom: 4 }}>Transitional Paths</span> for At-Risk Jobs
-      </h1>
+      {/* Move title above bar chart for better hierarchy */}
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 48, marginBottom: 8 }}>
+        <h1 style={{ fontSize: "2.4rem", fontWeight: 900, color: "#18191a", margin: "0 0 8px 0", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1 }}>
+          <span style={{ color: '#ffd700', borderBottom: '4px solid #ffd700', paddingBottom: 4 }}>Transitional Paths</span> for At-Risk Jobs
+        </h1>
+        <p style={{ color: "#18191a", fontSize: "1.13rem", marginBottom: 0, lineHeight: 1.6, maxWidth: 700, textAlign: 'center' }}>
+          This page lists practical career moves and upskilling options for workers whose jobs are at risk due to AI and automation. Explore transitional paths, required skills, resources, and real success stories for each role.
+        </p>
+      </div>
       {/* Bar Chart for Transitional Paths per Job */}
       <section style={{ maxWidth: 950, marginBottom: 18, background: '#f5faff', borderRadius: 14, padding: 22, boxShadow: '0 2px 8px #ffd70022', borderLeft: '6px solid #ffd700' }}>
         <h2 style={{ color: '#ffd700', fontSize: '1.18rem', marginBottom: 10, fontWeight: 800 }}>Transitional Paths per Job</h2>
@@ -130,14 +136,26 @@ export default function TransitionalPathsPage() {
           </tbody>
         </table>
       </section>
-      <section style={{ maxWidth: 950, marginBottom: 28, background: "#f5faff", borderRadius: 14, padding: 22, boxShadow: "0 2px 8px #ffd70022", borderLeft: '6px solid #ffd700' }}>
-        <h2 style={{ color: "#ffd700", fontSize: "1.22rem", marginBottom: 10, fontWeight: 800 }}>Guidance & Resources</h2>
-        <ul style={{ color: "#18191a", fontSize: "1.05rem", lineHeight: 1.7 }}>
-          <li>Explore online courses for upskilling (Coursera, Udemy, LinkedIn Learning)</li>
-          <li>Check local retraining programs and government support</li>
-          <li>Connect with career counselors for personalized advice</li>
-          <li>Read success stories for inspiration and ideas</li>
-        </ul>
+      <section style={{ maxWidth: 950, marginBottom: 28, background: "#f5faff", borderRadius: 14, padding: 28, boxShadow: "0 2px 8px #ffd70022", borderLeft: '6px solid #ffd700', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h2 style={{ color: "#ffd700", fontSize: "1.22rem", marginBottom: 18, fontWeight: 800, textAlign: 'center' }}>Guidance & Resources</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 18, width: '100%' }}>
+          <div style={{ background: '#fff', borderRadius: 10, boxShadow: '0 2px 8px #ffd70022', padding: '18px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ color: '#ffd700', fontWeight: 700, fontSize: '1.08rem', marginRight: 8 }}>Online Courses:</span>
+            <span style={{ color: '#18191a', fontSize: '1.05rem' }}>Coursera, Udemy, LinkedIn Learning</span>
+          </div>
+          <div style={{ background: '#fff', borderRadius: 10, boxShadow: '0 2px 8px #ffd70022', padding: '18px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ color: '#ffd700', fontWeight: 700, fontSize: '1.08rem', marginRight: 8 }}>Retraining Programs:</span>
+            <span style={{ color: '#18191a', fontSize: '1.05rem' }}>Local programs & government support</span>
+          </div>
+          <div style={{ background: '#fff', borderRadius: 10, boxShadow: '0 2px 8px #ffd70022', padding: '18px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ color: '#ffd700', fontWeight: 700, fontSize: '1.08rem', marginRight: 8 }}>Career Counselors:</span>
+            <span style={{ color: '#18191a', fontSize: '1.05rem' }}>Personalized advice & support</span>
+          </div>
+          <div style={{ background: '#fff', borderRadius: 10, boxShadow: '0 2px 8px #ffd70022', padding: '18px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ color: '#ffd700', fontWeight: 700, fontSize: '1.08rem', marginRight: 8 }}>Success Stories:</span>
+            <span style={{ color: '#18191a', fontSize: '1.05rem' }}>Inspiration & ideas from real transitions</span>
+          </div>
+        </div>
       </section>
     </main>
   );
