@@ -33,10 +33,6 @@ export default function HomePage() {
         flexDirection: "column",
         alignItems: "center",
         padding: "0 1rem",
-        border: '4px solid #2196f3', // blue border
-        boxSizing: 'border-box',
-        borderRadius: 24,
-        boxShadow: '0 0 0 6px #2196f344',
       }}
     >
       {/* Homepage Icon */}
