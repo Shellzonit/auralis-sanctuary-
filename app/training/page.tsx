@@ -180,86 +180,6 @@ export default function TrainingHubPage() {
 						for every skill level.
 					</p>
 				</div>
-				{/* Bar Chart for AI Programs Growth */}
-				<div
-					style={{
-						flex: 1,
-						background: "#fffbe7",
-						borderRadius: 16,
-						boxShadow: "0 2px 12px #ffd70022",
-						padding: 24,
-						minWidth: 260,
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
-						justifyContent: "center",
-					}}
-				>
-					<h2
-						style={{
-							color: "#ffd700",
-							fontSize: "1.12rem",
-							marginBottom: 18,
-							fontWeight: 700,
-							textAlign: "center",
-						}}
-					>
-						Programs Supporting AI Learning (Last 3 Years)
-					</h2>
-					<div
-						style={{
-							display: "flex",
-							alignItems: "flex-end",
-							gap: 18,
-							height: 120,
-							width: "100%",
-							justifyContent: "center",
-							paddingBottom: 12,
-						}}
-					>
-						{aiProgramsData.map((item) => (
-							<div
-								key={item.year}
-								style={{
-									display: "flex",
-									flexDirection: "column",
-									alignItems: "center",
-									width: 60,
-								}}
-							>
-								<div
-									style={{
-										height: `${item.count * 3}px`,
-										width: 32,
-										background: "#ffd700",
-										borderRadius: 8,
-										boxShadow: "0 2px 8px #ffd70055",
-										marginBottom: 6,
-										transition: "height 0.2s",
-									}}
-								></div>
-								<span
-									style={{
-										fontSize: "0.98rem",
-										color: "#18191a",
-										fontWeight: 700,
-									}}
-								>
-									{item.year}
-								</span>
-								<span
-									style={{
-										fontSize: "0.92rem",
-										color: "#6a1b9a",
-										fontWeight: 500,
-									}}
-								>
-									{item.count} programs
-								</span>
-							</div>
-						))}
-					</div>
-				</div>
 			</div>
 			<section
 				style={{
@@ -270,7 +190,28 @@ export default function TrainingHubPage() {
 					gap: 32,
 					marginTop: 24,
 				}}
-			>
+							fontSize: "1.05rem",
+							lineHeight: 1.7,
+						}}
+					>
+						{COURSES.map((c) => (
+							<li key={c.name}>
+								<a
+									href={c.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									style={{
+										color: "#ffd700",
+										fontWeight: 600,
+									}}
+								>
+									{c.name}
+								</a>
+								: {c.desc}
+							</li>
+						))}
+					</ul>
+				</div>
 				<div
 					style={{
 						background: "#fff",
@@ -286,6 +227,44 @@ export default function TrainingHubPage() {
 							marginBottom: 12,
 						}}
 					>
+						Certification Programs
+					</h2>
+					<ul
+						style={{
+							color: "#18191a",
+							fontSize: "1.05rem",
+							lineHeight: 1.7,
+						}}
+					>
+						{CERTS.map((c) => (
+							<li key={c.name}>
+								<a
+									href={c.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									style={{
+										color: "#ffd700",
+										fontWeight: 600,
+									}}
+								>
+									{c.name}
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+				<div
+					style={{
+						background: "#fff",
+						borderRadius: 16,
+						padding: 28,
+						boxShadow: "0 2px 12px #ffd70022",
+					}}
+				>
+					<h2
+						style={{
+							color: "#ffd700",
+							fontSize: "1.
 						Featured Online Courses
 					</h2>
 					<ul
