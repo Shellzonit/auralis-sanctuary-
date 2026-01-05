@@ -42,16 +42,19 @@ export default function HomePage() {
       <h1
         style={{
           fontFamily: 'Playfair Display, Georgia, serif',
-          fontSize: '3.5rem',
+          fontSize: '4.5rem',
           fontWeight: 900,
-          color: '#18191a',
-          margin: '48px 0 24px 0',
-          textShadow: '0 2px 24px #ffd70044', // subtle gold shadow
-          letterSpacing: 2,
+          margin: '56px 0 32px 0',
+          letterSpacing: 3,
           textAlign: 'center',
+          background: 'linear-gradient(90deg, #ffd700 20%, #fffbe7 60%, #b8860b 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          textShadow: '0 4px 32px #ffd70066, 0 2px 24px #7b2c2c88',
+          filter: 'drop-shadow(0 2px 8px #18191a44)',
         }}
       >
-        <span style={{ color: '#ffd700' }}>AI</span> Wilding
+        <span style={{ fontWeight: 900, letterSpacing: 4 }}>AI Wilding</span>
       </h1>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 48, marginBottom: 32 }}>
         {/* Left tabs */}
