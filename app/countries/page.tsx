@@ -78,16 +78,39 @@ export default function CountriesPage() {
         padding: "0 1rem",
       }}
     >
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
-        <span style={{ color: '#ffd700' }}>AI Around the World</span>
+      <h1 style={{ fontSize: "2.5rem", fontWeight: 900, color: "#18191a", margin: "40px 0 18px 0", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1 }}>
+        <span style={{ color: '#ffd700', borderBottom: '4px solid #ffd700', paddingBottom: 4 }}>AI Around the World</span>
       </h1>
-      <p style={{ color: '#18191a', fontSize: '1.15rem', maxWidth: 700, textAlign: 'center', marginBottom: 32 }}>
+      <p style={{ color: '#18191a', fontSize: '1.18rem', maxWidth: 700, textAlign: 'center', marginBottom: 36, lineHeight: 1.6 }}>
         Explore how different countries are leading, adopting, and regulating artificial intelligence. See top industries, events, and AI trends by country.
       </p>
-      <div style={{ width: '100%', maxWidth: 800, display: 'flex', flexDirection: 'column', gap: 32 }}>
+      <div style={{ width: '100%', maxWidth: 820, display: 'flex', flexDirection: 'column', gap: 36 }}>
         {COUNTRY_AI_DATA.map((c) => (
-          <section key={c.country} style={{ background: '#f5faff', borderRadius: 14, padding: 24, boxShadow: '0 2px 12px #90caf922' }}>
-            <h2 style={{ color: '#ffd700', fontSize: '1.3rem', marginBottom: 8 }}>{c.country} <span style={{ color: '#18191a', fontWeight: 400, fontSize: '1rem' }}>(AI Rank #{c.aiRank})</span></h2>
+          <section
+            key={c.country}
+            style={{
+              background: '#f5faff',
+              borderRadius: 16,
+              padding: 28,
+              boxShadow: '0 4px 18px #ffd70022',
+              borderLeft: '8px solid #ffd700',
+              transition: 'box-shadow 0.2s, transform 0.2s',
+              position: 'relative',
+              cursor: 'pointer',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.boxShadow = '0 8px 32px #ffd70055';
+              e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.boxShadow = '0 4px 18px #ffd70022';
+              e.currentTarget.style.transform = 'none';
+            }}
+          >
+            <h2 style={{ color: '#18191a', fontSize: '1.45rem', fontWeight: 700, marginBottom: 10, letterSpacing: 0.5 }}>
+              <span style={{ color: '#ffd700', fontWeight: 900 }}>{c.country}</span>
+              <span style={{ color: '#18191a', fontWeight: 400, fontSize: '1.05rem', marginLeft: 8 }}>(AI Rank #{c.aiRank})</span>
+            </h2>
             {/* Country Images */}
             {c.country === 'Japan' && (
               <img src="/japan.png" alt="Japan AI" width={180} height={110} style={{ borderRadius: 12, marginBottom: 12, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
@@ -98,12 +121,21 @@ export default function CountriesPage() {
             {c.country === 'United Kingdom' && (
               <img src="/uk.png" alt="UK AI" width={180} height={110} style={{ borderRadius: 12, marginBottom: 12, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
             )}
-            <ul style={{ color: '#18191a', marginBottom: 8 }}>
+            <ul style={{ color: '#18191a', marginBottom: 12, fontSize: '1.08rem', paddingLeft: 18, lineHeight: 1.6 }}>
               {c.highlights.map((h, i) => <li key={i}>{h}</li>)}
             </ul>
-            <div style={{ color: '#ffd700', marginBottom: 4 }}><strong>Key Industries:</strong> <span style={{ color: '#18191a' }}>{c.industries.join(', ')}</span></div>
-            <div style={{ color: '#ffd700', marginBottom: 4 }}><strong>Major Events:</strong> <span style={{ color: '#18191a' }}>{c.events.join(', ')}</span></div>
-            <div style={{ color: '#ffd700' }}><strong>Regulation:</strong> <span style={{ color: '#18191a' }}>{c.regulation}</span></div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 18, marginBottom: 8 }}>
+              <div style={{ color: '#ffd700', fontWeight: 700 }}><strong>Key Industries:</strong></div>
+              <div style={{ color: '#18191a', fontWeight: 500 }}>{c.industries.join(', ')}</div>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 18, marginBottom: 8 }}>
+              <div style={{ color: '#ffd700', fontWeight: 700 }}><strong>Major Events:</strong></div>
+              <div style={{ color: '#18191a', fontWeight: 500 }}>{c.events.join(', ')}</div>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 18 }}>
+              <div style={{ color: '#ffd700', fontWeight: 700 }}><strong>Regulation:</strong></div>
+              <div style={{ color: '#18191a', fontWeight: 500 }}>{c.regulation}</div>
+            </div>
           </section>
         ))}
       </div>
