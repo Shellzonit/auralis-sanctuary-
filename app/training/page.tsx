@@ -1,5 +1,4 @@
 "use client";
-}
 const COURSES = [
 	{
 		name: "AI For Everyone (Coursera)",
@@ -29,8 +28,7 @@ const COURSES = [
 ];
 
 const CERTS = [
-	{
-		name: "Google Professional Machine Learning Engineer",
+	"use client";
 		url: "https://cloud.google.com/certification/machine-learning-engineer",
 	},
 	{
