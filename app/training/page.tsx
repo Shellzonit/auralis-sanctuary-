@@ -1,8 +1,6 @@
 "use client";
 const COURSES = [
-	{
-		name: "AI For Everyone (Coursera)",
-		url: "https://www.coursera.org/learn/ai-for-everyone",
+	}
 		desc: "Beginner-friendly introduction to AI concepts and real-world impact.",
 	},
 	{
