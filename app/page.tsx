@@ -59,7 +59,18 @@ export default function HomePage() {
       </h1>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 48, marginBottom: 32 }}>
         {/* Left tabs */}
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: 18, background: '#18191a', borderRadius: 16, padding: '18px 12px', boxShadow: '0 4px 24px #0002', minWidth: 180 }}>
+        <nav style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 18,
+          background: '#18191a',
+          borderRadius: 16,
+          padding: '36px 18px',
+          boxShadow: '0 4px 24px #0002',
+          minWidth: 200,
+          minHeight: '340px',
+          justifyContent: 'space-between',
+        }}>
           <a href="/" style={tabStyle}>Home</a>
           <a href="/states" style={tabStyle}>States</a>
           <a href="/countries" style={tabStyle}>Countries</a>
@@ -71,7 +82,18 @@ export default function HomePage() {
           <Image src="/Ai wilding.png" alt="AI Wilding" width={480} height={320} style={{ borderRadius: 18, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
         </div>
         {/* Right tabs */}
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: 18, background: '#18191a', borderRadius: 16, padding: '18px 12px', boxShadow: '0 4px 24px #0002', minWidth: 180 }}>
+        <nav style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 18,
+          background: '#18191a',
+          borderRadius: 16,
+          padding: '36px 18px',
+          boxShadow: '0 4px 24px #0002',
+          minWidth: 200,
+          minHeight: '340px',
+          justifyContent: 'space-between',
+        }}>
           <a href="/new-ai-jobs" style={tabStyle}>New AI Jobs</a>
           <a href="/training" style={tabStyle}>Training Hub</a>
           <a href="/recovery" style={tabStyle}>Recovery Hub</a>
