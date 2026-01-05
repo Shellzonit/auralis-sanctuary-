@@ -13,6 +13,9 @@ export default function AboutPage() {
         flexDirection: "column",
         alignItems: "center",
         padding: "0 1rem",
+        border: '3px solid #18191a',
+        borderRadius: 24,
+        boxSizing: 'border-box',
       }}
     >
       <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
