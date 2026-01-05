@@ -26,7 +26,7 @@ export default function JobsAtRiskPage() {
   );
 
   return (
-    <main style={{ minHeight: "100vh", background: "#fff", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative', border: '3px solid #18191a', borderRadius: 24, boxSizing: 'border-box' }}>
+    <main style={{ minHeight: "100vh", background: "#7b2c2c", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative', border: '3px solid #18191a', borderRadius: 24, boxSizing: 'border-box' }}>
       {/* Transitional Paths Tab Button in Corner */}
       <a href="/transitional-paths" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#ffd700', color: '#18191a', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #ffd70055', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#ffd700';e.currentTarget.style.color='#18191a';}}>Transitional Paths &rarr;</a>
       <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>

@@ -42,7 +42,7 @@ export default function TrainingHubPage() {
 
 
 	return (
-		<main style={{ minHeight: '100vh', background: '#fff', fontFamily: 'Inter, Arial, sans-serif', padding: '2rem', color: '#18191a', border: '3px solid #18191a', borderRadius: 24, boxSizing: 'border-box' }}>
+		<main style={{ minHeight: '100vh', background: '#7b2c2c', fontFamily: 'Inter, Arial, sans-serif', padding: '2rem', color: '#18191a', border: '3px solid #18191a', borderRadius: 24, boxSizing: 'border-box' }}>
 			<h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#18191a', marginBottom: '2rem' }}>
 				<span style={{ color: '#ffd700' }}>New Paths to Employment</span> – Week of Jan 4, 2026
 			</h1>

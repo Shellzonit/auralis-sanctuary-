@@ -41,7 +41,7 @@ export default function RecoveryHubPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#fff",
+        background: "#7b2c2c",
         fontFamily: "Inter, Arial, sans-serif",
         display: "flex",
         flexDirection: "column",
