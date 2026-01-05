@@ -86,6 +86,10 @@ export default function CountriesPage() {
       <h1 style={{ fontSize: "3rem", fontWeight: 900, color: "#18191a", margin: "40px 0 18px 0", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1 }}>
         <span style={{ color: '#18191a', borderBottom: '4px solid #18191a', paddingBottom: 4 }}>AI Around the World</span>
       </h1>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 24, marginBottom: 18 }}>
+        <img src="/Ai wilding.png" alt="AI Wilding" width={220} height={120} style={{ borderRadius: 14, marginBottom: 8, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
+        <img src="/Ai wilding (2).png" alt="AI Wilding 2" width={220} height={120} style={{ borderRadius: 14, marginBottom: 8, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
+      </div>
       <p style={{ color: '#18191a', fontSize: '1.35rem', maxWidth: 700, textAlign: 'center', marginBottom: 36, lineHeight: 1.6 }}>
         Explore how different countries are leading, adopting, and regulating artificial intelligence. See top industries, events, and AI trends by country.
       </p>
@@ -127,6 +131,15 @@ export default function CountriesPage() {
             )}
             {c.country === 'United Kingdom' && (
               <img src="/uk.png" alt="UK AI" width={180} height={110} style={{ borderRadius: 12, marginBottom: 12, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
+            )}
+            {c.country === 'United States' && (
+              <img src="/usa.png" alt="USA AI" width={180} height={110} style={{ borderRadius: 12, marginBottom: 12, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
+            )}
+            {c.country === 'India' && (
+              <img src="/india.png" alt="India AI" width={180} height={110} style={{ borderRadius: 12, marginBottom: 12, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
+            )}
+            {c.country === 'Canada' && (
+              <img src="/canada.png" alt="Canada AI" width={180} height={110} style={{ borderRadius: 12, marginBottom: 12, boxShadow: '0 2px 8px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
             )}
             <ul style={{ color: '#18191a', marginBottom: 12, fontSize: '1.08rem', paddingLeft: 18, lineHeight: 1.6 }}>
               {c.highlights.map((h, i) => <li key={i}>{h}</li>)}
