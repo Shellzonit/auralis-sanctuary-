@@ -305,59 +305,5 @@
         <span id="command-feedback" style="color:#7b2ff2;font-size:1rem;margin-left:12px;"></span>
       </div>
 
-      <script>
-        // Command handler for text input
-        const input = document.getElementById('command-input');
-        const feedback = document.getElementById('command-feedback');
-        function handleCommand() {
-          const cmd = input.value.trim().toLowerCase();
-          input.value = '';
-          feedback.textContent = '';
-          if (!cmd) return;
-          if (cmd === 'start' || cmd === 'start interview') {
-            window.startInterview();
-            feedback.textContent = 'Interview started!';
-          } else if (cmd === 'next' || cmd === 'next question') {
-            window.nextQuestion();
-            feedback.textContent = 'Next question.';
-          } else if (cmd === 'training' || cmd === 'need training') {
-            window.showTraining();
-            feedback.textContent = 'Training tip shown.';
-          } else if (cmd === 'help') {
-            feedback.textContent = 'Commands: start, next, training, help';
-          } else {
-            feedback.textContent = 'Unknown command.';
-          }
-        }
-        input.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter') handleCommand();
-        });
-          // User answer logic
-          const answerInput = document.getElementById('answer-input');
-          const answerFeedback = document.getElementById('answer-feedback');
-          const userAnswerText = document.getElementById('user-answer-text');
-          function submitAnswer() {
-            const answer = answerInput.value.trim();
-            if (!answer) {
-              answerFeedback.textContent = 'Please type an answer.';
-              return;
-            }
-            userAnswerText.setAttribute('value', 'Your answer: ' + answer);
-            answerInput.value = '';
-            if (current < questions.length - 1) {
-              answerFeedback.textContent = 'Great answer! Moving to the next question...';
-              setTimeout(() => {
-                window.nextQuestion();
-                answerFeedback.textContent = '';
-              }, 1200);
-            } else {
-              answerFeedback.textContent = 'Great job! You have completed the mock interview.';
-              document.getElementById('welcome-text').setAttribute('value', 'Congratulations! You finished the interview!');
-            }
-          }
-          answerInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') submitAnswer();
-          });
-      </script>
   </body>
 </html>
