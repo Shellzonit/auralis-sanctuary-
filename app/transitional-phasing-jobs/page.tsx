@@ -117,4 +117,3 @@ export default function TransitionalPhasingJobs() {
             </tr>
           </tbody>
         </table>
-// ...all unreachable legacy code removed. Only the new minimal layout remains above.
