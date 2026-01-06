@@ -41,10 +41,20 @@ export default function MrNannyResumeChat() {
         lower.includes("interview") &&
         (lower.includes("wear") || lower.includes("dress"))
       ) {
-        if (
-          lower.includes("google")
-        ) {
+        if (lower.includes("google")) {
           reply = `For a Google interview, business casual is ideal. Google is known for a relaxed but professional culture.\n\nFor men: A collared shirt (button-down or polo), dress pants or chinos, and clean shoes. No need for a tie or suit unless you feel most comfortable that way.\n\nFor women: A blouse or smart top, dress pants or a modest skirt, and comfortable, clean shoes.\n\nAvoid overly formal attire, but also avoid jeans, shorts, or t-shirts. Aim for neat, comfortable, and confident. Good luck!`;
+        } else if (
+          lower.includes("ai company") || lower.includes("artificial intelligence")
+        ) {
+          reply = `For an interview at an AI or tech company, business casual is usually best.\n\nFor men: A collared shirt (button-down or polo), dress pants or chinos, and clean shoes. A blazer is optional.\n\nFor women: A blouse or smart top, dress pants or a modest skirt, and comfortable, clean shoes.\n\nTech and AI companies often value comfort and individuality, so you can add a subtle personal touch, but keep it neat and professional.`;
+        } else if (
+          lower.includes("sales company") || lower.includes("sales job") || lower.includes("sales position")
+        ) {
+          reply = `For a sales company or sales job interview, dress to impress!\n\nFor men: A suit or blazer with a collared shirt and tie, dress pants, and polished shoes.\n\nFor women: A business suit, dress, or blouse with a blazer, dress pants or skirt, and professional shoes.\n\nSales roles are often client-facing, so looking sharp and confident is key. Choose classic, professional colors and avoid anything too flashy.`;
+        } else if (
+          lower.includes("blue collar") || lower.includes("warehouse") || lower.includes("manufacturing") || lower.includes("construction")
+        ) {
+          reply = `For a blue collar, warehouse, manufacturing, or construction interview, aim for clean, neat, and practical business casual.\n\nFor men: A collared shirt or polo, clean pants (khakis or dress pants), and closed-toe shoes or boots.\n\nFor women: A blouse or smart top, clean pants or a modest skirt, and closed-toe shoes.\n\nAvoid jeans, t-shirts, or work boots unless specifically told otherwise. Show you take the opportunity seriously by dressing up a bit more than the daily work attire.`;
         } else if (
           lower.includes("pet") || lower.includes("dog food") || lower.includes("mid west american pet food")
         ) {
