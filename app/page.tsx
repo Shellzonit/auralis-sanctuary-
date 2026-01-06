@@ -2,9 +2,6 @@
 
 
 import Link from "next/link";
-import dynamic from "next/dynamic";
-// Dynamically import LargeThreadedChat to avoid SSR issues
-const LargeThreadedChat = dynamic(() => import("../components/LargeThreadedChat"), { ssr: false });
 
 // Import Next.js Image component
 import React from 'react';
@@ -284,10 +281,6 @@ export default function HomePage() {
         <span style={{ color: '#7b2ff2', fontWeight: 600 }}>{t[lang].privacy}</span>
         <br /><br />
         <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>{t[lang].chat}</Link>
-      </section>
-      {/* Realtime Chat Section */}
-      <section style={{ width: '100%', margin: '2rem 0' }}>
-        <LargeThreadedChat />
       </section>
     </main>
   );
