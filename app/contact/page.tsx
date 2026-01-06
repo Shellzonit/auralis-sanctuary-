@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function ContactPage() {
   const [form, setForm] = React.useState({ name: "", email: "", message: "" });
   const [status, setStatus] = React.useState("");
