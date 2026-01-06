@@ -120,7 +120,6 @@ export default function HomePage() {
           { label: 'About', href: '/about' },
           { label: 'Contact', href: '/contact' },
           { label: 'AI Jobs', href: '/new-ai-jobs' },
-          { label: 'Transitional Jobs', href: '/transitional-phasing-jobs' },
           { label: 'Recovery Hub', href: '/recovery' },
           { label: 'Hiring Event', href: '/hiring-events' },
           { label: 'Training', href: '/training' },
