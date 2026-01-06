@@ -90,26 +90,25 @@ export default function StateJobsPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#7b2c2c",
+        background: "#f5f3fd",
         fontFamily: "Inter, Arial, sans-serif",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         padding: "0 1rem",
-        border: '3px solid #18191a', // black border
-        borderRadius: 24,
-        boxSizing: 'border-box',
       }}
     >
       {/* Jobs at Risk Tab Button in Corner */}
-      <a href="/jobs-at-risk" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#C2A86C', color: '#232526', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #C2A86C55', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#C2A86C';e.currentTarget.style.color='#232526';}}>Jobs at Risk &rarr;</a>
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
-        <span style={{ color: '#ffd700' }}>State AI Job Transitions</span>
-      </h1>
-      {/* State Image for AI in States */}
-      <div style={{ display: 'flex', gap: 32, marginBottom: 32, flexWrap: 'wrap', justifyContent: 'center' }}>
-        <img src="/states.png" alt="States" width={420} height={260} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
-      </div>
+      <section style={{ width: '100%', maxWidth: 900, margin: '3rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 24, boxShadow: '0 4px 32px #18191a22', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <a href="/jobs-at-risk" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#C2A86C', color: '#232526', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #C2A86C55', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#C2A86C';e.currentTarget.style.color='#232526';}}>Jobs at Risk &rarr;</a>
+        <h1 style={{ color: 'rgba(255,255,255,0.97)', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.18, paddingBottom: '0.18em' }}>State AI Job Transitions</h1>
+        <div style={{ color: '#ece9fc', fontSize: '1.15rem', fontWeight: 500, marginTop: 10, textAlign: 'center', maxWidth: 500, textShadow: '0 1px 6px #18191a55' }}>
+          Explore how AI is impacting jobs in each state. Select a state to view city-level data, affected industries, and resources for transition.
+        </div>
+        <div style={{ display: 'flex', gap: 32, margin: '32px 0 0 0', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <img src="/states.png" alt="States" width={420} height={260} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+        </div>
+      </section>
       <nav style={{ display: "flex", gap: 18, flexWrap: "wrap", marginBottom: 40, justifyContent: 'center' }}>
         {STATES.map((state) => (
           <button
