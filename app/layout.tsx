@@ -41,22 +41,12 @@ export const metadata: Metadata = {
   }
 };
 
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        {/* Twitter Card meta tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="AI Wilding" />
-        <meta name="twitter:description" content="A mythic, minimalist creative sanctuary for AI jobs, creativity, and community." />
-        <meta name="twitter:image" content="https://www.AIWilding.com/BCO.436bd64f-0acc-4437-a5c3-15269bfdf309.png" />
-        {/* Open Graph meta tags */}
-        <meta property="og:title" content="AI Wilding" />
-        <meta property="og:description" content="A mythic, minimalist creative sanctuary for AI jobs, creativity, and community." />
-        <meta property="og:image" content="https://www.AIWilding.com/BCO.436bd64f-0acc-4437-a5c3-15269bfdf309.png" />
-        <meta property="og:url" content="https://www.AIWilding.com/" />
-        <meta property="og:type" content="website" />
-      </head>
-      <body
+    <>
+      <NavBar />
+      <div
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         style={{
           position: "relative",
@@ -64,38 +54,33 @@ export const metadata: Metadata = {
           background: "#fff",
           color: "#18191a",
           fontFamily: "Inter, Arial, sans-serif",
-        }}
-      >
-        <NavBar />
-        <div style={{
           maxWidth: 1200,
           margin: "0 auto",
-          boxShadow: "0 2px 32px #ffd70022",
+          boxShadow: "0 2px 32px #7b2ff222",
           borderRadius: 18,
-          background: "#fff",
           padding: "0 0 24px 0",
-        }}>
-          {children}
-        </div>
-        <footer
-          style={{
-            width: '100%',
-            background: 'linear-gradient(90deg, #ffd700 0%, #18191a 100%)',
-            color: '#fff',
-            textAlign: 'center',
-            fontSize: '1.08rem',
-            padding: '22px 0 18px 0',
-            marginTop: 48,
-            letterSpacing: 0.2,
-            fontWeight: 500,
-            position: 'relative',
-            zIndex: 10,
-            boxShadow: '0 -2px 16px #ffd70044',
-          }}
-        >
-          Built with <span style={{ color: '#ffd700', fontWeight: 700 }}>Next.js</span>, <span style={{ color: '#ffd700', fontWeight: 700 }}>React</span>, and <span style={{ color: '#ffd700', fontWeight: 700 }}>Python/Flask</span>. All sensitive information is encrypted and your privacy is always respected.
-        </footer>
-      </body>
-    </html>
+        }}
+      >
+        {children}
+      </div>
+      <footer
+        style={{
+          width: '100%',
+          background: 'linear-gradient(90deg, #7b2ff2 0%, #18191a 100%)',
+          color: '#fff',
+          textAlign: 'center',
+          fontSize: '1.08rem',
+          padding: '22px 0 18px 0',
+          marginTop: 48,
+          letterSpacing: 0.2,
+          fontWeight: 500,
+          position: 'relative',
+          zIndex: 10,
+          boxShadow: '0 -2px 16px #7b2ff244',
+        }}
+      >
+        Built with <span style={{ color: '#7b2ff2', fontWeight: 700 }}>Next.js</span>, <span style={{ color: '#7b2ff2', fontWeight: 700 }}>React</span>, and <span style={{ color: '#7b2ff2', fontWeight: 700 }}>Python/Flask</span>. All sensitive information is encrypted and your privacy is always respected.
+      </footer>
+    </>
   );
 }
