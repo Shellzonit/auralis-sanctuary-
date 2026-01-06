@@ -45,7 +45,7 @@
         <a-text id="welcome-text" value="Welcome! Ready for your mock interview?\nType your answer below or use the command bar!" align="center" color="#7b2ff2" position="0 2.3 -1.5" width="5"></a-text>
         <a-text id="question-text" value="" align="center" color="#232526" position="0 1.7 -1.5" width="4"></a-text>
         <a-text id="timer-text" value="" align="center" color="#7b2ff2" position="0 2.1 -1.5" width="2"></a-text>
-        <a-text id="feedback-text" value="" align="center" color="#bba6f7" position="0 1.3 -1.5" width="4"></a-text>
+        <a-text id="feedback-text" value="" align="center" color="#bba6f7" position="0 2.05 -1.5" width="4"></a-text>
         <a-text id="training-text" value="" align="center" color="#7b2ff2" position="0 0.9 -1.5" width="4"></a-text>
           <!-- User answer display -->
           <a-text id="user-answer-text" value="" align="center" color="#232526" position="0 0.5 -1.5" width="4"></a-text>
@@ -258,8 +258,29 @@
           }
           userAnswers[current] = answer;
           userAnswerText.setAttribute('value', 'Your answer: ' + answer);
-          // Friendly AI feedback after each answer
-          feedbackText.setAttribute('value', 'AI: ' + feedbacks[current] + '\nThanks for sharing!');
+          // Randomized good/bad feedback
+          const goodFeedbacks = [
+            'Great answer!',
+            'Nice job!',
+            'Well said!',
+            'Strong response!',
+            'Impressive!'
+          ];
+          const badFeedbacks = [
+            'Consider giving more detail.',
+            'Try to be more specific.',
+            'You can improve this answer.',
+            'Think about using examples.',
+            'Try to relate your answer to the job.'
+          ];
+          // Simple check: if answer is short, give improvement tip
+          let aiEval = '';
+          if (answer.length > 40) {
+            aiEval = goodFeedbacks[Math.floor(Math.random() * goodFeedbacks.length)];
+          } else {
+            aiEval = badFeedbacks[Math.floor(Math.random() * badFeedbacks.length)];
+          }
+          feedbackText.setAttribute('value', aiEval + '\nTip: ' + feedbacks[current]);
           answerInput.value = '';
           if (current < questions.length - 1) {
             answerFeedback.textContent = 'Ready for the next question?';
@@ -267,12 +288,12 @@
               window.nextQuestion();
               answerFeedback.textContent = '';
               feedbackText.setAttribute('value', '');
-            }, 2200);
+            }, 2600);
           } else {
             // Show summary at the end
             answerFeedback.textContent = 'Great job! You have completed the mock interview.';
             document.getElementById('welcome-text').setAttribute('value', 'Congratulations! You finished the interview!');
-            setTimeout(() => showSummary(), 1800);
+            setTimeout(() => showSummary(), 2000);
           }
         }
 
