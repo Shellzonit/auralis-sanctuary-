@@ -22,8 +22,19 @@ export default function MrNannyResumeChat() {
   const [replyTo, setReplyTo] = useState<number | null>(null);
   const nextId = useRef(1);
 
-  // ...existing code...
-
+  function handleSend(e: React.FormEvent) {
+    e.preventDefault();
+    const userMsg: Message = {
+      id: nextId.current++,
+      from: "You",
+      text: input,
+      parentId: replyTo !== null ? replyTo : undefined,
+    };
+    setMessages((msgs) => [...msgs, userMsg]);
+    setInput("");
+    setTimeout(() => {
+      const lower = userMsg.text.toLowerCase();
+      let reply = "";
       if (
         lower.includes("interview") &&
         (lower.includes("wear") || lower.includes("dress"))
@@ -58,14 +69,16 @@ export default function MrNannyResumeChat() {
           reply = `Company culture can vary, but most organizations value teamwork, communication, and a positive attitude. If you have a specific company in mind, I can try to provide more details. Otherwise, it's always a good idea to research the company's website, social media, and employee reviews for insights into their work environment and values.`;
         }
       }
-      const botReply = {
-        id: nextId.current++,
-        from: "Mr. Job Nanny",
-        text: reply,
-        parentId: userMsg.id,
-      };
-      setMessages((msgs) => [...msgs, botReply]);
-      setReplyTo(null);
+      if (reply) {
+        const botReply = {
+          id: nextId.current++,
+          from: "Mr. Job Nanny",
+          text: reply,
+          parentId: userMsg.id,
+        };
+        setMessages((msgs) => [...msgs, botReply]);
+        setReplyTo(null);
+      }
     }, 700);
   }
 
