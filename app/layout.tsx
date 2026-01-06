@@ -106,10 +106,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           {children}
         </main>
-        <SiteFooter />
-        <footer style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontSize: '0.95rem', marginTop: 16, marginBottom: 8 }}>
-          <a href="/privacy/policy.md" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>Privacy Policy</a>
-        </footer>
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: 24, marginBottom: 8 }}>
+          <div style={{ width: '100%', maxWidth: 900, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <SiteFooter />
+            <footer style={{ width: '100%', textAlign: 'center', fontSize: '0.95rem', marginTop: 8 }}>
+              <a href="/privacy/policy.md" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>Privacy Policy</a>
+            </footer>
+          </div>
+        </div>
       </body>
     </html>
   );

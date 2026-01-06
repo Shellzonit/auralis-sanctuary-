@@ -1,6 +1,68 @@
-// ...existing code...
+import React, { useState } from "react";
+
+const jobCategories = [
+  {
+    category: "Customer Service & Admin",
+    jobs: [
+      { regular: "Customer Service Rep", ai: "Conversational AI Trainer" },
+      { regular: "Administrative Assistant", ai: "AI Workflow Coordinator" },
+      { regular: "Telemarketer", ai: "AI Outreach Specialist" },
+    ],
+  },
+  {
+    category: "Data & Finance",
+    jobs: [
+      { regular: "Data Entry Clerk", ai: "AI Data Annotator" },
+      { regular: "Bookkeeper", ai: "AI Financial Data Analyst" },
+    ],
+  },
+  {
+    category: "Creative & Media",
+    jobs: [
+      { regular: "Freelance Writer", ai: "AI Content Curator/Prompt Designer" },
+      { regular: "Graphic Designer", ai: "AI Visual Model Trainer" },
+      { regular: "Journalist", ai: "AI News Curator/Fact Checker" },
+    ],
+  },
+  {
+    category: "Legal & Medical",
+    jobs: [
+      { regular: "Legal Secretary", ai: "AI Legal Data Specialist" },
+      { regular: "Medical Transcriptionist", ai: "AI Medical Data Annotator" },
+    ],
+  },
+  {
+    category: "Other Fields",
+    jobs: [
+      { regular: "Retail Associate", ai: "AI Retail Assistant" },
+      { regular: "Truck Driver", ai: "Autonomous Vehicle Operator" },
+    ],
+  },
+];
+
+function Accordion({ title, children, open, onClick }: { title: string; children: React.ReactNode; open: boolean; onClick: () => void }) {
+  return (
+    <div className="mb-4 rounded-xl border border-[#e0d6f7] bg-white shadow-md">
+      <button
+        className="w-full flex justify-between items-center px-6 py-4 text-xl font-semibold text-left text-[#7b2ff2] focus:outline-none focus:ring-2 focus:ring-[#7b2ff2] rounded-xl transition-colors hover:bg-[#f5f3fd]"
+        onClick={onClick}
+        aria-expanded={open}
+      >
+        <span>{title}</span>
+        <span className="ml-2 text-2xl">{open ? "−" : "+"}</span>
+      </button>
+      {open && (
+        <div className="px-6 pb-6 pt-2">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function TransitionalPhasingJobs() {
-// ...existing code...
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   return (
     <main style={{ minHeight: '100vh', background: '#f5f3fd', width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
       <section style={{ width: '100%', maxWidth: 900, margin: '2.5rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 28, boxShadow: '0 4px 32px #18191a22', padding: '2.5rem 0 2.5rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
@@ -9,50 +71,35 @@ export default function TransitionalPhasingJobs() {
           Explore how traditional roles are evolving and what equivalent experience looks like in the AI era.
         </div>
       </section>
-      <p className="max-w-2xl text-center text-lg md:text-xl mb-10" style={{ color: '#ffe082', opacity: 0.92 }}>
-        Explore how traditional roles are evolving and what equivalent experience looks like in the AI era.
-      </p>
-      {/* Jobs at Risk Section - Grouped by Category */}
       <div className="w-full flex justify-center">
-        <div className="w-full max-w-3xl rounded-xl shadow-lg p-8 border mb-12" style={{ background: '#fff', borderColor: '#e0d6f7', fontFamily: 'Arial, Verdana, system-ui, sans-serif', color: '#18191a', boxShadow: '0 2px 16px #18191a22' }}>
-        <h2 className="text-2xl font-semibold mb-6 text-center" style={{ color: '#7b2ff2', fontFamily: 'Arial, Verdana, system-ui, sans-serif' }}>Jobs at Risk (Grouped by Field)</h2>
-        <div style={{ marginBottom: 24 }}>
-          <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 8 }}>Customer Service & Admin</h3>
-          <ul className="list-disc pl-6 text-lg space-y-2">
-            <li>Customer Service Rep → <a href="#ai-customer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">Conversational AI Trainer</a></li>
-            <li>Administrative Assistant → <a href="#ai-admin" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Workflow Coordinator</a></li>
-            <li>Telemarketer → <a href="#ai-telemarketer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Outreach Specialist</a></li>
-          </ul>
-        </div>
-        <div style={{ marginBottom: 24 }}>
-          <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 8 }}>Data & Finance</h3>
-          <ul className="list-disc pl-6 text-lg space-y-2">
-            <li>Data Entry Clerk → <a href="#ai-data" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Data Annotator</a></li>
-            <li>Bookkeeper → <a href="#ai-bookkeeper" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Financial Data Analyst</a></li>
-          </ul>
-        </div>
-        <div style={{ marginBottom: 24 }}>
-          <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 8 }}>Creative & Media</h3>
-          <ul className="list-disc pl-6 text-lg space-y-2">
-            <li>Freelance Writer → <a href="#ai-writer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Content Curator/Prompt Designer</a></li>
-            <li>Graphic Designer → <a href="#ai-graphic" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Visual Model Trainer</a></li>
-            <li>Journalist → <a href="#ai-journalist" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI News Curator/Fact Checker</a></li>
-          </ul>
-        </div>
-        <div style={{ marginBottom: 24 }}>
-          <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 8 }}>Legal & Medical</h3>
-          <ul className="list-disc pl-6 text-lg space-y-2">
-            <li>Legal Secretary → <a href="#ai-legal" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Legal Data Specialist</a></li>
-            <li>Medical Transcriptionist → <a href="#ai-medical" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Medical Data Annotator</a></li>
-          </ul>
-        </div>
-        <div style={{ marginBottom: 8 }}>
-          <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 8 }}>Other Fields</h3>
-          <ul className="list-disc pl-6 text-lg space-y-2">
-            <li>Retail Associate → <a href="#ai-retail" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Retail Assistant</a></li>
-            <li>Truck Driver → <a href="#ai-driver" className="text-amber-300 underline hover:text-yellow-400 transition-colors">Autonomous Vehicle Operator</a></li>
-          </ul>
-        </div>
+        <div className="w-full max-w-3xl">
+          {jobCategories.map((cat, idx) => (
+            <Accordion
+              key={cat.category}
+              title={cat.category}
+              open={openIndex === idx}
+              onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h4 className="text-lg font-bold mb-2 text-[#7b2ff2]">Traditional Job</h4>
+                  <ul className="space-y-2">
+                    {cat.jobs.map((job, i) => (
+                      <li key={i} className="bg-[#f5f3fd] rounded px-3 py-2 border border-[#e0d6f7]">{job.regular}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold mb-2 text-[#7b2ff2]">AI Job Equivalent</h4>
+                  <ul className="space-y-2">
+                    {cat.jobs.map((job, i) => (
+                      <li key={i} className="bg-[#e0d6f7] rounded px-3 py-2 border border-[#7b2ff2]">{job.ai}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Accordion>
+          ))}
         </div>
       </div>
       <div className="w-full max-w-3xl rounded-xl shadow-lg p-8 border mb-12" style={{ background: '#fff', borderColor: '#e0d6f7', fontFamily: 'Arial, Verdana, system-ui, sans-serif', color: '#18191a', boxShadow: '0 2px 16px #18191a22' }}>
