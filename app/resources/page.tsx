@@ -11,7 +11,42 @@ export default function ResourcesPage() {
         </div>
       </section>
       <section style={{ background: '#fff', borderRadius: 16, padding: '32px 40px', maxWidth: 900, margin: '0 auto 48px auto', boxShadow: '0 2px 16px #18191a22', color: '#18191a', textAlign: 'center', fontSize: '1.12rem', lineHeight: 1.7, border: '1.5px solid #e0d6f7' }}>
-        {/* Add your resource sections here, following the new style. */}
+        <h2 style={{ color: '#7b2ff2', fontSize: '1.3rem', marginBottom: 18 }}>AI Learning & Upskilling</h2>
+        <ul style={{ textAlign: 'left', margin: '0 auto 24px auto', maxWidth: 600, paddingLeft: 0, listStyle: 'none' }}>
+          <li style={{ marginBottom: 12 }}>
+            <a href="https://www.coursera.org/collections/ai-reskilling" target="_blank" rel="noopener noreferrer" style={{ color: '#7b9fff', fontWeight: 600 }}>AI Reskilling Programs (Coursera)</a> – Free and paid courses for AI skills.
+          </li>
+          <li style={{ marginBottom: 12 }}>
+            <a href="https://www.edx.org/learn/retraining" target="_blank" rel="noopener noreferrer" style={{ color: '#7b9fff', fontWeight: 600 }}>Workforce Retraining (edX)</a> – Upskill for new tech careers.
+          </li>
+          <li style={{ marginBottom: 12 }}>
+            <a href="https://www.elementsofai.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b9fff', fontWeight: 600 }}>Elements of AI</a> – Free, beginner-friendly AI course.
+          </li>
+        </ul>
+        <h2 style={{ color: '#7b2ff2', fontSize: '1.3rem', marginBottom: 18 }}>AI Tools & Platforms</h2>
+        <ul style={{ textAlign: 'left', margin: '0 auto 24px auto', maxWidth: 600, paddingLeft: 0, listStyle: 'none' }}>
+          <li style={{ marginBottom: 12 }}>
+            <a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b9fff', fontWeight: 600 }}>ChatGPT (OpenAI)</a> – AI-powered chat and writing assistant.
+          </li>
+          <li style={{ marginBottom: 12 }}>
+            <a href="https://www.copy.ai/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b9fff', fontWeight: 600 }}>Copy.ai</a> – AI content and copywriting tool.
+          </li>
+          <li style={{ marginBottom: 12 }}>
+            <a href="https://www.canva.com/ai/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b9fff', fontWeight: 600 }}>Canva AI</a> – AI-powered design tools.
+          </li>
+        </ul>
+        <h2 style={{ color: '#7b2ff2', fontSize: '1.3rem', marginBottom: 18 }}>AI Communities & Support</h2>
+        <ul style={{ textAlign: 'left', margin: '0 auto 24px auto', maxWidth: 600, paddingLeft: 0, listStyle: 'none' }}>
+          <li style={{ marginBottom: 12 }}>
+            <a href="https://www.reddit.com/r/MachineLearning/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b9fff', fontWeight: 600 }}>Reddit: r/MachineLearning</a> – Community for AI news and discussion.
+          </li>
+          <li style={{ marginBottom: 12 }}>
+            <a href="https://discord.com/invite/ai" target="_blank" rel="noopener noreferrer" style={{ color: '#7b9fff', fontWeight: 600 }}>AI Discord Community</a> – Chat and learn with others interested in AI.
+          </li>
+          <li style={{ marginBottom: 12 }}>
+            <a href="https://mhanational.org/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b9fff', fontWeight: 600 }}>Mental Health Support (Mental Health America)</a> – Wellbeing resources for career change.
+          </li>
+        </ul>
       </section>
     </main>
   );
