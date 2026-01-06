@@ -22,42 +22,7 @@ export default function MrNannyResumeChat() {
   const [replyTo, setReplyTo] = useState<number | null>(null);
   const nextId = useRef(1);
 
-  function handleSend(e: React.FormEvent) {
-                    // Resume grading logic
-                    if (
-                      lower.startsWith("grade my resume") ||
-                      lower.startsWith("review my resume") ||
-                      lower.startsWith("score my resume") ||
-                      lower.startsWith("how good is my resume") ||
-                      lower.startsWith("rate my resume")
-                    ) {
-                      // Extract resume text (after the command)
-                      const resumeText = userMsg.text.replace(/^(grade|review|score|how good is|rate) my resume:?/i, '').trim();
-                      let feedback = [];
-                      let score = 100;
-                      // Simple rule-based checks
-                      if (!resumeText.match(/\bexperience\b/i)) { feedback.push("Missing 'Experience' section."); score -= 20; }
-                      if (!resumeText.match(/\beducation\b/i)) { feedback.push("Missing 'Education' section."); score -= 20; }
-                      if (!resumeText.match(/\bskills\b/i)) { feedback.push("Missing 'Skills' section."); score -= 15; }
-                      if (!resumeText.match(/\bsummary\b|objective/i)) { feedback.push("Missing 'Summary' or 'Objective' section."); score -= 10; }
-                      if (resumeText.length < 400) { feedback.push("Resume is very short. Add more detail to each section."); score -= 10; }
-                      if (/responsible for|duties included|tasked with/i.test(resumeText)) { feedback.push("Use strong action verbs (e.g., 'led', 'created', 'improved') instead of 'responsible for'."); score -= 5; }
-                      if (!resumeText.match(/\d{4}/)) { feedback.push("Add years for jobs and education (e.g., 2022)."); score -= 5; }
-                      if (score > 90) feedback.push("Great job! Your resume covers all the basics.");
-                      if (score > 70 && score <= 90) feedback.push("Solid resume, but a few improvements could help.");
-                      if (score <= 70) feedback.push("Consider adding more detail and structure for a stronger resume.");
-                      reply = `Resume Score: ${score}/100\n\nFeedback:\n- ${feedback.join("\n- ")}`;
-                    }
-                if (
-                  (lower.includes("ai companies") || lower.includes("ai employers") || lower.includes("ai company") || lower.includes("ai labs")) &&
-                  (lower.includes("uk") || lower.includes("united kingdom"))
-                ) {
-                  reply = `Major AI companies in the UK include:\n- DeepMind (Google)\n- BenevolentAI\n- Babylon Health\n- Graphcore\n- Darktrace\n- Faculty\n- Oxbotica\n- FiveAI\n- Mind Foundry\n- Many startups in London and Cambridge`;
-                } else if (
-                  (lower.includes("ai companies") || lower.includes("ai employers") || lower.includes("ai company") || lower.includes("ai labs")) &&
-                  lower.includes("japan")
-                ) {
-                  reply = `Major AI companies in Japan include:\n- Sony AI\n- Hitachi\n- SoftBank Robotics\n- Preferred Networks\n- NEC\n- Fujitsu\n- Panasonic\n- Cyberdyne\n- Startups in Tokyo and Osaka`;
+  // ...existing code...
                 } else if (
                   (lower.includes("ai companies") || lower.includes("ai employers") || lower.includes("ai company") || lower.includes("ai labs")) &&
                   lower.includes("canada")
@@ -89,12 +54,17 @@ export default function MrNannyResumeChat() {
       // Custom logic for interview attire questions
       const lower = userMsg.text.toLowerCase();
       let reply = "Thanks for sharing! What else would you like to add to your resume? (e.g., skills, education, or ask for a summary)";
+
       if (
         lower.includes("interview") &&
         (lower.includes("wear") || lower.includes("dress"))
-      if (
+      ) {
+        reply = `For most interviews, business casual is a safe choice.\n\nFor men: A collared shirt, dress pants or khakis, and clean shoes. A blazer is optional.\n\nFor women: A blouse or smart top, dress pants or a modest skirt, and closed-toe shoes.\n\nIf you know the company is more formal, you can dress up a bit more. If it's a startup or creative company, you can be slightly more relaxed, but always look neat and professional.`;
+      } else if (
         lower.includes("ai job openings") || lower.includes("ai jobs available") || lower.includes("open ai jobs") || lower.includes("ai job board") || lower.includes("find ai jobs")
-      if (
+      ) {
+        reply = `Here are some ways to find current AI job openings:\n\n- Visit the AI Jobs or New AI Jobs section on this site for curated listings.\n- Check major job boards like LinkedIn, Indeed, and Glassdoor—search for 'AI', 'machine learning', 'data science', or 'artificial intelligence'.\n- Explore company career pages for top AI employers (Google, OpenAI, Microsoft, Meta, Amazon, NVIDIA, etc.).\n- Network in AI communities and attend virtual hiring events.\n\nLet me know if you want help with your resume or want to practice for a specific AI job!`;
+      } else if (
         (lower.includes("pay") || lower.includes("salary") || lower.includes("compensation")) && (lower.includes("ai job") || lower.includes("ai company") || lower.includes("artificial intelligence") || lower.includes("data science") || lower.includes("machine learning"))
       ) {
         reply = `Pay for AI jobs can vary widely based on role, experience, and location. Entry-level AI roles (like AI analyst or junior data scientist) often start around $70,000–$100,000/year in the US. Experienced AI engineers, data scientists, and researchers can earn $120,000–$200,000+ at top companies. Specialized roles (like AI research or leadership) may pay even more.\n\nFor the most accurate info, check job postings or salary sites like Glassdoor, Levels.fyi, or LinkedIn Salaries.`;
@@ -103,24 +73,16 @@ export default function MrNannyResumeChat() {
       ) {
         reply = `Turnover rates in AI and tech can be higher than average, especially in fast-paced startups or highly competitive companies. Many professionals move for better pay, new challenges, or career growth. However, top AI companies often offer strong benefits and career paths to retain talent.\n\nIf you want specifics for a company, check employee reviews on Glassdoor or Blind, or ask about retention during your interview!`;
       } else if (
-        lower.includes("ai job openings") || lower.includes("ai jobs available") || lower.includes("open ai jobs") || lower.includes("ai job board") || lower.includes("find ai jobs")
+        lower.includes("blue collar") || lower.includes("warehouse") || lower.includes("manufacturing") || lower.includes("construction")
       ) {
-        reply = `Here are some ways to find current AI job openings:\n\n- Visit the AI Jobs or New AI Jobs section on this site for curated listings.\n- Check major job boards like LinkedIn, Indeed, and Glassdoor—search for 'AI', 'machine learning', 'data science', or 'artificial intelligence'.\n- Explore company career pages for top AI employers (Google, OpenAI, Microsoft, Meta, Amazon, NVIDIA, etc.).\n- Network in AI communities and attend virtual hiring events.\n\nLet me know if you want help with your resume or want to practice for a specific AI job!`;
+        reply = `For a blue collar, warehouse, manufacturing, or construction interview, aim for clean, neat, and practical business casual.\n\nFor men: A collared shirt or polo, clean pants (khakis or dress pants), and closed-toe shoes or boots.\n\nFor women: A blouse or smart top, clean pants or a modest skirt, and closed-toe shoes.\n\nAvoid jeans, t-shirts, or work boots unless specifically told otherwise. Show you take the opportunity seriously by dressing up a bit more than the daily work attire.`;
       } else if (
-          lower.includes("blue collar") || lower.includes("warehouse") || lower.includes("manufacturing") || lower.includes("construction")
-        ) {
-          reply = `For a blue collar, warehouse, manufacturing, or construction interview, aim for clean, neat, and practical business casual.\n\nFor men: A collared shirt or polo, clean pants (khakis or dress pants), and closed-toe shoes or boots.\n\nFor women: A blouse or smart top, clean pants or a modest skirt, and closed-toe shoes.\n\nAvoid jeans, t-shirts, or work boots unless specifically told otherwise. Show you take the opportunity seriously by dressing up a bit more than the daily work attire.`;
-        } else if (
-          lower.includes("pet") || lower.includes("dog food") || lower.includes("mid west american pet food")
-        ) {
-          reply = `For an interview at a pet or dog food company like Mid West American Pet Food in Mt Pleasant, Texas, aim for business casual attire.\n\nFor men: A collared shirt (button-down or polo), dress pants or khakis, and clean shoes. A blazer is optional.\n\nFor women: A blouse or smart top, dress pants or a modest skirt, and closed-toe shoes.\n\nAvoid jeans, t-shirts, or anything too casual. Since it's a pet-related company, you can add a subtle touch (like a paw-print pin or animal-friendly accessory) if you wish, but keep it professional. Good luck!`;
-        } else {
-          reply = `For most interviews, business casual is a safe choice.\n\nFor men: A collared shirt, dress pants or khakis, and clean shoes. A blazer is optional.\n\nFor women: A blouse or smart top, dress pants or a modest skirt, and closed-toe shoes.\n\nIf you know the company is more formal, you can dress up a bit more. If it's a startup or creative company, you can be slightly more relaxed, but always look neat and professional.`;
-        }
-      } else if (
-        (lower.includes("company culture") || lower.includes("work culture") || lower.includes("what is it like to work at") || lower.includes("tell me about") && lower.includes("culture"))
+        lower.includes("pet") || lower.includes("dog food") || lower.includes("mid west american pet food")
       ) {
-        // Example: Add more companies as needed
+        reply = `For an interview at a pet or dog food company like Mid West American Pet Food in Mt Pleasant, Texas, aim for business casual attire.\n\nFor men: A collared shirt (button-down or polo), dress pants or khakis, and clean shoes. A blazer is optional.\n\nFor women: A blouse or smart top, dress pants or a modest skirt, and closed-toe shoes.\n\nAvoid jeans, t-shirts, or anything too casual. Since it's a pet-related company, you can add a subtle touch (like a paw-print pin or animal-friendly accessory) if you wish, but keep it professional. Good luck!`;
+      } else if (
+        (lower.includes("company culture") || lower.includes("work culture") || lower.includes("what is it like to work at") || (lower.includes("tell me about") && lower.includes("culture")))
+      ) {
         if (lower.includes("mid west american pet food")) {
           reply = `Mid West American Pet Food is known for its focus on quality pet nutrition and a friendly, community-oriented environment. Employees often describe the culture as supportive, with a strong emphasis on teamwork, safety, and animal welfare. As a company in the pet food industry, they value reliability, attention to detail, and a passion for pets. Expect a mix of professionalism and a genuine love for animals.`;
         } else {
