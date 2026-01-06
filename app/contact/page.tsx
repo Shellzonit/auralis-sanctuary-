@@ -74,27 +74,59 @@ export default function ContactPage() {
           zIndex: 2,
         }}
       >
-        {/* Simple Tabs */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }}>
-          {['Contact', 'About', 'Support'].map((tab, i) => (
+        {/* Pyramid Tabs */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24, gap: 0 }}>
+          {/* Top tab */}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div
-              key={tab}
               style={{
-                padding: '10px 32px',
-                borderRadius: '12px 12px 0 0',
-                background: i === 0 ? '#ece9fc' : 'transparent',
-                color: i === 0 ? '#7b2ff2' : '#18191a',
-                fontWeight: i === 0 ? 700 : 500,
-                marginRight: i < 2 ? 8 : 0,
-                border: i === 0 ? '2px solid #7b2ff2' : '2px solid transparent',
-                cursor: 'pointer',
-                boxShadow: i === 0 ? '0 2px 8px #7b2ff222' : undefined,
-                transition: 'all 0.2s',
+                padding: '12px 48px',
+                borderRadius: '16px 16px 0 0',
+                background: '#ece9fc',
+                color: '#7b2ff2',
+                fontWeight: 700,
+                border: '2px solid #7b2ff2',
+                boxShadow: '0 2px 8px #7b2ff222',
+                fontSize: '1.25rem',
+                marginBottom: -8,
+                zIndex: 3,
+                position: 'relative',
               }}
             >
-              {tab}
+              Contact
             </div>
-          ))}
+          </div>
+          {/* Middle row */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginBottom: -8, zIndex: 2, position: 'relative' }}>
+            <div
+              style={{
+                padding: '10px 36px',
+                borderRadius: '14px 14px 0 0',
+                background: '#f5f3fd',
+                color: '#7b2ff2',
+                fontWeight: 600,
+                border: '2px solid #bba6f7',
+                boxShadow: '0 2px 6px #7b2ff211',
+                fontSize: '1.1rem',
+              }}
+            >
+              About
+            </div>
+            <div
+              style={{
+                padding: '10px 36px',
+                borderRadius: '14px 14px 0 0',
+                background: '#f5f3fd',
+                color: '#7b2ff2',
+                fontWeight: 600,
+                border: '2px solid #bba6f7',
+                boxShadow: '0 2px 6px #7b2ff211',
+                fontSize: '1.1rem',
+              }}
+            >
+              Support
+            </div>
+          </div>
         </div>
         {/* Random Image from public/ */}
         <div style={{ margin: '24px 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
