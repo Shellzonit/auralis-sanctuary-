@@ -1,29 +1,13 @@
 export default function ContactPage() {
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        width: '100vw',
-        backgroundImage: "url('/background.png')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: '8vh',
-      }}
-    >
       <div
         style={{
-          width: '90vw',
-          maxWidth: 1200,
-          margin: '0 auto 2.5rem auto',
+          width: '100vw',
+          margin: '0 0 2.5rem 0',
           background: 'linear-gradient(90deg, #ffd700 0%, #18191a 100%)',
           borderRadius: 24,
           boxShadow: '0 4px 32px #18191a88',
-          padding: '1.5rem 2vw',
+          padding: '1.5rem 0',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -32,8 +16,25 @@ export default function ContactPage() {
         <h1
           style={{
             color: '#18191a',
-            fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+            fontSize: 'clamp(3.5rem, 12vw, 8rem)',
             fontWeight: 900,
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            textShadow: '0 2px 24px #ffd70088, 0 0 8px #000',
+            width: '100vw',
+            textAlign: 'center',
+            margin: 0,
+            background: 'linear-gradient(90deg, #ffd700 60%, #fff 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          AI wilding
+        </h1>
+      </div>
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
             textShadow: '0 2px 24px #ffd70088, 0 0 8px #000',
