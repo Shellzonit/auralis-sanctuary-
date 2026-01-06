@@ -1,64 +1,14 @@
 // ...existing code...
 export default function TransitionalPhasingJobs() {
 // ...existing code...
-  const tabs = [
-    { label: "Home", href: "/" },
-    { label: "Showcase", href: "/showcase" },
-    { label: "Email", href: "/email" },
-    { label: "Spotlight", href: "/spotlight" },
-    { label: "Sharing", href: "/sharing" },
-    { label: "About", href: "/about" },
-    { label: "Legacy", href: "/legacy" },
-    { label: "Privacy", href: "/privacy" },
-  ];
   return (
-    // ...existing code...
-    <main className="min-h-screen flex flex-col items-center justify-center bg-black text-yellow-300 px-6 py-16" style={{ background: '#0a0a0a' }}>
-      {/* Spotlight Section */}
-      <section className="w-full max-w-3xl rounded-2xl shadow-xl p-8 border-2 border-yellow-400 mb-12 mt-4 bg-gradient-to-br from-yellow-900/80 to-yellow-700/40 flex flex-col items-center" style={{ color: '#ffe082', boxShadow: '0 4px 32px #000a' }}>
-        <h2 className="text-3xl font-extrabold mb-4 text-center tracking-wide" style={{ color: '#ffd700', textShadow: '0 2px 16px #000a', letterSpacing: 1.2 }}>🌟 Featured This Week</h2>
-        <div className="w-full flex flex-col md:flex-row md:justify-center gap-6">
-          <div className="flex-1 bg-black/60 rounded-xl p-6 border border-yellow-700 flex flex-col items-center">
-            <span className="font-bold text-lg mb-2" style={{ color: '#ffe082' }}>Top Job: AI Data Annotator</span>
-            <span className="text-base mb-2">Labeling, dataset curation, prompt engineering</span>
-            <a href="#" className="text-amber-200 underline font-semibold hover:text-amber-300 transition-colors">See Openings</a>
-          </div>
-          <div className="flex-1 bg-black/60 rounded-xl p-6 border border-yellow-700 flex flex-col items-center">
-            <span className="font-bold text-lg mb-2" style={{ color: '#ffe082' }}>Contributor: Jane Doe</span>
-            <span className="text-base mb-2">Recognized for outstanding AI content curation</span>
-            <a href="#" className="text-amber-200 underline font-semibold hover:text-amber-300 transition-colors">View Profile</a>
-          </div>
+    <main style={{ minHeight: '100vh', background: '#f5f3fd', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
+      <section style={{ width: '100%', maxWidth: 700, margin: '3rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 24, boxShadow: '0 4px 32px #18191a22', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <h1 style={{ color: 'rgba(255,255,255,0.97)', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.18, paddingBottom: '0.18em' }}>Transitional Jobs</h1>
+        <div style={{ color: '#ece9fc', fontSize: '1.15rem', fontWeight: 500, marginTop: 10, textAlign: 'center', maxWidth: 500, textShadow: '0 1px 6px #18191a55' }}>
+          Explore how traditional roles are evolving and what equivalent experience looks like in the AI era.
         </div>
       </section>
-      <h1 className="text-5xl font-extrabold mb-4 text-center drop-shadow-lg" style={{ color: '#ffd700', letterSpacing: 1.5, textShadow: '0 2px 24px #000a' }}>
-        Transitional Phasing Jobs
-      </h1>
-      {/* Navigation Tabs */}
-      <nav style={{ width: "100%", display: "flex", justifyContent: "center", gap: 24, marginTop: 12, marginBottom: 32 }}>
-        {tabs.map(tab => (
-          <a
-            key={tab.href}
-            href={tab.href}
-            style={{
-              textDecoration: "none",
-              color: "#f7fafc",
-              background: "#23242b",
-              borderRadius: 18,
-              padding: "0.7rem 2.2rem",
-              fontWeight: 600,
-              fontSize: 18,
-              letterSpacing: ".04em",
-              border: "2px solid #31323a",
-              boxShadow: "0 2px 12px 0 #0006",
-              transition: "all .18s cubic-bezier(.4,0,.2,1)",
-              margin: 0,
-              display: "inline-block",
-            }}
-          >
-            {tab.label}
-          </a>
-        ))}
-      </nav>
       <p className="max-w-2xl text-center text-lg md:text-xl mb-10" style={{ color: '#ffe082', opacity: 0.92 }}>
         Explore how traditional roles are evolving and what equivalent experience looks like in the AI era.
       </p>
