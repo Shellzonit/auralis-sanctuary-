@@ -30,7 +30,7 @@ export default function SiteFooter() {
       alignItems: 'center',
       letterSpacing: '0.01em',
     }}>
-      <div style={{ width: '100%', maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem' }}>
+      <div style={{ width: '100%', maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem', boxSizing: 'border-box' }}>
       <div style={{
         width: '100%',
         display: 'flex',
