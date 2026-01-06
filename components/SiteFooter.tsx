@@ -18,18 +18,19 @@ export default function SiteFooter() {
   return (
     <footer style={{
       width: '100%',
-      background: '#7b2c2c',
+      background: '#7b2ff2',
       color: '#ffd700',
-      padding: '2.2rem 0 1.2rem 0',
       marginTop: 'auto',
+      borderTop: '3px solid #18191a',
+      boxShadow: '0 -2px 16px #18191a22',
+      fontFamily: 'Inter, Arial, sans-serif',
+      fontSize: '1rem',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      borderTop: '3px solid #18191a',
-      boxShadow: '0 -2px 16px #18191a22',
-      fontFamily: 'Inter, sans-serif',
-      fontSize: '1rem',
+      letterSpacing: '0.01em',
     }}>
+      <div style={{ width: '100%', maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem' }}>
       <div style={{
         width: '100%',
         display: 'flex',
@@ -42,20 +43,22 @@ export default function SiteFooter() {
           gap: '1.2rem',
           justifyContent: 'center',
           background: '#fff',
-          borderRadius: 16,
-          padding: '0.7rem 2rem',
-          boxShadow: '0 2px 12px #18191a22',
+          borderRadius: 18,
+          padding: '0.9rem 2.2rem',
+          boxShadow: '0 2px 16px #7b2ff222',
           border: '2px solid #ffd700',
+          alignItems: 'center',
         }}>
           {mainLinks.map(link => (
-            <Link key={link.name} href={link.href} style={{ color: '#7b2c2c', textDecoration: 'none', fontWeight: 700, letterSpacing: '0.04em', transition: 'color 0.2s', fontSize: '1.08rem' }}>
+            <Link key={link.name} href={link.href} style={{ color: '#7b2ff2', textDecoration: 'none', fontWeight: 700, letterSpacing: '0.04em', transition: 'color 0.2s', fontSize: '1.08rem', padding: '0.3rem 1.1rem', borderRadius: '8px' }}>
               {link.name}
             </Link>
           ))}
         </nav>
       </div>
-      <div style={{ marginTop: 6, fontSize: '0.95rem', color: '#ece9fc', opacity: 0.7 }}>
+      <div style={{ marginTop: 6, fontSize: '0.97rem', color: '#fff', opacity: 0.8, textAlign: 'center', fontWeight: 500, letterSpacing: '0.02em' }}>
         © {new Date().getFullYear()} Sanctuary. All rights reserved.
+      </div>
       </div>
     </footer>
   );
