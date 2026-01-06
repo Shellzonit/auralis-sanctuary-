@@ -108,11 +108,13 @@
       let userAnswers = [];
       // Default questions
       let questions = [
-        "Why should we hire you?",
-        "Tell me about a time you worked in a team.",
-        "How do you handle stress or pressure?",
-        "What motivates you?",
-        "Do you have any questions for us?"
+        "What interests you about working at Ai Wilding?",
+        "Describe a time you solved a problem using AI or technology.",
+        "How do you stay current with AI trends and tools?",
+        "What strengths would you bring to our team at Ai Wilding?",
+        "How do you handle feedback and learning in a fast-paced environment?",
+        "Why do you think you are a good fit for our company culture?",
+        "Do you have any questions about Ai Wilding or the role?"
       ];
       function renderQuestionList() {
         questionList.innerHTML = '';
@@ -164,6 +166,17 @@
           return;
         }
         userAnswers[interviewStep] = answer;
+        // Simple scoring: +1 for each answer that contains a relevant keyword
+        const keywords = [
+          'ai', 'technology', 'team', 'feedback', 'learn', 'culture', 'current', 'trend', 'strength', 'problem', 'solution', 'fit', 'role', 'company', 'wilding'
+        ];
+        let score = 0;
+        const answerLower = answer.toLowerCase();
+        keywords.forEach(kw => {
+          if (answerLower.includes(kw)) score++;
+        });
+        if (!window.answerScores) window.answerScores = [];
+        window.answerScores[interviewStep] = score;
         answerFeedback.textContent = 'Answer saved.';
         answerInput.value = '';
         interviewStep++;
@@ -174,8 +187,20 @@
           }, 1200);
         } else {
           setTimeout(() => {
-            botSay("Interview complete! Well done.");
-            answerFeedback.textContent = '';
+            // Calculate total score
+            const totalScore = window.answerScores.reduce((a,b) => a+b, 0);
+            const maxScore = questions.length * keywords.length;
+            const percent = Math.round((totalScore / (questions.length * 3)) * 100); // 3+ keywords per answer is ideal
+            let outcome = '';
+            if (percent >= 80) {
+              outcome = 'Excellent! You are well prepared for Ai Wilding.';
+            } else if (percent >= 50) {
+              outcome = 'Decent, but review your answers and try again for a higher score.';
+            } else {
+              outcome = 'Needs improvement. Practice more detailed and specific answers.';
+            }
+            botSay(`Interview complete!\nScore: ${percent}%\n${outcome}`);
+            answerFeedback.textContent = `Final Score: ${percent}%`;
           }, 1200);
         }
       }
