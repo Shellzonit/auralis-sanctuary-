@@ -1,3 +1,4 @@
+  { href: "/transitional-jobs", label: "Transitional Jobs" },
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
