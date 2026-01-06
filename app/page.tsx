@@ -59,10 +59,22 @@ export default function HomePage() {
         top: 0,
         zIndex: 10,
       }}>
-        {['Home', 'About', 'Support', 'Contact', 'Jobs', 'Training', 'Recovery', 'AI News', 'Gallery', 'Resources'].map((tab) => (
+        {[
+          { label: 'Home', href: '/' },
+          { label: 'About', href: '/about' },
+          { label: 'Contact', href: '/contact' },
+          { label: 'AI Jobs', href: '/new-ai-jobs' },
+          { label: 'Transitional Jobs', href: '/transitional-phasing-jobs' },
+          { label: 'Recovery Hub', href: '/recovery' },
+          { label: 'Hiring Event', href: '/hiring-events' },
+          { label: 'Training', href: '/training' },
+          { label: 'Resume Wizard', href: '/resume-wizard' },
+          { label: 'Resources', href: '/resources' },
+          { label: 'States/Country', href: '/countries' },
+        ].map((tab) => (
           <a
-            key={tab}
-            href={tab === 'Home' ? '/' : `/${tab.toLowerCase().replace(/ /g, '-')}`}
+            key={tab.label}
+            href={tab.href}
             style={{
               color: '#7b2ff2',
               fontWeight: 700,
@@ -76,7 +88,7 @@ export default function HomePage() {
             onMouseOver={e => e.currentTarget.style.borderBottom = '2px solid #7b2ff2'}
             onMouseOut={e => e.currentTarget.style.borderBottom = '2px solid transparent'}
           >
-            {tab}
+            {tab.label}
           </a>
         ))}
       </nav>

@@ -6,15 +6,16 @@ export default function NavTabs() {
   const pathname = usePathname();
   const tabs = [
     { href: "/", label: "Home" },
-    { href: "/content", label: "Content" },
-    { href: "/artist-intros", label: "Artist Intros" },
-    { href: "/mail", label: "Email" },
-    { href: "/games", label: "Games" },
-    { href: "/license", label: "Licensing" },
-    { href: "/spotlight", label: "Spotlight" },
-    { href: "/about", label: "About Us" },
-    { href: "/legacy", label: "Legacy" },
-    { href: "/privacy", label: "Privacy" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+    { href: "/new-ai-jobs", label: "AI Jobs" },
+    { href: "/transitional-phasing-jobs", label: "Transitional Jobs" },
+    { href: "/recovery", label: "Recovery Hub" },
+    { href: "/hiring-events", label: "Hiring Event" },
+    { href: "/training", label: "Training" },
+    { href: "/resume-wizard", label: "Resume Wizard" },
+    { href: "/resources", label: "Resources" },
+    { href: "/countries", label: "States/Country" },
   ];
   return (
     <nav className="w-full flex justify-center mb-8">
