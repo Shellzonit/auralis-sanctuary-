@@ -19,7 +19,7 @@ export default function ContactPage() {
         style={{
           width: '100vw',
           margin: '0 0 2.5rem 0',
-          background: 'linear-gradient(90deg, #ffd700 0%, #18191a 100%)',
+          background: 'linear-gradient(90deg, #7b2ff2 0%, #18191a 100%)',
           borderRadius: 24,
           boxShadow: '0 4px 32px #18191a88',
           padding: '1.5rem 0',
@@ -30,19 +30,19 @@ export default function ContactPage() {
       >
         <h1
           style={{
-            color: '#18191a',
+            color: '#fff',
             fontSize: 'clamp(3.5rem, 12vw, 8rem)',
             fontWeight: 900,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
-            textShadow: '0 2px 24px #ffd70088, 0 0 8px #000',
+            textShadow: '0 2px 24px #7b2ff288, 0 0 8px #000',
             width: '100vw',
             textAlign: 'center',
             margin: 0,
-            background: 'linear-gradient(90deg, #ffd700 60%, #fff 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
+            background: 'none',
+            WebkitBackgroundClip: 'unset',
+            WebkitTextFillColor: 'unset',
+            backgroundClip: 'unset',
             overflow: 'hidden',
             whiteSpace: 'nowrap',
           }}
