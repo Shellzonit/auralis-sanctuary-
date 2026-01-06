@@ -1,0 +1,191 @@
+<!-- Simple A-Frame VR Interview Room Example -->
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <title>Mock Interview VR Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body style="margin:0;">
+    <a-scene>
+      <!-- Floor -->
+      <a-plane position="0 0 0" rotation="-90 0 0" width="8" height="8" color="#ece9fc"></a-plane>
+      <!-- Interview Table -->
+      <a-box position="0 0.5 -1.5" depth="1" height="0.2" width="2" color="#bba6f7"></a-box>
+      <!-- Chair for User -->
+      <a-box position="0 0.25 1.5" depth="1" height="0.5" width="1" color="#7b2ff2"></a-box>
+      <!-- Panel Interview Simulation: Multiple Interviewers -->
+      <a-sphere id="mrnanny" position="-1.2 1.2 -2.5" radius="0.5" color="#ffd700"></a-sphere>
+      <a-text value="Mr. Nanny" position="-1.2 2 -2.5" align="center" color="#232526"></a-text>
+      <a-sphere position="0 1.2 -2.5" radius="0.5" color="#bba6f7"></a-sphere>
+      <a-text value="Ms. AI" position="0 2 -2.5" align="center" color="#232526"></a-text>
+      <a-sphere position="1.2 1.2 -2.5" radius="0.5" color="#7b2ff2"></a-sphere>
+      <a-text value="Dr. Tech" position="1.2 2 -2.5" align="center" color="#232526"></a-text>
+      <!-- Floating Question Buttons -->
+            <!-- Need Training Button -->
+                  <!-- Voice Recording Controls -->
+                  <a-box id="record-btn" position="-1.5 0.4 1" depth="0.2" height="0.4" width="1.2" color="#7b2ff2" class="clickable">
+                    <a-text value="Record Answer" align="center" color="#fff" position="0 0 0.15" width="2"></a-text>
+                  </a-box>
+                  <a-box id="play-btn" position="1.5 0.4 1" depth="0.2" height="0.4" width="1.2" color="#bba6f7" class="clickable">
+                    <a-text value="Play Answer" align="center" color="#232526" position="0 0 0.15" width="2"></a-text>
+                  </a-box>
+                  <a-text id="rec-status" value="" align="center" color="#ff0000" position="0 0.1 1" width="4"></a-text>
+            <a-box id="training-btn" position="0 0.7 1" depth="0.2" height="0.4" width="1.4" color="#ffd700" class="clickable">
+              <a-text value="Need Training?" align="center" color="#232526" position="0 0 0.15" width="2"></a-text>
+            </a-box>
+      <a-box id="q1" position="-2 1.2 -1.5" depth="0.2" height="0.5" width="1.2" color="#7b2ff2" class="clickable" event-set__enter="scale: 1.1 1.1 1.1" event-set__leave="scale: 1 1 1">
+        <a-text value="Start Interview" align="center" color="#fff" position="0 0 0.15" width="2"></a-text>
+      </a-box>
+      <a-box id="q2" position="2 1.2 -1.5" depth="0.2" height="0.5" width="1.2" color="#bba6f7" class="clickable" event-set__enter="scale: 1.1 1.1 1.1" event-set__leave="scale: 1 1 1">
+        <a-text value="Next Question" align="center" color="#232526" position="0 0 0.15" width="2"></a-text>
+      </a-box>
+      <!-- Question Display Panel -->
+      <a-entity id="question-panel">
+        <a-text id="question-text" value="" align="center" color="#232526" position="0 1.7 -1.5" width="4"></a-text>
+        <a-text id="timer-text" value="" align="center" color="#7b2ff2" position="0 2.1 -1.5" width="2"></a-text>
+        <a-text id="feedback-text" value="" align="center" color="#bba6f7" position="0 1.3 -1.5" width="4"></a-text>
+        <a-text id="training-text" value="" align="center" color="#7b2ff2" position="0 0.9 -1.5" width="4"></a-text>
+      </a-entity>
+      <a-light type="ambient" color="#fff"></a-light>
+      <a-light type="directional" intensity="0.7" position="2 4 2"></a-light>
+      <!-- Camera -->
+      <a-entity camera look-controls wasd-controls position="0 1.6 3"></a-entity>
+      <script>
+        // Questions, sample answers, and tips
+        var questions = [
+          "Tell me about yourself.",
+          "Why do you want this job?",
+          "What are your strengths and weaknesses?",
+          "Describe a challenge you overcame.",
+          "Where do you see yourself in 5 years?"
+        ];
+        var feedbacks = [
+          "Tip: Give a brief summary of your background, skills, and what excites you about this opportunity.",
+          "Tip: Show your knowledge of the company and how your goals align with the role.",
+          "Tip: Be honest, but focus on strengths relevant to the job and how you address weaknesses.",
+          "Tip: Use the STAR method (Situation, Task, Action, Result) to structure your answer.",
+          "Tip: Share realistic ambitions and how this job fits your career path."
+        ];
+        var current = 0;
+        var timer = null;
+        var timeLeft = 0;
+        var qText, timerText, feedbackText, trainingText;
+        var trainingTips = [
+          "Practice answering aloud and record yourself for review.",
+          "Review common interview questions and sample answers.",
+          "Use the STAR method (Situation, Task, Action, Result) for behavioral questions.",
+          "Research the company and role before your interview.",
+          "Check out the Training section on our website for more help!"
+        ];
+        function speak(text) {
+          if ('speechSynthesis' in window) {
+            var utter = new window.SpeechSynthesisUtterance(text);
+            utter.rate = 1.05;
+            utter.pitch = 1.1;
+            window.speechSynthesis.speak(utter);
+          }
+        }
+        function animateNod() {
+          var avatar = document.getElementById('mrnanny');
+          if (!avatar) return;
+          var t = 0, nods = 0;
+          var nod = setInterval(function() {
+            t += 0.1;
+            var y = 1.2 + 0.15 * Math.sin(t * 6);
+            avatar.setAttribute('position', `-1.2 ${y} -2.5`);
+            if (t > 1.2) { clearInterval(nod); avatar.setAttribute('position', '-1.2 1.2 -2.5'); }
+          }, 30);
+        }
+        function startTimer(duration) {
+          timeLeft = duration;
+          animateNod();
+          if (timer) clearInterval(timer);
+          timerText.setAttribute('value', 'Time: ' + timeLeft + 's');
+          timer = setInterval(function() {
+            timeLeft--;
+            timerText.setAttribute('value', 'Time: ' + timeLeft + 's');
+            if (timeLeft <= 0) {
+              clearInterval(timer);
+              timerText.setAttribute('value', 'Time is up!');
+              feedbackText.setAttribute('value', 'Sample answer: ' + feedbacks[current]);
+              trainingText.setAttribute('value', 'Training: ' + trainingTips[Math.floor(Math.random()*trainingTips.length)]);
+            }
+          }, 1000);
+        }
+        // Voice recording logic
+        let mediaRecorder, audioChunks = [], audioBlob, audioUrl, audio;
+        function updateRecStatus(msg) {
+          document.getElementById('rec-status').setAttribute('value', msg);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+                    var recordBtn = document.getElementById('record-btn');
+                    var playBtn = document.getElementById('play-btn');
+                    var recStatus = document.getElementById('rec-status');
+                    if (recordBtn) recordBtn.addEventListener('click', function() {
+                      if (mediaRecorder && mediaRecorder.state === 'recording') {
+                        mediaRecorder.stop();
+                        updateRecStatus('Recording stopped.');
+                        return;
+                      }
+                      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                        navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
+                          mediaRecorder = new MediaRecorder(stream);
+                          audioChunks = [];
+                          mediaRecorder.ondataavailable = function(e) {
+                            audioChunks.push(e.data);
+                          };
+                          mediaRecorder.onstop = function() {
+                            audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                            audioUrl = URL.createObjectURL(audioBlob);
+                            audio = new Audio(audioUrl);
+                            updateRecStatus('Recording saved. Click Play to listen.');
+                          };
+                          mediaRecorder.start();
+                          updateRecStatus('Recording... Click again to stop.');
+                        }).catch(function(err) {
+                          updateRecStatus('Microphone access denied.');
+                        });
+                      } else {
+                        updateRecStatus('Recording not supported.');
+                      }
+                    });
+                    if (playBtn) playBtn.addEventListener('click', function() {
+                      if (audio) {
+                        audio.play();
+                        updateRecStatus('Playing your answer...');
+                        audio.onended = function() { updateRecStatus('Playback finished.'); };
+                      } else {
+                        updateRecStatus('No recording found.');
+                      }
+                    });
+          var q1 = document.querySelector('#q1');
+          var q2 = document.querySelector('#q2');
+          var trainingBtn = document.querySelector('#training-btn');
+          qText = document.querySelector('#question-text');
+          timerText = document.querySelector('#timer-text');
+          feedbackText = document.querySelector('#feedback-text');
+          trainingText = document.querySelector('#training-text');
+          if(q1) q1.addEventListener('click', function() {
+            current = 0;
+            qText.setAttribute('value', questions[current]);
+            feedbackText.setAttribute('value', '');
+            trainingText.setAttribute('value', '');
+            speak(questions[current]);
+            startTimer(60);
+          });
+          if(q2) q2.addEventListener('click', function() {
+            current = (current + 1) % questions.length;
+            qText.setAttribute('value', questions[current]);
+            feedbackText.setAttribute('value', '');
+            trainingText.setAttribute('value', '');
+            speak(questions[current]);
+            startTimer(60);
+          });
+          if(trainingBtn) trainingBtn.addEventListener('click', function() {
+            trainingText.setAttribute('value', 'Training: ' + trainingTips[Math.floor(Math.random()*trainingTips.length)]);
+          });
+        });
+      </script>
+    </a-scene>
+  </body>
+</html>
