@@ -34,11 +34,38 @@ export default function MrNannyResumeChat() {
     setMessages((msgs) => [...msgs, userMsg]);
     setInput("");
     setTimeout(() => {
-      // Simple bot reply for demo; in production, connect to AI or add logic
+      // Custom logic for interview attire questions
+      const lower = userMsg.text.toLowerCase();
+      let reply = "Thanks for sharing! What else would you like to add to your resume? (e.g., skills, education, or ask for a summary)";
+      if (
+        lower.includes("interview") &&
+        (lower.includes("wear") || lower.includes("dress"))
+      ) {
+        if (
+          lower.includes("google")
+        ) {
+          reply = `For a Google interview, business casual is ideal. Google is known for a relaxed but professional culture.\n\nFor men: A collared shirt (button-down or polo), dress pants or chinos, and clean shoes. No need for a tie or suit unless you feel most comfortable that way.\n\nFor women: A blouse or smart top, dress pants or a modest skirt, and comfortable, clean shoes.\n\nAvoid overly formal attire, but also avoid jeans, shorts, or t-shirts. Aim for neat, comfortable, and confident. Good luck!`;
+        } else if (
+          lower.includes("pet") || lower.includes("dog food") || lower.includes("mid west american pet food")
+        ) {
+          reply = `For an interview at a pet or dog food company like Mid West American Pet Food in Mt Pleasant, Texas, aim for business casual attire.\n\nFor men: A collared shirt (button-down or polo), dress pants or khakis, and clean shoes. A blazer is optional.\n\nFor women: A blouse or smart top, dress pants or a modest skirt, and closed-toe shoes.\n\nAvoid jeans, t-shirts, or anything too casual. Since it's a pet-related company, you can add a subtle touch (like a paw-print pin or animal-friendly accessory) if you wish, but keep it professional. Good luck!`;
+        } else {
+          reply = `For most interviews, business casual is a safe choice.\n\nFor men: A collared shirt, dress pants or khakis, and clean shoes. A blazer is optional.\n\nFor women: A blouse or smart top, dress pants or a modest skirt, and closed-toe shoes.\n\nIf you know the company is more formal, you can dress up a bit more. If it's a startup or creative company, you can be slightly more relaxed, but always look neat and professional.`;
+        }
+      } else if (
+        (lower.includes("company culture") || lower.includes("work culture") || lower.includes("what is it like to work at") || lower.includes("tell me about") && lower.includes("culture"))
+      ) {
+        // Example: Add more companies as needed
+        if (lower.includes("mid west american pet food")) {
+          reply = `Mid West American Pet Food is known for its focus on quality pet nutrition and a friendly, community-oriented environment. Employees often describe the culture as supportive, with a strong emphasis on teamwork, safety, and animal welfare. As a company in the pet food industry, they value reliability, attention to detail, and a passion for pets. Expect a mix of professionalism and a genuine love for animals.`;
+        } else {
+          reply = `Company culture can vary, but most organizations value teamwork, communication, and a positive attitude. If you have a specific company in mind, I can try to provide more details. Otherwise, it's always a good idea to research the company's website, social media, and employee reviews for insights into their work environment and values.`;
+        }
+      }
       const botReply = {
         id: nextId.current++,
         from: "Mr. Job Nanny",
-        text: "Thanks for sharing! What else would you like to add to your resume? (e.g., skills, education, or ask for a summary)",
+        text: reply,
         parentId: userMsg.id,
       };
       setMessages((msgs) => [...msgs, botReply]);
