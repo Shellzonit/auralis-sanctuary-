@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import NavTabs from "../../components/NavTabs";
 
 const STORIES = [
   {
@@ -36,38 +37,28 @@ const RESOURCES = [
   { name: "AI for Good (UN)", url: "https://aiforgood.itu.int/" }
 ];
 
-export default function RecoveryHubPage() {
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#7b2c2c",
-        fontFamily: "Inter, Arial, sans-serif",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "0 1rem",
-        border: '3px solid #18191a',
-        borderRadius: 24,
-        boxSizing: 'border-box',
-      }}
-    >
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
-        <span style={{ color: '#ffd700' }}>Recovery Hub:</span> Success Stories & New Beginnings
-      </h1>
-      <p style={{ color: '#18191a', fontSize: '1.15rem', maxWidth: 700, textAlign: 'center', marginBottom: 32 }}>
-        Discover real stories of people and communities who have thrived through change, and see how AI is creating new opportunities. Find resources for retraining, support, and inspiration.
-      </p>
-      <section style={{ width: '100%', maxWidth: 800, display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <main style={{ minHeight: '100vh', background: '#f5f3fd', width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
+      <NavTabs />
+      <section style={{ width: '100%', maxWidth: 900, margin: '2.5rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 28, boxShadow: '0 4px 32px #18191a22', padding: '2.5rem 0 2.5rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <h1 style={{ color: 'rgba(255,255,255,0.97)', fontSize: 'clamp(2.8rem, 7vw, 4.5rem)', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', fontStyle: 'italic', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', overflow: 'hidden', whiteSpace: 'nowrap', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', maskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)', lineHeight: 1.18, paddingBottom: '0.18em' }}>Recovery Hub</h1>
+        <div style={{ color: '#ece9fc', fontSize: '1.25rem', fontWeight: 500, marginTop: 12, textAlign: 'center', maxWidth: 600, textShadow: '0 1px 6px #18191a55' }}>
+          Discover real stories of people and communities who have thrived through change, and see how AI is creating new opportunities. Find resources for retraining, support, and inspiration.
+        </div>
+      </section>
+      <section style={{ background: '#fff', borderRadius: 16, padding: '32px 40px', maxWidth: 600, margin: '0 auto 48px auto', boxShadow: '0 2px 16px #18191a22', color: '#18191a', textAlign: 'center', fontSize: '1.12rem', lineHeight: 1.7, border: '1.5px solid #e0d6f7' }}>
+        <div style={{ marginBottom: 18 }}>
+          <strong style={{ color: '#7b2ff2', fontSize: '1.15rem' }}>Success Stories & New Beginnings</strong>
+        </div>
         {STORIES.map((s, i) => (
-          <div key={i} style={{ background: '#f5faff', borderRadius: 14, padding: 24, boxShadow: '0 2px 12px #90caf922' }}>
+          <div key={i} style={{ background: '#f5faff', borderRadius: 14, padding: 24, boxShadow: '0 2px 12px #90caf922', marginBottom: 18 }}>
             <h2 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: 8 }}>{s.title}</h2>
             <div style={{ color: '#18191a', marginBottom: 8 }}>{s.text}</div>
             <div style={{ color: '#ffd700', fontSize: '1rem' }}><strong>Before:</strong> <span style={{ color: '#18191a' }}>{s.before}</span></div>
             <div style={{ color: '#ffd700', fontSize: '1rem' }}><strong>After:</strong> <span style={{ color: '#18191a' }}>{s.after}</span></div>
           </div>
         ))}
-        <div style={{ background: '#f5faff', borderRadius: 14, padding: 24 }}>
+        <div style={{ background: '#f5faff', borderRadius: 14, padding: 24, marginTop: 18 }}>
           <h2 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: 8 }}>Resources for Resilience</h2>
           <ul style={{ color: '#18191a' }}>
             {RESOURCES.map(r => <li key={r.name}><a href={r.url} target="_blank" rel="noopener noreferrer" style={{ color: '#ffd700', fontWeight: 600 }}>{r.name}</a></li>)}
