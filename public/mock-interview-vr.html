@@ -61,8 +61,8 @@
       <!-- Camera -->
       <a-entity camera look-controls wasd-controls position="0 1.6 3"></a-entity>
       <script>
+      document.addEventListener('DOMContentLoaded', function() {
         // Questions, sample answers, and tips
-        // Pool of common interview questions and feedbacks
         var questionPool = [
           ["Tell me about yourself.", "Tip: Give a brief summary of your background, skills, and what excites you about this opportunity."],
           ["Why do you want this job?", "Tip: Show your knowledge of the company and how your goals align with the role."],
@@ -85,7 +85,11 @@
         var current = 0;
         var timer = null;
         var timeLeft = 0;
-        var qText, timerText, feedbackText, trainingText;
+        var qText = document.querySelector('#question-text');
+        var timerText = document.querySelector('#timer-text');
+        var feedbackText = document.querySelector('#feedback-text');
+        var trainingText = document.querySelector('#training-text');
+        var userAnswerText = document.getElementById('user-answer-text');
         var trainingTips = [
           "Practice answering aloud and record yourself for review.",
           "Review common interview questions and sample answers.",
@@ -133,69 +137,60 @@
         function updateRecStatus(msg) {
           document.getElementById('rec-status').setAttribute('value', msg);
         }
-        document.addEventListener('DOMContentLoaded', function() {
-                    var recordBtn = document.getElementById('record-btn');
-                    var playBtn = document.getElementById('play-btn');
-                    var recStatus = document.getElementById('rec-status');
-                    if (recordBtn) recordBtn.addEventListener('click', function() {
-                      if (mediaRecorder && mediaRecorder.state === 'recording') {
-                        mediaRecorder.stop();
-                        updateRecStatus('Recording stopped.');
-                        return;
-                      }
-                      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                        navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
-                          mediaRecorder = new MediaRecorder(stream);
-                          audioChunks = [];
-                          mediaRecorder.ondataavailable = function(e) {
-                            audioChunks.push(e.data);
-                          };
-                          mediaRecorder.onstop = function() {
-                            audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-                            audioUrl = URL.createObjectURL(audioBlob);
-                            audio = new Audio(audioUrl);
-                            updateRecStatus('Recording saved. Click Play to listen.');
-                          };
-                          mediaRecorder.start();
-                          updateRecStatus('Recording... Click again to stop.');
-                        }).catch(function(err) {
-                          updateRecStatus('Microphone access denied.');
-                        });
-                          // Show all questions in the floating panel and highlight current
-                          const allQuestionsText = document.getElementById('all-questions-text');
-                          const currentQHighlight = document.getElementById('current-q-highlight');
-                          function updateQuestionsPanel() {
-                            if (allQuestionsText && Array.isArray(questions)) {
-                              allQuestionsText.setAttribute('value', 'All Questions:\n' + questions.map((q,i)=> (i+1)+'. '+q).join('\n'));
-                            }
-                            if (currentQHighlight && typeof current === 'number') {
-                              let lines = questions.map((q,i)=> (i===current?((i+1)+'. '+q):'')).join('\n');
-                              currentQHighlight.setAttribute('value', lines);
-                            }
-                          }
-                          // Call on load and after question changes
-                          updateQuestionsPanel();
-                      } else {
-                        updateRecStatus('Recording not supported.');
-                      }
-                    });
-                    if (playBtn) playBtn.addEventListener('click', function() {
-                      if (audio) {
-                        audio.play();
-                        updateRecStatus('Playing your answer...');
-                        audio.onended = function() { updateRecStatus('Playback finished.'); };
-                      } else {
-                        updateRecStatus('No recording found.');
-                      }
-                    });
-          qText = document.querySelector('#question-text');
-          timerText = document.querySelector('#timer-text');
-          feedbackText = document.querySelector('#feedback-text');
-          trainingText = document.querySelector('#training-text');
+        var recordBtn = document.getElementById('record-btn');
+        var playBtn = document.getElementById('play-btn');
+        var recStatus = document.getElementById('rec-status');
+        if (recordBtn) recordBtn.addEventListener('click', function() {
+          if (mediaRecorder && mediaRecorder.state === 'recording') {
+            mediaRecorder.stop();
+            updateRecStatus('Recording stopped.');
+            return;
+          }
+          if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
+              mediaRecorder = new MediaRecorder(stream);
+              audioChunks = [];
+              mediaRecorder.ondataavailable = function(e) {
+                audioChunks.push(e.data);
+              };
+              mediaRecorder.onstop = function() {
+                audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                audioUrl = URL.createObjectURL(audioBlob);
+                audio = new Audio(audioUrl);
+                updateRecStatus('Recording saved. Click Play to listen.');
+              };
+              mediaRecorder.start();
+              updateRecStatus('Recording... Click again to stop.');
+            }).catch(function(err) {
+              updateRecStatus('Microphone access denied.');
+            });
+          } else {
+            updateRecStatus('Recording not supported.');
+          }
         });
-        // Global functions for A-Frame onclick
+        if (playBtn) playBtn.addEventListener('click', function() {
+          if (audio) {
+            audio.play();
+            updateRecStatus('Playing your answer...');
+            audio.onended = function() { updateRecStatus('Playback finished.'); };
+          } else {
+            updateRecStatus('No recording found.');
+          }
+        });
+        // Show all questions in the floating panel and highlight current
+        const allQuestionsText = document.getElementById('all-questions-text');
+        const currentQHighlight = document.getElementById('current-q-highlight');
+        function updateQuestionsPanel() {
+          if (allQuestionsText && Array.isArray(questions)) {
+            allQuestionsText.setAttribute('value', 'All Questions:\n' + questions.map((q,i)=> (i+1)+'. '+q).join('\n'));
+          }
+          if (currentQHighlight && typeof current === 'number') {
+            let lines = questions.map((q,i)=> (i===current?((i+1)+'. '+q):'')).join('\n');
+            currentQHighlight.setAttribute('value', lines);
+          }
+        }
+        // Global functions for A-Frame onclick and command bar
         window.startInterview = function() {
-          // Shuffle and select questions for this session
           let pool = questionPool.slice();
           shuffle(pool);
           questions = pool.map(qf => qf[0]);
@@ -224,7 +219,77 @@
         window.showTraining = function() {
           trainingText.setAttribute('value', 'Training: ' + trainingTips[Math.floor(Math.random()*trainingTips.length)]);
         };
+        // Command handler for text input
+        const input = document.getElementById('command-input');
+        const feedback = document.getElementById('command-feedback');
+        function handleCommand() {
+          const cmd = input.value.trim().toLowerCase();
+          input.value = '';
+          feedback.textContent = '';
+          if (!cmd) return;
+          if (cmd === 'start' || cmd === 'start interview' || cmd === 'yes' || cmd === 'ready') {
+            window.startInterview();
+            feedback.textContent = 'Interview started!';
+          } else if (cmd === 'next' || cmd === 'next question') {
+            window.nextQuestion();
+            feedback.textContent = 'Next question.';
+          } else if (cmd === 'training' || cmd === 'need training') {
+            window.showTraining();
+            feedback.textContent = 'Training tip shown.';
+          } else if (cmd === 'help') {
+            feedback.textContent = 'Commands: start, next, training, help';
+          } else {
+            feedback.textContent = 'Unknown command.';
+          }
+        }
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') handleCommand();
         });
+        // User answer logic
+        const answerInput = document.getElementById('answer-input');
+        const answerFeedback = document.getElementById('answer-feedback');
+        // Store user answers for summary
+        let userAnswers = [];
+        function submitAnswer() {
+          const answer = answerInput.value.trim();
+          if (!answer) {
+            answerFeedback.textContent = 'Please type an answer.';
+            return;
+          }
+          userAnswers[current] = answer;
+          userAnswerText.setAttribute('value', 'Your answer: ' + answer);
+          // Friendly AI feedback after each answer
+          feedbackText.setAttribute('value', 'AI: ' + feedbacks[current] + '\nThanks for sharing!');
+          answerInput.value = '';
+          if (current < questions.length - 1) {
+            answerFeedback.textContent = 'Ready for the next question?';
+            setTimeout(() => {
+              window.nextQuestion();
+              answerFeedback.textContent = '';
+              feedbackText.setAttribute('value', '');
+            }, 2200);
+          } else {
+            // Show summary at the end
+            answerFeedback.textContent = 'Great job! You have completed the mock interview.';
+            document.getElementById('welcome-text').setAttribute('value', 'Congratulations! You finished the interview!');
+            setTimeout(() => showSummary(), 1800);
+          }
+        }
+
+        // Show a summary of answers and encouragement
+        function showSummary() {
+          let summary = 'Interview Summary:\n';
+          for (let i = 0; i < questions.length; i++) {
+            summary += `\n${i+1}. ${questions[i]}\nYour answer: ${userAnswers[i] || ''}`;
+            summary += `\nAI tip: ${feedbacks[i]}\n`;
+          }
+          feedbackText.setAttribute('value', summary + '\n\nYou did great! Review your answers and keep practicing.');
+        }
+        answerInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') submitAnswer();
+        });
+      });
+      </script>
       </script>
     </a-scene>
       <!-- Command Input Bar -->
