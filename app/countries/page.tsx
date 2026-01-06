@@ -67,25 +67,13 @@ const COUNTRY_AI_DATA = [
 
 export default function CountriesPage() {
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#7b2c2c",
-        fontFamily: "Inter, Arial, sans-serif",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "0 1rem",
-        border: '3px solid #18191a', // black border
-        borderRadius: 24,
-        boxSizing: 'border-box',
-        color: '#18191a',
-        fontSize: '1.25rem',
-      }}
-    >
-      <h1 style={{ fontSize: "3rem", fontWeight: 900, color: "#18191a", margin: "40px 0 18px 0", textShadow: "0 2px 16px #ffd70044", letterSpacing: 1 }}>
-        <span style={{ color: '#18191a', borderBottom: '4px solid #18191a', paddingBottom: 4 }}>AI Around the World</span>
-      </h1>
+    <main style={{ minHeight: '100vh', background: '#f5f3fd', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
+      <section style={{ width: '100%', maxWidth: 700, margin: '3rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 24, boxShadow: '0 4px 32px #18191a22', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <h1 style={{ color: 'rgba(255,255,255,0.97)', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.18, paddingBottom: '0.18em' }}>AI States & Countries</h1>
+        <div style={{ color: '#ece9fc', fontSize: '1.15rem', fontWeight: 500, marginTop: 10, textAlign: 'center', maxWidth: 500, textShadow: '0 1px 6px #18191a55' }}>
+          Explore global AI advancements, rankings, and highlights by country and state.
+        </div>
+      </section>
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 18 }}>
         <img src="/big cities.png" alt="Big Cities" width={540} height={220} style={{ borderRadius: 18, marginBottom: 8, boxShadow: '0 2px 16px #18191a22', border: '2px solid #ffd700', background: '#fff' }} />
       </div>
