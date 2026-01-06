@@ -174,6 +174,6 @@ export default function TransitionalPhasingJobs() {
           </ul>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
