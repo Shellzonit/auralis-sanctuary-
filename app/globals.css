@@ -141,4 +141,28 @@ body {
   font-size: 1.25rem;
   line-height: 1.8;
   transition: background 0.3s, color 0.3s;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  body {
+    font-size: 1.08rem;
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 0.98rem;
+    padding: 0 2px;
+  }
+}
+
+img, .responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 }

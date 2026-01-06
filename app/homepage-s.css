@@ -14,16 +14,23 @@
   user-select: none;
   letter-spacing: -0.1em;
   white-space: nowrap;
+        max-width: 100vw;
+        overflow: hidden;
+        padding: 0;
 }
 @media (max-width: 900px) {
   .homepage-s-elegant {
     font-size: 9rem;
     top: 4.5rem;
+        max-width: 100vw;
+        padding: 0 8px;
   }
 }
 @media (max-width: 600px) {
   .homepage-s-elegant {
     font-size: 5rem;
     top: 3.5rem;
+        max-width: 100vw;
+        padding: 0 2px;
   }
 }
