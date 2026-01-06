@@ -23,37 +23,6 @@ export default function MrNannyResumeChat() {
   const nextId = useRef(1);
 
   // ...existing code...
-                } else if (
-                  (lower.includes("ai companies") || lower.includes("ai employers") || lower.includes("ai company") || lower.includes("ai labs")) &&
-                  lower.includes("canada")
-                ) {
-                  reply = `Major AI companies and labs in Canada include:\n- Element AI (ServiceNow)\n- Shopify\n- MILA (Montreal Institute for Learning Algorithms)\n- Vector Institute\n- Deep Genomics\n- Layer 6 AI\n- Borealis AI (RBC)\n- BlueDot\n- Many startups in Toronto, Montreal, and Vancouver`;
-                } else if (
-                  (lower.includes("ai companies") || lower.includes("ai employers") || lower.includes("ai company") || lower.includes("ai labs")) &&
-                  lower.includes("china")
-                ) {
-                  reply = `Major AI companies in China include:\n- Baidu\n- Alibaba\n- Tencent\n- SenseTime\n- Megvii (Face++)\n- iFlytek\n- ByteDance\n- Huawei\n- Ping An Technology\n- Startups in Beijing, Shanghai, and Shenzhen`;
-                } else 
-          if (
-            (lower.includes("ai job") || lower.includes("ai jobs") || lower.includes("ai talent") || lower.includes("ai opening") || lower.includes("hiring in")) &&
-            (lower.includes("uk") || lower.includes("united kingdom") || lower.includes("japan") || lower.includes("canada") || lower.includes("china"))
-          ) {
-            reply = `Yes! Many companies in the UK, Japan, Canada, and China are actively hiring AI talent.\n\n- **UK:** London and Cambridge are major AI hubs. Companies like DeepMind (Google), BenevolentAI, and Babylon Health often hire for AI roles.\n- **Japan:** Tokyo and Osaka have growing AI sectors. Look for roles at Sony, Hitachi, SoftBank, and startups in robotics and automation.\n- **Canada:** Toronto, Montreal, and Vancouver are global AI centers. Companies like Element AI, Shopify, and large research labs (MILA, Vector Institute) are great places to look.\n- **China:** Beijing, Shanghai, and Shenzhen are AI hotspots. Baidu, Alibaba, Tencent, SenseTime, and ByteDance are major employers.\n\nCheck local job boards, LinkedIn, and company career pages for the latest openings. Let me know if you want resume tips for international jobs!`;
-          } else 
-    e.preventDefault();
-    if (!input.trim()) return;
-    const userMsg = {
-      id: nextId.current++,
-      from: "You",
-      text: input.trim(),
-      parentId: replyTo ?? undefined,
-    };
-    setMessages((msgs) => [...msgs, userMsg]);
-    setInput("");
-    setTimeout(() => {
-      // Custom logic for interview attire questions
-      const lower = userMsg.text.toLowerCase();
-      let reply = "Thanks for sharing! What else would you like to add to your resume? (e.g., skills, education, or ask for a summary)";
 
       if (
         lower.includes("interview") &&
