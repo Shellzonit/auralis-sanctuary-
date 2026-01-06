@@ -53,16 +53,16 @@ export default function RecoveryPage() {
         </div>
         {STORIES.map((s, i) => (
           <div key={i} style={{ background: '#f5faff', borderRadius: 14, padding: 24, boxShadow: '0 2px 12px #90caf922', marginBottom: 18 }}>
-            <h2 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: 8 }}>{s.title}</h2>
+            <h2 style={{ color: '#7b9fff', fontSize: '1.2rem', marginBottom: 8 }}>{s.title}</h2>
             <div style={{ color: '#18191a', marginBottom: 8 }}>{s.text}</div>
-            <div style={{ color: '#ffd700', fontSize: '1rem' }}><strong>Before:</strong> <span style={{ color: '#18191a' }}>{s.before}</span></div>
-            <div style={{ color: '#ffd700', fontSize: '1rem' }}><strong>After:</strong> <span style={{ color: '#18191a' }}>{s.after}</span></div>
+            <div style={{ color: '#7b9fff', fontSize: '1rem' }}><strong>Before:</strong> <span style={{ color: '#18191a' }}>{s.before}</span></div>
+            <div style={{ color: '#7b9fff', fontSize: '1rem' }}><strong>After:</strong> <span style={{ color: '#18191a' }}>{s.after}</span></div>
           </div>
         ))}
         <div style={{ background: '#f5faff', borderRadius: 14, padding: 24, marginTop: 18 }}>
-          <h2 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: 8 }}>Resources for Resilience</h2>
+          <h2 style={{ color: '#7b9fff', fontSize: '1.2rem', marginBottom: 8 }}>Resources for Resilience</h2>
           <ul style={{ color: '#18191a' }}>
-            {RESOURCES.map(r => <li key={r.name}><a href={r.url} target="_blank" rel="noopener noreferrer" style={{ color: '#ffd700', fontWeight: 600 }}>{r.name}</a></li>)}
+            {RESOURCES.map(r => <li key={r.name}><a href={r.url} target="_blank" rel="noopener noreferrer" style={{ color: '#7b9fff', fontWeight: 600 }}>{r.name}</a></li>)}
           </ul>
         </div>
       </section>
