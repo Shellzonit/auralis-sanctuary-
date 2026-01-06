@@ -13,22 +13,7 @@ export default function ContactPage() {
         paddingTop: '8vh',
       }}
     >
-      {/* Blue Spiral SVG background */}
-      <img
-        src="/spiral-blue.svg"
-        alt="Blue Spiral"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          objectFit: 'cover',
-          zIndex: 0,
-          pointerEvents: 'none',
-          userSelect: 'none',
-        }}
-      />
+
       <div
         style={{
           width: '100vw',
@@ -73,21 +58,94 @@ export default function ContactPage() {
           AI wilding
         </h1>
       </div>
+      {/* Tabs and random image section */}
       <div
         style={{
-          background: 'rgba(24,25,26,0.85)',
-          color: '#ffd700',
+          background: '#fff',
+          color: '#18191a',
           borderRadius: 18,
           padding: '2rem 2vw',
-          maxWidth: 600,
+          maxWidth: 700,
           width: '90vw',
-          margin: '0 auto',
-          boxShadow: '0 2px 24px #18191a88',
+          margin: '2.5rem auto 0 auto',
+          boxShadow: '0 2px 24px #18191a22',
           textAlign: 'center',
-          fontSize: '1.25rem',
+          fontSize: '1.1rem',
+          zIndex: 2,
         }}
       >
-        Have questions or feedback? Reach out to us and we’ll get back to you soon.
+        {/* Simple Tabs */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }}>
+          {['Contact', 'About', 'Support'].map((tab, i) => (
+            <div
+              key={tab}
+              style={{
+                padding: '10px 32px',
+                borderRadius: '12px 12px 0 0',
+                background: i === 0 ? '#ece9fc' : 'transparent',
+                color: i === 0 ? '#7b2ff2' : '#18191a',
+                fontWeight: i === 0 ? 700 : 500,
+                marginRight: i < 2 ? 8 : 0,
+                border: i === 0 ? '2px solid #7b2ff2' : '2px solid transparent',
+                cursor: 'pointer',
+                boxShadow: i === 0 ? '0 2px 8px #7b2ff222' : undefined,
+                transition: 'all 0.2s',
+              }}
+            >
+              {tab}
+            </div>
+          ))}
+        </div>
+        {/* Random Image from public/ */}
+        <div style={{ margin: '24px 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          {/* Pick a random image from a fixed list for now */}
+          {(() => {
+            const images = [
+              'ai around the world 2.png',
+              'ai around the world.png',
+              'ai homepage 3.png',
+              'ai homepage.png',
+              'Ai wilding (2).png',
+              'Ai wilding.png',
+              'background.png',
+              'BCO.436bd64f-0acc-4437-a5c3-15269bfdf309.png',
+              'big cities.png',
+              'canada graph.png',
+              'china.png',
+              'education.png',
+              'educational outlook.png',
+              'healthy.png',
+              'icon.png',
+              'japan.png',
+              'job growth.png',
+              'Mr Nanny.png',
+              'Resume.png',
+              'states 2.png',
+              'states.png',
+              'uk.png',
+              'usa.png',
+            ];
+            const random = Math.floor(Math.random() * images.length);
+            const img = images[random];
+            return (
+              <img
+                src={`/${img}`}
+                alt="Random visual"
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: 320,
+                  borderRadius: 12,
+                  boxShadow: '0 2px 16px #7b2ff244',
+                  marginBottom: 12,
+                }}
+              />
+            );
+          })()}
+        </div>
+        {/* Example content for the selected tab */}
+        <div style={{ color: '#444', fontSize: '1.08rem' }}>
+          Have questions or feedback? Reach out to us and we’ll get back to you soon.
+        </div>
       </div>
     </div>
   );
