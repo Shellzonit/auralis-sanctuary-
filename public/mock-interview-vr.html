@@ -7,6 +7,7 @@
   </head>
   <body style="margin:0;">
     <a-scene>
+      <a-entity cursor="rayOrigin: mouse"></a-entity>
       <!-- Floor -->
       <a-plane position="0 0 0" rotation="-90 0 0" width="8" height="8" color="#ece9fc"></a-plane>
       <!-- Interview Table -->
@@ -158,32 +159,31 @@
                         updateRecStatus('No recording found.');
                       }
                     });
-          var q1 = document.querySelector('#q1');
-          var q2 = document.querySelector('#q2');
-          var trainingBtn = document.querySelector('#training-btn');
           qText = document.querySelector('#question-text');
           timerText = document.querySelector('#timer-text');
           feedbackText = document.querySelector('#feedback-text');
           trainingText = document.querySelector('#training-text');
-          if(q1) q1.addEventListener('click', function() {
-            current = 0;
-            qText.setAttribute('value', questions[current]);
-            feedbackText.setAttribute('value', '');
-            trainingText.setAttribute('value', '');
-            speak(questions[current]);
-            startTimer(60);
-          });
-          if(q2) q2.addEventListener('click', function() {
-            current = (current + 1) % questions.length;
-            qText.setAttribute('value', questions[current]);
-            feedbackText.setAttribute('value', '');
-            trainingText.setAttribute('value', '');
-            speak(questions[current]);
-            startTimer(60);
-          });
-          if(trainingBtn) trainingBtn.addEventListener('click', function() {
-            trainingText.setAttribute('value', 'Training: ' + trainingTips[Math.floor(Math.random()*trainingTips.length)]);
-          });
+        });
+        // Global functions for A-Frame onclick
+        window.startInterview = function() {
+          current = 0;
+          qText.setAttribute('value', questions[current]);
+          feedbackText.setAttribute('value', '');
+          trainingText.setAttribute('value', '');
+          speak(questions[current]);
+          startTimer(60);
+        };
+        window.nextQuestion = function() {
+          current = (current + 1) % questions.length;
+          qText.setAttribute('value', questions[current]);
+          feedbackText.setAttribute('value', '');
+          trainingText.setAttribute('value', '');
+          speak(questions[current]);
+          startTimer(60);
+        };
+        window.showTraining = function() {
+          trainingText.setAttribute('value', 'Training: ' + trainingTips[Math.floor(Math.random()*trainingTips.length)]);
+        };
         });
       </script>
     </a-scene>
