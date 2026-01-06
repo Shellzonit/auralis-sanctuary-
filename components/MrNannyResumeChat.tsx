@@ -2,20 +2,27 @@ import React, { useState, useRef } from "react";
 
 const MR_NANNY_AVATAR = "/Mr Nanny.png";
 
+type Message = {
+  id: number;
+  from: string;
+  text: string;
+  parentId: number | undefined;
+};
+
 export default function MrNannyResumeChat() {
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<Message[]>([
     {
       id: 0,
       from: "Mr. Job Nanny",
       text: "Hello! I'm Mr. Job Nanny. Let's build your resume together. Tell me about your work experience, education, or ask for tips—I'll help you step by step!",
-      parentId: undefined,
+      parentId: undefined as number | undefined,
     },
   ]);
   const [input, setInput] = useState("");
-  const [replyTo, setReplyTo] = useState(null);
+  const [replyTo, setReplyTo] = useState<number | null>(null);
   const nextId = useRef(1);
 
-  function handleSend(e) {
+  function handleSend(e: React.FormEvent) {
     e.preventDefault();
     if (!input.trim()) return;
     const userMsg = {
@@ -39,7 +46,7 @@ export default function MrNannyResumeChat() {
     }, 700);
   }
 
-  function renderMessages(parentId) {
+  function renderMessages(parentId: number | undefined) {
     return messages
       .filter((m) => m.parentId === parentId)
       .map((m) => (
