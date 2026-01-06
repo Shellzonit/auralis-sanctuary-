@@ -37,6 +37,7 @@ const RESOURCES = [
   { name: "AI for Good (UN)", url: "https://aiforgood.itu.int/" }
 ];
 
+export default function RecoveryPage() {
   return (
     <main style={{ minHeight: '100vh', background: '#f5f3fd', width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
       <NavTabs />
