@@ -5,9 +5,11 @@ import Link from "next/link";
 
 // Import Next.js Image component
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import Image from "next/image";
 
 export default function HomePage() {
+  const pathname = usePathname();
   // List of images from public/
   const images = [
     'ai around the world 2.png',
@@ -141,7 +143,7 @@ export default function HomePage() {
               outline: 'none',
             }}
             tabIndex={0}
-            aria-current={window?.location?.pathname === tab.href ? 'page' : undefined}
+            aria-current={pathname === tab.href ? 'page' : undefined}
             onKeyDown={e => {
               if (e.key === 'Enter' || e.key === ' ') {
                 window.location.href = tab.href;
