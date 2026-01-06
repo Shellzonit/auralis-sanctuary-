@@ -12,6 +12,71 @@ export default function ResumeWizardPage() {
           Chat with Mr. Job Nanny to build and refine your resume in a private, thread-like discussion. No downloads or exports—just real-time, supportive guidance.
         </div>
       </section>
+      {/* Glossary Section */}
+      <section style={{ width: '100%', maxWidth: 700, margin: '0 auto 2rem auto', background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '1.5rem 2rem', color: '#232526', fontSize: '1.08rem', lineHeight: 1.7 }}>
+        <h2 style={{ color: '#7b2ff2', fontSize: '1.3rem', fontWeight: 700, marginBottom: 12 }}>Resume Room Glossary</h2>
+        <ul style={{ paddingLeft: 18, margin: 0 }}>
+                    <li><strong>Resume Grading:</strong> Paste your resume and ask Mr. Nanny to grade it! Try phrases like:<br/>
+                      <ul>
+                        <li>"Grade my resume: [paste your resume here]"</li>
+                        <li>"Review my resume: [paste your resume here]"</li>
+                        <li>"Score my resume: [paste your resume here]"</li>
+                        <li>"How good is my resume? [paste your resume here]"</li>
+                        <li>"Rate my resume: [paste your resume here]"</li>
+                      </ul>
+                      Mr. Nanny will give you a score and actionable feedback instantly.
+                    </li>
+          <li><strong>Chat with Mr. Nanny:</strong> Ask questions about resumes, interviews, or job search. Get instant, supportive feedback.</li>
+          <li><strong>Interview Attire Advice:</strong> Try phrases like:<br/>
+            <ul>
+              <li>"What should I wear to an interview at [company/industry]?"</li>
+              <li>"Is business casual okay for a tech interview?"</li>
+              <li>"What do people wear at [company name]?"</li>
+            </ul>
+          </li>
+          <li><strong>Company Culture Insights:</strong> Try phrases like:<br/>
+            <ul>
+              <li>"Can you tell me about the company culture at [company name]?"</li>
+              <li>"What is it like to work at [company name]?"</li>
+              <li>"Describe the work culture at [company/industry]."</li>
+            </ul>
+          </li>
+          <li><strong>AI Job Openings:</strong> Try phrases like:<br/>
+            <ul>
+              <li>"Where can I find AI job openings?"</li>
+              <li>"Are there AI jobs available in [country/city]?"</li>
+              <li>"Who is hiring for AI roles in [UK/Japan/Canada/China]?"</li>
+            </ul>
+          </li>
+          <li><strong>Pay & Salary Info:</strong> Try phrases like:<br/>
+            <ul>
+              <li>"What is the pay for AI jobs?"</li>
+              <li>"How much do AI engineers make?"</li>
+              <li>"What is the salary range for data scientists?"</li>
+            </ul>
+          </li>
+          <li><strong>Turnover & Retention:</strong> Try phrases like:<br/>
+            <ul>
+              <li>"What is the turnover rate for AI jobs?"</li>
+              <li>"Do people stay long at [company name]?"</li>
+              <li>"Is retention high in AI companies?"</li>
+            </ul>
+          </li>
+          <li><strong>Global AI Companies:</strong> Try phrases like:<br/>
+            <ul>
+              <li>"Who are the top AI companies in [UK/Japan/Canada/China]?"</li>
+              <li>"List major AI employers in [country]."</li>
+              <li>"What AI labs are in [city/country]?"</li>
+            </ul>
+          </li>
+          <li><strong>VR Mock Interview:</strong> Click the “Launch VR Mock Interview Room” button to practice in a 3D virtual space with panel interviewers, voice recording, and training tips.</li>
+          <li><strong>Voice Recording:</strong> In the VR room, record and play back your answers for self-evaluation.</li>
+          <li><strong>Training Tips:</strong> Get instant training and improvement tips if you need help or run out of time in the VR room.</li>
+          <li><strong>Panel Simulation:</strong> Practice answering questions from multiple virtual interviewers for a realistic experience.</li>
+          <li><strong>Animated Avatars:</strong> Watch Mr. Nanny nod and react to your progress in the VR room.</li>
+        </ul>
+        <div style={{ color: '#7b2ff2', fontSize: 13, marginTop: 10 }}>Tip: Just type your question or click the VR button to get started!</div>
+      </section>
       <section style={{ width: '100%', maxWidth: 900, margin: '0 auto 48px auto', background: 'none', boxShadow: 'none', color: '#18191a', textAlign: 'center', fontSize: '1.12rem', lineHeight: 1.7, border: 'none' }}>
         <MrNannyResumeChat />
       </section>

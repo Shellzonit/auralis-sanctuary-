@@ -23,6 +23,58 @@ export default function MrNannyResumeChat() {
   const nextId = useRef(1);
 
   function handleSend(e: React.FormEvent) {
+                    // Resume grading logic
+                    if (
+                      lower.startsWith("grade my resume") ||
+                      lower.startsWith("review my resume") ||
+                      lower.startsWith("score my resume") ||
+                      lower.startsWith("how good is my resume") ||
+                      lower.startsWith("rate my resume")
+                    ) {
+                      // Extract resume text (after the command)
+                      const resumeText = userMsg.text.replace(/^(grade|review|score|how good is|rate) my resume:?/i, '').trim();
+                      let feedback = [];
+                      let score = 100;
+                      // Simple rule-based checks
+                      if (!resumeText.match(/\bexperience\b/i)) { feedback.push("Missing 'Experience' section."); score -= 20; }
+                      if (!resumeText.match(/\beducation\b/i)) { feedback.push("Missing 'Education' section."); score -= 20; }
+                      if (!resumeText.match(/\bskills\b/i)) { feedback.push("Missing 'Skills' section."); score -= 15; }
+                      if (!resumeText.match(/\bsummary\b|objective/i)) { feedback.push("Missing 'Summary' or 'Objective' section."); score -= 10; }
+                      if (resumeText.length < 400) { feedback.push("Resume is very short. Add more detail to each section."); score -= 10; }
+                      if (/responsible for|duties included|tasked with/i.test(resumeText)) { feedback.push("Use strong action verbs (e.g., 'led', 'created', 'improved') instead of 'responsible for'."); score -= 5; }
+                      if (!resumeText.match(/\d{4}/)) { feedback.push("Add years for jobs and education (e.g., 2022)."); score -= 5; }
+                      if (score > 90) feedback.push("Great job! Your resume covers all the basics.");
+                      if (score > 70 && score <= 90) feedback.push("Solid resume, but a few improvements could help.");
+                      if (score <= 70) feedback.push("Consider adding more detail and structure for a stronger resume.");
+                      reply = `Resume Score: ${score}/100\n\nFeedback:\n- ${feedback.join("\n- ")}`;
+                    }
+                if (
+                  (lower.includes("ai companies") || lower.includes("ai employers") || lower.includes("ai company") || lower.includes("ai labs")) &&
+                  (lower.includes("uk") || lower.includes("united kingdom"))
+                ) {
+                  reply = `Major AI companies in the UK include:\n- DeepMind (Google)\n- BenevolentAI\n- Babylon Health\n- Graphcore\n- Darktrace\n- Faculty\n- Oxbotica\n- FiveAI\n- Mind Foundry\n- Many startups in London and Cambridge`;
+                } else if (
+                  (lower.includes("ai companies") || lower.includes("ai employers") || lower.includes("ai company") || lower.includes("ai labs")) &&
+                  lower.includes("japan")
+                ) {
+                  reply = `Major AI companies in Japan include:\n- Sony AI\n- Hitachi\n- SoftBank Robotics\n- Preferred Networks\n- NEC\n- Fujitsu\n- Panasonic\n- Cyberdyne\n- Startups in Tokyo and Osaka`;
+                } else if (
+                  (lower.includes("ai companies") || lower.includes("ai employers") || lower.includes("ai company") || lower.includes("ai labs")) &&
+                  lower.includes("canada")
+                ) {
+                  reply = `Major AI companies and labs in Canada include:\n- Element AI (ServiceNow)\n- Shopify\n- MILA (Montreal Institute for Learning Algorithms)\n- Vector Institute\n- Deep Genomics\n- Layer 6 AI\n- Borealis AI (RBC)\n- BlueDot\n- Many startups in Toronto, Montreal, and Vancouver`;
+                } else if (
+                  (lower.includes("ai companies") || lower.includes("ai employers") || lower.includes("ai company") || lower.includes("ai labs")) &&
+                  lower.includes("china")
+                ) {
+                  reply = `Major AI companies in China include:\n- Baidu\n- Alibaba\n- Tencent\n- SenseTime\n- Megvii (Face++)\n- iFlytek\n- ByteDance\n- Huawei\n- Ping An Technology\n- Startups in Beijing, Shanghai, and Shenzhen`;
+                } else 
+          if (
+            (lower.includes("ai job") || lower.includes("ai jobs") || lower.includes("ai talent") || lower.includes("ai opening") || lower.includes("hiring in")) &&
+            (lower.includes("uk") || lower.includes("united kingdom") || lower.includes("japan") || lower.includes("canada") || lower.includes("china"))
+          ) {
+            reply = `Yes! Many companies in the UK, Japan, Canada, and China are actively hiring AI talent.\n\n- **UK:** London and Cambridge are major AI hubs. Companies like DeepMind (Google), BenevolentAI, and Babylon Health often hire for AI roles.\n- **Japan:** Tokyo and Osaka have growing AI sectors. Look for roles at Sony, Hitachi, SoftBank, and startups in robotics and automation.\n- **Canada:** Toronto, Montreal, and Vancouver are global AI centers. Companies like Element AI, Shopify, and large research labs (MILA, Vector Institute) are great places to look.\n- **China:** Beijing, Shanghai, and Shenzhen are AI hotspots. Baidu, Alibaba, Tencent, SenseTime, and ByteDance are major employers.\n\nCheck local job boards, LinkedIn, and company career pages for the latest openings. Let me know if you want resume tips for international jobs!`;
+          } else 
     e.preventDefault();
     if (!input.trim()) return;
     const userMsg = {
@@ -40,18 +92,21 @@ export default function MrNannyResumeChat() {
       if (
         lower.includes("interview") &&
         (lower.includes("wear") || lower.includes("dress"))
+      if (
+        lower.includes("ai job openings") || lower.includes("ai jobs available") || lower.includes("open ai jobs") || lower.includes("ai job board") || lower.includes("find ai jobs")
+      if (
+        (lower.includes("pay") || lower.includes("salary") || lower.includes("compensation")) && (lower.includes("ai job") || lower.includes("ai company") || lower.includes("artificial intelligence") || lower.includes("data science") || lower.includes("machine learning"))
       ) {
-        if (lower.includes("google")) {
-          reply = `For a Google interview, business casual is ideal. Google is known for a relaxed but professional culture.\n\nFor men: A collared shirt (button-down or polo), dress pants or chinos, and clean shoes. No need for a tie or suit unless you feel most comfortable that way.\n\nFor women: A blouse or smart top, dress pants or a modest skirt, and comfortable, clean shoes.\n\nAvoid overly formal attire, but also avoid jeans, shorts, or t-shirts. Aim for neat, comfortable, and confident. Good luck!`;
-        } else if (
-          lower.includes("ai company") || lower.includes("artificial intelligence")
-        ) {
-          reply = `For an interview at an AI or tech company, business casual is usually best.\n\nFor men: A collared shirt (button-down or polo), dress pants or chinos, and clean shoes. A blazer is optional.\n\nFor women: A blouse or smart top, dress pants or a modest skirt, and comfortable, clean shoes.\n\nTech and AI companies often value comfort and individuality, so you can add a subtle personal touch, but keep it neat and professional.`;
-        } else if (
-          lower.includes("sales company") || lower.includes("sales job") || lower.includes("sales position")
-        ) {
-          reply = `For a sales company or sales job interview, dress to impress!\n\nFor men: A suit or blazer with a collared shirt and tie, dress pants, and polished shoes.\n\nFor women: A business suit, dress, or blouse with a blazer, dress pants or skirt, and professional shoes.\n\nSales roles are often client-facing, so looking sharp and confident is key. Choose classic, professional colors and avoid anything too flashy.`;
-        } else if (
+        reply = `Pay for AI jobs can vary widely based on role, experience, and location. Entry-level AI roles (like AI analyst or junior data scientist) often start around $70,000–$100,000/year in the US. Experienced AI engineers, data scientists, and researchers can earn $120,000–$200,000+ at top companies. Specialized roles (like AI research or leadership) may pay even more.\n\nFor the most accurate info, check job postings or salary sites like Glassdoor, Levels.fyi, or LinkedIn Salaries.`;
+      } else if (
+        (lower.includes("turnover rate") || lower.includes("employee turnover") || lower.includes("quit rate") || lower.includes("retention")) && (lower.includes("ai job") || lower.includes("ai company") || lower.includes("artificial intelligence") || lower.includes("data science") || lower.includes("machine learning"))
+      ) {
+        reply = `Turnover rates in AI and tech can be higher than average, especially in fast-paced startups or highly competitive companies. Many professionals move for better pay, new challenges, or career growth. However, top AI companies often offer strong benefits and career paths to retain talent.\n\nIf you want specifics for a company, check employee reviews on Glassdoor or Blind, or ask about retention during your interview!`;
+      } else if (
+        lower.includes("ai job openings") || lower.includes("ai jobs available") || lower.includes("open ai jobs") || lower.includes("ai job board") || lower.includes("find ai jobs")
+      ) {
+        reply = `Here are some ways to find current AI job openings:\n\n- Visit the AI Jobs or New AI Jobs section on this site for curated listings.\n- Check major job boards like LinkedIn, Indeed, and Glassdoor—search for 'AI', 'machine learning', 'data science', or 'artificial intelligence'.\n- Explore company career pages for top AI employers (Google, OpenAI, Microsoft, Meta, Amazon, NVIDIA, etc.).\n- Network in AI communities and attend virtual hiring events.\n\nLet me know if you want help with your resume or want to practice for a specific AI job!`;
+      } else if (
           lower.includes("blue collar") || lower.includes("warehouse") || lower.includes("manufacturing") || lower.includes("construction")
         ) {
           reply = `For a blue collar, warehouse, manufacturing, or construction interview, aim for clean, neat, and practical business casual.\n\nFor men: A collared shirt or polo, clean pants (khakis or dress pants), and closed-toe shoes or boots.\n\nFor women: A blouse or smart top, clean pants or a modest skirt, and closed-toe shoes.\n\nAvoid jeans, t-shirts, or work boots unless specifically told otherwise. Show you take the opportunity seriously by dressing up a bit more than the daily work attire.`;
@@ -133,6 +188,12 @@ export default function MrNannyResumeChat() {
         />
         <button type="submit" style={{ background: '#7b2ff2', color: '#fff', fontWeight: 700, borderRadius: 8, padding: '10px 18px', border: 'none', cursor: 'pointer' }}>Send</button>
       </form>
+      <div style={{ marginTop: 24, textAlign: 'center' }}>
+        <a href="/mock-interview-vr.html" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: '#ffd700', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '12px 24px', textDecoration: 'none', boxShadow: '0 2px 8px #ffd70055', fontSize: '1.1rem', marginTop: 8 }}>
+          Launch VR Mock Interview Room
+        </a>
+        <div style={{ fontSize: 13, color: '#7b2ff2', marginTop: 6 }}>Try a virtual interview with Mr. Nanny in 3D!</div>
+      </div>
     </section>
   );
 }
