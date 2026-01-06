@@ -12,47 +12,48 @@ export default function TransitionalPhasingJobs() {
       <p className="max-w-2xl text-center text-lg md:text-xl mb-10" style={{ color: '#ffe082', opacity: 0.92 }}>
         Explore how traditional roles are evolving and what equivalent experience looks like in the AI era.
       </p>
-      {/* Jobs at Risk Section */}
-      <div className="w-full max-w-3xl rounded-xl shadow-lg p-8 border mb-12" style={{ background: '#fff', borderColor: '#e0d6f7', fontFamily: 'Arial, Verdana, system-ui, sans-serif', color: '#18191a', boxShadow: '0 2px 16px #18191a22' }}>
-        <h2 className="text-2xl font-semibold mb-6 text-center" style={{ color: '#7b2ff2', fontFamily: 'Arial, Verdana, system-ui, sans-serif' }}>Jobs at Risk</h2>
-        <ul className="list-disc pl-6 text-lg space-y-2" style={{ fontFamily: 'Arial, Verdana, system-ui, sans-serif', color: '#18191a' }}>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Retail Associate → <a href="#ai-retail" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Retail Assistant</a>
-          </li>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Customer Service Rep → <a href="#ai-customer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">Conversational AI Trainer</a>
-          </li>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Data Entry Clerk → <a href="#ai-data" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Data Annotator</a>
-          </li>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Truck Driver → <a href="#ai-driver" className="text-amber-300 underline hover:text-yellow-400 transition-colors">Autonomous Vehicle Operator</a>
-          </li>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Administrative Assistant → <a href="#ai-admin" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Workflow Coordinator</a>
-          </li>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Freelance Writer → <a href="#ai-writer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Content Curator/Prompt Designer</a>
-          </li>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Bookkeeper → <a href="#ai-bookkeeper" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Financial Data Analyst</a>
-          </li>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Telemarketer → <a href="#ai-telemarketer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Outreach Specialist</a>
-          </li>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Graphic Designer → <a href="#ai-graphic" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Visual Model Trainer</a>
-          </li>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Journalist → <a href="#ai-journalist" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI News Curator/Fact Checker</a>
-          </li>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Legal Secretary → <a href="#ai-legal" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Legal Data Specialist</a>
-          </li>
-          <li className="transition-transform duration-150 hover:scale-105 hover:bg-yellow-900/20 rounded-lg px-2">
-            Medical Transcriptionist → <a href="#ai-medical" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Medical Data Annotator</a>
-          </li>
-        </ul>
+      {/* Jobs at Risk Section - Grouped by Category */}
+      <div className="w-full flex justify-center">
+        <div className="w-full max-w-3xl rounded-xl shadow-lg p-8 border mb-12" style={{ background: '#fff', borderColor: '#e0d6f7', fontFamily: 'Arial, Verdana, system-ui, sans-serif', color: '#18191a', boxShadow: '0 2px 16px #18191a22' }}>
+        <h2 className="text-2xl font-semibold mb-6 text-center" style={{ color: '#7b2ff2', fontFamily: 'Arial, Verdana, system-ui, sans-serif' }}>Jobs at Risk (Grouped by Field)</h2>
+        <div style={{ marginBottom: 24 }}>
+          <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 8 }}>Customer Service & Admin</h3>
+          <ul className="list-disc pl-6 text-lg space-y-2">
+            <li>Customer Service Rep → <a href="#ai-customer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">Conversational AI Trainer</a></li>
+            <li>Administrative Assistant → <a href="#ai-admin" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Workflow Coordinator</a></li>
+            <li>Telemarketer → <a href="#ai-telemarketer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Outreach Specialist</a></li>
+          </ul>
+        </div>
+        <div style={{ marginBottom: 24 }}>
+          <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 8 }}>Data & Finance</h3>
+          <ul className="list-disc pl-6 text-lg space-y-2">
+            <li>Data Entry Clerk → <a href="#ai-data" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Data Annotator</a></li>
+            <li>Bookkeeper → <a href="#ai-bookkeeper" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Financial Data Analyst</a></li>
+          </ul>
+        </div>
+        <div style={{ marginBottom: 24 }}>
+          <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 8 }}>Creative & Media</h3>
+          <ul className="list-disc pl-6 text-lg space-y-2">
+            <li>Freelance Writer → <a href="#ai-writer" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Content Curator/Prompt Designer</a></li>
+            <li>Graphic Designer → <a href="#ai-graphic" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Visual Model Trainer</a></li>
+            <li>Journalist → <a href="#ai-journalist" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI News Curator/Fact Checker</a></li>
+          </ul>
+        </div>
+        <div style={{ marginBottom: 24 }}>
+          <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 8 }}>Legal & Medical</h3>
+          <ul className="list-disc pl-6 text-lg space-y-2">
+            <li>Legal Secretary → <a href="#ai-legal" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Legal Data Specialist</a></li>
+            <li>Medical Transcriptionist → <a href="#ai-medical" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Medical Data Annotator</a></li>
+          </ul>
+        </div>
+        <div style={{ marginBottom: 8 }}>
+          <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 8 }}>Other Fields</h3>
+          <ul className="list-disc pl-6 text-lg space-y-2">
+            <li>Retail Associate → <a href="#ai-retail" className="text-amber-300 underline hover:text-yellow-400 transition-colors">AI Retail Assistant</a></li>
+            <li>Truck Driver → <a href="#ai-driver" className="text-amber-300 underline hover:text-yellow-400 transition-colors">Autonomous Vehicle Operator</a></li>
+          </ul>
+        </div>
+        </div>
       </div>
       <div className="w-full max-w-3xl rounded-xl shadow-lg p-8 border mb-12" style={{ background: '#fff', borderColor: '#e0d6f7', fontFamily: 'Arial, Verdana, system-ui, sans-serif', color: '#18191a', boxShadow: '0 2px 16px #18191a22' }}>
         <h2 className="text-2xl font-semibold mb-6 text-center" style={{ color: '#7b2ff2', fontFamily: 'Arial, Verdana, system-ui, sans-serif' }}>Jobs Replaced or Evolving with AI</h2>
