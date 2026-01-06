@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import NotificationBell, { Notification } from "../components/NotificationBell";
+
+import { usePathname } from 'next/navigation';
 import NavBar from "../components/NavBar";
 
 const geistSans = Geist({
@@ -41,11 +42,13 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Use a client component to access the path
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+
+  const isContact = pathname === '/contact';
+
   return (
     <html lang="en">
       <head>
@@ -63,7 +66,16 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{
+        style={isContact ? {
+          position: "relative",
+          minHeight: "100vh",
+          backgroundImage: "url('/background.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          color: "#18191a",
+          fontFamily: "Inter, Arial, sans-serif",
+        } : {
           position: "relative",
           minHeight: "100vh",
           background: "#fff",
@@ -72,7 +84,15 @@ export default function RootLayout({
         }}
       >
         <NavBar />
-        <div style={{
+        <div style={isContact ? {
+          width: '100vw',
+          minHeight: '100vh',
+          background: 'transparent',
+          boxShadow: 'none',
+          borderRadius: 0,
+          padding: 0,
+          margin: 0,
+        } : {
           maxWidth: 1200,
           margin: "0 auto",
           boxShadow: "0 2px 32px #ffd70022",
