@@ -11,33 +11,10 @@ export default function ResourcesPage() {
         </div>
       </section>
       <section style={{ background: '#fff', borderRadius: 16, padding: '32px 40px', maxWidth: 900, margin: '0 auto 48px auto', boxShadow: '0 2px 16px #18191a22', color: '#18191a', textAlign: 'center', fontSize: '1.12rem', lineHeight: 1.7, border: '1.5px solid #e0d6f7' }}>
-        {/* ...existing resource sections... */}
-        <div style={{ textAlign: 'left' }}>
-          <h2 style={{ color: '#7b2ff2', fontSize: '1.3rem', marginBottom: 18 }}>Job Boards & Career Sites</h2>
-          <ul>
-            <li><a href="https://www.indeed.com" target="_blank" rel="noopener" style={{ color: '#7b2ff2', fontWeight: 600 }}>Indeed</a></li>
-            <li><a href="https://www.linkedin.com/jobs" target="_blank" rel="noopener" style={{ color: '#7b2ff2', fontWeight: 600 }}>LinkedIn Jobs</a></li>
-            <li><a href="https://www.flexjobs.com" target="_blank" rel="noopener" style={{ color: '#7b2ff2', fontWeight: 600 }}>FlexJobs</a></li>
-            <li><a href="https://www.remoteworkhub.com" target="_blank" rel="noopener" style={{ color: '#7b2ff2', fontWeight: 600 }}>Remote Work Hub</a></li>
-          </ul>
-          {/* ...repeat for other resource sections, updating color and style as above... */}
-        </div>
+        {/* Add your resource sections here, following the new style. */}
       </section>
     </main>
   );
-            <li><a href="https://www.resumeworded.com" target="_blank" rel="noopener" className="text-yellow-200 underline">Resume Worded</a></li>
-            <li><a href="https://www.interviewbit.com" target="_blank" rel="noopener" className="text-yellow-200 underline">InterviewBit</a></li>
-            <li><a href="https://www.themuse.com/advice/interview-questions-and-answers" target="_blank" rel="noopener" className="text-yellow-200 underline">The Muse: Interview Q&A</a></li>
-          </ul>
-        </section>
-        <section className="mb-10">
-          <h2 className="text-2xl font-semibold mb-4 text-purple-200">Events & Webinars</h2>
-          <ul className="list-disc ml-6 space-y-2">
-            <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener" className="text-yellow-200 underline">Eventbrite</a></li>
-            <li><a href="https://www.careereco.com" target="_blank" rel="noopener" className="text-yellow-200 underline">CareerEco Virtual Fairs</a></li>
-            <li><a href="https://www.linkedin.com/events/" target="_blank" rel="noopener" className="text-yellow-200 underline">LinkedIn Events</a></li>
-          </ul>
-        </section>
       </div>
     </main>
   );
