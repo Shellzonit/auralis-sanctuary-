@@ -157,23 +157,4 @@ export default function TransitionalPhasingJobs() {
               <a href="https://www.anthropic.com/careers" target="_blank" rel="noopener noreferrer" className="mt-2 md:mt-0 text-purple-700 underline font-semibold hover:text-purple-900 transition-colors">anthropic.com/careers</a>
             </li>
             <li className="rounded-xl p-6 border border-[#e0d6f7] bg-white flex flex-col md:flex-row md:items-center md:justify-between transition-transform hover:scale-105 hover:shadow-lg" style={{ color: '#18191a' }}>
-              <div>
-                <span className="font-bold text-lg" style={{ color: '#7b2ff2' }}>Hugging Face</span>
-                <span className="ml-2 text-base">— Roles: Community Contributor, Model Trainer, Developer Advocate</span>
-              </div>
-              <a href="https://huggingface.co/careers" target="_blank" rel="noopener noreferrer" className="mt-2 md:mt-0 text-purple-700 underline font-semibold hover:text-purple-900 transition-colors">huggingface.co/careers</a>
-            </li>
-            <li className="rounded-xl p-6 border border-[#e0d6f7] bg-white flex flex-col md:flex-row md:items-center md:justify-between transition-transform hover:scale-105 hover:shadow-lg" style={{ color: '#18191a' }}>
-              <div>
-                <span className="font-bold text-lg" style={{ color: '#7b2ff2' }}>Stability AI</span>
-                <span className="ml-2 text-base">— Roles: Data Curator, AI Artist, Research Assistant</span>
-              </div>
-              <a href="https://stability.ai/careers" target="_blank" rel="noopener noreferrer" className="mt-2 md:mt-0 text-purple-700 underline font-semibold hover:text-purple-900 transition-colors">stability.ai/careers</a>
-            </li>
-            {/* Add more companies and roles as needed */}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
+// ...all unreachable legacy code removed. Only the new minimal layout remains above.
