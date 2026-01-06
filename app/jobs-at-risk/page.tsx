@@ -26,18 +26,18 @@ export default function JobsAtRiskPage() {
   );
 
   return (
-    <main style={{ minHeight: "100vh", background: "#7b2c2c", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem", position: 'relative', border: '3px solid #18191a', borderRadius: 24, boxSizing: 'border-box' }}>
-      {/* Transitional Paths Tab Button in Corner */}
-      <a href="/transitional-paths" style={{position: 'absolute', top: 24, right: 32, zIndex: 20, padding: '10px 28px', background: '#ffd700', color: '#18191a', fontWeight: 700, borderRadius: 9999, boxShadow: '0 2px 12px #ffd70055', fontSize: '1.15rem', textDecoration: 'none', transition: 'all 0.2s', border: 'none'}} onMouseOver={e => {e.currentTarget.style.background='#F7F5F2';e.currentTarget.style.color='#2a1a4d';}} onMouseOut={e => {e.currentTarget.style.background='#ffd700';e.currentTarget.style.color='#18191a';}}>Transitional Paths &rarr;</a>
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044" }}>
-        <span style={{ color: '#ffd700' }}>Jobs at Risk</span> (Global & USA)
-      </h1>
-      {/* Job Growth and Educational Outlook Images */}
-      <div style={{ display: 'flex', gap: 24, marginBottom: 24 }}>
-        <img src="/job growth.png" alt="Job Growth" width={220} height={140} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
-        <img src="/educational outlook.png" alt="Educational Outlook" width={220} height={140} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
-      </div>
-      <section style={{ maxWidth: 900, marginBottom: 24, background: '#fff', borderRadius: 12, padding: 18, boxShadow: '0 2px 8px #18191a22', color: '#18191a', border: '1.5px solid #ffd700' }}>
+    <main style={{ minHeight: '100vh', background: '#f5f3fd', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
+      <section style={{ width: '100%', maxWidth: 700, margin: '3rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 24, boxShadow: '0 4px 32px #18191a22', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <h1 style={{ color: 'rgba(255,255,255,0.97)', fontSize: '2.5rem', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.18, paddingBottom: '0.18em' }}>Jobs at Risk</h1>
+        <div style={{ color: '#ece9fc', fontSize: '1.15rem', fontWeight: 500, marginTop: 10, textAlign: 'center', maxWidth: 500, textShadow: '0 1px 6px #18191a55' }}>
+          Explore jobs most impacted by AI and automation, and discover new career paths.
+        </div>
+      </section>
+      <section style={{ background: '#fff', borderRadius: 16, padding: '32px 40px', maxWidth: 900, margin: '0 auto 48px auto', boxShadow: '0 2px 16px #18191a22', color: '#18191a', textAlign: 'center', fontSize: '1.12rem', lineHeight: 1.7, border: '1.5px solid #e0d6f7' }}>
+        <div style={{ marginBottom: 18 }}>
+          <strong style={{ color: '#7b2ff2', fontSize: '1.15rem' }}>AI Impacted Jobs</strong>
+        </div>
+        {/* ...existing job list/filter UI remains here... */}
         <p style={{ color: '#18191a', fontSize: '1.08rem', marginBottom: 8 }}>
           <strong>Which jobs are at risk?</strong> This page highlights jobs in America and globally that are most at risk due to AI, automation, and digital transformation. Risk levels are based on current trends, expert analysis, and news reports. Many roles may be <span style={{ color: "#ffd700" }}>reclassified</span> rather than eliminated, meaning workers could transition to new responsibilities as technology evolves.
         </p>

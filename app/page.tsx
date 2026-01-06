@@ -6,122 +6,159 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function HomePage() {
-  const tabStyle = {
-    color: '#ffd700',
-    fontWeight: 700,
-    fontSize: '1.15rem',
-    textDecoration: 'none',
-    padding: '8px 18px',
-    borderRadius: 8,
-    background: 'rgba(106,27,154,0.10)', // purple tint
-    boxShadow: '0 2px 8px #6a1b9a22',
-    transition: 'background 0.2s',
-    border: 'none',
-    outline: 'none',
-    cursor: 'pointer',
-    letterSpacing: '.04em',
-    margin: 0,
-    display: 'inline-block',
-  };
+  // List of images from public/
+  const images = [
+    'ai around the world 2.png',
+    'ai around the world.png',
+    'ai homepage 3.png',
+    'ai homepage.png',
+    'Ai wilding (2).png',
+    'Ai wilding.png',
+    'background.png',
+    'BCO.436bd64f-0acc-4437-a5c3-15269bfdf309.png',
+    'big cities.png',
+    'canada graph.png',
+    'china.png',
+    'education.png',
+    'educational outlook.png',
+    'healthy.png',
+    'icon.png',
+    'japan.png',
+    'job growth.png',
+    'Mr Nanny.png',
+    'Resume.png',
+    'states 2.png',
+    'states.png',
+    'uk.png',
+    'usa.png',
+  ];
+  const random = Math.floor(Math.random() * images.length);
+  const img = images[random];
   return (
     <main
       style={{
-        minHeight: "100vh",
-        background: "#7b2c2c", // dark red, almost brown
-        fontFamily: "Playfair Display, Georgia, serif",
-        color: "#0a2342", // dark blue font
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "0 1rem",
-        border: '3px solid #18191a', // black border
-        borderRadius: 24,
-        boxSizing: 'border-box',
+        minHeight: '100vh',
+        width: '100vw',
+        background: '#f5f3fd',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       }}
     >
-      {/* Homepage Icon */}
-      <h1
-        style={{
-          fontFamily: 'Playfair Display, Georgia, serif',
-          fontSize: '4.5rem',
-          fontWeight: 900,
-          margin: '56px 0 32px 0',
-          letterSpacing: 3,
+      {/* Top Navigation Bar */}
+      <nav style={{
+        width: '100%',
+        background: '#fff',
+        borderBottom: '1.5px solid #e0d6f7',
+        boxShadow: '0 2px 12px #7b2ff211',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '0.5rem 0',
+        position: 'sticky',
+        top: 0,
+        zIndex: 10,
+      }}>
+        {['Home', 'About', 'Support', 'Contact', 'Jobs', 'Training', 'Recovery', 'AI News', 'Gallery', 'Resources'].map((tab) => (
+          <a
+            key={tab}
+            href={tab === 'Home' ? '/' : `/${tab.toLowerCase().replace(/ /g, '-')}`}
+            style={{
+              color: '#7b2ff2',
+              fontWeight: 700,
+              fontSize: '1.1rem',
+              textDecoration: 'none',
+              margin: '0 1.2rem',
+              padding: '0.5rem 0',
+              borderBottom: '2px solid transparent',
+              transition: 'border 0.2s',
+            }}
+            onMouseOver={e => e.currentTarget.style.borderBottom = '2px solid #7b2ff2'}
+            onMouseOut={e => e.currentTarget.style.borderBottom = '2px solid transparent'}
+          >
+            {tab}
+          </a>
+        ))}
+      </nav>
+      {/* Banner with Tagline */}
+      <section style={{
+        width: '100%',
+        maxWidth: 900,
+        margin: '2.5rem auto 2rem auto',
+        background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)',
+        borderRadius: 28,
+        boxShadow: '0 4px 32px #18191a22',
+        padding: '2.5rem 0 2.5rem 0',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+      }}>
+        <h1
+          style={{
+            color: 'rgba(255,255,255,0.97)',
+            fontSize: 'clamp(2.8rem, 7vw, 4.5rem)',
+            fontWeight: 800,
+            fontFamily: 'Playfair Display, Georgia, serif',
+            fontStyle: 'italic',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            textAlign: 'center',
+            margin: 0,
+            width: '100%',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            position: 'relative',
+            zIndex: 2,
+            textShadow: '0 2px 8px #8882',
+            WebkitTextStroke: '1.5px #bba6f7',
+            filter: 'none',
+            background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            maskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)',
+            lineHeight: 1.18,
+            paddingBottom: '0.18em',
+          }}
+        >
+          AI Wilding
+        </h1>
+        <div style={{
+          color: '#ece9fc',
+          fontSize: '1.25rem',
+          fontWeight: 500,
+          marginTop: 12,
           textAlign: 'center',
-          background: 'linear-gradient(90deg, #ffd700 20%, #fffbe7 60%, #b8860b 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          textShadow: '0 4px 32px #ffd70066, 0 2px 24px #7b2c2c88',
-          filter: 'drop-shadow(0 2px 8px #18191a44)',
-        }}
-      >
-        <span style={{ fontWeight: 900, letterSpacing: 4 }}>AI Wilding</span>
-      </h1>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 48, marginBottom: 32 }}>
-        {/* Left tabs */}
-        <nav style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 18,
-          background: '#18191a',
-          borderRadius: 16,
-          padding: '36px 18px',
-          boxShadow: '0 4px 24px #0002',
-          minWidth: 200,
-          minHeight: '340px',
-          justifyContent: 'space-between',
+          maxWidth: 600,
+          textShadow: '0 1px 6px #18191a55',
         }}>
-          <a href="/" style={tabStyle}>Home</a>
-          <a href="/states" style={tabStyle}>States</a>
-          <a href="/countries" style={tabStyle}>Countries</a>
-          <a href="/jobs-at-risk" style={tabStyle}>Jobs at Risk</a>
-          <a href="/transitional-paths" style={tabStyle}>Transitional Paths</a>
-        </nav>
-        {/* Center images: AI Wilding */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18 }}>
-          <Image src="/Ai wilding.png" alt="AI Wilding" width={480} height={320} style={{ borderRadius: 18, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
+          Empowering your AI journey: discover jobs, training, and support in a privacy-first community.
         </div>
-        {/* Right tabs */}
-        <nav style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 18,
-          background: '#18191a',
-          borderRadius: 16,
-          padding: '36px 18px',
-          boxShadow: '0 4px 24px #0002',
-          minWidth: 200,
-          minHeight: '340px',
-          justifyContent: 'space-between',
-        }}>
-          <a href="/new-ai-jobs" style={tabStyle}>New AI Jobs</a>
-          <a href="/training" style={tabStyle}>Training Hub</a>
-          <a href="/recovery" style={tabStyle}>Recovery Hub</a>
-          <a href="/about" style={tabStyle}>About</a>
-          <a href="/contact" style={tabStyle}>Contact</a>
-        </nav>
-      </div>
-      {/* Education Image */}
-      <div style={{ margin: '24px 0 0 0' }}>
-        <Image src="/education.png" alt="Education" width={420} height={260} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
-      </div>
+      </section>
+      {/* Remove pyramid tabs for a cleaner, more standard layout */}
+      {/* Optional: Add a hero image or illustration here if desired */}
+      {/* Optional: Add supporting images or icons here if desired */}
+      {/* Feature Section */}
       <section style={{
         background: '#fff',
         borderRadius: 16,
-        padding: '24px 32px',
-        maxWidth: 600,
-        margin: '48px auto 48px auto',
+        padding: '32px 40px',
+        maxWidth: 700,
+        margin: '32px auto 48px auto',
         boxShadow: '0 2px 16px #18191a22',
         color: '#18191a',
         textAlign: 'center',
-        fontSize: '1.15rem',
+        fontSize: '1.18rem',
         lineHeight: 1.7,
-        border: '1.5px solid #ffd700',
+        border: '1.5px solid #e0d6f7',
       }}>
-        <strong style={{ color: '#ffd700', fontSize: '1.2rem' }}>Meet Mr. Job Nanny!</strong>
+        <strong style={{ color: '#7b2ff2', fontSize: '1.25rem' }}>Meet Mr. Job Nanny!</strong>
         <br />
-        <span role="img" aria-label="nanny">🧑‍🦳</span> Mr. Job Nanny is your personal, privacy-first AI job assistant. He helps you discover new AI jobs, analyze your skill gaps, set interview reminders, and get personalized job alerts—all in a safe, supportive environment. Mr. Nanny can:
-        <ul style={{ margin: '8px 0 8px 24px', color: '#18191a' }}>
+        <span role="img" aria-label="nanny">🧑‍🦳</span> Your personal, privacy-first AI job assistant. Discover new AI jobs, analyze your skill gaps, set interview reminders, and get personalized job alerts—all in a safe, supportive environment.<br /><br />
+        <ul style={{ margin: '8px 0 8px 24px', color: '#18191a', textAlign: 'left', fontSize: '1.08rem' }}>
           <li>Suggest jobs and career paths based on your interests and skills</li>
           <li>Analyze your resume and offer actionable feedback</li>
           <li>Help you identify missing skills or certifications for your dream job</li>
@@ -129,14 +166,10 @@ export default function HomePage() {
           <li>Alert you to new job postings in chat or by email</li>
           <li>Answer your questions about pay, qualifications, and career growth</li>
         </ul>
-        <span style={{ color: '#ffd700', fontWeight: 600 }}>Your privacy is always protected—your data stays on your device unless you choose to share it.</span>
+        <span style={{ color: '#7b2ff2', fontWeight: 600 }}>Your privacy is always protected—your data stays on your device unless you choose to share it.</span>
         <br /><br />
         <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>Chat with Mr. Job Nanny</Link>
       </section>
-      {/* Job Growth Image */}
-      <div style={{ margin: '48px 0 24px 0' }}>
-        <Image src="/job growth.png" alt="Job Growth" width={420} height={260} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
-      </div>
     </main>
   );
 }

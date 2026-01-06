@@ -38,56 +38,35 @@ const CERTS = [
 	},
 ];
 
-export default function TrainingHubPage() {
-
-
-	return (
-		<main style={{ minHeight: '100vh', background: '#7b2c2c', fontFamily: 'Inter, Arial, sans-serif', padding: '2rem', color: '#18191a', border: '3px solid #18191a', borderRadius: 24, boxSizing: 'border-box' }}>
-			<h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#18191a', marginBottom: '2rem' }}>
-				<span style={{ color: '#ffd700' }}>New Paths to Employment</span> – Week of Jan 4, 2026
-			</h1>
-			<section style={{ background: '#fffbe7', borderRadius: 16, boxShadow: '0 2px 12px #ffd70022', padding: 32, maxWidth: 700, margin: '0 auto', color: '#18191a' }}>
-				<h2 style={{ color: '#ffd700', fontSize: '1.3rem', marginBottom: 18 }}>Programs & Opportunities Added This Week</h2>
-				<ul style={{ color: '#18191a', fontSize: '1.08rem', lineHeight: 1.7 }}>
-					<li><strong>AI Customer Support Bootcamp</strong> – 4-week online program for transitioning into AI-powered support roles. <a href="https://aijobsbootcamp.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffd700', fontWeight: 600 }}>Learn more</a></li>
-					<li><strong>Remote Data Annotation Training</strong> – New cohort starting Jan 8, 2026. Entry-level, remote, with job placement support. <a href="https://dataannotators.org" target="_blank" rel="noopener noreferrer" style={{ color: '#ffd700', fontWeight: 600 }}>Apply here</a></li>
-					<li><strong>AI-Driven Marketing Apprenticeship</strong> – Hands-on, paid apprenticeship for digital marketing with AI tools. <a href="https://aimarketingapprentice.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffd700', fontWeight: 600 }}>Details</a></li>
-					<li><strong>Healthcare AI Scribe Training</strong> – Fast-track program for medical scribe roles using AI transcription. <a href="https://aiscribehealth.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffd700', fontWeight: 600 }}>Sign up</a></li>
-					<li><strong>AI Project Management Micro-Credential</strong> – 2-week course for project managers to upskill in AI project delivery. <a href="https://aipmcert.org" target="_blank" rel="noopener noreferrer" style={{ color: '#ffd700', fontWeight: 600 }}>Enroll</a></li>
-				</ul>
-				<p style={{ color: '#18191a', marginTop: 24, fontSize: '1.05rem' }}>
-					Check back weekly for new programs, bootcamps, and job-focused training opportunities!
-				</p>
-				<div style={{ background: '#fff', borderRadius: 16, padding: 28, boxShadow: '0 2px 12px #ffd70022', marginTop: 32, color: '#18191a' }}>
-					  <h2 style={{ color: '#ffd700', fontSize: '1.22rem', marginBottom: 12 }}>Recommended AI Courses</h2>
-					  <ul style={{ color: '#18191a', fontSize: '1.05rem', lineHeight: 1.7 }}>
-						{COURSES.map((c) => (
-							<li key={c.name}>
-								<a href={c.url} target="_blank" rel="noopener noreferrer" style={{ color: '#ffd700', fontWeight: 600 }}>{c.name}</a>: {c.desc}
-							</li>
-						))}
-					</ul>
-				</div>
-				<div style={{ background: '#fff', borderRadius: 16, padding: 28, boxShadow: '0 2px 12px #ffd70022', marginTop: 32, color: '#18191a' }}>
-					  <h2 style={{ color: '#ffd700', fontSize: '1.22rem', marginBottom: 12 }}>Certification Programs</h2>
-					  <ul style={{ color: '#18191a', fontSize: '1.05rem', lineHeight: 1.7 }}>
-						{CERTS.map((c) => (
-							<li key={c.name}>
-								<a href={c.url} target="_blank" rel="noopener noreferrer" style={{ color: '#ffd700', fontWeight: 600 }}>{c.name}</a>
-							</li>
-						))}
-					</ul>
-				</div>
-				<div style={{ background: '#fff', borderRadius: 16, padding: 28, boxShadow: '0 2px 12px #ffd70022', marginTop: 32, color: '#18191a' }}>
-					  <h2 style={{ color: '#ffd700', fontSize: '1.22rem', marginBottom: 12 }}>Career Prep</h2>
-					  <ul style={{ color: '#18191a', fontSize: '1.05rem', lineHeight: 1.7 }}>
-						<li>Resume writing tips and templates (see Mr. Job Nanny in the chatbot demo!)</li>
-						<li>Interview prep resources for AI/data roles</li>
-						<li>How to build a portfolio of AI projects</li>
-					</ul>
-				</div>
-			</section>
-		</main>
-	);
+export default function TrainingPage() {
+  return (
+	 <main style={{ minHeight: '100vh', background: '#f5f3fd', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
+		<section style={{ width: '100%', maxWidth: 700, margin: '3rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 24, boxShadow: '0 4px 32px #18191a22', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+		  <h1 style={{ color: 'rgba(255,255,255,0.97)', fontSize: '2.5rem', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.18, paddingBottom: '0.18em' }}>AI Training</h1>
+		  <div style={{ color: '#ece9fc', fontSize: '1.15rem', fontWeight: 500, marginTop: 10, textAlign: 'center', maxWidth: 500, textShadow: '0 1px 6px #18191a55' }}>
+			 Explore top online courses and certifications to advance your AI skills.
+		  </div>
+		</section>
+		<section style={{ background: '#fff', borderRadius: 16, padding: '32px 40px', maxWidth: 700, margin: '0 auto 48px auto', boxShadow: '0 2px 16px #18191a22', color: '#18191a', textAlign: 'center', fontSize: '1.12rem', lineHeight: 1.7, border: '1.5px solid #e0d6f7' }}>
+		  <strong style={{ color: '#7b2ff2', fontSize: '1.15rem' }}>Top Online AI Courses</strong>
+		  <ul style={{ margin: '12px 0 18px 24px', color: '#18191a', fontSize: '1.08rem', textAlign: 'left' }}>
+			 {COURSES.map(course => (
+				<li key={course.name} style={{ marginBottom: 8 }}>
+				  <a href={course.url} target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline', fontWeight: 600 }}>{course.name}</a>
+				  <span style={{ color: '#444', fontWeight: 400 }}> — {course.desc}</span>
+				</li>
+			 ))}
+		  </ul>
+		  <strong style={{ color: '#7b2ff2', fontSize: '1.15rem' }}>AI Certifications</strong>
+		  <ul style={{ margin: '12px 0 0 24px', color: '#18191a', fontSize: '1.08rem', textAlign: 'left' }}>
+			 {CERTS.map(cert => (
+				<li key={cert.name} style={{ marginBottom: 8 }}>
+				  <a href={cert.url} target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline', fontWeight: 600 }}>{cert.name}</a>
+				</li>
+			 ))}
+		  </ul>
+		</section>
+	 </main>
+  );
 }
 
