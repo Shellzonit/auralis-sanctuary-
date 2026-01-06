@@ -4,7 +4,7 @@ export default function ContactPage() {
   const [form, setForm] = React.useState({ name: "", email: "", message: "" });
   const [status, setStatus] = React.useState("");
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
