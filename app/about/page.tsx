@@ -54,7 +54,7 @@ export default function AboutPage() {
             paddingBottom: "0.18em",
           }}
         >
-          About
+          About Sanctuary
         </h1>
         <div
           style={{
@@ -67,7 +67,7 @@ export default function AboutPage() {
             textShadow: "0 1px 6px #18191a55",
           }}
         >
-          Learn more about the creator and the mission behind AI Wilding.
+          Discover what makes Sanctuary unique and how it empowers your journey in the age of AI.
         </div>
       </section>
       <section
@@ -87,28 +87,24 @@ export default function AboutPage() {
       >
         <div style={{ marginBottom: 18 }}>
           <strong style={{ color: "#7b2ff2", fontSize: "1.15rem" }}>
-            Fusing Art, Technology, and Empowerment
+            Your Creative AI Career Platform
           </strong>
         </div>
         <div>
-          I am the creator of{" "}
-          <strong>Femmephonic</strong>, a new genre that fuses opera and
-          international choirs with strings and brass to create a powerful,
-          cinematic sound. My music has reached thousands of listeners and
-          performers on SoundCloud and beyond, inspiring people around the
-          world.
+          Sanctuary is a modern platform designed to help you thrive in the evolving world of AI, creativity, and technology. Our mission is to empower users with:
+          <ul style={{ textAlign: 'left', margin: '18px auto', maxWidth: 480, fontSize: '1.08rem', lineHeight: 1.7 }}>
+            <li><strong>AI Job Boards:</strong> Discover new opportunities in AI and tech fields.</li>
+            <li><strong>Mock Interviews & Training:</strong> Practice with interactive AI interviewers and get instant feedback.</li>
+            <li><strong>Resume Wizard:</strong> Build and refine your resume for the future of work.</li>
+            <li><strong>Events & Networking:</strong> Find hiring events, job fairs, and connect with creative and technical talent.</li>
+            <li><strong>Resources & Guidance:</strong> Access curated guides, tips, and support for your career journey.</li>
+            <li><strong>Community:</strong> Join a supportive space for artists, technologists, and anyone curious about AI.</li>
+          </ul>
+          <br />
+          Sanctuary is built to help you embrace change, learn new skills, and unlock new opportunities. Whether you’re starting out, switching careers, or seeking inspiration, you’ll find practical help and encouragement here.
           <br />
           <br />
-          My mission is to use my voice and creativity to help people not fear
-          AI, but to embrace it as a tool for growth, learning, and new
-          opportunities. I believe that technology, when used thoughtfully, can
-          enhance our potential and help us discover new callings.
-          <br />
-          <br />
-          Through this site, I aim to provide guidance, resources, and a
-          supportive community for anyone navigating the changing world of work.
-          Whether you’re an artist, technologist, or just curious about AI,
-          you’ll find inspiration and practical help here.
+          <strong>Welcome to Sanctuary—your creative career hub for the AI era.</strong>
         </div>
       </section>
     </main>
