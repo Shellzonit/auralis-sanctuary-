@@ -5,7 +5,6 @@ const mainLinks = [
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
   { name: 'AI Jobs', href: '/new-ai-jobs' },
-  { name: 'Transitional Jobs', href: '/transitional-phasing-jobs' },
   { name: 'Recovery Hub', href: '/recovery' },
   { name: 'Hiring Event', href: '/hiring-events' },
   { name: 'Training', href: '/training' },

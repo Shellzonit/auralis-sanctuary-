@@ -39,8 +39,7 @@ const RESOURCES = [
 
 export default function RecoveryPage() {
   return (
-    <main style={{ minHeight: '100vh', background: '#f5f3fd', width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
-
+    <div style={{ minHeight: '100vh', background: '#f5f3fd', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
       <section style={{ width: '100%', maxWidth: 900, margin: '2.5rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 28, boxShadow: '0 4px 32px #18191a22', padding: '2.5rem 0 2.5rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
         <h1 style={{ color: 'rgba(255,255,255,0.97)', fontSize: 'clamp(2.8rem, 7vw, 4.5rem)', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', fontStyle: 'italic', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', overflow: 'hidden', whiteSpace: 'nowrap', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', maskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)', lineHeight: 1.18, paddingBottom: '0.18em' }}>Recovery Hub</h1>
         <div style={{ color: '#ece9fc', fontSize: '1.25rem', fontWeight: 500, marginTop: 12, textAlign: 'center', maxWidth: 600, textShadow: '0 1px 6px #18191a55' }}>
@@ -66,6 +65,6 @@ export default function RecoveryPage() {
           </ul>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
