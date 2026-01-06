@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import NavBar from "../components/NavBar";
+import SiteFooter from "../components/SiteFooter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,43 +45,27 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <NavBar />
-      <div
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{
-          position: "relative",
-          minHeight: "100vh",
-          background: "#fff",
-          color: "#18191a",
-          fontFamily: "Inter, Arial, sans-serif",
-          maxWidth: 1200,
-          margin: "0 auto",
-          boxShadow: "0 2px 32px #7b2ff222",
-          borderRadius: 18,
-          padding: "0 0 24px 0",
-        }}
-      >
-        {children}
-      </div>
-      <footer
-        style={{
-          width: '100%',
-          background: 'linear-gradient(90deg, #7b2ff2 0%, #18191a 100%)',
-          color: '#fff',
-          textAlign: 'center',
-          fontSize: '1.08rem',
-          padding: '22px 0 18px 0',
-          marginTop: 48,
-          letterSpacing: 0.2,
-          fontWeight: 500,
-          position: 'relative',
-          zIndex: 10,
-          boxShadow: '0 -2px 16px #7b2ff244',
-        }}
-      >
-        Built with <span style={{ color: '#7b2ff2', fontWeight: 700 }}>Next.js</span>, <span style={{ color: '#7b2ff2', fontWeight: 700 }}>React</span>, and <span style={{ color: '#7b2ff2', fontWeight: 700 }}>Python/Flask</span>. All sensitive information is encrypted and your privacy is always respected.
-      </footer>
-    </>
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} style={{ margin: 0, padding: 0, minHeight: '100vh', background: '#fff', color: '#18191a', fontFamily: 'Inter, Arial, sans-serif' }}>
+        <NavBar />
+        <div
+          style={{
+            position: "relative",
+            minHeight: "100vh",
+            background: "#fff",
+            color: "#18191a",
+            fontFamily: "Inter, Arial, sans-serif",
+            maxWidth: 1200,
+            margin: "0 auto",
+            boxShadow: "0 2px 32px #7b2ff222",
+            borderRadius: 18,
+            padding: "0 0 24px 0",
+          }}
+        >
+          {children}
+        </div>
+        <SiteFooter />
+      </body>
+    </html>
   );
 }
