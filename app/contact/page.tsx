@@ -1,5 +1,20 @@
 export default function ContactPage() {
   return (
+    <div
+      style={{
+        minHeight: '100vh',
+        width: '100vw',
+        backgroundImage: "url('/background.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: '8vh',
+      }}
+    >
       <div
         style={{
           width: '100vw',
@@ -30,21 +45,6 @@ export default function ContactPage() {
             backgroundClip: 'text',
             overflow: 'hidden',
             whiteSpace: 'nowrap',
-          }}
-        >
-          AI wilding
-        </h1>
-      </div>
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            textShadow: '0 2px 24px #ffd70088, 0 0 8px #000',
-            width: '100%',
-            textAlign: 'center',
-            margin: 0,
-            background: 'linear-gradient(90deg, #ffd700 60%, #fff 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
           }}
         >
           AI wilding
