@@ -6,6 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body style="margin:0;">
+        <!-- Zoom-style Video Chat Overlay -->
+        <div id="zoom-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:100;pointer-events:none;">
+          <div style="position:absolute;top:24px;right:24px;background:rgba(0,0,0,0.85);border-radius:16px;padding:18px 32px;box-shadow:0 2px 16px #23252655;display:flex;flex-direction:column;align-items:center;min-width:320px;max-width:420px;">
+            <div style="display:flex;align-items:center;gap:18px;margin-bottom:12px;">
+              <img src="/Mr%20Nanny.png" alt="Bot Avatar" style="width:56px;height:56px;border-radius:50%;border:2px solid #ffd700;box-shadow:0 2px 8px #ffd70044;" />
+              <span style="color:#ffd700;font-size:1.2rem;font-weight:700;">Mr. Nanny (AI Interviewer)</span>
+            </div>
+            <div id="bot-chat-bubble" style="background:#fffbe6;color:#232526;border-radius:12px;padding:12px 18px;font-size:1.08rem;box-shadow:0 2px 8px #ffd70022;margin-bottom:10px;min-height:48px;max-width:340px;text-align:left;">Welcome to your live mock interview! Ready to begin?</div>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:8px;">
+              <button id="join-btn" style="background:#ffd700;color:#232526;font-weight:700;border-radius:8px;padding:8px 18px;font-size:1rem;border:none;box-shadow:0 2px 8px #ffd70044;cursor:pointer;pointer-events:auto;">Join Interview</button>
+              <button id="mute-btn" style="background:#ece9fc;color:#232526;font-weight:700;border-radius:8px;padding:8px 18px;font-size:1rem;border:none;box-shadow:0 2px 8px #7b2ff244;cursor:pointer;pointer-events:auto;">Mute</button>
+              <button id="end-btn" style="background:#7b2ff2;color:#fff;font-weight:700;border-radius:8px;padding:8px 18px;font-size:1rem;border:none;box-shadow:0 2px 8px #7b2ff244;cursor:pointer;pointer-events:auto;">End Call</button>
+            </div>
+          </div>
+        </div>
     <a-scene>
       <a-entity cursor="rayOrigin: mouse"></a-entity>
       <!-- Floor -->
@@ -50,14 +65,7 @@
           <a-text id="feedback-text" value="" align="center" color="#ffe066" position="0 0 0.01" width="5.2" wrap-count="36" baseline="center" font-weight="bold" font="https://cdn.aframe.io/fonts/Exo2Bold.fnt" side="double" shader="msdf"></a-text>
         </a-entity>
         <a-text id="training-text" value="" align="center" color="#7b2ff2" position="0 0.9 -1.5" width="4"></a-text>
-          function handleCommand() {
-            const input = document.getElementById('command-input');
-            const feedback = document.getElementById('command-feedback');
-            if (!input || !feedback) return;
-            const cmd = input.value.trim().toLowerCase();
-            input.value = '';
-            feedback.textContent = '';
-            if (!cmd) return;
+          <!-- No code should be visible here. -->
             if (cmd === 'start' || cmd === 'start interview' || cmd === 'yes' || cmd === 'ready') {
               window.startInterview();
               feedback.textContent = 'Interview started!';
@@ -391,6 +399,85 @@
           if (e.key === 'Enter') submitAnswer();
         });
       });
+      </script>
+      <script>
+        // Zoom-style bot interview logic
+        document.addEventListener('DOMContentLoaded', function() {
+          const joinBtn = document.getElementById('join-btn');
+          const muteBtn = document.getElementById('mute-btn');
+          const endBtn = document.getElementById('end-btn');
+          const botBubble = document.getElementById('bot-chat-bubble');
+          let interviewStarted = false;
+          let muted = false;
+          let interviewStep = 0;
+          const questions = [
+            "Why should we hire you?",
+            "Tell me about a time you worked in a team.",
+            "How do you handle stress or pressure?",
+            "What motivates you?",
+            "Do you have any questions for us?"
+          ];
+          function botSay(msg) {
+            botBubble.textContent = msg;
+            if (!muted && 'speechSynthesis' in window) {
+              const utter = new window.SpeechSynthesisUtterance(msg);
+              utter.rate = 1.05;
+              utter.pitch = 1.1;
+              window.speechSynthesis.speak(utter);
+            }
+          }
+          if (joinBtn) joinBtn.onclick = function() {
+            interviewStarted = true;
+            interviewStep = 0;
+            botSay("Let's begin! " + questions[interviewStep]);
+          };
+          if (muteBtn) muteBtn.onclick = function() {
+            muted = !muted;
+            muteBtn.textContent = muted ? "Unmute" : "Mute";
+          };
+          if (endBtn) endBtn.onclick = function() {
+            interviewStarted = false;
+            botSay("Interview ended. Thank you for participating!");
+          };
+          // Listen for user answers (simulate with prompt for demo)
+          // Grading logic for answers
+          const bestPractices = [
+            'specific', 'example', 'experience', 'skills', 'problem', 'solution', 'team', 'collaborat', 'challenge', 'learn', 'company', 'industry', 'motivat', 'goal', 'honest', 'strength', 'weakness', 'enthusias', 'positive', 'communicat'
+          ];
+          window.submitAnswer = function() {
+            if (!interviewStarted) return botSay("Please join the interview first.");
+            const answer = document.getElementById('answer-input').value.trim();
+            if (!answer) return botSay("Please type your answer.");
+            // Grade answer
+            let matchCount = 0;
+            let matchedPractices = [];
+            const answerLower = answer.toLowerCase();
+            for (const practice of bestPractices) {
+              if (answerLower.includes(practice)) {
+                matchCount++;
+                matchedPractices.push(practice);
+              }
+            }
+            let score = matchCount;
+            let feedback = '';
+            if (score >= 3) {
+              feedback = 'Excellent! You covered several best practices.';
+            } else if (score === 2) {
+              feedback = 'Good. Try to include more examples or details.';
+            } else if (score === 1) {
+              feedback = 'Needs improvement. Address more key points.';
+            } else {
+              feedback = 'Try to include specific examples, skills, or experiences.';
+            }
+            botSay(`Thank you for your answer!\nScore: ${score}/5\nMatched: ${matchedPractices.join(', ') || 'None'}\nFeedback: ${feedback}`);
+            interviewStep++;
+            if (interviewStep < questions.length) {
+              setTimeout(() => botSay(questions[interviewStep]), 2200);
+            } else {
+              setTimeout(() => botSay("Interview complete! Well done."), 2200);
+            }
+          };
+        });
       </script>
       </script>
     </a-scene>
