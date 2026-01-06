@@ -86,10 +86,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         style={{ margin: 0, padding: 0, minHeight: '100vh', background: '#fff', color: '#18191a', fontFamily: 'Inter, Arial, sans-serif' }}
       >
         {/* Skip to content link for accessibility */}
-        <a href="#main-content" style={{ position: 'absolute', left: '-999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden', zIndex: 1000 }}
-          onFocus={e => { e.currentTarget.style.left = '8px'; e.currentTarget.style.width = 'auto'; e.currentTarget.style.height = 'auto'; e.currentTarget.style.background = '#7b2ff2'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.padding = '8px 16px'; e.currentTarget.style.borderRadius = '8px'; }}
-          onBlur={e => { e.currentTarget.style.left = '-999px'; e.currentTarget.style.width = '1px'; e.currentTarget.style.height = '1px'; e.currentTarget.style.background = 'none'; e.currentTarget.style.color = 'inherit'; e.currentTarget.style.padding = '0'; e.currentTarget.style.borderRadius = '0'; }}
-        >Skip to main content</a>
+        <a href="#main-content" style={{ position: 'absolute', left: '-999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden', zIndex: 1000 }}>
+          Skip to main content
+        </a>
         <NavBar />
         <main id="main-content" role="main" tabIndex={-1}
           style={{
