@@ -8,7 +8,7 @@ export default function ContactPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function validateEmail(email) {
+  function validateEmail(email: string) {
     return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
   }
 
