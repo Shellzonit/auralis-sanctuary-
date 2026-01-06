@@ -1,0 +1,66 @@
+<!-- Cross-platform VR with OpenAI personality integration (basic demo) -->
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <title>AI Personality VR Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>body { margin: 0; }</style>
+  </head>
+  <body>
+    <a-scene>
+      <a-entity cursor="rayOrigin: mouse"></a-entity>
+      <a-plane position="0 0 0" rotation="-90 0 0" width="8" height="8" color="#ece9fc"></a-plane>
+      <a-sphere id="ai-avatar" position="0 1.2 -2.5" radius="0.5" color="#ffd700" class="clickable"></a-sphere>
+      <a-text id="ai-response" value="Click the avatar to talk to AI!" position="0 2 -2.5" align="center" color="#232526" width="4"></a-text>
+      <a-light type="ambient" color="#fff"></a-light>
+      <a-light type="directional" intensity="0.7" position="2 4 2"></a-light>
+      <a-entity camera look-controls wasd-controls position="0 1.6 3"></a-entity>
+    </a-scene>
+    <script>
+      // Replace with your OpenAI API key
+      const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY_HERE';
+      // Simple personality prompt
+      const SYSTEM_PROMPT = "You are Mr. Nanny, a friendly and helpful AI career coach.";
+      // Click handler for the avatar
+      document.addEventListener('DOMContentLoaded', function() {
+        const avatar = document.getElementById('ai-avatar');
+        const responseText = document.getElementById('ai-response');
+        avatar.addEventListener('click', async function() {
+          const userMsg = prompt('Ask Mr. Nanny a question:');
+          if (!userMsg) return;
+          responseText.setAttribute('value', 'Thinking...');
+          // Call OpenAI API
+          try {
+            const result = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + OPENAI_API_KEY
+              },
+              body: JSON.stringify({
+                model: 'gpt-4',
+                messages: [
+                  { role: 'system', content: SYSTEM_PROMPT },
+                  { role: 'user', content: userMsg }
+                ],
+                max_tokens: 120
+              })
+            });
+            const data = await result.json();
+            const aiReply = data.choices?.[0]?.message?.content || 'No response.';
+            responseText.setAttribute('value', aiReply);
+            // Optional: Speak the response
+            if ('speechSynthesis' in window) {
+              const utter = new window.SpeechSynthesisUtterance(aiReply);
+              utter.rate = 1.05;
+              utter.pitch = 1.1;
+              window.speechSynthesis.speak(utter);
+            }
+          } catch (e) {
+            responseText.setAttribute('value', 'Error: ' + e.message);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

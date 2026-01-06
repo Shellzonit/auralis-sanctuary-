@@ -1,0 +1,26 @@
+<!-- Simple cross-platform VR starter using A-Frame -->
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <title>My Cross-Platform VR Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body { margin: 0; }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <a-entity cursor="rayOrigin: mouse"></a-entity>
+      <a-plane position="0 0 0" rotation="-90 0 0" width="8" height="8" color="#ece9fc"></a-plane>
+      <a-box position="0 0.5 -1.5" depth="1" height="0.2" width="2" color="#bba6f7"></a-box>
+      <a-sphere position="0 1.2 -2.5" radius="0.5" color="#ffd700"></a-sphere>
+      <a-text value="Welcome to Your VR Room!" position="0 2 -2.5" align="center" color="#232526"></a-text>
+      <a-box position="-2 1.2 -1.5" depth="0.2" height="0.5" width="1.2" color="#7b2ff2" class="clickable" onclick="alert('Button clicked!')">
+        <a-text value="Click Me" align="center" color="#fff" position="0 0 0.15" width="2"></a-text>
+      </a-box>
+      <a-light type="ambient" color="#fff"></a-light>
+      <a-light type="directional" intensity="0.7" position="2 4 2"></a-light>
+      <a-entity camera look-controls wasd-controls position="0 1.6 3"></a-entity>
+    </a-scene>
+  </body>
+</html>

@@ -50,28 +50,43 @@
           <a-text id="feedback-text" value="" align="center" color="#ffe066" position="0 0 0.01" width="5.2" wrap-count="36" baseline="center" font-weight="bold" font="https://cdn.aframe.io/fonts/Exo2Bold.fnt" side="double" shader="msdf"></a-text>
         </a-entity>
         <a-text id="training-text" value="" align="center" color="#7b2ff2" position="0 0.9 -1.5" width="4"></a-text>
-          <!-- User answer display -->
-          <a-text id="user-answer-text" value="" align="center" color="#232526" position="0 0.5 -1.5" width="4"></a-text>
-        </a-entity>
-        <!-- Floating panel with all questions -->
-        <a-entity id="all-questions-panel" position="3 2 -1.5">
-          <a-plane width="2.5" height="2.2" color="#f7f5ff" opacity="0.92" position="0 0 0"></a-plane>
-          <a-text id="all-questions-text" value="" align="left" color="#232526" position="-1.15 0.9 0.01" width="2.3" wrap-count="40"></a-text>
-          <a-text id="current-q-highlight" value="" align="left" color="#7b2ff2" position="-1.15 0.9 0.02" width="2.3" wrap-count="40"></a-text>
-      </a-entity>
-      <a-light type="ambient" color="#fff"></a-light>
-      <a-light type="directional" intensity="0.7" position="2 4 2"></a-light>
-      <!-- Camera -->
-      <a-entity camera look-controls wasd-controls position="0 1.6 3"></a-entity>
-      <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Questions, sample answers, and tips
-        var questionPool = [
-          ["Tell me about yourself.", "Tip: Give a brief summary of your background, skills, and what excites you about this opportunity."],
-          ["Why do you want this job?", "Tip: Show your knowledge of the company and how your goals align with the role."],
-          ["What are your strengths and weaknesses?", "Tip: Be honest, but focus on strengths relevant to the job and how you address weaknesses."],
-          ["Describe a challenge you overcame.", "Tip: Use the STAR method (Situation, Task, Action, Result) to structure your answer."],
-          ["Where do you see yourself in 5 years?", "Tip: Share realistic ambitions and how this job fits your career path."],
+          function handleCommand() {
+            const input = document.getElementById('command-input');
+            const feedback = document.getElementById('command-feedback');
+            if (!input || !feedback) return;
+            const cmd = input.value.trim().toLowerCase();
+            input.value = '';
+            feedback.textContent = '';
+            if (!cmd) return;
+            if (cmd === 'start' || cmd === 'start interview' || cmd === 'yes' || cmd === 'ready') {
+              window.startInterview();
+              feedback.textContent = 'Interview started!';
+            } else if (cmd === 'next' || cmd === 'next question') {
+              window.nextQuestion();
+              feedback.textContent = 'Next question.';
+            } else if (cmd === 'training' || cmd === 'need training') {
+              window.showTraining();
+              feedback.textContent = 'Training tip shown.';
+            } else if (cmd === 'help') {
+              feedback.textContent = 'Commands: start, next, training, help';
+            } else {
+              feedback.textContent = 'Unknown command.';
+            }
+          }
+          document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('command-input');
+            if (input) {
+              input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') handleCommand();
+              });
+            }
+            // Command bar event listener
+            const answerInput = document.getElementById('answer-input');
+            if (answerInput) {
+              answerInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') submitAnswer();
+              });
+            }
           ["Why should we hire you?", "Tip: Highlight your unique skills and how they match the job requirements."],
           ["Tell me about a time you worked in a team.", "Tip: Focus on collaboration, communication, and your role in the team's success."],
           ["How do you handle stress or pressure?", "Tip: Give examples of coping strategies and staying productive under pressure."],

@@ -1,0 +1,105 @@
+<!-- VR scene with text command input and handler -->
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <title>VR Command Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body { margin: 0; }
+      #command-bar {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        background: rgba(255,255,255,0.95);
+        border-radius: 8px;
+        padding: 8px 16px;
+        box-shadow: 0 2px 8px #7b2ff222;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      #command-input {
+        font-size: 1.1rem;
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1.5px solid #7b2ff2;
+        width: 260px;
+      }
+      #command-feedback {
+        color: #7b2ff2;
+        font-size: 1rem;
+        margin-left: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene id="vrscene">
+      <a-entity id="cameraRig">
+        <a-entity camera look-controls wasd-controls position="0 1.6 3"></a-entity>
+      </a-entity>
+      <a-entity cursor="rayOrigin: mouse"></a-entity>
+      <a-plane position="0 0 0" rotation="-90 0 0" width="8" height="8" color="#ece9fc"></a-plane>
+      <a-box id="box" position="0 0.5 -1.5" depth="1" height="0.2" width="2" color="#bba6f7"></a-box>
+      <a-sphere id="avatar" position="0 1.2 -2.5" radius="0.5" color="#ffd700"></a-sphere>
+      <a-text id="scene-text" value="Type a command below!" position="0 2 -2.5" align="center" color="#232526" width="4"></a-text>
+      <a-light type="ambient" color="#fff"></a-light>
+      <a-light type="directional" intensity="0.7" position="2 4 2"></a-light>
+    </a-scene>
+    <div id="command-bar">
+      <input id="command-input" type="text" placeholder="Type a command (e.g. move forward)" />
+      <button onclick="handleCommand()">Send</button>
+      <span id="command-feedback"></span>
+    </div>
+    <script>
+      const cameraRig = document.getElementById('cameraRig');
+      const sceneText = document.getElementById('scene-text');
+      const feedback = document.getElementById('command-feedback');
+      const input = document.getElementById('command-input');
+      function handleCommand() {
+        const cmd = input.value.trim().toLowerCase();
+        input.value = '';
+        feedback.textContent = '';
+        if (!cmd) return;
+        if (cmd === 'move forward') {
+          moveCamera(0, 0, -1);
+          feedback.textContent = 'Moved forward!';
+        } else if (cmd === 'move back' || cmd === 'move backward') {
+          moveCamera(0, 0, 1);
+          feedback.textContent = 'Moved backward!';
+        } else if (cmd === 'move left') {
+          moveCamera(-1, 0, 0);
+          feedback.textContent = 'Moved left!';
+        } else if (cmd === 'move right') {
+          moveCamera(1, 0, 0);
+          feedback.textContent = 'Moved right!';
+        } else if (cmd === 'look left') {
+          rotateCamera(-15);
+          feedback.textContent = 'Looked left!';
+        } else if (cmd === 'look right') {
+          rotateCamera(15);
+          feedback.textContent = 'Looked right!';
+        } else if (cmd === 'help') {
+          sceneText.setAttribute('value', 'Commands: move forward/back/left/right, look left/right, help');
+          feedback.textContent = 'Help shown.';
+        } else {
+          feedback.textContent = 'Unknown command.';
+        }
+      }
+      function moveCamera(dx, dy, dz) {
+        const rig = cameraRig.object3D;
+        rig.position.x += dx;
+        rig.position.y += dy;
+        rig.position.z += dz;
+      }
+      function rotateCamera(deg) {
+        const rig = cameraRig.object3D;
+        rig.rotation.y += THREE.MathUtils.degToRad(deg);
+      }
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') handleCommand();
+      });
+    </script>
+  </body>
+</html>
