@@ -250,6 +250,32 @@
         const answerFeedback = document.getElementById('answer-feedback');
         // Store user answers for summary
         let userAnswers = [];
+        // Top 10 best practices for interview answers
+        const bestPractices = [
+          'specific',
+          'example',
+          'experience',
+          'skills',
+          'problem',
+          'solution',
+          'team',
+          'collaborat',
+          'challenge',
+          'learn',
+          'company',
+          'industry',
+          'motivat',
+          'goal',
+          'honest',
+          'strength',
+          'weakness',
+          'enthusias',
+          'positive',
+          'communicat',
+        ];
+        let answerScores = [];
+        // Track consecutive bad answers
+        let badStreak = 0;
         function submitAnswer() {
           const answer = answerInput.value.trim();
           if (!answer) {
@@ -258,29 +284,39 @@
           }
           userAnswers[current] = answer;
           userAnswerText.setAttribute('value', 'Your answer: ' + answer);
-          // Randomized good/bad feedback
-          const goodFeedbacks = [
-            'Great answer!',
-            'Nice job!',
-            'Well said!',
-            'Strong response!',
-            'Impressive!'
-          ];
-          const badFeedbacks = [
-            'Consider giving more detail.',
-            'Try to be more specific.',
-            'You can improve this answer.',
-            'Think about using examples.',
-            'Try to relate your answer to the job.'
-          ];
-          // Simple check: if answer is short, give improvement tip
-          let aiEval = '';
-          if (answer.length > 40) {
-            aiEval = goodFeedbacks[Math.floor(Math.random() * goodFeedbacks.length)];
-          } else {
-            aiEval = badFeedbacks[Math.floor(Math.random() * badFeedbacks.length)];
+          // Score answer by best practices
+          let matchCount = 0;
+          let matchedPractices = [];
+          const answerLower = answer.toLowerCase();
+          for (const practice of bestPractices) {
+            if (answerLower.includes(practice)) {
+              matchCount++;
+              matchedPractices.push(practice);
+            }
           }
-          feedbackText.setAttribute('value', aiEval + '\nTip: ' + feedbacks[current]);
+          let score = matchCount;
+          answerScores[current] = score;
+          // Feedback and bad streak logic
+          let aiEval = '';
+          if (score >= 3) {
+            aiEval = 'Great answer! You covered several best practices.';
+            badStreak = 0;
+          } else if (score === 2) {
+            aiEval = 'Decent answer. Try to include more examples or details.';
+            badStreak = 0;
+          } else if (score === 1) {
+            aiEval = 'Needs improvement. Try to address more key points.';
+            badStreak++;
+          } else {
+            aiEval = 'Try to include specific examples, skills, or experiences.';
+            badStreak++;
+          }
+          let referral = '';
+          if (badStreak >= 3) {
+            referral = '\n\nIt looks like you might benefit from more interview guidance. Please visit Mr. Nanny in the Resume Room for tips and techniques!';
+            badStreak = 0;
+          }
+          feedbackText.setAttribute('value', aiEval + '\nMatched: ' + (matchedPractices.length ? matchedPractices.join(', ') : 'None') + '\nTip: ' + feedbacks[current] + referral);
           answerInput.value = '';
           if (current < questions.length - 1) {
             answerFeedback.textContent = 'Ready for the next question?';
@@ -291,8 +327,6 @@
             }, 2600);
           } else {
             // Show summary at the end
-            answerFeedback.textContent = 'Great job! You have completed the mock interview.';
-            document.getElementById('welcome-text').setAttribute('value', 'Congratulations! You finished the interview!');
             setTimeout(() => showSummary(), 2000);
           }
         }
@@ -300,11 +334,34 @@
         // Show a summary of answers and encouragement
         function showSummary() {
           let summary = 'Interview Summary:\n';
+          let total = 0;
           for (let i = 0; i < questions.length; i++) {
             summary += `\n${i+1}. ${questions[i]}\nYour answer: ${userAnswers[i] || ''}`;
+            summary += `\nMatched best practices: `;
+            let matched = [];
+            const answerLower = (userAnswers[i] || '').toLowerCase();
+            for (const practice of bestPractices) {
+              if (answerLower.includes(practice)) matched.push(practice);
+            }
+            summary += matched.length ? matched.join(', ') : 'None';
             summary += `\nAI tip: ${feedbacks[i]}\n`;
+            total += answerScores[i] || 0;
           }
-          feedbackText.setAttribute('value', summary + '\n\nYou did great! Review your answers and keep practicing.');
+          let maxScore = questions.length * bestPractices.length;
+          let percent = Math.round((total / (questions.length * 3)) * 100); // 3+ best practices per answer is ideal
+          let outcome = '';
+          if (percent >= 80) {
+            outcome = 'Outcome: Excellent! You are well prepared for interviews.';
+          } else if (percent >= 50) {
+            outcome = 'Outcome: Decent, but review your answers and try again for a higher score.';
+          } else {
+            outcome = 'Outcome: Needs improvement. Practice more detailed and specific answers.';
+          }
+          const integrityNotice = '\n\nIntegrity Notice: This feedback is generated automatically and is for practice only. For important interviews, use your own judgment or seek professional advice.';
+          const encouragement = '\n\nThank you for practicing with us! Remember, every interview is a chance to grow. Explore our Resume Wizard, Training, and Resources tabs for more help. You’ve got this!';
+          feedbackText.setAttribute('value', summary + `\n\nScore: ${percent}%\n${outcome}` + integrityNotice + encouragement);
+          answerFeedback.textContent = 'Interview complete!';
+          document.getElementById('welcome-text').setAttribute('value', 'Interview finished! See your results above.');
         }
         answerInput.addEventListener('keydown', function(e) {
           if (e.key === 'Enter') submitAnswer();
