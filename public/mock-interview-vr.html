@@ -196,15 +196,199 @@
             const maxScore = questions.length * keywords.length;
             const percent = Math.round((totalScore / (questions.length * 3)) * 100); // 3+ keywords per answer is ideal
             let outcome = '';
+            let guidance = '';
+            let showFlashcardBtn = false;
             if (percent >= 80) {
               outcome = 'Excellent! You are well prepared for Ai Wilding.';
-            } else if (percent >= 50) {
+            } else if (percent >= 60) {
               outcome = 'Decent, but review your answers and try again for a higher score.';
             } else {
               outcome = 'Needs improvement. Practice more detailed and specific answers.';
+              showFlashcardBtn = true;
+              // Find missed keywords for guidance
+              let missed = [];
+              userAnswers.forEach((ans, idx) => {
+                const ansLower = (ans || '').toLowerCase();
+                keywords.forEach(kw => {
+                  if (!ansLower.includes(kw) && !missed.includes(kw)) missed.push(kw);
+                });
+              });
+              if (missed.length) {
+                guidance = '\n\nInterview Guidance: Try to address these areas in your answers: ' + missed.join(', ') + '.\nFor help, visit our Resume Wizard, Training, and Resources tabs.';
+              }
             }
-            botSay(`Interview complete!\nScore: ${percent}%\n${outcome}`);
+            botSay(`Interview complete!\nScore: ${percent}%\n${outcome}${guidance}`);
             answerFeedback.textContent = `Final Score: ${percent}%`;
+            // Show flashcard training button if needed
+            if (showFlashcardBtn) {
+              setTimeout(() => {
+                let fcBtn = document.getElementById('flashcard-btn');
+                if (!fcBtn) {
+                  fcBtn = document.createElement('button');
+                  fcBtn.id = 'flashcard-btn';
+                  fcBtn.textContent = 'Start Flashcard Training with Mr. Nanny';
+                  fcBtn.style.background = '#ffd700';
+                  fcBtn.style.color = '#232526';
+                  fcBtn.style.fontWeight = '700';
+                  fcBtn.style.borderRadius = '8px';
+                  fcBtn.style.padding = '10px 18px';
+                  fcBtn.style.fontSize = '1rem';
+                  fcBtn.style.border = 'none';
+                  fcBtn.style.boxShadow = '0 2px 8px #ffd70044';
+                  fcBtn.style.marginTop = '18px';
+                  fcBtn.style.cursor = 'pointer';
+                  fcBtn.onclick = startFlashcardTraining;
+                  botBubble.parentNode.appendChild(fcBtn);
+                }
+              }, 1400);
+            }
+              // Flashcard training logic
+              function startFlashcardTraining() {
+                const missedKeywords = [];
+                const keywords = [
+                  'ai', 'technology', 'team', 'feedback', 'learn', 'culture', 'current', 'trend', 'strength', 'problem', 'solution', 'fit', 'role', 'company', 'wilding'
+                ];
+                // Flashcard content for each keyword
+                const flashcardContent = {
+                  ai: {
+                    concept: 'Artificial Intelligence (AI)',
+                    why: 'AI is central to Ai Wilding. Showing knowledge or interest in AI demonstrates you understand our mission and can contribute to our projects.',
+                    sample: 'I am passionate about AI and have used it to automate tasks and solve real-world problems.'
+                  },
+                  technology: {
+                    concept: 'Technology',
+                    why: 'Tech skills show you can adapt and innovate, which is vital in a fast-moving company.',
+                    sample: 'I stay updated on new technologies and use them to improve team efficiency.'
+                  },
+                  team: {
+                    concept: 'Teamwork',
+                    why: 'Collaboration is key at Ai Wilding. Teamwork skills show you can work well with others.',
+                    sample: 'I enjoy collaborating and have led teams to successful project outcomes.'
+                  },
+                  feedback: {
+                    concept: 'Feedback',
+                    why: 'Being open to feedback means you can grow and improve, which is valued here.',
+                    sample: 'I actively seek feedback and use it to improve my work.'
+                  },
+                  learn: {
+                    concept: 'Learning',
+                    why: 'Continuous learning keeps you relevant and valuable in tech roles.',
+                    sample: 'I regularly take online courses to expand my skills.'
+                  },
+                  culture: {
+                    concept: 'Company Culture',
+                    why: 'Fitting into the culture helps you thrive and contribute positively.',
+                    sample: 'I value inclusivity and enjoy working in diverse environments.'
+                  },
+                  current: {
+                    concept: 'Staying Current',
+                    why: 'Being up-to-date with trends shows you are proactive and engaged.',
+                    sample: 'I follow AI news and attend webinars to stay current.'
+                  },
+                  trend: {
+                    concept: 'Industry Trends',
+                    why: 'Awareness of trends helps you anticipate changes and innovate.',
+                    sample: 'I research emerging trends to inform my work.'
+                  },
+                  strength: {
+                    concept: 'Strengths',
+                    why: 'Knowing your strengths helps you contribute effectively.',
+                    sample: 'My strengths are problem-solving and communication.'
+                  },
+                  problem: {
+                    concept: 'Problem Solving',
+                    why: 'Solving problems is a core skill for any role at Ai Wilding.',
+                    sample: 'I approach problems methodically and find creative solutions.'
+                  },
+                  solution: {
+                    concept: 'Solutions',
+                    why: 'Providing solutions shows initiative and value.',
+                    sample: 'I proposed a solution that reduced costs by 20%.'
+                  },
+                  fit: {
+                    concept: 'Role Fit',
+                    why: 'Explaining why you fit the role shows self-awareness and preparation.',
+                    sample: 'My experience aligns well with the requirements of this role.'
+                  },
+                  role: {
+                    concept: 'Role',
+                    why: 'Understanding the role helps you tailor your answers and show interest.',
+                    sample: 'I am excited about the responsibilities of this position.'
+                  },
+                  company: {
+                    concept: 'Company Knowledge',
+                    why: 'Knowing about Ai Wilding shows genuine interest.',
+                    sample: 'I admire Ai Wilding’s commitment to innovation.'
+                  },
+                  wilding: {
+                    concept: 'Ai Wilding',
+                    why: 'Mentioning the company name personalizes your answers and shows you did your research.',
+                    sample: 'I want to contribute to Ai Wilding’s mission and growth.'
+                  },
+                  metrics: {
+                    concept: 'Using measurable results to strengthen your answers.',
+                    why: 'Interviewers want to hear numbers because they prove impact. Metrics show scale, efficiency, or improvement.',
+                    sample: 'I increased customer satisfaction by 18% by redesigning the support workflow.',
+                    practice: 'Describe a time you improved a process. Include at least one measurable result.'
+                  },
+                  "conflict resolution": {
+                    concept: 'Handling disagreements professionally and calmly.',
+                    why: 'Employers want to know you can navigate tension without escalating it.',
+                    sample: 'I approached the teammate privately, listened to their concerns, and we agreed on a shared workflow.',
+                    practice: 'Tell me about a conflict you resolved at work. What steps did you take?'
+                  },
+                  "leadership example": {
+                    concept: 'Demonstrating initiative, guidance, or influence.',
+                    why: 'Leadership isn’t about titles — it’s about taking responsibility and moving people toward a goal.',
+                    sample: 'I led a 4‑person team to deliver a project two weeks early by organizing daily check‑ins.',
+                    practice: 'Describe a time you led a project or group. What was the outcome?'
+                  },
+                  "STAR method": {
+                    concept: 'A structured way to answer behavioral questions.',
+                    why: 'STAR stands for Situation, Task, Action, Result. It keeps your answers clear and complete.',
+                    sample: 'Situation: Our sales were dropping. Task: I needed to improve outreach. Action: I built a new email sequence. Result: Sales rose 22% in 3 months.',
+                    practice: "Answer this question using STAR: 'Tell me about a challenge you overcame.'"
+                  }
+                };
+                userAnswers.forEach((ans, idx) => {
+                  const ansLower = (ans || '').toLowerCase();
+                  keywords.forEach(kw => {
+                    if (!ansLower.includes(kw) && !missedKeywords.includes(kw)) missedKeywords.push(kw);
+                  });
+                });
+                let flashcards = missedKeywords.length ? missedKeywords.slice(0, 15) : keywords.slice(0, 15);
+                let fcStep = 0;
+                function showFlashcard() {
+                  if (fcStep < flashcards.length) {
+                    const kw = flashcards[fcStep];
+                    const card = flashcardContent[kw];
+                    botBubble.innerHTML = `<strong>Flashcard: ${kw.charAt(0).toUpperCase() + kw.slice(1)}</strong><br/><em>Concept:</em> ${card.concept}<br/><em>Why it matters:</em> ${card.why || card.explanation}<br/><em>Sample strong answer:</em> <span style='color:#7b2ff2;'>${card.sample || card.example_answer}</span><br/><em>Practice question:</em> <span style='color:#232526;'>${card.practice || card.practice_question || ''}</span><br/><span style='font-size:0.95rem;color:#888;'>Click here for next card</span>`;
+                  } else {
+                    botBubble.innerHTML = `<strong>Flashcard training complete!</strong><br/>You are ready to try the interview again.<br/><button id='retake-btn' style='background:#7b2ff2;color:#fff;font-weight:700;border-radius:8px;padding:8px 16px;font-size:1rem;border:none;box-shadow:0 2px 8px #7b2ff244;cursor:pointer;margin-top:12px;'>Retake Interview</button>`;
+                    let fcBtn = document.getElementById('flashcard-btn');
+                    if (fcBtn) fcBtn.remove();
+                    const retakeBtn = document.getElementById('retake-btn');
+                    if (retakeBtn) {
+                      retakeBtn.onclick = function() {
+                        interviewStep = 0;
+                        userAnswers = [];
+                        window.answerScores = [];
+                        botBubble.innerHTML = '';
+                        botSay(questions[interviewStep]);
+                        answerInput.value = '';
+                        answerFeedback.textContent = '';
+                      };
+                    }
+                  }
+                }
+                showFlashcard();
+                botBubble.onclick = function() {
+                  fcStep++;
+                  showFlashcard();
+                };
+                let fcBtn = document.getElementById('flashcard-btn');
+                if (fcBtn) fcBtn.remove();
+              }
           }, 1200);
         }
       }
