@@ -223,9 +223,10 @@
           trainingText.setAttribute('value', 'Training: ' + trainingTips[Math.floor(Math.random()*trainingTips.length)]);
         };
         // Command handler for text input
-        const input = document.getElementById('command-input');
-        const feedback = document.getElementById('command-feedback');
         function handleCommand() {
+          const input = document.getElementById('command-input');
+          const feedback = document.getElementById('command-feedback');
+          if (!input || !feedback) return;
           const cmd = input.value.trim().toLowerCase();
           input.value = '';
           feedback.textContent = '';
@@ -245,8 +246,13 @@
             feedback.textContent = 'Unknown command.';
           }
         }
-        input.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter') handleCommand();
+        document.addEventListener('DOMContentLoaded', function() {
+          const input = document.getElementById('command-input');
+          if (input) {
+            input.addEventListener('keydown', function(e) {
+              if (e.key === 'Enter') handleCommand();
+            });
+          }
         });
         // User answer logic
         const answerInput = document.getElementById('answer-input');
