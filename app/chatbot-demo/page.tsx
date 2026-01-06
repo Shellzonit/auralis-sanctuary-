@@ -949,13 +949,13 @@ export default function MrJobNanny() {
   }
 
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0a141a 0%, #18191a 60%, #2a1a4d 100%)", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem" }} role="main" aria-label="AI Jobs Chatbot">
-      <h1 style={{ fontSize: "2rem", fontWeight: 800, color: "#ffd700", margin: "32px 0 16px 0", textShadow: "0 2px 16px #6a1b9a" }} tabIndex={0} aria-label={modeLabel}>
-        {modeLabel}
-      </h1>
-      <div style={{ color: '#ffd700', fontWeight: 600, marginBottom: 12, fontSize: 16 }}>{modeDesc}</div>
+    <main style={{ minHeight: "100vh", background: "#f5f3fd", fontFamily: "Inter, Arial, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 1rem" }} role="main" aria-label="AI Jobs Chatbot">
+      <section style={{ width: '100%', maxWidth: 700, margin: '3rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 24, boxShadow: '0 4px 32px #18191a22', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <h1 style={{ color: 'rgba(255,255,255,0.97)', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.18, paddingBottom: '0.18em' }}>{modeLabel}</h1>
+        <div style={{ color: '#ece9fc', fontSize: '1.15rem', fontWeight: 500, marginTop: 10, textAlign: 'center', maxWidth: 500, textShadow: '0 1px 6px #18191a55' }}>{modeDesc}</div>
+      </section>
       {mode === 'weight' && (
-        <div style={{ color: '#ffb300', fontWeight: 700, marginBottom: 12, fontSize: 15 }}>
+        <div style={{ color: '#7b2ff2', fontWeight: 700, marginBottom: 12, fontSize: 15 }}>
           <span role="img" aria-label="warning">⚠️</span> Always consult your doctor before starting any weight loss or exercise program, especially if you have health conditions or concerns.
         </div>
       )}
