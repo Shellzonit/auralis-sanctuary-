@@ -1,4 +1,4 @@
-  { href: "/transitional-jobs", label: "Transitional Jobs" },
+
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,6 +16,7 @@ export default function NavTabs() {
     { href: "/resume-wizard", label: "Resume Wizard" },
     { href: "/resources", label: "Resources" },
     { href: "/countries", label: "States/Country" },
+    { href: "/transitional-jobs", label: "Transitional Jobs" },
   ];
   return (
     <nav className="w-full flex justify-center mb-8">
