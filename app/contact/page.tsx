@@ -4,10 +4,6 @@ export default function ContactPage() {
       style={{
         minHeight: '100vh',
         width: '100vw',
-        backgroundImage: "url('/background.png')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
