@@ -18,13 +18,14 @@ export default function SiteFooter() {
   return (
     <footer style={{
       width: '100%',
-      background: 'linear-gradient(90deg, #18191a 0%, #7b2ff2 100%)',
-      color: '#fff',
+      background: '#7b2c2c',
+      color: '#ffd700',
       padding: '2.2rem 0 1.2rem 0',
       marginTop: 'auto',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      borderTop: '3px solid #18191a',
       boxShadow: '0 -2px 16px #18191a22',
       fontFamily: 'Inter, sans-serif',
       fontSize: '1rem',
@@ -40,13 +41,14 @@ export default function SiteFooter() {
           flexWrap: 'wrap',
           gap: '1.2rem',
           justifyContent: 'center',
-          background: 'rgba(255,255,255,0.07)',
+          background: '#fff',
           borderRadius: 16,
           padding: '0.7rem 2rem',
-          boxShadow: '0 2px 12px #7b2ff222',
+          boxShadow: '0 2px 12px #18191a22',
+          border: '2px solid #ffd700',
         }}>
           {mainLinks.map(link => (
-            <Link key={link.name} href={link.href} style={{ color: '#ffd700', textDecoration: 'none', fontWeight: 600, letterSpacing: '0.04em', transition: 'color 0.2s', fontSize: '1.08rem' }}>
+            <Link key={link.name} href={link.href} style={{ color: '#7b2c2c', textDecoration: 'none', fontWeight: 700, letterSpacing: '0.04em', transition: 'color 0.2s', fontSize: '1.08rem' }}>
               {link.name}
             </Link>
           ))}
