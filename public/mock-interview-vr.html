@@ -62,20 +62,26 @@
       <a-entity camera look-controls wasd-controls position="0 1.6 3"></a-entity>
       <script>
         // Questions, sample answers, and tips
-        var questions = [
-          "Tell me about yourself.",
-          "Why do you want this job?",
-          "What are your strengths and weaknesses?",
-          "Describe a challenge you overcame.",
-          "Where do you see yourself in 5 years?"
+        // Pool of common interview questions and feedbacks
+        var questionPool = [
+          ["Tell me about yourself.", "Tip: Give a brief summary of your background, skills, and what excites you about this opportunity."],
+          ["Why do you want this job?", "Tip: Show your knowledge of the company and how your goals align with the role."],
+          ["What are your strengths and weaknesses?", "Tip: Be honest, but focus on strengths relevant to the job and how you address weaknesses."],
+          ["Describe a challenge you overcame.", "Tip: Use the STAR method (Situation, Task, Action, Result) to structure your answer."],
+          ["Where do you see yourself in 5 years?", "Tip: Share realistic ambitions and how this job fits your career path."],
+          ["Why should we hire you?", "Tip: Highlight your unique skills and how they match the job requirements."],
+          ["Tell me about a time you worked in a team.", "Tip: Focus on collaboration, communication, and your role in the team's success."],
+          ["How do you handle stress or pressure?", "Tip: Give examples of coping strategies and staying productive under pressure."],
+          ["What motivates you?", "Tip: Share what drives you professionally and how it relates to the job."],
+          ["Do you have any questions for us?", "Tip: Prepare thoughtful questions that show your interest in the company and role."]
         ];
-        var feedbacks = [
-          "Tip: Give a brief summary of your background, skills, and what excites you about this opportunity.",
-          "Tip: Show your knowledge of the company and how your goals align with the role.",
-          "Tip: Be honest, but focus on strengths relevant to the job and how you address weaknesses.",
-          "Tip: Use the STAR method (Situation, Task, Action, Result) to structure your answer.",
-          "Tip: Share realistic ambitions and how this job fits your career path."
-        ];
+        var questions = [], feedbacks = [];
+        function shuffle(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+        }
         var current = 0;
         var timer = null;
         var timeLeft = 0;
@@ -189,6 +195,11 @@
         });
         // Global functions for A-Frame onclick
         window.startInterview = function() {
+          // Shuffle and select questions for this session
+          let pool = questionPool.slice();
+          shuffle(pool);
+          questions = pool.map(qf => qf[0]);
+          feedbacks = pool.map(qf => qf[1]);
           current = 0;
           qText.setAttribute('value', questions[current]);
           feedbackText.setAttribute('value', '');
@@ -267,9 +278,17 @@
               return;
             }
             userAnswerText.setAttribute('value', 'Your answer: ' + answer);
-            answerFeedback.textContent = 'Great answer! Click Next for the next question.';
-            document.getElementById('welcome-text').setAttribute('value', 'Nice work! Ready for the next one?');
             answerInput.value = '';
+            if (current < questions.length - 1) {
+              answerFeedback.textContent = 'Great answer! Moving to the next question...';
+              setTimeout(() => {
+                window.nextQuestion();
+                answerFeedback.textContent = '';
+              }, 1200);
+            } else {
+              answerFeedback.textContent = 'Great job! You have completed the mock interview.';
+              document.getElementById('welcome-text').setAttribute('value', 'Congratulations! You finished the interview!');
+            }
           }
           answerInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') submitAnswer();
