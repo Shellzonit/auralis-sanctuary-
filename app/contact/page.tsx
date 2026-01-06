@@ -12,7 +12,7 @@ export default function ContactPage() {
     return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       setStatus("Please fill in all fields.");
