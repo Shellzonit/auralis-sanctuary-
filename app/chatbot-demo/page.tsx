@@ -1045,6 +1045,45 @@ export default function MrJobNanny() {
         </section>
       )}
       <section style={{ maxWidth: 500, width: '100%', background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: 24, boxShadow: "0 2px 16px #6a1b9a22", marginBottom: 32 }}>
+        {/* Mode Switch Showcase */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginBottom: 18 }}>
+          <button
+            onClick={() => setMode('job')}
+            style={{
+              background: mode === 'job' ? '#ffd700' : '#fff',
+              color: mode === 'job' ? '#232526' : '#7b2ff2',
+              fontWeight: 700,
+              borderRadius: 8,
+              padding: '8px 18px',
+              border: '2px solid #ffd700',
+              cursor: 'pointer',
+              boxShadow: mode === 'job' ? '0 2px 8px #ffd70044' : 'none',
+              transition: 'all 0.2s',
+            }}
+            aria-pressed={mode === 'job'}
+          >
+            Job & Career Assistant
+          </button>
+          <button
+            onClick={() => setMode('weight')}
+            style={{
+              background: mode === 'weight' ? '#ffd700' : '#fff',
+              color: mode === 'weight' ? '#232526' : '#7b2ff2',
+              fontWeight: 700,
+              borderRadius: 8,
+              padding: '8px 18px',
+              border: '2px solid #ffd700',
+              cursor: 'pointer',
+              boxShadow: mode === 'weight' ? '0 2px 8px #ffd70044' : 'none',
+              transition: 'all 0.2s',
+            }}
+            aria-pressed={mode === 'weight'}
+          >
+            WellCoach: Health & Weight
+          </button>
+        </div>
+        <div style={{ textAlign: 'center', color: '#7b2ff2', fontWeight: 600, marginBottom: 12 }}>{modeLabel}</div>
+        <div style={{ textAlign: 'center', color: '#232526', fontSize: 15, marginBottom: 18 }}>{modeDesc}</div>
         <div style={{ minHeight: 220, marginBottom: 16 }}>
           {renderMessages(undefined)}
           {loading && <div style={{ color: '#ffd700', fontStyle: 'italic' }}>Mr. Job Nanny is typing…</div>}
@@ -1067,6 +1106,19 @@ export default function MrJobNanny() {
             Send
           </button>
         </form>
+        {/* Upcoming App Features */}
+        <div style={{ background: '#fffbe6', color: '#7b2ff2', borderRadius: 12, padding: 18, marginTop: 28, boxShadow: '0 2px 8px #ffd70022', fontSize: 15 }}>
+          <strong>Coming Soon: Mr. Nanny App!</strong>
+          <ul style={{ margin: '12px 0 0 18px', color: '#232526', fontWeight: 500, fontSize: 15 }}>
+            <li>Wakeup Alarm: Start your day with encouragement and healthy reminders.</li>
+            <li>Water Intake Tracking: Stay hydrated with gentle nudges and daily goals.</li>
+            <li>Sleep Tracking: Build better sleep habits and get personalized rest tips.</li>
+            <li>Menu Guidance: Get healthy meal ideas and nutrition tips tailored to your goals.</li>
+          </ul>
+          <div style={{ color: '#7b2ff2', fontWeight: 600, marginTop: 8 }}>
+            The Mr. Nanny app will help you build healthy routines, track your progress, and stay motivated—right from your phone!
+          </div>
+        </div>
       </section>
       {/* Mr. Nanny Image */}
       <div style={{ margin: '32px 0 0 0', textAlign: 'center' }}>
