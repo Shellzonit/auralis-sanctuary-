@@ -51,9 +51,32 @@ import React, { useState } from "react";
                         Salaries vary by experience, location, and company. Prompting skills are in high demand across tech, media, marketing, and research roles.
                       </div>
                     </section>
-                    <div style={{ fontSize: '1.08rem', color: '#232526' }}>
+                    <div style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
                       Through my Prompting Foundations Mini‑Class, I guide learners step‑by‑step, offering clarity, encouragement, and a certificate that recognizes your new skills.
                     </div>
+                    {/* Expanded Prompting Class Details */}
+                    <section style={{ background: '#fff7fa', borderRadius: 10, padding: '1.5rem 1.5rem', marginBottom: 12, borderLeft: '5px solid #f357a8', fontSize: '1.08rem', color: '#232526', fontWeight: 500 }}>
+                      <h2 style={{ color: '#f357a8', fontSize: '1.12rem', fontWeight: 700, marginBottom: 10 }}>📝 What You'll Learn</h2>
+                      <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+                        <li>How to write clear, effective prompts for AI tools</li>
+                        <li>Common mistakes and how to avoid them</li>
+                        <li>How to iterate and refine your prompts for better results</li>
+                        <li>Real-world examples: creative writing, business, research, and more</li>
+                        <li>How to use context, instructions, and examples to guide AI</li>
+                        <li>Tips for using AI in resumes, job search, and content creation</li>
+                      </ul>
+                      <h3 style={{ color: '#f357a8', fontSize: '1.08rem', fontWeight: 700, marginTop: 16, marginBottom: 8 }}>Step-by-Step Prompting Guide</h3>
+                      <ol style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+                        <li><strong>Start Simple:</strong> Ask a direct question or give a clear instruction.</li>
+                        <li><strong>Add Details:</strong> Include specifics about what you want (format, style, topic).</li>
+                        <li><strong>Give Context:</strong> Share background info or examples to help the AI understand.</li>
+                        <li><strong>Iterate:</strong> Refine your prompt based on the AI's response.</li>
+                        <li><strong>Experiment:</strong> Try different approaches and compare results.</li>
+                      </ol>
+                      <div style={{ marginTop: 8, color: '#f357a8', fontWeight: 600 }}>
+                        Practice is key! The more you experiment, the better your results will be.
+                      </div>
+                    </section>
                   </section>
             {/* Community, FAQ, and Resources Section */}
             <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 32 }}>
