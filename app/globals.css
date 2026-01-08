@@ -32,12 +32,10 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   color: var(--foreground, #181818);
 }
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
 .job-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 8px 24px var(--accent, #D4A857), 0 8px 20px rgba(0,0,0,0.13);
 }
-  transform: translateY(-6px);
 .job-card h3 {
   margin: 0 0 0.5rem 0;
   font-size: 1.1rem;
@@ -45,17 +43,12 @@
   font-weight: 700;
   letter-spacing: 0.01em;
 }
-  margin: 0 0 0.5rem 0;
 .job-desc {
   opacity: 0.85;
   margin-top: 0.5rem;
   font-size: 0.97rem;
   color: var(--secondary, #6A6A6A);
 }
-.job-desc {
-  opacity: 0.8;
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
 }
 /* Universal font style for all text */
 html, body, h1, h2, h3, h4, h5, h6, p, a, li, td, th, input, button, select, textarea, label, span, div {
