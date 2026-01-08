@@ -1,3 +1,8 @@
+// DEBUG: Log Supabase env variables during build/runtime
+console.log('DEBUG SUPABASE_URL:', process.env.SUPABASE_URL ? '[set]' : '[not set]');
+console.log('DEBUG NEXT_PUBLIC_SUPABASE_URL:', process.env.NEXT_PUBLIC_SUPABASE_URL ? '[set]' : '[not set]');
+console.log('DEBUG SUPABASE_ANON_KEY:', process.env.SUPABASE_ANON_KEY ? '[set]' : '[not set]');
+console.log('DEBUG NEXT_PUBLIC_SUPABASE_ANON_KEY:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? '[set]' : '[not set]');
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "../../../lib/supabaseClient";
 
