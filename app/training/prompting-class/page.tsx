@@ -147,28 +147,15 @@ import React, { useState } from "react";
 
 
 export default function PromptingClassPage() {
-      // Certificate download handler
-      function handleDownloadCertificate() {
-        const certificateText = `Certificate of Completion\n\nThis certifies that you have completed the Prompting Mini Class on ${new Date().toLocaleDateString()}.\n\nCongratulations on building your AI prompting skills!`;
-        const blob = new Blob([certificateText], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'PromptingClassCertificate.txt';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-      }
-    // Progress tracker state
-    const [quizDone, setQuizDone] = useState(false);
-    const [scenarioDone, setScenarioDone] = useState(false);
-    const [practiceDone, setPracticeDone] = useState(false);
+  // Progress tracker state
+  const [quizDone, setQuizDone] = useState(false);
+  const [scenarioDone, setScenarioDone] = useState(false);
+  const [practiceDone, setPracticeDone] = useState(false);
 
-    // Calculate progress
-    const totalSteps = 3;
-    const completedSteps = [quizDone, scenarioDone, practiceDone].filter(Boolean).length;
-    const progressPercent = Math.round((completedSteps / totalSteps) * 100);
+  // Calculate progress
+  const totalSteps = 3;
+  const completedSteps = [quizDone, scenarioDone, practiceDone].filter(Boolean).length;
+  const progressPercent = Math.round((completedSteps / totalSteps) * 100);
   const [practicePrompt, setPracticePrompt] = useState("");
   const [practiceResponse, setPracticeResponse] = useState<string | null>(null);
 
