@@ -357,7 +357,6 @@ export default function HomePage() {
           maxWidth: 600,
           textShadow: '0 1px 6px #18191a55',
         }}>
-          {t[lang].tagline}
           {t[lang]?.tagline}
         </div>
       </section>
