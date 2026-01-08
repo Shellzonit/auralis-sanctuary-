@@ -100,6 +100,7 @@ export default function PromptingClassPage() {
       </section>
       {/* Expanded Prompting Class Details */}
       {/* ...existing JSX sections moved here, inside the return ... */}
+
     </div>
   );
 }
