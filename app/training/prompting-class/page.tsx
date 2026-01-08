@@ -12,14 +12,11 @@ import React, { useState } from "react";
                   {/* Instructor Bio Section */}
                   <section style={{ width: '100%', maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
                     <div style={{ marginBottom: 18 }}>
-                      <div style={{ fontWeight: 800, fontSize: '1.18rem', color: '#7b2ff2' }}>Shelundra Brown Santiago</div>
-                      <div style={{ color: '#232526', fontWeight: 600, fontSize: '1.05rem' }}>AI Prompting Educator • Genre‑Creating Artist • Founder of <a href="https://aiwilding.com" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>AIWilding</a></div>
+                      <div style={{ fontWeight: 800, fontSize: '1.18rem', color: '#7b2ff2' }}>shellzonit</div>
+                      <div style={{ color: '#232526', fontWeight: 600, fontSize: '1.05rem' }}>Genre‑Creating Artist • Founder of <a href="https://aiwilding.com" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>AIWilding</a></div>
                       <div style={{ marginTop: 6 }}>
                         <a href="mailto:shelundra@hotmail.com" title="Email" style={{ color: '#7b2ff2', marginRight: 12, fontSize: 22 }}>📧</a>
                         <a href="https://twitter.com/aiwilding" target="_blank" rel="noopener noreferrer" title="Twitter" style={{ color: '#7b2ff2', marginRight: 12, fontSize: 22 }}>🐦</a>
-                        <a href="https://linkedin.com/in/shelundra" target="_blank" rel="noopener noreferrer" title="LinkedIn" style={{ color: '#7b2ff2', fontSize: 22 }}>💼</a>
-                      }
-                      export default PromptingClassPage;
                         <li>how anyone can use AI to create, build, and express themselves</li>
                       </ul>
                     </div>
@@ -41,8 +38,8 @@ import React, { useState } from "react";
                         Salaries vary by experience, location, and company. Prompting skills are in high demand across tech, media, marketing, and research roles.
                       </div>
                     </section>
-                    <div style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
-                      Through my Prompting Foundations Mini‑Class, I guide learners step‑by‑step, offering clarity, encouragement, and a certificate that recognizes your new skills.
+                      <div style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
+                      shellzonit guides learners step‑by‑step, offering clarity, encouragement, and a certificate that recognizes your new skills.
                     </div>
                     {/* Expanded Prompting Class Details */}
                     <section style={{ background: '#fff7fa', borderRadius: 10, padding: '1.5rem 1.5rem', marginBottom: 12, borderLeft: '5px solid #f357a8', fontSize: '1.08rem', color: '#232526', fontWeight: 500 }}>
