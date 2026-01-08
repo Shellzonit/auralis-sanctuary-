@@ -134,46 +134,27 @@ export default function HomePage() {
               color: '#7b2ff2',
               fontWeight: 700,
               fontSize: '1.1rem',
-              {[ 
-                { label: 'Home', href: '/' },
-                { label: 'About', href: '/about' },
-                { label: 'Contact', href: '/contact' },
-                { label: 'AI Jobs', href: '/new-ai-jobs' },
-                { label: 'Recovery Hub', href: '/recovery' },
-                { label: 'Hiring Event', href: '/hiring-events' },
-                { label: 'Training', href: '/training' },
-                { label: 'Resume Wizard', href: '/resume-wizard' },
-                { label: 'Resources', href: '/resources' },
-                { label: 'States/Country', href: '/countries' },
-              ].map((tab, idx) => (
-                <a
-                  key={tab.label}
-                  href={tab.href}
-                  style={{
-                    color: '#7b2ff2',
-                    fontWeight: 700,
-                    fontSize: '1.1rem',
-                    textDecoration: 'none',
-                    margin: '0 1.2rem',
-                    padding: '0.5rem 0',
-                    borderBottom: '2px solid transparent',
-                    transition: 'border 0.2s',
-                    outline: 'none',
-                  }}
-                  tabIndex={0}
-                  aria-current={pathname === tab.href ? 'page' : undefined}
-                  onKeyDown={e => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      window.location.href = tab.href;
-                    }
-                  }}
-                  onMouseOver={e => e.currentTarget.style.borderBottom = '2px solid #7b2ff2'}
-                  onMouseOut={e => e.currentTarget.style.borderBottom = '2px solid transparent'}
-                >
-                  {tab.label}
-                </a>
-              ))}
-            </nav>
+              textDecoration: 'none',
+              margin: '0 1.2rem',
+              padding: '0.5rem 0',
+              borderBottom: '2px solid transparent',
+              transition: 'border 0.2s',
+              outline: 'none',
+            }}
+            tabIndex={0}
+            aria-current={pathname === tab.href ? 'page' : undefined}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                window.location.href = tab.href;
+              }
+            }}
+            onMouseOver={e => e.currentTarget.style.borderBottom = '2px solid #7b2ff2'}
+            onMouseOut={e => e.currentTarget.style.borderBottom = '2px solid transparent'}
+          >
+            {tab.label}
+          </a>
+        ))}
+      </nav>
             {/* Banner with Tagline */}
             <section style={{
               width: '100%',
