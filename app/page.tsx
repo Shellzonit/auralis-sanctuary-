@@ -323,42 +323,6 @@ export default function HomePage() {
         </div>
       </section>
       {/* ...existing code for navigation and banner... */}
-            fontStyle: 'italic',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            textAlign: 'center',
-            margin: 0,
-            width: '100%',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-            position: 'relative',
-            zIndex: 2,
-            textShadow: '0 2px 8px #8882',
-            WebkitTextStroke: '1.5px #bba6f7',
-            filter: 'none',
-            background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            maskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)',
-            lineHeight: 1.18,
-            paddingBottom: '0.18em',
-          }}
-        >
-          AI Wilding
-        </h1>
-        <div style={{
-          color: '#ece9fc',
-          fontSize: '1.25rem',
-          fontWeight: 500,
-          marginTop: 12,
-          textAlign: 'center',
-          maxWidth: 600,
-          textShadow: '0 1px 6px #18191a55',
-        }}>
-          {t[lang]?.tagline}
-        </div>
       </section>
       {/* Homepage random image with alt text for accessibility */}
       <section style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
