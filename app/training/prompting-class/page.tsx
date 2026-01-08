@@ -1,3 +1,8 @@
+
+"use client";
+import React, { useState } from "react";
+
+// ...existing code...
                   {/* Instructor Bio Section */}
                   <section style={{ width: '100%', maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
                     <div style={{ marginBottom: 18 }}>
@@ -81,8 +86,7 @@
           </div>
         </div>
       </section>
-"use client";
-import React, { useState } from "react";
+
 
 export default function PromptingClassPage() {
       // Certificate download handler
