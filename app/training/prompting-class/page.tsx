@@ -1,3 +1,9 @@
+function PromptingClassPage() {
+  // ...existing code...
+  // All logic and JSX should be inside this function
+  // ...existing code...
+}
+export default PromptingClassPage;
 
 "use client";
 import React, { useState } from "react";
