@@ -334,3 +334,6 @@ export default function PromptingClassPage() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
