@@ -70,94 +70,74 @@ export default function PromptingClassPage() {
   return (
     <div>
       <h1>Prompting Mini Class</h1>
-      <h2>Instructor: shellzonit</h2>
-      <p>Genre‑Creating Artist • Founder of <a href="https://aiwilding.com" target="_blank" rel="noopener noreferrer">AIWilding</a></p>
-      <h3>AI Jobs Using Prompting Skills</h3>
+      <h2>Lesson 1: Introduction to Prompting</h2>
+      <p>Prompting is the art of writing instructions for AI to get useful, accurate, and creative responses. In this class, you'll learn the basics and best practices for effective prompting.</p>
+
+      <h2>Lesson 2: Why Prompting Matters</h2>
       <ul>
-        <li><strong>Prompt Engineer</strong> — $120,000–$250,000/year</li>
-        <li><strong>AI Product Manager</strong> — $110,000–$200,000/year</li>
-        <li><strong>AI Content Creator</strong> — $60,000–$150,000/year</li>
-        <li><strong>AI Researcher</strong> — $100,000–$220,000/year</li>
-        <li><strong>Conversational AI Designer</strong> — $90,000–$180,000/year</li>
-        <li><strong>Machine Learning Engineer</strong> — $120,000–$200,000/year</li>
-        <li><strong>AI Trainer/Annotator</strong> — $50,000–$100,000/year</li>
-        <li><strong>AI Marketing Specialist</strong> — $70,000–$140,000/year</li>
-        <li><strong>Creative Technologist</strong> — $80,000–$160,000/year</li>
+        <li>Prompting is used in many jobs: Prompt Engineer, AI Product Manager, Content Creator, Researcher, and more.</li>
+        <li>Good prompts save time and improve results in business, education, and creative work.</li>
       </ul>
-      <p>Salaries vary by experience, location, and company. Prompting skills are in high demand across tech, media, marketing, and research roles.</p>
-      <p>shellzonit guides learners step‑by‑step, offering clarity, encouragement, and a certificate that recognizes your new skills.</p>
-      <h3>What You'll Learn</h3>
-      <ul>
-        <li>How to write clear, effective prompts for AI tools</li>
-        <li>Common mistakes and how to avoid them</li>
-        <li>How to iterate and refine your prompts for better results</li>
-        <li>Real-world examples: creative writing, business, research, and more</li>
-        <li>How to use context, instructions, and examples to guide AI</li>
-        <li>Tips for using AI in resumes, job search, and content creation</li>
-      </ul>
-      <h3>Step-by-Step Prompting Guide</h3>
+
+      <h2>Lesson 3: How to Write a Good Prompt</h2>
       <ol>
-        <li><strong>Start Simple:</strong> Ask a direct question or give a clear instruction.</li>
-        <li><strong>Add Details:</strong> Include specifics about what you want (format, style, topic).</li>
-        <li><strong>Give Context:</strong> Share background info or examples to help the AI understand.</li>
-        <li><strong>Iterate:</strong> Refine your prompt based on the AI's response.</li>
-        <li><strong>Experiment:</strong> Try different approaches and compare results.</li>
+        <li>Start with a clear instruction or question.</li>
+        <li>Add details about what you want (format, style, topic).</li>
+        <li>Give context or examples to help the AI understand.</li>
+        <li>Iterate and refine your prompt based on the AI's response.</li>
+        <li>Experiment with different approaches and compare results.</li>
       </ol>
-      <h3>Community & Resources</h3>
-      <p>Share your progress: <a href="https://twitter.com/intent/tweet?text=I%20just%20completed%20the%20Prompting%20Mini%20Class%20on%20Sanctuary!%20%F0%9F%8E%89%20%23PromptEngineering" target="_blank" rel="noopener noreferrer">Tweet your achievement</a> or join our <a href="https://discord.gg/ai" target="_blank" rel="noopener noreferrer">AI Community Chat</a>.</p>
-      <h4>FAQ</h4>
+
+      <h2>Lesson 4: Common Mistakes</h2>
       <ul>
-        <li><strong>Q:</strong> What is a prompt?<br /><strong>A:</strong> A prompt is the instruction or question you give to an AI to get a response.</li>
-        <li><strong>Q:</strong> How do I make my prompts better?<br /><strong>A:</strong> Be clear, specific, and include details about what you want.</li>
-        <li><strong>Q:</strong> Can anyone learn prompting?<br /><strong>A:</strong> Yes! You don’t need to be technical—just practice clear communication.</li>
-        <li><strong>Q:</strong> Where can I use prompting skills?<br /><strong>A:</strong> In chatbots, resume builders, creative tools, customer support, and more.</li>
+        <li>Vague prompts lead to generic answers.</li>
+        <li>Too much detail can confuse the AI.</li>
+        <li>Not providing context may cause the AI to miss your intent.</li>
+        <li>Expecting perfect results—always review and edit outputs.</li>
       </ul>
+
+      <h2>Lesson 5: Practice & Quiz</h2>
+      <p>Try writing a prompt for the following scenario:</p>
+      <blockquote>"You want the AI to write a professional email for a job application."</blockquote>
+      <form onSubmit={handlePracticeSubmit}>
+        <label htmlFor="practicePrompt">Your prompt:</label><br />
+        <input
+          id="practicePrompt"
+          type="text"
+          value={practicePrompt}
+          onChange={e => setPracticePrompt(e.target.value)}
+          style={{ width: '100%', maxWidth: 400 }}
+        /><br />
+        <button type="submit">Submit</button>
+      </form>
+      {practiceResponse && <p><strong>AI Response:</strong> {practiceResponse}</p>}
+
+      <h2>Lesson 6: Quick Quiz</h2>
+      <form onSubmit={handleQuizSubmit}>
+        <label htmlFor="quizAnswer">What is the most important part of a good AI prompt?</label><br />
+        <select
+          id="quizAnswer"
+          value={quizAnswer}
+          onChange={e => setQuizAnswer(e.target.value)}
+        >
+          <option value="">Select an answer</option>
+          {quizOptions.map((option, idx) => (
+            <option key={idx} value={option}>{option}</option>
+          ))}
+        </select>
+        <button type="submit">Check Answer</button>
+      </form>
+      {quizFeedback && <p><strong>Quiz Feedback:</strong> {quizFeedback}</p>}
+
+      <h2>Lesson 7: Resources</h2>
       <ul>
-        <li><a href="https://learnprompting.org/" target="_blank" rel="noopener noreferrer">LearnPrompting.org</a> — Free, in-depth guide to prompt engineering</li>
-        <li><a href="https://www.promptingguide.ai/" target="_blank" rel="noopener noreferrer">Prompting Guide</a> — Tips, examples, and best practices</li>
+        <li><a href="https://learnprompting.org/" target="_blank" rel="noopener noreferrer">LearnPrompting.org</a></li>
+        <li><a href="https://www.promptingguide.ai/" target="_blank" rel="noopener noreferrer">Prompting Guide</a></li>
         <li><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" rel="noopener noreferrer">ChatGPT Prompt Engineering (DeepLearning.AI)</a></li>
       </ul>
-      <h3>Real-World Case Studies: Prompting in Action</h3>
-      <ul>
-        <li><strong>Healthcare:</strong> Doctors use AI prompts to summarize patient records and suggest diagnoses, saving time and improving accuracy.</li>
-        <li><strong>Marketing:</strong> Content creators prompt AI to generate ad copy, social media posts, and campaign ideas, boosting creativity and speed.</li>
-        <li><strong>Education:</strong> Teachers use AI to create lesson plans, quizzes, and personalized feedback for students.</li>
-        <li><strong>Customer Support:</strong> Support teams prompt AI chatbots to answer questions and resolve issues 24/7.</li>
-        <li><strong>Entertainment:</strong> Writers and artists use AI to brainstorm story ideas, lyrics, and visual concepts.</li>
-      </ul>
-      <h3>Tips for Ethical & Responsible AI Use</h3>
-      <ul>
-        <li>Always check AI-generated content for accuracy and bias.</li>
-        <li>Respect privacy—never share sensitive personal data in prompts.</li>
-        <li>Use AI to support, not replace, human creativity and judgment.</li>
-        <li>Be transparent when using AI in your work or projects.</li>
-        <li>Report and correct harmful or inappropriate outputs.</li>
-      </ul>
-      <h3>Common Pitfalls & Troubleshooting</h3>
-      <ul>
-        <li><strong>Vague Prompts:</strong> If your prompt is unclear, the AI may give irrelevant or generic answers. Be specific!</li>
-        <li><strong>Overly Complex Prompts:</strong> Too much detail can confuse the AI. Break complex requests into smaller steps.</li>
-        <li><strong>Ignoring Context:</strong> Without background info, the AI may miss your intent. Add context or examples.</li>
-        <li><strong>Unrealistic Expectations:</strong> AI is powerful, but not perfect. Review and edit outputs as needed.</li>
-        <li><strong>Bad Outputs:</strong> If the AI gives poor results, try rephrasing your prompt or providing more guidance.</li>
-      </ul>
-      <p>Remember: Prompting is a skill. Practice, review, and keep learning!</p>
-      <h3>Watch & Listen: Prompting in Action</h3>
-      <iframe
-        width="100%"
-        height="315"
-        src="https://www.youtube.com/embed/2xxziIWmaSA"
-        title="Prompt Engineering for Everyone"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        style={{ maxWidth: 420, width: '100%', margin: '0 auto', display: 'block' }}
-      ></iframe>
-      <audio controls style={{ width: '100%', maxWidth: 420, margin: '0 auto', display: 'block' }}>
-        <source src="/prompting-quick-tip.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-      <p><strong>Listen:</strong> Quick tip on how to structure your prompts for best results.</p>
+
+      <h2>Lesson 8: Summary</h2>
+      <p>Prompting is a skill you can learn and improve. Use clear instructions, add details, provide context, and always review the AI's output. Practice and experiment to get the best results.</p>
     </div>
     </div>
   );
