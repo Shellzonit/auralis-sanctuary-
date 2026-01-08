@@ -60,7 +60,6 @@ import React, { useState } from "react";
                         Practice is key! The more you experiment, the better your results will be.
                       </div>
                     </section>
-                  </section>
             {/* Community, FAQ, and Resources Section */}
             <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 32 }}>
               <h2 style={{ fontSize: '1.15rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>🤝 Community & Resources</h2>
