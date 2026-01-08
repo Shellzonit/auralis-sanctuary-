@@ -313,15 +313,72 @@ export default function PromptingClassPage() {
       setPracticeResponse("This is a sample AI response to your prompt. Try being specific for best results!");
       setPracticeDone(true);
     }
+  }
+
   return (
-    <div style={{ width: '100%', maxWidth: 700, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 32 }}>
-      {/* Instructor Bio Section */}
-      {/* What You'll Learn Section */}
-      {/* Community & Resources Section */}
-      {/* Case Studies Section */}
-      {/* Ethics Section */}
-      {/* Troubleshooting Section */}
-      {/* Video & Audio Section */}
+    <div>
+      <h1>Prompting Mini Class</h1>
+      <h2>Lesson 1: Introduction to Prompting</h2>
+      <p>Prompting is the art of writing instructions for AI to get useful, accurate, and creative responses. In this class, you'll learn the basics and best practices for effective prompting.</p>
+      <h2>Lesson 2: Why Prompting Matters</h2>
+      <ul>
+        <li>Prompting is used in many jobs: Prompt Engineer, AI Product Manager, Content Creator, Researcher, and more.</li>
+        <li>Good prompts save time and improve results in business, education, and creative work.</li>
+      </ul>
+      <h2>Lesson 3: How to Write a Good Prompt</h2>
+      <ol>
+        <li>Start with a clear instruction or question.</li>
+        <li>Add details about what you want (format, style, topic).</li>
+        <li>Give context or examples to help the AI understand.</li>
+        <li>Iterate and refine your prompt based on the AI's response.</li>
+        <li>Experiment with different approaches and compare results.</li>
+      </ol>
+      <h2>Lesson 4: Common Mistakes</h2>
+      <ul>
+        <li>Vague prompts lead to generic answers.</li>
+        <li>Too much detail can confuse the AI.</li>
+        <li>Not providing context may cause the AI to miss your intent.</li>
+        <li>Expecting perfect results—always review and edit outputs.</li>
+      </ul>
+      <h2>Lesson 5: Practice & Quiz</h2>
+      <p>Try writing a prompt for the following scenario:</p>
+      <blockquote>"You want the AI to write a professional email for a job application."</blockquote>
+      <form onSubmit={handlePracticeSubmit}>
+        <label htmlFor="practicePrompt">Your prompt:</label><br />
+        <input
+          id="practicePrompt"
+          type="text"
+          value={practicePrompt}
+          onChange={e => setPracticePrompt(e.target.value)}
+          style={{ width: '100%', maxWidth: 400 }}
+        /><br />
+        <button type="submit">Submit</button>
+      </form>
+      {practiceResponse && <p><strong>AI Response:</strong> {practiceResponse}</p>}
+      <h2>Lesson 6: Quick Quiz</h2>
+      <form onSubmit={handleQuizSubmit}>
+        <label htmlFor="quizAnswer">What is the most important part of a good AI prompt?</label><br />
+        <select
+          id="quizAnswer"
+          value={quizAnswer}
+          onChange={e => setQuizAnswer(e.target.value)}
+        >
+          <option value="">Select an answer</option>
+          {quizOptions.map((option, idx) => (
+            <option key={idx} value={option}>{option}</option>
+          ))}
+        </select>
+        <button type="submit">Check Answer</button>
+      </form>
+      {quizFeedback && <p><strong>Quiz Feedback:</strong> {quizFeedback}</p>}
+      <h2>Lesson 7: Resources</h2>
+      <ul>
+        <li><a href="https://learnprompting.org/" target="_blank" rel="noopener noreferrer">LearnPrompting.org</a></li>
+        <li><a href="https://www.promptingguide.ai/" target="_blank" rel="noopener noreferrer">Prompting Guide</a></li>
+        <li><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" rel="noopener noreferrer">ChatGPT Prompt Engineering (DeepLearning.AI)</a></li>
+      </ul>
+      <h2>Lesson 8: Summary</h2>
+      <p>Prompting is a skill you can learn and improve. Use clear instructions, add details, provide context, and always review the AI's output. Practice and experiment to get the best results.</p>
     </div>
   );
 }
