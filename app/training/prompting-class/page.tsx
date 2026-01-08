@@ -83,7 +83,7 @@ import React, { useState } from "react";
               <h2 style={{ fontSize: '1.15rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>🤝 Community & Resources</h2>
               <div style={{ marginBottom: 18 }}>
                 <strong>Share your progress:</strong> <a href="https://twitter.com/intent/tweet?text=I%20just%20completed%20the%20Prompting%20Mini%20Class%20on%20Sanctuary!%20%F0%9F%8E%89%20%23PromptEngineering" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>Tweet your achievement</a> or join our <a href="https://discord.gg/ai" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>AI Community Chat</a>.
-              </div>
+              // end FAQ section
               <div style={{ marginBottom: 18 }}>
                 <strong>FAQ:</strong>
                 <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
