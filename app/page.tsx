@@ -322,42 +322,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-            }}
-            tabIndex={0}
-            aria-current={pathname === tab.href ? 'page' : undefined}
-            onKeyDown={e => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                window.location.href = tab.href;
-              }
-            }}
-            onMouseOver={e => e.currentTarget.style.borderBottom = '2px solid #7b2ff2'}
-            onMouseOut={e => e.currentTarget.style.borderBottom = '2px solid transparent'}
-          >
-            {tab.label}
-          </a>
-        ))}
-      </nav>
-      {/* Banner with Tagline */}
-      <section style={{
-        width: '100%',
-        maxWidth: 900,
-        margin: '2.5rem auto 2rem auto',
-        background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)',
-        borderRadius: 28,
-        boxShadow: '0 4px 32px #18191a22',
-        padding: '2.5rem 0 2.5rem 0',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-      }}>
-        <h1
-          style={{
-            color: 'rgba(255,255,255,0.97)',
-            fontSize: 'clamp(2.8rem, 7vw, 4.5rem)',
-            fontWeight: 800,
-            fontFamily: 'Playfair Display, Georgia, serif',
+      {/* ...existing code for navigation and banner... */}
             fontStyle: 'italic',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
