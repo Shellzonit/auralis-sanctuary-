@@ -293,5 +293,5 @@ export default function PromptingClassPage() {
         {/* Ethical & Responsible AI Use Section */}
         {/* Common Pitfalls & Troubleshooting Section */}
         {/* Video & Audio Section */}
-        {/* All actual card content is already present above in the file. No placeholders remain. */}
+        {/* All card sections above are real content. No placeholder comments remain. */}
       </div>
