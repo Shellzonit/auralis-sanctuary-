@@ -32,17 +32,22 @@ export default function ResumeWizardPage() {
           Chat with Mr. Job Nanny to build and refine your resume in a private, thread-like discussion. No downloads or exports—just real-time, supportive guidance.
         </div>
         {/* Opt-in Checkbox for Hot Resume of the Week */}
-        <div style={{ marginTop: 24, background: '#fff', borderRadius: 8, boxShadow: '0 1px 6px #7b2ff222', padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <input
-            type="checkbox"
-            id="hotResumeOptIn"
-            checked={optIn}
-            onChange={e => setOptIn(e.target.checked)}
-            style={{ width: 20, height: 20, accentColor: '#e67e22' }}
-          />
-          <label htmlFor="hotResumeOptIn" style={{ fontSize: '1.08rem', color: '#e67e22', fontWeight: 600 }}>
-            Opt in to be considered for <span style={{ fontWeight: 700 }}>Hot Resume of the Week</span> Spotlight
-          </label>
+        <div style={{ marginTop: 24, background: '#fff', borderRadius: 8, boxShadow: '0 1px 6px #7b2ff222', padding: '1rem 1.5rem', display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <div style={{ fontSize: '0.98rem', color: '#888', marginBottom: 8, background: '#fff8e1', borderRadius: 6, padding: '0.7rem 1rem' }}>
+            <strong style={{ color: '#e67e22' }}>Disclaimer:</strong> By opting in, your resume and username may be stored and reviewed for selection in the Hot Resume of the Week feature. Only resumes meeting the gold completion standard will be considered. Your data will be used solely for this showcase and not shared outside the platform.
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <input
+              type="checkbox"
+              id="hotResumeOptIn"
+              checked={optIn}
+              onChange={e => setOptIn(e.target.checked)}
+              style={{ width: 20, height: 20, accentColor: '#e67e22' }}
+            />
+            <label htmlFor="hotResumeOptIn" style={{ fontSize: '1.08rem', color: '#e67e22', fontWeight: 600 }}>
+              Opt in to be considered for <span style={{ fontWeight: 700 }}>Hot Resume of the Week</span> Spotlight
+            </label>
+          </div>
         </div>
       </section>
       {/* Glossary Section */}
