@@ -323,7 +323,6 @@ export default function HomePage() {
         </div>
       </section>
       {/* ...existing code for navigation and banner... */}
-      </section>
       {/* Homepage random image with alt text for accessibility */}
       <section style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
         <Image src={`/${img}`} alt={img.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')} width={600} height={320} style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }} />
