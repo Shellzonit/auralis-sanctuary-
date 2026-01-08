@@ -242,33 +242,98 @@ export default function PromptingClassPage() {
       setPracticeResponse("This is a sample AI response to your prompt. Try being specific for best results!");
       setPracticeDone(true);
     }
-  }
-  return (
-    <main style={{
-      minHeight: "100vh",
-      background: "#f5f3fd",
-      color: "#18191a",
-      fontFamily: "Inter, sans-serif",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      padding: "2rem 1rem"
-    }}>
-      {/* Progress Tracker */}
-      {completedSteps === totalSteps && (
-        <div style={{ width: '100%', maxWidth: 700, marginBottom: 24 }}>
-          <div style={{ background: '#e6ffe6', borderRadius: 12, boxShadow: '0 1px 6px #22b87b44', padding: '1.5rem', textAlign: 'center', marginTop: 12 }}>
-            <h2 style={{ color: '#22b87b', fontWeight: 800, fontSize: '1.5rem', marginBottom: 8 }}>🎉 Congratulations!</h2>
-            <div style={{ color: '#232526', fontSize: '1.08rem', marginBottom: 16 }}>
-              You’ve completed all steps of the Prompting Mini Class.<br />
-              You’re ready to use your new skills in the real world!
-            </div>
-            <button onClick={handleDownloadCertificate} style={{ background: '#7b2ff2', color: '#fff', fontWeight: 700, borderRadius: 8, padding: '12px 24px', border: 'none', cursor: 'pointer', fontSize: '1.08rem', boxShadow: '0 1px 6px #7b2ff222' }}>
-              Download Certificate
-            </button>
+      <div style={{ width: '100%', maxWidth: 700, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 32 }}>
+        {/* Instructor Bio Section */}
+        <div style={{ padding: '1.5rem', border: '1px solid #e0e0e0', borderRadius: 8, marginBottom: 24, background: '#fff' }}>
+          <strong style={{ color: '#7b2ff2', fontSize: '1.15rem' }}>Shelundra Brown Santiago</strong><br />
+          <span style={{ color: '#232526', fontWeight: 600 }}>AI Prompting Educator • Genre‑Creating Artist • Founder of <a href="https://aiwilding.com" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>AIWilding</a></span>
+          <div style={{ marginTop: 6 }}>
+            <a href="mailto:shelundra@hotmail.com" title="Email" style={{ color: '#7b2ff2', marginRight: 12, fontSize: 22 }}>📧</a>
+            <a href="https://twitter.com/aiwilding" target="_blank" rel="noopener noreferrer" title="Twitter" style={{ color: '#7b2ff2', marginRight: 12, fontSize: 22 }}>🐦</a>
+            <a href="https://linkedin.com/in/shelundra" target="_blank" rel="noopener noreferrer" title="LinkedIn" style={{ color: '#7b2ff2', fontSize: 22 }}>💼</a>
+          </div>
+          <div style={{ fontSize: '1.08rem', color: '#232526', marginTop: 12 }}>
+            Shelundra Brown Santiago is an AI‑driven creator, educator, and founder who has produced over 30 original songs using AI prompting techniques and pioneered an entirely new musical genre through her creative practice. Her work blends intuition, experimentation, and technical clarity, showing how prompting can unlock real‑world artistry and innovation.
           </div>
         </div>
-      )}
+        {/* What You'll Learn Section */}
+        <div style={{ padding: '1.5rem', border: '1px solid #e0e0e0', borderRadius: 8, marginBottom: 24, background: '#f5f3fd' }}>
+          <strong style={{ color: '#7b2ff2', fontSize: '1.12rem' }}>What You'll Learn</strong>
+          <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+            <li>How to write clear, effective prompts for AI tools</li>
+            <li>Common mistakes and how to avoid them</li>
+            <li>How to iterate and refine your prompts for better results</li>
+            <li>Real-world examples: creative writing, business, research, and more</li>
+            <li>How to use context, instructions, and examples to guide AI</li>
+            <li>Tips for using AI in resumes, job search, and content creation</li>
+          </ul>
+        </div>
+        {/* Community & Resources Section */}
+        <div style={{ padding: '1.5rem', border: '1px solid #e0e0e0', borderRadius: 8, marginBottom: 24, background: '#fff' }}>
+          <strong style={{ color: '#7b2ff2', fontSize: '1.12rem' }}>Community & Resources</strong>
+          <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+            <li><a href="https://learnprompting.org/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>LearnPrompting.org</a></li>
+            <li><a href="https://www.promptingguide.ai/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>Prompting Guide</a></li>
+            <li><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>ChatGPT Prompt Engineering (DeepLearning.AI)</a></li>
+          </ul>
+        </div>
+        {/* Case Studies Section */}
+        <div style={{ padding: '1.5rem', border: '1px solid #e0e0e0', borderRadius: 8, marginBottom: 24, background: '#f5f3fd' }}>
+          <strong style={{ color: '#7b2ff2', fontSize: '1.12rem' }}>Case Studies</strong>
+          <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+            <li>Healthcare: Doctors use AI prompts to summarize patient records and suggest diagnoses.</li>
+            <li>Marketing: Content creators prompt AI to generate ad copy, social media posts, and campaign ideas.</li>
+            <li>Education: Teachers use AI to create lesson plans, quizzes, and personalized feedback.</li>
+            <li>Customer Support: Support teams prompt AI chatbots to answer questions and resolve issues 24/7.</li>
+            <li>Entertainment: Writers and artists use AI to brainstorm story ideas, lyrics, and visual concepts.</li>
+          </ul>
+        </div>
+        {/* Ethics Section */}
+        <div style={{ padding: '1.5rem', border: '1px solid #e0e0e0', borderRadius: 8, marginBottom: 24, background: '#fff' }}>
+          <strong style={{ color: '#f357a8', fontSize: '1.12rem' }}>Ethical & Responsible AI Use</strong>
+          <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+            <li>Always check AI-generated content for accuracy and bias.</li>
+            <li>Respect privacy—never share sensitive personal data in prompts.</li>
+            <li>Use AI to support, not replace, human creativity and judgment.</li>
+            <li>Be transparent when using AI in your work or projects.</li>
+            <li>Report and correct harmful or inappropriate outputs.</li>
+          </ul>
+        </div>
+        {/* Troubleshooting Section */}
+        <div style={{ padding: '1.5rem', border: '1px solid #e0e0e0', borderRadius: 8, marginBottom: 24, background: '#f5f3fd' }}>
+          <strong style={{ color: '#7b2ff2', fontSize: '1.12rem' }}>Troubleshooting</strong>
+          <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+            <li>Vague Prompts: If your prompt is unclear, the AI may give irrelevant or generic answers. Be specific!</li>
+            <li>Overly Complex Prompts: Too much detail can confuse the AI. Break complex requests into smaller steps.</li>
+            <li>Ignoring Context: Without background info, the AI may miss your intent. Add context or examples.</li>
+            <li>Unrealistic Expectations: AI is powerful, but not perfect. Review and edit outputs as needed.</li>
+            <li>Bad Outputs: If the AI gives poor results, try rephrasing your prompt or providing more guidance.</li>
+          </ul>
+        </div>
+        {/* Video & Audio Section */}
+        <div style={{ padding: '1.5rem', border: '1px solid #e0e0e0', borderRadius: 8, marginBottom: 24, background: '#fff' }}>
+          <strong style={{ color: '#7b2ff2', fontSize: '1.12rem' }}>Watch & Listen</strong>
+          <div style={{ marginBottom: 18 }}>
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/2xxziIWmaSA"
+              title="Prompt Engineering for Everyone"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ borderRadius: 12, boxShadow: '0 1px 6px #7b2ff222', maxWidth: 420, width: '100%', margin: '0 auto', display: 'block' }}
+            ></iframe>
+          </div>
+          <audio controls style={{ width: '100%', maxWidth: 420, margin: '0 auto', display: 'block', borderRadius: 8, boxShadow: '0 1px 6px #7b2ff222' }}>
+            <source src="/prompting-quick-tip.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <div style={{ fontSize: '1.08rem', color: '#232526', marginTop: 8 }}>
+            <strong>Listen:</strong> Quick tip on how to structure your prompts for best results.
+          </div>
+        </div>
+      </div>
       <div style={{ width: '100%', maxWidth: 700, marginBottom: 24 }}>
         <div style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 6px #7b2ff222', padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: 16 }}>
           <div style={{ flex: 1 }}>
