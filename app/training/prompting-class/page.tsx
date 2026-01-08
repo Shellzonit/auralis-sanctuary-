@@ -93,9 +93,6 @@ import React, { useState } from "react";
                   <li><strong>Q:</strong> Where can I use prompting skills?<br /><strong>A:</strong> In chatbots, resume builders, creative tools, customer support, and more.</li>
                 </ul>
               </div>
-              <div>
-                <strong>Further Resources:</strong>
-                <ul style={{ marginTop: 6, marginBottom: 0, paddingLeft: 22 }}>
                   <li><a href="https://learnprompting.org/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>LearnPrompting.org</a> — Free, in-depth guide to prompt engineering</li>
                   <li><a href="https://www.promptingguide.ai/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>Prompting Guide</a> — Tips, examples, and best practices</li>
                   <li><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>ChatGPT Prompt Engineering (DeepLearning.AI)</a></li>
