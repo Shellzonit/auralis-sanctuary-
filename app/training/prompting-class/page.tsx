@@ -1,3 +1,4 @@
+export default PromptingClassPage;
 
 "use client";
 import React, { useState } from "react";
