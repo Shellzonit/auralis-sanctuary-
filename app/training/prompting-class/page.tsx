@@ -102,6 +102,42 @@ import React, { useState } from "react";
                 </ul>
               </div>
             </section>
+            {/* Real-world Case Studies Section */}
+            <section style={{ maxWidth: 700, background: '#f5f3fd', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 32, borderLeft: '5px solid #7b2ff2' }}>
+              <h2 style={{ fontSize: '1.15rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>🌎 Real-World Case Studies: Prompting in Action</h2>
+              <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+                <li><strong>Healthcare:</strong> Doctors use AI prompts to summarize patient records and suggest diagnoses, saving time and improving accuracy.</li>
+                <li><strong>Marketing:</strong> Content creators prompt AI to generate ad copy, social media posts, and campaign ideas, boosting creativity and speed.</li>
+                <li><strong>Education:</strong> Teachers use AI to create lesson plans, quizzes, and personalized feedback for students.</li>
+                <li><strong>Customer Support:</strong> Support teams prompt AI chatbots to answer questions and resolve issues 24/7.</li>
+                <li><strong>Entertainment:</strong> Writers and artists use AI to brainstorm story ideas, lyrics, and visual concepts.</li>
+              </ul>
+            </section>
+            {/* Ethical & Responsible AI Use Section */}
+            <section style={{ maxWidth: 700, background: '#fff7fa', borderRadius: 16, boxShadow: '0 2px 12px #f357a822', padding: '2rem', marginBottom: 32, borderLeft: '5px solid #f357a8' }}>
+              <h2 style={{ fontSize: '1.15rem', color: '#f357a8', fontWeight: 700, marginBottom: 10 }}>🧭 Tips for Ethical & Responsible AI Use</h2>
+              <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+                <li>Always check AI-generated content for accuracy and bias.</li>
+                <li>Respect privacy—never share sensitive personal data in prompts.</li>
+                <li>Use AI to support, not replace, human creativity and judgment.</li>
+                <li>Be transparent when using AI in your work or projects.</li>
+                <li>Report and correct harmful or inappropriate outputs.</li>
+              </ul>
+            </section>
+            {/* Common Pitfalls & Troubleshooting Section */}
+            <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 32, borderLeft: '5px solid #7b2ff2' }}>
+              <h2 style={{ fontSize: '1.15rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>⚠️ Common Pitfalls & Troubleshooting</h2>
+              <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+                <li><strong>Vague Prompts:</strong> If your prompt is unclear, the AI may give irrelevant or generic answers. Be specific!</li>
+                <li><strong>Overly Complex Prompts:</strong> Too much detail can confuse the AI. Break complex requests into smaller steps.</li>
+                <li><strong>Ignoring Context:</strong> Without background info, the AI may miss your intent. Add context or examples.</li>
+                <li><strong>Unrealistic Expectations:</strong> AI is powerful, but not perfect. Review and edit outputs as needed.</li>
+                <li><strong>Bad Outputs:</strong> If the AI gives poor results, try rephrasing your prompt or providing more guidance.</li>
+              </ul>
+              <div style={{ marginTop: 8, color: '#7b2ff2', fontWeight: 600 }}>
+                Remember: Prompting is a skill. Practice, review, and keep learning!
+              </div>
+            </section>
       {/* Video & Audio Section */}
       <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
         <h2 style={{ fontSize: '1.15rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>🎬 Watch & Listen: Prompting in Action</h2>
