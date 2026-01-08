@@ -1,3 +1,62 @@
+/* Scrolling AI Jobs Card Styles */
+.job-scroller {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  background: var(--background, #EAE7DF);
+  height: 6px;
+}
+/* Use accent color for scrollbar thumb */
+.job-scroller::-webkit-scrollbar-thumb {
+  background: var(--accent, #D4A857);
+  border-radius: 10px;
+  border-radius: 10px;
+}
+/* Card uses Sanctuary palette and soft background */
+.job-card {
+  min-width: 280px;
+  max-width: 300px;
+  background: linear-gradient(135deg, #fffbe8 60%, #f5f3fd 100%);
+  border: 1.5px solid var(--accent, #D4A857);
+  border-radius: 14px;
+  padding: 1.2rem;
+  scroll-snap-align: start;
+  box-shadow: 0 2px 12px #d4a85722;
+  backdrop-filter: blur(4px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  color: var(--foreground, #181818);
+}
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+.job-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px var(--accent, #D4A857), 0 8px 20px rgba(0,0,0,0.13);
+}
+  transform: translateY(-6px);
+.job-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: var(--accent, #D4A857);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+  margin: 0 0 0.5rem 0;
+.job-desc {
+  opacity: 0.85;
+  margin-top: 0.5rem;
+  font-size: 0.97rem;
+  color: var(--secondary, #6A6A6A);
+}
+.job-desc {
+  opacity: 0.8;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
 /* Universal font style for all text */
 html, body, h1, h2, h3, h4, h5, h6, p, a, li, td, th, input, button, select, textarea, label, span, div {
   font-family: var(--font-geist-sans), 'Inter', 'Segoe UI', Arial, sans-serif !important;
