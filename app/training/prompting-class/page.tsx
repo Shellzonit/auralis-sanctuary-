@@ -18,24 +18,8 @@ import React, { useState } from "react";
                         <a href="mailto:shelundra@hotmail.com" title="Email" style={{ color: '#7b2ff2', marginRight: 12, fontSize: 22 }}>📧</a>
                         <a href="https://twitter.com/aiwilding" target="_blank" rel="noopener noreferrer" title="Twitter" style={{ color: '#7b2ff2', marginRight: 12, fontSize: 22 }}>🐦</a>
                         <a href="https://linkedin.com/in/shelundra" target="_blank" rel="noopener noreferrer" title="LinkedIn" style={{ color: '#7b2ff2', fontSize: 22 }}>💼</a>
-                      </div>
-                    </div>
-                    <div style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
-                      Shelundra Brown Santiago is an AI‑driven creator, educator, and founder who has produced over 30 original songs using AI prompting techniques and pioneered an entirely new musical genre through her creative practice. Her work blends intuition, experimentation, and technical clarity, showing how prompting can unlock real‑world artistry and innovation.
-                    </div>
-                    <div style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
-                      As the visionary behind <a href="https://aiwilding.com" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>AIWilding</a>, Shelundra teaches prompting from lived experience — not theory. She has used AI to build full creative projects, design workflows, shape characters, and develop a repeatable artistic process that empowers beginners and advanced users alike.
-                    </div>
-                    <div style={{ background: '#f5f3fd', borderRadius: 10, padding: '1rem 1.5rem', marginBottom: 12, borderLeft: '5px solid #7b2ff2', fontSize: '1.08rem', color: '#7b2ff2', fontWeight: 600 }}>
-                      Why learn from me? I’ve used AI prompting to create, build, and launch real projects, not just theory. My goal is to make AI feel human, approachable, and creatively liberating.
-                    </div>
-                    <div style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
-                      My teaching style is simple, calm, and accessible. I specialize in helping people understand:
-                      <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
-                        <li>what prompting really is</li>
-                        <li>how to communicate clearly with AI</li>
-                        <li>where prompting fits in modern workflows</li>
-                        <li>which careers use prompting every day</li>
+                      }
+                      export default PromptingClassPage;
                         <li>how anyone can use AI to create, build, and express themselves</li>
                       </ul>
                     </div>
