@@ -33,6 +33,24 @@ import React, { useState } from "react";
                         <li>how anyone can use AI to create, build, and express themselves</li>
                       </ul>
                     </div>
+                    {/* AI Jobs & Salaries Section */}
+                    <section style={{ background: '#f5f3fd', borderRadius: 10, padding: '1.5rem 1.5rem', marginBottom: 12, borderLeft: '5px solid #7b2ff2', fontSize: '1.08rem', color: '#232526', fontWeight: 500 }}>
+                      <h2 style={{ color: '#7b2ff2', fontSize: '1.15rem', fontWeight: 700, marginBottom: 10 }}>💼 AI Jobs Using Prompting Skills</h2>
+                      <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+                        <li><strong>Prompt Engineer</strong> — $120,000–$250,000/year</li>
+                        <li><strong>AI Product Manager</strong> — $110,000–$200,000/year</li>
+                        <li><strong>AI Content Creator</strong> — $60,000–$150,000/year</li>
+                        <li><strong>AI Researcher</strong> — $100,000–$220,000/year</li>
+                        <li><strong>Conversational AI Designer</strong> — $90,000–$180,000/year</li>
+                        <li><strong>Machine Learning Engineer</strong> — $120,000–$200,000/year</li>
+                        <li><strong>AI Trainer/Annotator</strong> — $50,000–$100,000/year</li>
+                        <li><strong>AI Marketing Specialist</strong> — $70,000–$140,000/year</li>
+                        <li><strong>Creative Technologist</strong> — $80,000–$160,000/year</li>
+                      </ul>
+                      <div style={{ marginTop: 8, color: '#7b2ff2', fontWeight: 600 }}>
+                        Salaries vary by experience, location, and company. Prompting skills are in high demand across tech, media, marketing, and research roles.
+                      </div>
+                    </section>
                     <div style={{ fontSize: '1.08rem', color: '#232526' }}>
                       Through my Prompting Foundations Mini‑Class, I guide learners step‑by‑step, offering clarity, encouragement, and a certificate that recognizes your new skills.
                     </div>
