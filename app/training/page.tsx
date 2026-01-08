@@ -68,8 +68,8 @@ export default function TrainingPage() {
 					))}
 				</ul>
 			</section>
-			{/* Section 3: Prompting Mini Class Link */}
-			<section style={{ width: '100%', maxWidth: 700, margin: '0 auto 48px auto', background: 'linear-gradient(90deg, #7b2ff2 0%, #f357a8 100%)', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff244', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+			{/* Section 3: Prompting Mini Class Link (now directly below section 2) */}
+			<section style={{ width: '100%', maxWidth: 700, margin: '0 auto 0 auto', background: 'linear-gradient(90deg, #7b2ff2 0%, #f357a8 100%)', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff244', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
 				<a
 					href="/training/prompting-class"
 					style={{
