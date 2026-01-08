@@ -1,7 +1,149 @@
+                  {/* Instructor Bio Section */}
+                  <section style={{ width: '100%', maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
+                    <div style={{ marginBottom: 18 }}>
+                      <div style={{ fontWeight: 800, fontSize: '1.18rem', color: '#7b2ff2' }}>Shelundra Brown Santiago</div>
+                      <div style={{ color: '#232526', fontWeight: 600, fontSize: '1.05rem' }}>AI Prompting Educator • Genre‑Creating Artist • Founder of <a href="https://aiwilding.com" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>AIWilding</a></div>
+                      <div style={{ marginTop: 6 }}>
+                        <a href="mailto:shelundra@hotmail.com" title="Email" style={{ color: '#7b2ff2', marginRight: 12, fontSize: 22 }}>📧</a>
+                        <a href="https://twitter.com/aiwilding" target="_blank" rel="noopener noreferrer" title="Twitter" style={{ color: '#7b2ff2', marginRight: 12, fontSize: 22 }}>🐦</a>
+                        <a href="https://linkedin.com/in/shelundra" target="_blank" rel="noopener noreferrer" title="LinkedIn" style={{ color: '#7b2ff2', fontSize: 22 }}>💼</a>
+                      </div>
+                    </div>
+                    <div style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
+                      Shelundra Brown Santiago is an AI‑driven creator, educator, and founder who has produced over 30 original songs using AI prompting techniques and pioneered an entirely new musical genre through her creative practice. Her work blends intuition, experimentation, and technical clarity, showing how prompting can unlock real‑world artistry and innovation.
+                    </div>
+                    <div style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
+                      As the visionary behind <a href="https://aiwilding.com" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>AIWilding</a>, Shelundra teaches prompting from lived experience — not theory. She has used AI to build full creative projects, design workflows, shape characters, and develop a repeatable artistic process that empowers beginners and advanced users alike.
+                    </div>
+                    <div style={{ background: '#f5f3fd', borderRadius: 10, padding: '1rem 1.5rem', marginBottom: 12, borderLeft: '5px solid #7b2ff2', fontSize: '1.08rem', color: '#7b2ff2', fontWeight: 600 }}>
+                      Why learn from me? I’ve used AI prompting to create, build, and launch real projects, not just theory. My goal is to make AI feel human, approachable, and creatively liberating.
+                    </div>
+                    <div style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
+                      My teaching style is simple, calm, and accessible. I specialize in helping people understand:
+                      <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+                        <li>what prompting really is</li>
+                        <li>how to communicate clearly with AI</li>
+                        <li>where prompting fits in modern workflows</li>
+                        <li>which careers use prompting every day</li>
+                        <li>how anyone can use AI to create, build, and express themselves</li>
+                      </ul>
+                    </div>
+                    <div style={{ fontSize: '1.08rem', color: '#232526' }}>
+                      Through my Prompting Foundations Mini‑Class, I guide learners step‑by‑step, offering clarity, encouragement, and a certificate that recognizes your new skills.
+                    </div>
+                  </section>
+            {/* Community, FAQ, and Resources Section */}
+            <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 32 }}>
+              <h2 style={{ fontSize: '1.15rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>🤝 Community & Resources</h2>
+              <div style={{ marginBottom: 18 }}>
+                <strong>Share your progress:</strong> <a href="https://twitter.com/intent/tweet?text=I%20just%20completed%20the%20Prompting%20Mini%20Class%20on%20Sanctuary!%20%F0%9F%8E%89%20%23PromptEngineering" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>Tweet your achievement</a> or join our <a href="https://discord.gg/ai" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>AI Community Chat</a>.
+              </div>
+              <div style={{ marginBottom: 18 }}>
+                <strong>FAQ:</strong>
+                <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
+                  <li><strong>Q:</strong> What is a prompt?<br /><strong>A:</strong> A prompt is the instruction or question you give to an AI to get a response.</li>
+                  <li><strong>Q:</strong> How do I make my prompts better?<br /><strong>A:</strong> Be clear, specific, and include details about what you want.</li>
+                  <li><strong>Q:</strong> Can anyone learn prompting?<br /><strong>A:</strong> Yes! You don’t need to be technical—just practice clear communication.</li>
+                  <li><strong>Q:</strong> Where can I use prompting skills?<br /><strong>A:</strong> In chatbots, resume builders, creative tools, customer support, and more.</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Further Resources:</strong>
+                <ul style={{ marginTop: 6, marginBottom: 0, paddingLeft: 22 }}>
+                  <li><a href="https://learnprompting.org/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>LearnPrompting.org</a> — Free, in-depth guide to prompt engineering</li>
+                  <li><a href="https://www.promptingguide.ai/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>Prompting Guide</a> — Tips, examples, and best practices</li>
+                  <li><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>ChatGPT Prompt Engineering (DeepLearning.AI)</a></li>
+                </ul>
+              </div>
+            </section>
+      {/* Video & Audio Section */}
+      <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
+        <h2 style={{ fontSize: '1.15rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>🎬 Watch & Listen: Prompting in Action</h2>
+        <div style={{ marginBottom: 18 }}>
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/2xxziIWmaSA"
+            title="Prompt Engineering for Everyone"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{ borderRadius: 12, boxShadow: '0 1px 6px #7b2ff222', maxWidth: 420, width: '100%', margin: '0 auto', display: 'block' }}
+          ></iframe>
+        </div>
+        <div>
+          <audio controls style={{ width: '100%', maxWidth: 420, margin: '0 auto', display: 'block', borderRadius: 8, boxShadow: '0 1px 6px #7b2ff222' }}>
+            <source src="/prompting-quick-tip.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <div style={{ fontSize: '1.08rem', color: '#232526', marginTop: 8 }}>
+            <strong>Listen:</strong> Quick tip on how to structure your prompts for best results.
+          </div>
+        </div>
+      </section>
+"use client";
 import React, { useState } from "react";
 
+export default function PromptingClassPage() {
+      // Certificate download handler
+      function handleDownloadCertificate() {
+        const certificateText = `Certificate of Completion\n\nThis certifies that you have completed the Prompting Mini Class on ${new Date().toLocaleDateString()}.\n\nCongratulations on building your AI prompting skills!`;
+        const blob = new Blob([certificateText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'PromptingClassCertificate.txt';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }
+    // Progress tracker state
+    const [quizDone, setQuizDone] = useState(false);
+    const [scenarioDone, setScenarioDone] = useState(false);
+    const [practiceDone, setPracticeDone] = useState(false);
+
+    // Calculate progress
+    const totalSteps = 3;
+    const completedSteps = [quizDone, scenarioDone, practiceDone].filter(Boolean).length;
+    const progressPercent = Math.round((completedSteps / totalSteps) * 100);
   const [practicePrompt, setPracticePrompt] = useState("");
   const [practiceResponse, setPracticeResponse] = useState<string | null>(null);
+
+  // Quiz state
+  const [quizAnswer, setQuizAnswer] = useState("");
+  const [quizFeedback, setQuizFeedback] = useState<string | null>(null);
+  const quizQuestion = "What is the most important part of a good AI prompt?";
+  const quizOptions = [
+    "Making it as short as possible",
+    "Using clear instructions and details",
+    "Using lots of technical jargon",
+    "Letting the AI guess what you want"
+  ];
+  const quizCorrect = 1;
+  function handleQuizSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (quizAnswer === quizOptions[quizCorrect]) {
+      setQuizFeedback("✅ Correct! Clear instructions and details make the best prompts.");
+      setQuizDone(true);
+    } else {
+      setQuizFeedback("❌ Not quite. The best prompts are clear and detailed!");
+    }
+  }
+
+  // Scenario state
+  const [scenarioAnswer, setScenarioAnswer] = useState("");
+  const [scenarioFeedback, setScenarioFeedback] = useState<string | null>(null);
+  function handleScenarioSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (scenarioAnswer.toLowerCase().includes("role") && scenarioAnswer.toLowerCase().includes("task")) {
+      setScenarioFeedback("✅ Great! You included both a role and a task, which is key for a strong prompt.");
+      setScenarioDone(true);
+    } else {
+      setScenarioFeedback("💡 Try including both a role (who the AI should be) and a task (what you want done) in your prompt.");
+    }
+  }
+
   function handlePracticeSubmit(e: React.FormEvent) {
     e.preventDefault();
     // Simulate a basic AI response
@@ -11,10 +153,13 @@ import React, { useState } from "react";
     }
     if (practicePrompt.toLowerCase().includes("resume")) {
       setPracticeResponse("Sure! Here's a confident 3-sentence resume summary including customer service experience.\n• Energetic professional with proven customer service skills.\n• Adept at resolving issues and building client loyalty.\n• Ready to contribute to a dynamic team.");
+      setPracticeDone(true);
     } else if (practicePrompt.toLowerCase().includes("email")) {
       setPracticeResponse("Here's a friendly, professional email draft for you.\nSubject: Quick Update\nHi there,\nJust wanted to share a quick update. Let me know if you have any questions!\nBest,\nAI");
+      setPracticeDone(true);
     } else {
       setPracticeResponse("This is a sample AI response to your prompt. Try being specific for best results!");
+      setPracticeDone(true);
     }
   }
   return (
@@ -28,6 +173,33 @@ import React, { useState } from "react";
       alignItems: "center",
       padding: "2rem 1rem"
     }}>
+      {/* Progress Tracker */}
+            {/* Congratulatory Message & Certificate */}
+            {completedSteps === totalSteps && (
+              <section style={{ width: '100%', maxWidth: 700, marginBottom: 24 }}>
+                <div style={{ background: '#e6ffe6', borderRadius: 12, boxShadow: '0 1px 6px #22b87b44', padding: '1.5rem', textAlign: 'center', marginTop: 12 }}>
+                  <h2 style={{ color: '#22b87b', fontWeight: 800, fontSize: '1.5rem', marginBottom: 8 }}>🎉 Congratulations!</h2>
+                  <div style={{ color: '#232526', fontSize: '1.08rem', marginBottom: 16 }}>
+                    You’ve completed all steps of the Prompting Mini Class.<br />
+                    You’re ready to use your new skills in the real world!
+                  </div>
+                  <button onClick={handleDownloadCertificate} style={{ background: '#7b2ff2', color: '#fff', fontWeight: 700, borderRadius: 8, padding: '12px 24px', border: 'none', cursor: 'pointer', fontSize: '1.08rem', boxShadow: '0 1px 6px #7b2ff222' }}>
+                    Download Certificate
+                  </button>
+                </div>
+              </section>
+            )}
+      <section style={{ width: '100%', maxWidth: 700, marginBottom: 24 }}>
+        <div style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 6px #7b2ff222', padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: 16 }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontWeight: 700, color: '#7b2ff2', fontSize: '1.08rem', marginBottom: 4 }}>Class Progress</div>
+            <div style={{ background: '#e0e0e0', borderRadius: 8, height: 16, width: '100%', position: 'relative', marginBottom: 4 }}>
+              <div style={{ background: '#7b2ff2', height: 16, borderRadius: 8, width: `${progressPercent}%`, transition: 'width 0.4s' }}></div>
+            </div>
+            <div style={{ fontSize: '0.98rem', color: '#232526' }}>{completedSteps} of {totalSteps} steps complete ({progressPercent}%)</div>
+          </div>
+        </div>
+      </section>
       <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#7b2ff2", marginBottom: 16 }}>
         Mini Class: Prompting Skills
       </h1>
@@ -142,6 +314,63 @@ import React, { useState } from "react";
           This helps you understand prompting as a skill, not a trick.
         </div>
       </section>
+      {/* Quiz Section */}
+      <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
+        <h2 style={{ fontSize: '1.15rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>📝 Quick Quiz</h2>
+        <p style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>{quizQuestion}</p>
+        <form onSubmit={handleQuizSubmit} style={{ width: '100%', marginBottom: 12 }}>
+          {quizOptions.map((option, idx) => (
+            <div key={option} style={{ marginBottom: 6 }}>
+              <label style={{ fontSize: '1.08rem', color: '#232526' }}>
+                <input
+                  type="radio"
+                  name="quiz"
+                  value={option}
+                  checked={quizAnswer === option}
+                  onChange={() => setQuizAnswer(option)}
+                  style={{ marginRight: 8 }}
+                />
+                {option}
+              </label>
+            </div>
+          ))}
+          <button type="submit" style={{ background: '#7b2ff2', color: '#fff', fontWeight: 700, borderRadius: 8, padding: '10px 18px', border: 'none', cursor: 'pointer', fontSize: '1rem', marginTop: 8 }}>
+            Submit Answer
+          </button>
+        </form>
+        {quizFeedback && (
+          <div style={{ background: '#f5f3fd', borderRadius: 8, padding: '1rem', color: '#232526', fontSize: '1.08rem', marginTop: 8, boxShadow: '0 1px 6px #7b2ff222' }}>
+            {quizFeedback}
+          </div>
+        )}
+      </section>
+
+      {/* Real-World Scenario Section */}
+      <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
+        <h2 style={{ fontSize: '1.15rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>🌍 Real-World Scenario</h2>
+        <p style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
+          Imagine you want an AI to help you write a cover letter for a customer service job. What would be a strong prompt to give the AI? (Hint: Include both a role and a task)
+        </p>
+        <form onSubmit={handleScenarioSubmit} style={{ width: '100%', marginBottom: 12 }}>
+          <input
+            type="text"
+            placeholder="Type your prompt here..."
+            value={scenarioAnswer}
+            onChange={e => setScenarioAnswer(e.target.value)}
+            style={{ width: '100%', padding: '12px', borderRadius: 8, border: '1.5px solid #7b2ff2', fontSize: '1rem', marginBottom: 8 }}
+          />
+          <button type="submit" style={{ background: '#7b2ff2', color: '#fff', fontWeight: 700, borderRadius: 8, padding: '10px 18px', border: 'none', cursor: 'pointer', fontSize: '1rem' }}>
+            Submit Prompt
+          </button>
+        </form>
+        {scenarioFeedback && (
+          <div style={{ background: '#f5f3fd', borderRadius: 8, padding: '1rem', color: '#232526', fontSize: '1.08rem', marginTop: 8, boxShadow: '0 1px 6px #7b2ff222' }}>
+            {scenarioFeedback}
+          </div>
+        )}
+      </section>
+
+      {/* Interactive Practice Section */}
       <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem' }}>
         <h2 style={{ fontSize: '1.15rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>Interactive Practice</h2>
         <p style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
