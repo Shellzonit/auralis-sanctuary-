@@ -285,3 +285,5 @@ export default function PromptingClassPage() {
       </h1>
       {/* Modern Card Layout for Lessons */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 32, width: '100%', maxWidth: 700 }}>
+      {/* ...existing card sections... */}
+      </div>
