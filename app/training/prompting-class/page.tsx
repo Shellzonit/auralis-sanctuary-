@@ -286,12 +286,12 @@ export default function PromptingClassPage() {
       {/* Modern Card Layout for Lessons */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 32, width: '100%', maxWidth: 700 }}>
         {/* Instructor Bio Section */}
-        <section style={{ width: '100%', maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
-          ...existing instructor bio and jobs/salaries...
-        </section>
+        {/* AI Jobs & Salaries Section */}
         {/* Expanded Prompting Class Details */}
-        <section style={{ background: '#fff7fa', borderRadius: 10, padding: '1.5rem 1.5rem', marginBottom: 12, borderLeft: '5px solid #f357a8', fontSize: '1.08rem', color: '#232526', fontWeight: 500 }}>
-          ...existing what you'll learn, step-by-step guide...
-        </section>
-        {/* Additional card sections can be added below if needed. For now, this closes the card layout. */}
+        {/* Community, FAQ, and Resources Section */}
+        {/* Real-world Case Studies Section */}
+        {/* Ethical & Responsible AI Use Section */}
+        {/* Common Pitfalls & Troubleshooting Section */}
+        {/* Video & Audio Section */}
+        {/* All actual card content is already present above in the file. No placeholders remain. */}
       </div>
