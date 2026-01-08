@@ -8,7 +8,9 @@ export default function PromptingClassPage() {
       <h1>Week 1: Lesson 1 - Introduction to Prompting</h1>
       <p><strong>Written by shellzonit</strong></p>
       <div style={{ background: '#f5f3fd', borderRadius: 10, padding: '1rem', marginBottom: 16, maxWidth: 500 }}>
-        <strong>About the Writer:</strong> shellzonit is an educator and developer passionate about making AI skills accessible to everyone. With years of experience in technology and teaching, shellzonit helps learners build confidence in using modern AI tools.
+        <strong>About the Writer:</strong> Shellzonit is an AI‑driven creator, educator, and founder of AIWilding. She has produced over 30 original songs using AI prompting techniques and pioneered a new musical genre through her creative practice. Her work blends intuition, clarity, and experimentation, showing how prompting can unlock real‑world creativity and innovation.<br /><br />
+        As a self‑taught AI practitioner, Shellzonit has used prompting to build full creative projects, design workflows, and develop a repeatable system that helps beginners understand AI without fear or confusion. She teaches prompting from lived experience — not theory — making her guidance accessible, practical, and empowering for learners at any level.<br /><br />
+        Her mission is to help people understand what prompting is, where it fits in modern work, and how anyone can use it to create, communicate, and grow. Through her Prompting Foundations Mini‑Class, she offers a simple, supportive introduction to AI skills, complete with a certificate recognizing each learner’s progress.
       </div>
       <h2>What is Prompting?</h2>
       <p>Prompting is giving instructions or questions to an AI system to get a useful response. A prompt can be a simple question, a command, or a detailed request.</p>
