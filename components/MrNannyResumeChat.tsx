@@ -25,14 +25,21 @@ export default function MrNannyResumeChat() {
   const [replyTo, setReplyTo] = useState<number | null>(null);
   const nextId = useRef(1);
 
-  function scoreResume(text: string): number {
-    // Simple scoring: count keywords and length
-    const keywords = ["experience", "education", "skills", "projects", "certifications", "leadership", "achievements", "impact", "results", "growth"];
-    let score = 0;
+  function scoreResume(text: string): { score: number, goldCompletion: boolean } {
+    // Required sections for gold completion
+    const requiredSections = ["experience", "education", "skills", "projects", "certifications"];
     const lower = text.toLowerCase();
-    keywords.forEach(k => { if (lower.includes(k)) score += 10; });
+    let score = 0;
+    let allSectionsPresent = requiredSections.every(section => lower.includes(section));
+    // Professional manner: basic check for length and presence of keywords
+    const professionalKeywords = ["leadership", "achievements", "impact", "results", "growth"];
+    professionalKeywords.forEach(k => { if (lower.includes(k)) score += 10; });
     score += Math.min(text.length / 10, 50); // up to 50 points for length
-    return Math.round(score);
+    // Each required section gives 10 points
+    requiredSections.forEach(k => { if (lower.includes(k)) score += 10; });
+    // Gold completion: 90% of 150 = 135, all sections present, and work experience included
+    const goldCompletion = score >= 135 && allSectionsPresent && lower.includes("experience");
+    return { score: Math.round(score), goldCompletion };
   }
 
   function handleSend(e: React.FormEvent) {
@@ -47,14 +54,14 @@ export default function MrNannyResumeChat() {
     setInput("");
     // If user asks for resume grading
     if (userMsg.text.toLowerCase().includes("grade my resume")) {
-      const score = scoreResume(userMsg.text);
+      const { score, goldCompletion } = scoreResume(userMsg.text);
       setScore(score);
       let reply = `Your resume score is ${score}/150. `;
-      if (score >= 100) {
-        reply += "Excellent work! You are eligible to enter the Hot Resume of the Week showcase. Would you like to opt in?";
+      if (goldCompletion) {
+        reply += "Congratulations! Your resume meets the 90% gold completion standard, including work experience and all key sections. You are eligible to enter the Hot Resume of the Week showcase. Would you like to opt in?";
         setShowOptIn(true);
       } else {
-        reply += "Keep improving to qualify for the Hot Resume of the Week!";
+        reply += "To reach 90% gold completion, make sure you include work experience and complete all sections (experience, education, skills, projects, certifications) in a professional manner.";
       }
       const botReply = {
         id: nextId.current++,
@@ -70,6 +77,10 @@ export default function MrNannyResumeChat() {
       const lower = userMsg.text.toLowerCase();
       let reply = "";
       // ...existing code...
+      // Place the rest of your reply logic here
+      // ...existing code...
+    }, 700);
+  }
 
   function renderMessages(parentId: number | undefined) {
     return messages
