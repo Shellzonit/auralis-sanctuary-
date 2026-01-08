@@ -99,7 +99,7 @@ import React, { useState } from "react";
                   <li><a href="https://www.promptingguide.ai/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>Prompting Guide</a> — Tips, examples, and best practices</li>
                   <li><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>ChatGPT Prompt Engineering (DeepLearning.AI)</a></li>
                 </ul>
-              </div>
+              // end resources section
             </section>
             {/* Real-world Case Studies Section */}
             <section style={{ maxWidth: 700, background: '#f5f3fd', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 32, borderLeft: '5px solid #7b2ff2' }}>
