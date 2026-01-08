@@ -285,5 +285,13 @@ export default function PromptingClassPage() {
       </h1>
       {/* Modern Card Layout for Lessons */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 32, width: '100%', maxWidth: 700 }}>
-      {/* ...existing card sections... */}
+        {/* Instructor Bio Section */}
+        <section style={{ width: '100%', maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
+          ...existing instructor bio and jobs/salaries...
+        </section>
+        {/* Expanded Prompting Class Details */}
+        <section style={{ background: '#fff7fa', borderRadius: 10, padding: '1.5rem 1.5rem', marginBottom: 12, borderLeft: '5px solid #f357a8', fontSize: '1.08rem', color: '#232526', fontWeight: 500 }}>
+          ...existing what you'll learn, step-by-step guide...
+        </section>
+        {/* Add other card sections here as needed */}
       </div>
