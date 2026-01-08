@@ -252,4 +252,3 @@ export default function PromptingClassPage() {
       {/* Video & Audio Section */}
     </div>
   );
-}
