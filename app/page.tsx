@@ -37,7 +37,13 @@ export default function HomePage() {
     'usa.png',
   ];
   const random = Math.floor(Math.random() * images.length);
+  let secondRandom = Math.floor(Math.random() * images.length);
+  // Ensure the second image is different
+  if (secondRandom === random) {
+    secondRandom = (secondRandom + 1) % images.length;
+  }
   const img = images[random];
+  const img2 = images[secondRandom];
 
   // Simple language switcher (English/Spanish)
   const [lang, setLang] = React.useState('en');
@@ -213,15 +219,11 @@ export default function HomePage() {
                 {t[lang].tagline}
               </div>
             </section>
-            {/* Homepage random image with alt text for accessibility */}
-            <section style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+            {/* Homepage random images with alt text for accessibility */}
+            <section style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '2rem' }}>
               <Image src={`/${img}`} alt={img.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')} width={600} height={320} style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }} />
+              <Image src={`/${img2}`} alt={img2.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')} width={600} height={320} style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }} />
             </section>
-      {/* ...existing code for navigation and banner... */}
-      {/* Homepage random image with alt text for accessibility */}
-      <section style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-        <Image src={`/${img}`} alt={img.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')} width={600} height={320} style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }} />
-      </section>
       {/* Feature Section */}
       <section style={{
         background: '#fff',
