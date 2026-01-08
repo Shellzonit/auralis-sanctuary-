@@ -255,22 +255,21 @@ export default function PromptingClassPage() {
       padding: "2rem 1rem"
     }}>
       {/* Progress Tracker */}
-            {/* Congratulatory Message & Certificate */}
-            {completedSteps === totalSteps && (
-              <section style={{ width: '100%', maxWidth: 700, marginBottom: 24 }}>
-                <div style={{ background: '#e6ffe6', borderRadius: 12, boxShadow: '0 1px 6px #22b87b44', padding: '1.5rem', textAlign: 'center', marginTop: 12 }}>
-                  <h2 style={{ color: '#22b87b', fontWeight: 800, fontSize: '1.5rem', marginBottom: 8 }}>🎉 Congratulations!</h2>
-                  <div style={{ color: '#232526', fontSize: '1.08rem', marginBottom: 16 }}>
-                    You’ve completed all steps of the Prompting Mini Class.<br />
-                    You’re ready to use your new skills in the real world!
-                  </div>
-                  <button onClick={handleDownloadCertificate} style={{ background: '#7b2ff2', color: '#fff', fontWeight: 700, borderRadius: 8, padding: '12px 24px', border: 'none', cursor: 'pointer', fontSize: '1.08rem', boxShadow: '0 1px 6px #7b2ff222' }}>
-                    Download Certificate
-                  </button>
-                </div>
-              </section>
-            )}
-      <section style={{ width: '100%', maxWidth: 700, marginBottom: 24 }}>
+      {completedSteps === totalSteps && (
+        <div style={{ width: '100%', maxWidth: 700, marginBottom: 24 }}>
+          <div style={{ background: '#e6ffe6', borderRadius: 12, boxShadow: '0 1px 6px #22b87b44', padding: '1.5rem', textAlign: 'center', marginTop: 12 }}>
+            <h2 style={{ color: '#22b87b', fontWeight: 800, fontSize: '1.5rem', marginBottom: 8 }}>🎉 Congratulations!</h2>
+            <div style={{ color: '#232526', fontSize: '1.08rem', marginBottom: 16 }}>
+              You’ve completed all steps of the Prompting Mini Class.<br />
+              You’re ready to use your new skills in the real world!
+            </div>
+            <button onClick={handleDownloadCertificate} style={{ background: '#7b2ff2', color: '#fff', fontWeight: 700, borderRadius: 8, padding: '12px 24px', border: 'none', cursor: 'pointer', fontSize: '1.08rem', boxShadow: '0 1px 6px #7b2ff222' }}>
+              Download Certificate
+            </button>
+          </div>
+        </div>
+      )}
+      <div style={{ width: '100%', maxWidth: 700, marginBottom: 24 }}>
         <div style={{ background: '#fff', borderRadius: 12, boxShadow: '0 1px 6px #7b2ff222', padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: 16 }}>
           <div style={{ flex: 1 }}>
             <div style={{ fontWeight: 700, color: '#7b2ff2', fontSize: '1.08rem', marginBottom: 4 }}>Class Progress</div>
@@ -280,24 +279,45 @@ export default function PromptingClassPage() {
             <div style={{ fontSize: '0.98rem', color: '#232526' }}>{completedSteps} of {totalSteps} steps complete ({progressPercent}%)</div>
           </div>
         </div>
-      </section>
+      </div>
       <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#7b2ff2", marginBottom: 16 }}>
         Mini Class: Prompting Skills
       </h1>
-      <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
-              <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
-                <h2 style={{ fontSize: '1.3rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>3️⃣ Section Three — Jobs That Use Prompting</h2>
-                <p style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
-                  <strong>This is where people get excited, because they see how prompting connects to real careers.</strong>
-                </p>
-                <div style={{ fontSize: '1.08rem', color: '#232526', marginBottom: 12 }}>
-                  <strong>Roles that use prompting every day:</strong>
-                  <ul style={{ marginTop: 6, marginBottom: 6, paddingLeft: 22 }}>
-                    <li>Prompt Engineer</li>
-                    <li>AI Trainer / AI Content Specialist</li>
-                    <li>AI Product Manager</li>
-                    <li>AI Customer Support Specialist</li>
-                    <li>AI Automation Specialist</li>
+      {/* Modern Card Layout for Lessons */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 32, width: '100%', maxWidth: 700 }}>
+        {/* 1. Introduction & Instructor Bio */}
+        <div style={{ background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem' }}>
+          ...Instructor Bio...
+        </div>
+        {/* 2. What You'll Learn & Step-by-Step Guide */}
+        <div style={{ background: '#fff7fa', borderRadius: 16, boxShadow: '0 2px 12px #f357a822', padding: '2rem' }}>
+          ...What You'll Learn & Step-by-Step Guide...
+        </div>
+        {/* 3. Real-World Case Studies */}
+        <div style={{ background: '#f5f3fd', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem' }}>
+          ...Case Studies...
+        </div>
+        {/* 4. AI Jobs & Salaries */}
+        <div style={{ background: '#f5f3fd', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem' }}>
+          ...AI Jobs & Salaries...
+        </div>
+        {/* 5. Tips for Ethical & Responsible AI Use */}
+        <div style={{ background: '#fff7fa', borderRadius: 16, boxShadow: '0 2px 12px #f357a822', padding: '2rem' }}>
+          ...Ethical Tips...
+        </div>
+        {/* 6. Common Pitfalls & Troubleshooting */}
+        <div style={{ background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem' }}>
+          ...Troubleshooting...
+        </div>
+        {/* 7. Community, FAQ, & Resources */}
+        <div style={{ background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem' }}>
+          ...Community, FAQ, Resources...
+        </div>
+        {/* 8. Watch & Listen: Prompting in Action */}
+        <div style={{ background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem' }}>
+          ...Video & Audio...
+        </div>
+      </div>
                     <li>Data Analyst</li>
                     <li>Marketing &amp; Content Creators</li>
                     <li>Social Media Managers</li>
