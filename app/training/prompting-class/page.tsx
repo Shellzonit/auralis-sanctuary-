@@ -1,118 +1,54 @@
+
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 export default function PromptingClassPage() {
-  // Progress tracker state
-  const [quizDone, setQuizDone] = useState(false);
-  const [scenarioDone, setScenarioDone] = useState(false);
-  const [practiceDone, setPracticeDone] = useState(false);
-
-  // Calculate progress
-  const totalSteps = 3;
-  const completedSteps = [quizDone, scenarioDone, practiceDone].filter(Boolean).length;
-  const progressPercent = Math.round((completedSteps / totalSteps) * 100);
-  const [practicePrompt, setPracticePrompt] = useState("");
-  const [practiceResponse, setPracticeResponse] = useState<string | null>(null);
-
-  // Quiz state
-  const [quizAnswer, setQuizAnswer] = useState("");
-  const [quizFeedback, setQuizFeedback] = useState<string | null>(null);
-  const quizQuestion = "What is the most important part of a good AI prompt?";
-  const quizOptions = [
-    "Making it as short as possible",
-    "Using clear instructions and details",
-    "Using lots of technical jargon",
-    "Letting the AI guess what you want"
-  ];
-  const quizCorrect = 1;
-  function handleQuizSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (quizAnswer === quizOptions[quizCorrect]) {
-      setQuizFeedback("✅ Correct! Clear instructions and details make the best prompts.");
-      setQuizDone(true);
-    } else {
-      setQuizFeedback("❌ Not quite. The best prompts are clear and detailed!");
-    }
-  }
-
-  // Scenario state
-  const [scenarioAnswer, setScenarioAnswer] = useState("");
-  const [scenarioFeedback, setScenarioFeedback] = useState<string | null>(null);
-  function handleScenarioSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (scenarioAnswer.toLowerCase().includes("role") && scenarioAnswer.toLowerCase().includes("task")) {
-      setScenarioFeedback("✅ Great! You included both a role and a task, which is key for a strong prompt.");
-      setScenarioDone(true);
-    } else {
-      setScenarioFeedback("💡 Try including both a role (who the AI should be) and a task (what you want done) in your prompt.");
-    }
-  }
-
-  function handlePracticeSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    // Simulate a basic AI response
-    if (!practicePrompt.trim()) {
-      setPracticeResponse("Please enter a prompt to see a response.");
-      return;
-    }
-    if (practicePrompt.toLowerCase().includes("resume")) {
-      setPracticeResponse("Sure! Here's a confident 3-sentence resume summary including customer service experience.\n• Energetic professional with proven customer service skills.\n• Adept at resolving issues and building client loyalty.\n• Ready to contribute to a dynamic team.");
-      setPracticeDone(true);
-    } else if (practicePrompt.toLowerCase().includes("email")) {
-      setPracticeResponse("Here's a friendly, professional email draft for you.\nSubject: Quick Update\nHi there,\nJust wanted to share a quick update. Let me know if you have any questions!\nBest,\nAI");
-      setPracticeDone(true);
-    } else {
-      setPracticeResponse("This is a sample AI response to your prompt. Try being specific for best results!");
-      setPracticeDone(true);
-    }
-  }
-
   return (
     <div>
-      <h1>Prompting Mini Class</h1>
-      <h2>Lesson 1: Introduction to Prompting</h2>
-      <p>Prompting is the art of writing instructions for AI to get useful, accurate, and creative responses. In this class, you'll learn the basics and best practices for effective prompting.</p>
-
-      <h2>Lesson 2: Why Prompting Matters</h2>
-      <ul>
-        <li>Prompting is used in many jobs: Prompt Engineer, AI Product Manager, Content Creator, Researcher, and more.</li>
-        <li>Good prompts save time and improve results in business, education, and creative work.</li>
-      </ul>
-
-      <h2>Lesson 4: Common Mistakes</h2>
-      <ul>
-        <li><strong>Ignoring Context:</strong> Without background info, the AI may miss your intent. Add context or examples.</li>
-        <li><strong>Unrealistic Expectations:</strong> AI is powerful, but not perfect. Review and edit outputs as needed.</li>
-        <li><strong>Bad Outputs:</strong> If the AI gives poor results, try rephrasing your prompt or providing more guidance.</li>
-      </ul>
-      <div style={{ marginTop: 8, color: '#7b2ff2', fontWeight: 600 }}>
-        Remember: Prompting is a skill. Practice, review, and keep learning!
+      <h1>Week 1: Lesson 1 - Introduction to Prompting</h1>
+      <p><strong>Written by shellzonit</strong></p>
+      <div style={{ background: '#f5f3fd', borderRadius: 10, padding: '1rem', marginBottom: 16, maxWidth: 500 }}>
+        <strong>About the Writer:</strong> shellzonit is an educator and developer passionate about making AI skills accessible to everyone. With years of experience in technology and teaching, shellzonit helps learners build confidence in using modern AI tools.
       </div>
-      {/* Video & Audio Section */}
-      <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
-        <h2 style={{ fontSize: '1.15rem', color: '#7b2ff2', fontWeight: 700, marginBottom: 10 }}>🎬 Watch & Listen: Prompting in Action</h2>
-        <div style={{ marginBottom: 18 }}>
-          <iframe
-            width="100%"
-            height="315"
-            src="https://www.youtube.com/embed/2xxziIWmaSA"
-            title="Prompt Engineering for Everyone"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            style={{ borderRadius: 12, boxShadow: '0 1px 6px #7b2ff222', maxWidth: 420, width: '100%', margin: '0 auto', display: 'block' }}
-          ></iframe>
+      <h2>What is Prompting?</h2>
+      <p>Prompting is giving instructions or questions to an AI system to get a useful response. A prompt can be a simple question, a command, or a detailed request.</p>
+      <h2>Who Uses Prompting?</h2>
+      <p>Anyone interacting with AI uses prompting: students, teachers, developers, business professionals, artists, writers, and researchers. Specialized roles like Prompt Engineers design prompts for advanced AI tasks.</p>
+      <h2>Why Do We Hear So Much About Prompting?</h2>
+      <p>Prompting is key to getting good results from AI. As AI tools become more common, knowing how to write effective prompts helps people get better, more accurate, and creative outputs.</p>
+      <h2>How Much Time Does It Take to Prompt?</h2>
+      <p>Prompting can take seconds for simple questions, or a few minutes for more detailed requests. The time depends on how specific and complex your needs are.</p>
+      <h2>What Type of Commands Are Used for Prompting?</h2>
+      <p>Prompts can be questions (“What is the weather today?”), instructions (“Write a summary of this article”), or commands (“Translate this text to Spanish”). The best prompts are clear, specific, and direct.</p>
+
+      <h2>Demo: Try a Simple Prompt</h2>
+      <div style={{ background: '#e6f7ff', borderRadius: 8, padding: '1rem', marginTop: 16, maxWidth: 500 }}>
+        <strong>Prompt:</strong> "Write a short poem about the sky."
+        <div style={{ marginTop: 10, color: '#232526', fontStyle: 'italic' }}>
+          <strong>AI Response:</strong> <br />
+          The sky above is vast and blue,<br />
+          With clouds that drift and sunlight too.<br />
+          Each day it paints a different view,<br />
+          A canvas bright for me and you.
         </div>
-        <div>
-          <audio controls style={{ width: '100%', maxWidth: 420, margin: '0 auto', display: 'block', borderRadius: 8, boxShadow: '0 1px 6px #7b2ff222' }}>
-            <source src="/prompting-quick-tip.mp3" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-          <div style={{ fontSize: '1.08rem', color: '#232526', marginTop: 8 }}>
-            <strong>Listen:</strong> Quick tip on how to structure your prompts for best results.
-          </div>
+      </div>
+
+      <h2>Demo: Prompt a Song</h2>
+      <div style={{ background: '#fff7e6', borderRadius: 8, padding: '1rem', marginTop: 16, maxWidth: 500 }}>
+        <strong>Prompt:</strong> "Write a short song about friendship."
+        <div style={{ marginTop: 10, color: '#232526', fontStyle: 'italic' }}>
+          <strong>AI Response:</strong> <br />
+          <em>Verse 1:</em> <br />
+          Side by side, we laugh and play,<br />
+          Through every storm, we find our way.<br />
+          <em>Chorus:</em> <br />
+          Friends forever, hand in hand,<br />
+          Together we can understand.<br />
+          <em>Verse 2:</em> <br />
+          Sharing dreams and making plans,<br />
+          Friendship's magic never ends.<br />
         </div>
-      </section>
+      </div>
     </div>
   );
 }
