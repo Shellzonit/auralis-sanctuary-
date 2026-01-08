@@ -218,49 +218,6 @@ export default function HomePage() {
             <section style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
               <Image src={`/${img}`} alt={img.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')} width={600} height={320} style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }} />
             </section>
-            {/* New AI Jobs This Week - Scrolling Card Feature */}
-            <section style={{ width: '100%', maxWidth: 900, margin: '0 auto 2.5rem auto', padding: '0 0 1.5rem 0', overflow: 'hidden' }}>
-              <h2 style={{ color: '#7b2ff2', fontWeight: 800, fontSize: '2rem', marginBottom: 12, textAlign: 'center', letterSpacing: '0.04em' }}>
-                Jobs for the week of 1/8/2026
-              </h2>
-              <div className="job-scroller" style={{ display: 'flex', gap: 24, overflowX: 'auto', padding: '8px 0 8px 0', scrollbarWidth: 'thin' }}>
-                <div className="job-card" style={{ minWidth: 280, background: '#fff', borderRadius: 14, boxShadow: '0 2px 12px #7b2ff222', padding: 18, marginBottom: 8, border: '1.5px solid #e0d6f7', flex: '0 0 280px' }}>
-                  <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 6 }}>AI / ML Engineer — Agentic AI Systems</h3>
-                  <p><strong>Company:</strong> Experis</p>
-                  <p><strong>Location:</strong> Texas (Onsite)</p>
-                  <p><strong>Posted:</strong> Dec 11, 2025</p>
-                  <p className="job-desc">Build agentic AI systems, optimize LLMs, and work with Python + PyTorch/TensorFlow.</p>
-                </div>
-                <div className="job-card" style={{ minWidth: 280, background: '#fff', borderRadius: 14, boxShadow: '0 2px 12px #7b2ff222', padding: 18, marginBottom: 8, border: '1.5px solid #e0d6f7', flex: '0 0 280px' }}>
-                  <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 6 }}>Senior AI Research Engineer</h3>
-                  <p><strong>Company:</strong> Deep Abacus</p>
-                  <p><strong>Location:</strong> Texas (Onsite)</p>
-                  <p><strong>Posted:</strong> Jan 2, 2026</p>
-                  <p className="job-desc">Conversational AI research, experimentation, and model evaluation.</p>
-                </div>
-                <div className="job-card" style={{ minWidth: 280, background: '#fff', borderRadius: 14, boxShadow: '0 2px 12px #7b2ff222', padding: 18, marginBottom: 8, border: '1.5px solid #e0d6f7', flex: '0 0 280px' }}>
-                  <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 6 }}>AI/ML Engineer — Knowledge Systems</h3>
-                  <p><strong>Company:</strong> Evolution USA</p>
-                  <p><strong>Location:</strong> Texas (Onsite)</p>
-                  <p><strong>Posted:</strong> Dec 26, 2025</p>
-                  <p className="job-desc">Build ML pipelines, data ingestion, and privacy‑focused model deployment.</p>
-                </div>
-                <div className="job-card" style={{ minWidth: 280, background: '#fff', borderRadius: 14, boxShadow: '0 2px 12px #7b2ff222', padding: 18, marginBottom: 8, border: '1.5px solid #e0d6f7', flex: '0 0 280px' }}>
-                  <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 6 }}>Head of AI — Autonomous Agents</h3>
-                  <p><strong>Company:</strong> DeepRec</p>
-                  <p><strong>Location:</strong> Texas (Onsite)</p>
-                  <p><strong>Posted:</strong> Dec 29, 2025</p>
-                  <p className="job-desc">Lead AI strategy and oversee agentic architectures.</p>
-                </div>
-                <div className="job-card" style={{ minWidth: 280, background: '#fff', borderRadius: 14, boxShadow: '0 2px 12px #7b2ff222', padding: 18, marginBottom: 8, border: '1.5px solid #e0d6f7', flex: '0 0 280px' }}>
-                  <h3 style={{ color: '#7b2ff2', fontSize: '1.15rem', marginBottom: 6 }}>AI Engineer — Computer‑Use Agents</h3>
-                  <p><strong>Company:</strong> Edward Mann</p>
-                  <p><strong>Location:</strong> Texas (Onsite)</p>
-                  <p><strong>Posted:</strong> Dec 26, 2025</p>
-                  <p className="job-desc">Tune LLMs and build agents that navigate real software environments.</p>
-                </div>
-              </div>
-            </section>
             {/* Homepage tagline and image section */}
             <section>
               <div style={{
