@@ -15,8 +15,6 @@ import React, { useState } from "react";
                       <div style={{ fontWeight: 800, fontSize: '1.18rem', color: '#7b2ff2' }}>shellzonit</div>
                       <div style={{ color: '#232526', fontWeight: 600, fontSize: '1.05rem' }}>Genre‑Creating Artist • Founder of <a href="https://aiwilding.com" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>AIWilding</a></div>
                       <div style={{ marginTop: 6 }}>
-                        <a href="mailto:shelundra@hotmail.com" title="Email" style={{ color: '#7b2ff2', marginRight: 12, fontSize: 22 }}>📧</a>
-                        <a href="https://twitter.com/aiwilding" target="_blank" rel="noopener noreferrer" title="Twitter" style={{ color: '#7b2ff2', marginRight: 12, fontSize: 22 }}>🐦</a>
                         <li>how anyone can use AI to create, build, and express themselves</li>
                       </ul>
                     </div>
