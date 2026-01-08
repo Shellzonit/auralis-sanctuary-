@@ -3,49 +3,49 @@ import React from "react";
 
 export const NEW_AI_JOBS = [
   {
-    title: "AI Customer Support Specialist",
-    description: "Handles customer inquiries using AI-powered support tools and chatbots.",
-    skills: ["Communication", "Problem Solving", "AI Tools", "Empathy"],
-    industries: ["Tech", "Retail", "Finance"],
-    employers: ["AI Support Firms", "E-commerce", "Banks"],
-    resources: ["AI Customer Support Bootcamp", "Coursera AI For Everyone"],
-    pay: "$45,000 - $80,000/year"
+    title: "AI / ML Engineer — Agentic AI Systems",
+    description: "Build agentic AI systems, optimize LLMs, and work with Python + PyTorch/TensorFlow.",
+    skills: ["Python", "PyTorch", "TensorFlow", "LLM Optimization"],
+    industries: ["Tech", "AI Research"],
+    employers: ["Experis"],
+    resources: ["LLM Tuning Bootcamp", "PyTorch Tutorials"],
+    pay: "$120,000 - $180,000/year"
   },
   {
-    title: "Remote Data Annotation Specialist",
-    description: "Labels and annotates data for training AI models, often remote and entry-level.",
-    skills: ["Attention to Detail", "Basic Computer Skills", "Domain Knowledge"],
-    industries: ["Tech", "Healthcare", "Finance"],
-    employers: ["Annotation Firms", "Tech Companies"],
-    resources: ["Remote Data Annotation Training", "Appen Training"],
-    pay: "$40,000 - $65,000/year"
+    title: "Senior AI Research Engineer",
+    description: "Conversational AI research, experimentation, and model evaluation.",
+    skills: ["Conversational AI", "Experimentation", "Model Evaluation"],
+    industries: ["Tech", "AI Research"],
+    employers: ["Deep Abacus"],
+    resources: ["AI Research Methods", "Model Evaluation Guide"],
+    pay: "$140,000 - $200,000/year"
   },
   {
-    title: "AI-Driven Marketing Apprentice",
-    description: "Assists in digital marketing campaigns using AI tools and analytics.",
-    skills: ["Digital Marketing", "AI Tools", "Creativity", "Analytics"],
-    industries: ["Marketing", "Tech", "Retail"],
-    employers: ["Marketing Agencies", "Brands", "Startups"],
-    resources: ["AI-Driven Marketing Apprenticeship", "Canva AI Courses"],
-    pay: "$50,000 - $75,000/year"
+    title: "AI/ML Engineer — Knowledge Systems",
+    description: "Build ML pipelines, data ingestion, and privacy‑focused model deployment.",
+    skills: ["ML Pipelines", "Data Ingestion", "Privacy"],
+    industries: ["Tech", "Healthcare"],
+    employers: ["Evolution USA"],
+    resources: ["ML Pipeline Course", "Privacy in AI"],
+    pay: "$110,000 - $170,000/year"
   },
   {
-    title: "Healthcare AI Scribe",
-    description: "Uses AI transcription tools to assist medical professionals in documentation.",
-    skills: ["Medical Terminology", "AI Tools", "Typing", "Attention to Detail"],
-    industries: ["Healthcare", "Tech"],
-    employers: ["Hospitals", "Clinics", "Telehealth"],
-    resources: ["Healthcare AI Scribe Training", "Coursera AI For Everyone"],
-    pay: "$38,000 - $60,000/year"
+    title: "Head of AI — Autonomous Agents",
+    description: "Lead AI strategy and oversee agentic architectures.",
+    skills: ["AI Strategy", "Agentic Architectures", "Leadership"],
+    industries: ["Tech", "AI Research"],
+    employers: ["DeepRec"],
+    resources: ["AI Leadership Program", "Agentic Systems Workshop"],
+    pay: "$180,000 - $250,000/year"
   },
   {
-    title: "AI Project Management Associate",
-    description: "Supports project managers in delivering AI projects and coordinating teams.",
-    skills: ["Project Management", "AI Concepts", "Organization", "Communication"],
-    industries: ["Tech", "Finance", "Healthcare"],
-    employers: ["Tech Firms", "Consultancies", "Startups"],
-    resources: ["AI Project Management Micro-Credential", "Google Project Management"],
-    pay: "$60,000 - $90,000/year"
+    title: "AI Engineer — Computer‑Use Agents",
+    description: "Tune LLMs and build agents that navigate real software environments.",
+    skills: ["LLM Tuning", "Agent Development", "Software Navigation"],
+    industries: ["Tech", "Software"],
+    employers: ["Edward Mann"],
+    resources: ["LLM Tuning Bootcamp", "Agent Development Course"],
+    pay: "$115,000 - $175,000/year"
   }
 ];
 
