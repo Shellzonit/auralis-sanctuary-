@@ -293,5 +293,5 @@ export default function PromptingClassPage() {
         <section style={{ background: '#fff7fa', borderRadius: 10, padding: '1.5rem 1.5rem', marginBottom: 12, borderLeft: '5px solid #f357a8', fontSize: '1.08rem', color: '#232526', fontWeight: 500 }}>
           ...existing what you'll learn, step-by-step guide...
         </section>
-        {/* Add other card sections here as needed */}
+        {/* Additional card sections can be added below if needed. For now, this closes the card layout. */}
       </div>
