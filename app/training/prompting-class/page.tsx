@@ -285,5 +285,28 @@ export default function PromptingClassPage() {
       </h1>
       {/* Modern Card Layout for Lessons */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 32, width: '100%', maxWidth: 700 }}>
-
+        {/* Instructor Bio Section */}
+        <section style={{ width: '100%', maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
+          ...Instructor Bio, Jobs, and Details...
+        </section>
+        {/* Community, FAQ, and Resources Section */}
+        <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 32 }}>
+          ...Community, FAQ, Resources...
+        </section>
+        {/* Real-world Case Studies Section */}
+        <section style={{ maxWidth: 700, background: '#f5f3fd', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 32, borderLeft: '5px solid #7b2ff2' }}>
+          ...Case Studies...
+        </section>
+        {/* Ethical & Responsible AI Use Section */}
+        <section style={{ maxWidth: 700, background: '#fff7fa', borderRadius: 16, boxShadow: '0 2px 12px #f357a822', padding: '2rem', marginBottom: 32, borderLeft: '5px solid #f357a8' }}>
+          ...Ethical Tips...
+        </section>
+        {/* Common Pitfalls & Troubleshooting Section */}
+        <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 32, borderLeft: '5px solid #7b2ff2' }}>
+          ...Troubleshooting...
+        </section>
+        {/* Video & Audio Section */}
+        <section style={{ maxWidth: 700, background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '2rem', marginBottom: 24 }}>
+          ...Video & Audio...
+        </section>
       </div>
