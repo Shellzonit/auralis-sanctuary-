@@ -79,6 +79,7 @@ export default function PromptingClassPage() {
         <li>Good prompts save time and improve results in business, education, and creative work.</li>
       </ul>
 
+              <ul>
                 <li><strong>Ignoring Context:</strong> Without background info, the AI may miss your intent. Add context or examples.</li>
                 <li><strong>Unrealistic Expectations:</strong> AI is powerful, but not perfect. Review and edit outputs as needed.</li>
                 <li><strong>Bad Outputs:</strong> If the AI gives poor results, try rephrasing your prompt or providing more guidance.</li>
