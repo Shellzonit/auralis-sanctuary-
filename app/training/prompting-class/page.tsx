@@ -93,8 +93,6 @@ import React, { useState } from "react";
                   <li><strong>Q:</strong> Where can I use prompting skills?<br /><strong>A:</strong> In chatbots, resume builders, creative tools, customer support, and more.</li>
                 </ul>
               </div>
-                </ul>
-              </div>
               <div>
                 <strong>Further Resources:</strong>
                 <ul style={{ marginTop: 6, marginBottom: 0, paddingLeft: 22 }}>
