@@ -1,15 +1,48 @@
 "use client";
 
 
+
 import MrNannyResumeChat from "../../components/MrNannyResumeChat";
+import React, { useEffect, useState } from "react";
 
 export default function ResumeWizardPage() {
+  const [visitCount, setVisitCount] = useState<number | null>(null);
+  const [optIn, setOptIn] = useState(false);
+  useEffect(() => {
+    // Record the visit
+    fetch("/api/visit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userAgent: navigator.userAgent, path: "/resume-wizard" })
+    });
+    // Fetch the count for this path
+    fetch("/api/visit?path=/resume-wizard")
+      .then(res => res.json())
+      .then(data => setVisitCount(data.count ?? null));
+  }, []);
   return (
     <main style={{ minHeight: '100vh', background: '#f5f3fd', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
+      <section style={{ width: '100%', maxWidth: 700, margin: '2rem auto 0 auto', background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff222', padding: '1rem 2rem', color: '#232526', fontSize: '1.08rem', lineHeight: 1.7, textAlign: 'center' }}>
+        <strong style={{ color: '#7b2ff2', fontSize: '1.1rem' }}>Resume Room Visits:</strong>
+        <span style={{ marginLeft: 8, fontWeight: 700, color: '#18191a', fontSize: '1.1rem' }}>{visitCount !== null ? visitCount : '...'}</span>
+      </section>
       <section style={{ width: '100%', maxWidth: 700, margin: '3rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 24, boxShadow: '0 4px 32px #18191a22', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
         <h1 style={{ color: 'rgba(255,255,255,0.97)', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.18, paddingBottom: '0.18em' }}>Resume Wizard</h1>
         <div style={{ color: '#ece9fc', fontSize: '1.15rem', fontWeight: 500, marginTop: 10, textAlign: 'center', maxWidth: 500, textShadow: '0 1px 6px #18191a55' }}>
           Chat with Mr. Job Nanny to build and refine your resume in a private, thread-like discussion. No downloads or exports—just real-time, supportive guidance.
+        </div>
+        {/* Opt-in Checkbox for Hot Resume of the Week */}
+        <div style={{ marginTop: 24, background: '#fff', borderRadius: 8, boxShadow: '0 1px 6px #7b2ff222', padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <input
+            type="checkbox"
+            id="hotResumeOptIn"
+            checked={optIn}
+            onChange={e => setOptIn(e.target.checked)}
+            style={{ width: 20, height: 20, accentColor: '#e67e22' }}
+          />
+          <label htmlFor="hotResumeOptIn" style={{ fontSize: '1.08rem', color: '#e67e22', fontWeight: 600 }}>
+            Opt in to be considered for <span style={{ fontWeight: 700 }}>Hot Resume of the Week</span> Spotlight
+          </label>
         </div>
       </section>
       {/* Glossary Section */}
