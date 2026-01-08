@@ -261,22 +261,21 @@ export default function HomePage() {
                 </div>
               </div>
             </section>
-          color: '#ece9fc',
-          fontSize: '1.25rem',
-          fontWeight: 500,
-          marginTop: 12,
-          textAlign: 'center',
-          maxWidth: 600,
-          textShadow: '0 1px 6px #18191a55',
-        }}>
-          {t[lang].tagline}
-          {t[lang]?.tagline}
-        </div>
-      </section>
-      {/* Homepage random image with alt text for accessibility */}
-      <section style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-        <Image src={`/${img}`} alt={img.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')} width={600} height={320} style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }} />
-      </section>
+        color: '#ece9fc',
+        fontSize: '1.25rem',
+        fontWeight: 500,
+        marginTop: 12,
+        textAlign: 'center',
+        maxWidth: 600,
+        textShadow: '0 1px 6px #18191a55',
+      }}>
+        {t[lang]?.tagline}
+      </div>
+    </section>
+    {/* Homepage random image with alt text for accessibility */}
+    <section style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+      <Image src={`/${img}`} alt={img.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')} width={600} height={320} style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }} />
+    </section>
       {/* New AI Jobs This Week - Scrolling Card Feature */}
       <section style={{ width: '100%', maxWidth: 900, margin: '0 auto 2.5rem auto', padding: '0 0 1.5rem 0', overflow: 'hidden' }}>
         <h2 style={{ color: '#7b2ff2', fontWeight: 800, fontSize: '2rem', marginBottom: 12, textAlign: 'center', letterSpacing: '0.04em' }}>
