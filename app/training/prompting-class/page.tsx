@@ -112,3 +112,7 @@ export default function PromptingClassPage() {
             <strong>Listen:</strong> Quick tip on how to structure your prompts for best results.
           </div>
         </div>
+      </section>
+    </div>
+  );
+}
