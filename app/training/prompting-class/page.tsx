@@ -241,14 +241,15 @@ export default function PromptingClassPage() {
       setPracticeResponse("This is a sample AI response to your prompt. Try being specific for best results!");
       setPracticeDone(true);
     }
-      <div style={{ width: '100%', maxWidth: 700, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 32 }}>
-        {/* Instructor Bio Section */}
-        {/* What You'll Learn Section */}
-        {/* Community & Resources Section */}
-        {/* Case Studies Section */}
-        {/* Ethics Section */}
-        {/* Troubleshooting Section */}
-        {/* Video & Audio Section */}
-      </div>
+  return (
+    <div style={{ width: '100%', maxWidth: 700, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 32 }}>
+      {/* Instructor Bio Section */}
+      {/* What You'll Learn Section */}
+      {/* Community & Resources Section */}
+      {/* Case Studies Section */}
+      {/* Ethics Section */}
+      {/* Troubleshooting Section */}
+      {/* Video & Audio Section */}
+    </div>
   );
 }
