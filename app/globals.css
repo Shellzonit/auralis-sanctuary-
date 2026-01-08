@@ -3,9 +3,6 @@
   display: flex;
   overflow-x: auto;
   gap: 1.5rem;
-  display: flex;
-  overflow-x: auto;
-  gap: 1.5rem;
   padding: 1rem 0;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
@@ -15,7 +12,6 @@
 /* Use accent color for scrollbar thumb */
 .job-scroller::-webkit-scrollbar-thumb {
   background: var(--accent, #D4A857);
-  border-radius: 10px;
   border-radius: 10px;
 }
 /* Card uses Sanctuary palette and soft background */
@@ -48,7 +44,6 @@
   margin-top: 0.5rem;
   font-size: 0.97rem;
   color: var(--secondary, #6A6A6A);
-}
 }
 /* Universal font style for all text */
 html, body, h1, h2, h3, h4, h5, h6, p, a, li, td, th, input, button, select, textarea, label, span, div {
