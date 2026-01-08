@@ -15,8 +15,6 @@ import React, { useState } from "react";
                       <div style={{ fontWeight: 800, fontSize: '1.18rem', color: '#7b2ff2' }}>shellzonit</div>
                       <div style={{ color: '#232526', fontWeight: 600, fontSize: '1.05rem' }}>Genre‑Creating Artist • Founder of <a href="https://aiwilding.com" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>AIWilding</a></div>
                       <div style={{ marginTop: 6 }}>
-                        <li>how anyone can use AI to create, build, and express themselves</li>
-                      </ul>
                     </div>
                     {/* AI Jobs & Salaries Section */}
                     <section style={{ background: '#f5f3fd', borderRadius: 10, padding: '1.5rem 1.5rem', marginBottom: 12, borderLeft: '5px solid #7b2ff2', fontSize: '1.08rem', color: '#232526', fontWeight: 500 }}>
