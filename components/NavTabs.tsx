@@ -74,3 +74,4 @@ export default function NavTabs() {
     </nav>
   );
 }
+"use client";
