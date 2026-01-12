@@ -53,6 +53,8 @@ export default function StateJobsPage() {
     const stateCityData: Record<string, { city: string; jobsAffected: number; categories: string[]; timeline: string; resources: string[]; news: string[]; }[]> = {
             // ...existing state data...
             // (New data center entries will be appended below)
+          };
+
           // Append new data center news after initial declaration to avoid block-scoped variable error
           if (stateCityData["Ohio"]) {
             stateCityData["Ohio"].push({ city: "Scioto County", jobsAffected: 0, categories: ["Data Centers"], timeline: "Jan 2026", resources: ["Tilted Gate LLC"], news: ["500,000 sq ft data center development targeted for Scioto County"] });
