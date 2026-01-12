@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import NavBar from "../components/NavBar";
+import NavTabs from "../components/NavTabs";
 import SiteFooter from "../components/SiteFooter";
 
 const geistSans = Geist({
@@ -90,7 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main-content" style={{ position: 'absolute', left: '-999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden', zIndex: 1000 }}>
           Skip to main content
         </a>
-        <NavBar />
+        <NavTabs />
         <main id="main-content" role="main" tabIndex={-1}
           style={{
             position: "relative",
