@@ -984,6 +984,7 @@ export default function MrJobNanny() {
         maxWidth: 520,
         width: "100%",
        
+       
         textAlign: "center",
         letterSpacing: 0.1,
       }} role="status" aria-live="polite">
