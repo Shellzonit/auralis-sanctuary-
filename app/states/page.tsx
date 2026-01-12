@@ -51,20 +51,21 @@ export default function StateJobsPage() {
   }, [selectedState]);
     // Sample data for cities with AI-driven layoffs
     const stateCityData: Record<string, { city: string; jobsAffected: number; categories: string[]; timeline: string; resources: string[]; news: string[]; }[]> = {
-            "Mississippi": [
-              { city: "Statewide", jobsAffected: 0, categories: ["Data Centers", "AI"], timeline: "Jan 2026", resources: ["xAI"], news: ["xAI confirms new data center, Elon Musk pledges $20bn investment in state"] }
-            ],
-            "Ohio": [
-              ...stateCityData["Ohio"],
-              { city: "Scioto County", jobsAffected: 0, categories: ["Data Centers"], timeline: "Jan 2026", resources: ["Tilted Gate LLC"], news: ["500,000 sq ft data center development targeted for Scioto County"] }
-            ],
-            "North Carolina": [
-              ...stateCityData["North Carolina"],
-              { city: "Greensboro", jobsAffected: 0, categories: ["Data Centers"], timeline: "Jan 2026", resources: ["Local Officials"], news: ["Proposal filed for 1,800-acre data center campus outside Greensboro"] }
-            ],
-            "Louisiana": [
-              { city: "Statewide", jobsAffected: 0, categories: ["Data Centers", "Solar Projects"], timeline: "Jan 2026", resources: ["Treaty Oak", "Meta"], news: ["Treaty Oak begins construction on two Meta-tied solar projects in Louisiana"] }
-            ],
+            // ...existing state data...
+            // (New data center entries will be appended below)
+          // Append new data center news after initial declaration to avoid block-scoped variable error
+          if (stateCityData["Ohio"]) {
+            stateCityData["Ohio"].push({ city: "Scioto County", jobsAffected: 0, categories: ["Data Centers"], timeline: "Jan 2026", resources: ["Tilted Gate LLC"], news: ["500,000 sq ft data center development targeted for Scioto County"] });
+          }
+          if (stateCityData["North Carolina"]) {
+            stateCityData["North Carolina"].push({ city: "Greensboro", jobsAffected: 0, categories: ["Data Centers"], timeline: "Jan 2026", resources: ["Local Officials"], news: ["Proposal filed for 1,800-acre data center campus outside Greensboro"] });
+          }
+          stateCityData["Mississippi"] = [
+            { city: "Statewide", jobsAffected: 0, categories: ["Data Centers", "AI"], timeline: "Jan 2026", resources: ["xAI"], news: ["xAI confirms new data center, Elon Musk pledges $20bn investment in state"] }
+          ];
+          stateCityData["Louisiana"] = [
+            { city: "Statewide", jobsAffected: 0, categories: ["Data Centers", "Solar Projects"], timeline: "Jan 2026", resources: ["Treaty Oak", "Meta"], news: ["Treaty Oak begins construction on two Meta-tied solar projects in Louisiana"] }
+          ];
       "California": [
         { city: "San Francisco", jobsAffected: 1200, categories: ["Retail", "Transport", "Manufacturing"], timeline: "Q1-Q2 2025", resources: ["SF Workforce Center"], news: ["AI replacing retail jobs downtown"] },
         { city: "Los Angeles", jobsAffected: 900, categories: ["Logistics", "Customer Service"], timeline: "Q2 2025", resources: ["LA Job Training Hub"], news: ["Major logistics company automates warehouses"] },
