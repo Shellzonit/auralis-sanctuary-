@@ -65,16 +65,26 @@ export default function HiringEventsPage() {
         >
           AI Hiring Events
         </h1>
-        <div style={{
-          color: '#18191a',
-          fontSize: '1.25rem',
-          fontWeight: 500,
-          marginTop: 12,
-          textAlign: 'center',
-          maxWidth: 600,
-          textShadow: '0 1px 6px #fff',
-        }}>
-          Discover upcoming AI hiring events, job fairs, and networking opportunities for creative and technical talent. Each event includes details, location, and participation info.
+        <div
+          style={{
+            color: '#18191a',
+            fontSize: '1.35rem',
+            fontWeight: 700,
+            marginTop: 18,
+            textAlign: 'center',
+            maxWidth: 700,
+            textShadow: '0 1px 8px #fff',
+            background: 'linear-gradient(90deg, #fffbe7 60%, #e0d6f7 100%)',
+            borderRadius: 18,
+            padding: '18px 32px',
+            border: '2px solid #ffd700',
+            boxShadow: '0 2px 16px #ffd70022',
+            letterSpacing: '0.01em',
+            marginBottom: 8,
+          }}
+        >
+          Discover upcoming <span style={{ color: '#7b2ff2', fontWeight: 800 }}>AI hiring events</span>, job fairs, and networking opportunities for creative and technical talent.<br />
+          <span style={{ color: '#7b2ff2', fontWeight: 700 }}>Each event includes details, location, and participation info.</span>
         </div>
       </section>
       {/* ...existing code for event cards, images, and links... */}
