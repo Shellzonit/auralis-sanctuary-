@@ -124,7 +124,14 @@ export default function AINewsPage() {
             <div style={{ flex: 1 }}>
               <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>{story.title}</h2>
               <p style={{ color: '#444', fontSize: '1.15rem', marginBottom: 12 }}>{story.summary}</p>
-              <Link href={story.link} target="_blank" style={{ color: '#7b2ff2', fontWeight: 600, textDecoration: 'underline', fontSize: '1.08rem' }}>Read more</Link>
+              <a
+                href={story.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#7b2ff2', fontWeight: 600, textDecoration: 'underline', fontSize: '1.08rem' }}
+              >
+                Read more
+              </a>
             </div>
           </article>
         ))}
