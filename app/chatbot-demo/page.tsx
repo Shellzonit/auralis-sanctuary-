@@ -118,6 +118,8 @@ const HEALTH_TIPS = [
 import React, { useState, useEffect } from "react";
 import { encryptFernet } from "../../lib/fernetEncrypt";
 import { NEW_AI_JOBS } from "../new-ai-jobs/page";
+import { fetchAIJobs } from "../../lib/supabaseJobs";
+  const [aiJobs, setAiJobs] = useState<any[]>([]);
 
 // Record a visit to the chatbot page
 async function recordChatbotVisit() {
@@ -514,6 +516,7 @@ export default function MrJobNanny() {
       } catch {}
     }
     pollInterval = setInterval(pollJobs, 60000); // 60 seconds
+      pollInterval = setInterval(pollJobs, 60000); // 60 seconds
     // Initial poll
     pollJobs();
     return () => {
@@ -671,6 +674,7 @@ export default function MrJobNanny() {
         const target = userMsg.trim().toLowerCase();
         let job = null;
         for (const j of NEW_AI_JOBS) {
+            for (const j of aiJobs) {
           if (j.title.toLowerCase() === gapInfo.target.toLowerCase() || gapInfo.target.toLowerCase().includes(j.title.toLowerCase())) {
             job = j;
             break;
@@ -810,6 +814,7 @@ export default function MrJobNanny() {
       // 0. Directly handle 'new jobs', 'latest jobs', 'open jobs', etc.
       if (/(new jobs|latest jobs|open jobs|recent jobs|current jobs|job openings|job posts|job listings|jobs available|jobs now|hiring now)/.test(msg)) {
         if (NEW_AI_JOBS && NEW_AI_JOBS.length > 0) {
+            if (aiJobs && aiJobs.length > 0) {
           const latestJobs = NEW_AI_JOBS.slice(-5).map(job => `• ${job.title} (${job.employers[0] || ''})`).join("\n");
           return `Here are the latest AI job openings:\n\n${latestJobs}\n\nAs your job coach, I recommend reviewing each job description carefully and matching your skills to the requirements. Remember to tailor your resume for each application, highlight your achievements, and don't hesitate to reach out for networking or informational interviews. Stay positive—every application is a step forward!\n\nSee the New AI Jobs page for more, or ask about any job above for details or coaching tips!`;
         } else {
@@ -833,6 +838,7 @@ export default function MrJobNanny() {
       if ((msg.includes("easiest") || msg.includes("easy") || msg.includes("least training") || msg.includes("minimal training") || msg.includes("no experience") || msg.includes("beginner")) && (msg.includes("ai career") || msg.includes("ai job") || msg.includes("ai field") || msg.includes("ai work"))) {
         // Find the job with the lowest barrier to entry (based on pay and required skills)
         const entryJobs = NEW_AI_JOBS.filter(job => job.pay && (job.pay.includes("40,000") || job.pay.includes("60,000") || job.title.toLowerCase().includes("trainer") || job.title.toLowerCase().includes("content creator")));
+          const entryJobs = aiJobs.filter(job => job.pay && (job.pay.includes("40,000") || job.pay.includes("60,000") || job.title.toLowerCase().includes("trainer") || job.title.toLowerCase().includes("content creator")));
         if (entryJobs.length > 0) {
           const easiest = entryJobs[0];
           return `One of the easiest AI careers to start with minimal training is **${easiest.title}**. ${easiest.description} This role often requires only basic skills such as ${easiest.skills.join(", ")}, and you can get started with resources like: ${easiest.resources.join(", ")}. Typical pay ranges from ${easiest.pay}.`;
@@ -845,9 +851,11 @@ export default function MrJobNanny() {
         (msg.includes("ai jobs") || msg.includes("list ai jobs") || msg.includes("all ai jobs") || msg.includes("what are the ai jobs") || msg.includes("show ai jobs") || msg.includes("available ai jobs") || msg.includes("types of ai jobs") || msg.includes("what do ai jobs do") || msg.includes("what is an ai job") || msg.includes("what are ai careers") || msg.includes("explain ai jobs") || msg.includes("tell me about ai jobs") || msg.includes("job list") || msg.includes("job options") || msg.includes("job roles"))
       ) {
         return `AI jobs are roles that involve working with artificial intelligence technologies, such as building, training, or applying AI models and systems. Here are some AI jobs you can explore:\n\n${NEW_AI_JOBS.map(job => `• ${job.title}`).join("\n")}\n\nAs your job coach, I suggest exploring roles that match your interests and strengths. If you need help choosing a path, ask me for advice! Remember to set small, achievable goals and celebrate your progress. You can ask about any job above to learn more about its responsibilities, required skills, and pay, or for tips on how to get started.`;
+        return `AI jobs are roles that involve working with artificial intelligence technologies, such as building, training, or applying AI models and systems. Here are some AI jobs you can explore:\n\n${aiJobs.map(job => `• ${job.title}`).join("\n")}\n\nAs your job coach, I suggest exploring roles that match your interests and strengths. If you need help choosing a path, ask me for advice! Remember to set small, achievable goals and celebrate your progress. You can ask about any job above to learn more about its responsibilities, required skills, and pay, or for tips on how to get started.`;
       }
       // 3. AI job definitions, qualifications, and pay
       for (const job of NEW_AI_JOBS) {
+          for (const job of aiJobs) {
         const jobName = job.title.toLowerCase();
         // Certification or training questions
         if (

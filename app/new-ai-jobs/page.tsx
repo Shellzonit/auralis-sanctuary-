@@ -245,4 +245,3 @@ export const NEW_AI_JOBS = [
       </section>
     </main>
   );
-}

@@ -1,4 +1,46 @@
 "use client";
+import { useEffect, useState } from "react";
+// Type for AI Career
+type AICareer = {
+	id: number;
+	title: string;
+	description: string;
+	skills: string[];
+	averageSalary: number;
+};
+// Fetch AI career details from API
+function AICareersSection() {
+	const [careers, setCareers] = useState<AICareer[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		fetch("/api/ai-careers")
+			.then((res) => res.json())
+			.then((data) => setCareers(data))
+			.catch((err) => console.error(err));
+	}, []);
+
+	return (
+		<section style={{ background: '#fff', borderRadius: 16, padding: '32px 40px', maxWidth: 700, margin: '0 auto 48px auto', boxShadow: '0 2px 16px #18191a22', color: '#18191a', textAlign: 'center', fontSize: '1.12rem', lineHeight: 1.7, border: '1.5px solid #e0d6f7' }}>
+			<strong style={{ color: '#7b2ff2', fontSize: '1.15rem' }}>AI Career Details</strong>
+			{loading && <div>Loading careers...</div>}
+			{error && <div style={{ color: 'red' }}>Error: {error}</div>}
+			{!loading && !error && (
+				<ul style={{ margin: '12px 0 0 24px', color: '#18191a', fontSize: '1.08rem', textAlign: 'left' }}>
+					{careers.map((career) => (
+						<li key={career.id} style={{ marginBottom: 18 }}>
+							<div style={{ fontWeight: 700, color: '#7b2ff2', fontSize: '1.1rem' }}>{career.title}</div>
+							<div style={{ color: '#444', marginBottom: 4 }}>{career.description}</div>
+							<div><strong>Skills:</strong> {career.skills.join(", ")}</div>
+							<div><strong>Avg. Salary:</strong> ${career.averageSalary.toLocaleString()}</div>
+						</li>
+					))}
+				</ul>
+			)}
+		</section>
+	);
+}
 const COURSES = [
 	{
 		name: "AI For Everyone (Coursera)",
@@ -68,6 +110,8 @@ export default function TrainingPage() {
 					))}
 				</ul>
 			</section>
+			{/* Section: AI Career Details (from API) */}
+			<AICareersSection />
 			{/* Section 3: Prompting Mini Class Link (now directly below section 2) */}
 			<section style={{ width: '100%', maxWidth: 700, margin: '0 auto 0 auto', background: 'linear-gradient(90deg, #7b2ff2 0%, #f357a8 100%)', borderRadius: 16, boxShadow: '0 2px 12px #7b2ff244', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
 				<a
