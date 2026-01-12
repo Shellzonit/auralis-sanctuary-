@@ -17,7 +17,7 @@ export default function MrNannyResumeChat() {
     {
       id: 0,
       from: "Mr. Job Nanny",
-      text: "Hello! I'm Mr. Job Nanny. Let's build your resume together. Tell me about your work experience, education, or ask for tips—I'll help you step by step!",
+      text: "Hey there! I'm Mr. Job Nanny—think of me as your career-savvy friend. Ready to level up your resume? Just tell me about your experience, your skills, or ask anything. I’ve got your back!",
       parentId: undefined as number | undefined,
     },
   ]);
@@ -56,12 +56,12 @@ export default function MrNannyResumeChat() {
     if (userMsg.text.toLowerCase().includes("grade my resume")) {
       const { score, goldCompletion } = scoreResume(userMsg.text);
       setScore(score);
-      let reply = `Your resume score is ${score}/150. `;
+      let reply = `Alright, here's your resume score: ${score}/150. `;
       if (goldCompletion) {
-        reply += "Congratulations! Your resume meets the 90% gold completion standard, including work experience and all key sections. You are eligible to enter the Hot Resume of the Week showcase. Would you like to opt in?";
+        reply += "Awesome job! Your resume totally crushes the gold standard—work experience and all the key sections are there. Want to throw your hat in for Hot Resume of the Week?";
         setShowOptIn(true);
       } else {
-        reply += "To reach 90% gold completion, make sure you include work experience and complete all sections (experience, education, skills, projects, certifications) in a professional manner.";
+        reply += "You're almost there! Add a bit more about your experience and make sure you’ve got all the main sections (experience, education, skills, projects, certifications). You got this!";
       }
       const botReply = {
         id: nextId.current++,
