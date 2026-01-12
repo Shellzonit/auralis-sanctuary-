@@ -107,62 +107,6 @@ export default function HomePage() {
         <button onClick={() => setLang('zh')} style={{ padding: '4px 12px', borderRadius: 6, border: '1px solid #7b2ff2', background: lang === 'zh' ? '#7b2ff2' : '#fff', color: lang === 'zh' ? '#fff' : '#7b2ff2', fontWeight: 600, cursor: 'pointer' }}>中文</button>
         <button onClick={() => setLang('hi')} style={{ padding: '4px 12px', borderRadius: 6, border: '1px solid #7b2ff2', background: lang === 'hi' ? '#7b2ff2' : '#fff', color: lang === 'hi' ? '#fff' : '#7b2ff2', fontWeight: 600, cursor: 'pointer' }}>हिन्दी</button>
       </div>
-      {/* Top Navigation Bar with ARIA role and keyboard navigation */}
-      <nav aria-label="Main navigation" role="navigation" style={{
-        width: '100%',
-        background: '#fff',
-        borderBottom: '1.5px solid #e0d6f7',
-        boxShadow: '0 2px 12px #7b2ff211',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '0.5rem 0',
-        position: 'sticky',
-        top: 0,
-        zIndex: 10,
-      }}>
-        {[
-          { label: 'Home', href: '/' },
-          { label: 'About', href: '/about' },
-          { label: 'Contact', href: '/contact' },
-          { label: 'AI News', href: '/ai-news' },
-          { label: 'AI Jobs', href: '/new-ai-jobs' },
-          { label: 'Weight Management', href: '/weight-management' },
-          { label: 'Recovery Hub', href: '/recovery' },
-          { label: 'Hiring Event', href: '/hiring-events' },
-          { label: 'Training', href: '/training' },
-          { label: 'Resume Wizard', href: '/resume-wizard' },
-          { label: 'Resources', href: '/resources' },
-          { label: 'States/Country', href: '/countries' },
-        ].map((tab, idx) => (
-          <a
-            key={tab.label}
-            href={tab.href}
-            style={{
-              color: '#7b2ff2',
-              fontWeight: 700,
-              fontSize: '1.1rem',
-              textDecoration: 'none',
-              margin: '0 1.2rem',
-              padding: '0.5rem 0',
-              borderBottom: '2px solid transparent',
-              transition: 'border 0.2s',
-              outline: 'none',
-            }}
-            tabIndex={0}
-            aria-current={pathname === tab.href ? 'page' : undefined}
-            onKeyDown={e => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                window.location.href = tab.href;
-              }
-            }}
-            onMouseOver={e => e.currentTarget.style.borderBottom = '2px solid #7b2ff2'}
-            onMouseOut={e => e.currentTarget.style.borderBottom = '2px solid transparent'}
-          >
-            {tab.label}
-          </a>
-        ))}
-      </nav>
             {/* Banner with Tagline */}
             <section style={{
               width: '100%',
