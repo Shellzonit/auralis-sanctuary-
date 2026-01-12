@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../../lib/supabaseClient";
-import AdminJobsPage from "./page";
+import AdminJobsPage from "./AdminJobsPage";
 
 export default function AdminJobsProtected() {
   const [loading, setLoading] = useState(true);
