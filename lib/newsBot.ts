@@ -16,7 +16,7 @@ export async function fetchAINews() {
   const url = `${NEWS_API_URL}?${params.toString()}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error('Failed to fetch news');
-  const data = await res.json();
+  const data = await res.json() as { articles?: any[] };
   // Map to a simplified format
   return (data.articles || []).map((article: any) => ({
     title: article.title,
@@ -24,6 +24,6 @@ export async function fetchAINews() {
     image: article.urlToImage,
     url: article.url,
     publishedAt: article.publishedAt,
-    source: article.source.name,
+    source: article.source?.name,
   }));
 }
