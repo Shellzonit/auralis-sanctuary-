@@ -3,23 +3,6 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-  const [eventStories, setEventStories] = useState<any[]>([]);
-  const [eventLoading, setEventLoading] = useState(false);
-  const [eventError, setEventError] = useState<string | null>(null);
-
-  useEffect(() => {
-    setEventLoading(true);
-    fetch("/api/carlotta-event-stories")
-      .then(res => res.json())
-      .then(data => {
-        setEventStories(Array.isArray(data.stories) ? data.stories : []);
-        setEventLoading(false);
-      })
-      .catch(e => {
-        setEventError("Failed to load Carlotta's event stories.");
-        setEventLoading(false);
-      });
-  }, []);
 import Image from "next/image";
 
 const curatedNews = [
@@ -62,6 +45,26 @@ const curatedNews = [
 ];
 
 export default function AINewsPage() {
+  // Carlotta's event stories state
+  const [eventStories, setEventStories] = useState<any[]>([]);
+  const [eventLoading, setEventLoading] = useState(false);
+  const [eventError, setEventError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setEventLoading(true);
+    fetch("/api/carlotta-event-stories")
+      .then(res => res.json())
+      .then(data => {
+        setEventStories(Array.isArray(data.stories) ? data.stories : []);
+        setEventLoading(false);
+      })
+      .catch(e => {
+        setEventError("Failed to load Carlotta's event stories.");
+        setEventLoading(false);
+      });
+  }, []);
+
+  // Live news state
   const [liveNews, setLiveNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
