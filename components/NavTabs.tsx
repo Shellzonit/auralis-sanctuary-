@@ -37,10 +37,8 @@ export default function NavTabs() {
                 href={tab.href}
                 className={`text-xl font-bold tracking-wide px-4 py-2 rounded-lg transition-colors relative text-sanctuary-text hover:text-sanctuary-accent focus:text-sanctuary-accent outline-none`}
                 tabIndex={0}
-              >
-                {tab.label}
-              </Link>
-            </li>
+              "use client";
+              import React from "react";
           );
         })}
         <li style={{ position: "relative" }}>
@@ -74,6 +72,5 @@ export default function NavTabs() {
     </nav>
   );
 }
-"use client";
 
 "use client";
