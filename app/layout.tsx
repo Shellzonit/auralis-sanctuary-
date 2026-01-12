@@ -47,8 +47,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        {/* Plausible Analytics (privacy-friendly) */}
-        <script async defer data-domain="aiwilding.com" src="https://plausible.io/js/plausible.js"></script>
+        {/* Privacy-friendly analytics by Plausible */}
+        <script async src="https://plausible.io/js/pa-RM4NWG57Tj9DemJxAzip1.js"></script>
+        <script dangerouslySetInnerHTML={{ __html: `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()` }} />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="A mythic, minimalist creative sanctuary for AI jobs, creativity, and community." />
