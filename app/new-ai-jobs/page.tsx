@@ -2,6 +2,160 @@
 import React from "react";
 
 export const NEW_AI_JOBS = [
+    {
+      title: "Secure AI/ML Delivery",
+      description: "Deploy, maintain, and scale ML models for the Department of Defense. Implement MLOps practices and support AI/ML solutions.",
+      skills: ["AI/ML", "MLOps", "Data Science", "Model Deployment"],
+      industries: ["Defense", "Government", "AI"],
+      employers: ["General Dynamics Information Technology"],
+      resources: [],
+      pay: "$148,750 - $201,250/year",
+      location: "Offutt AFB, NE (Onsite)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "Human Language Technology Developer",
+      description: "Perform HLT tasks as part of a large language services program. Experience with language technology and the intelligence community.",
+      skills: ["HLT", "Language Technology", "AI"],
+      industries: ["Government", "AI"],
+      employers: ["Leidos"],
+      resources: [],
+      pay: "$92,300 - $166,850/year",
+      location: "Reston, VA (Onsite)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "AI Customer Experience Manager",
+      description: "Drive the evolution of AI-powered support within the Customer Experience Team.",
+      skills: ["AI", "Customer Experience", "Support"],
+      industries: ["Tech", "AI"],
+      employers: ["DraftKings"],
+      resources: [],
+      pay: "$84,000 - $105,000/year",
+      location: "Boston, MA (Onsite)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "VFX Artist",
+      description: "Work on visual effects for AI-driven projects. 100% remote.",
+      skills: ["VFX", "AI", "Remote Work"],
+      industries: ["Tech", "Media"],
+      employers: ["Aquent Talent"],
+      resources: [],
+      pay: "$60 - $80/hour",
+      location: "Remote (US)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "Interface Designer - AI Trainer",
+      description: "Assess and enhance how AI systems understand, generate, and evaluate design work.",
+      skills: ["Interface Design", "AI Training", "UX"],
+      industries: ["Tech", "AI"],
+      employers: ["DataAnnotation"],
+      resources: [],
+      pay: "$20 - $40/hour",
+      location: "Remote (Washington, DC)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "Regional Design Technology Director",
+      description: "Lead design technology for the South Central region. Oversee design technology strategy and implementation.",
+      skills: ["Design Technology", "Leadership", "AI"],
+      industries: ["Architecture", "Tech"],
+      employers: ["Gensler"],
+      resources: [],
+      pay: "Not provided",
+      location: "Dallas, TX (Onsite)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "Postdoctoral Appointee - Computational Neuroscience",
+      description: "Research neural algorithms, AI models, and neuromorphic hardware.",
+      skills: ["Computational Neuroscience", "AI Models", "Neuromorphic Hardware"],
+      industries: ["Research", "Healthcare", "AI"],
+      employers: ["Sandia National Laboratories"],
+      resources: [],
+      pay: "Not provided",
+      location: "Albuquerque, NM (Onsite)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "Postdoctoral Research Fellow - Biomedical Informatics",
+      description: "Lead research projects focused on digital twins and simulation-based modeling in healthcare.",
+      skills: ["Biomedical Informatics", "Digital Twins", "Simulation"],
+      industries: ["Healthcare", "AI", "Research"],
+      employers: ["UTHealth Houston"],
+      resources: [],
+      pay: "Not provided",
+      location: "Houston, TX (Onsite)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "Cloud Solutions Architect (AWS, ML, AI & Deep Learning)",
+      description: "Architect and deliver cloud-based AI/ML and deep learning solutions for Texas Health & Human Services Commission.",
+      skills: ["AWS", "ML", "AI", "Deep Learning"],
+      industries: ["Healthcare", "Tech", "AI"],
+      employers: ["Esolvit Inc."],
+      resources: [],
+      pay: "$100.75 - $110.34/hour",
+      location: "Austin, TX (Hybrid)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "AI Solutions Lead",
+      description: "Deliver high-value AI solutions as a hands-on builder and program lead.",
+      skills: ["AI Solutions", "Program Lead", "Builder"],
+      industries: ["Tech", "AI"],
+      employers: ["LCS"],
+      resources: [],
+      pay: "$128,000 - $160,000/year",
+      location: "Des Moines, IA (Onsite)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "Computer Scientist - Object Based Intelligence (OBI) Analytic Efficiency",
+      description: "Integrate or code algorithms to support Government intelligence search and discovery missions.",
+      skills: ["Algorithms", "Object Based Intelligence", "AI"],
+      industries: ["Government", "AI"],
+      employers: ["Peraton"],
+      resources: [],
+      pay: "$104,000 - $166,000/year",
+      location: "Herndon, VA (Onsite)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "Staff AI Engineer",
+      description: "Work with senior technology and business executives to evaluate and build AI opportunities across the business.",
+      skills: ["AI Engineering", "Business", "Tech"],
+      industries: ["Tech", "AI"],
+      employers: ["Invitation Homes"],
+      resources: [],
+      pay: "$118,800 - $205,920/year",
+      location: "Dallas, TX (Onsite)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "AI Planning Research Scientist",
+      description: "Solve real-world planning problems using threat intelligence research and advanced AI planning.",
+      skills: ["AI Planning", "Threat Intelligence", "Research"],
+      industries: ["Tech", "AI", "Research"],
+      employers: ["Peraton"],
+      resources: [],
+      pay: "$112,000 - $179,000/year",
+      location: "Silver Spring, MD (Hybrid)",
+      updated: "Jan 11, 2026"
+    },
+    {
+      title: "Project Manager Engineer",
+      description: "Apply engineering or scientific expertise to deliver new and innovative solutions for the CIA.",
+      skills: ["Project Management", "Engineering", "AI"],
+      industries: ["Government", "AI"],
+      employers: ["Central Intelligence Agency"],
+      resources: [],
+      pay: "$69,923 - $185,234/year",
+      location: "Washington, DC (Onsite)",
+      updated: "Jan 11, 2026"
+    },
   {
     title: "AI Engineer – Voice",
     description: "Design and deploy voice‑driven AI systems. Scale conversational AI across thousands of interactions. Work on production‑level voice models.",
