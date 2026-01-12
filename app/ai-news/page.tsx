@@ -9,25 +9,37 @@ const newsStories = [
     title: "AI Data Centers: Powering the Future",
     summary: "Major investments in AI data centers are reshaping the global tech landscape. Companies are building massive, energy-efficient facilities to support the next generation of AI models.",
     image: "/ai homepage.png",
-    link: "https://datacenternews.com/ai-data-centers-2026"
+    article: `\
+      <p><strong>AI Data Centers: Powering the Future</strong></p>
+      <p>Major tech companies are investing billions in new data centers designed specifically for artificial intelligence workloads. These facilities use advanced cooling, renewable energy, and custom hardware to train and deploy large AI models. The trend is driving innovation in both infrastructure and sustainability, with new centers opening in North America, Europe, and Asia. Experts predict that by 2030, AI data centers will account for a significant share of global computing power.</p>
+    `
   },
   {
     title: "New AI Programs Revolutionize Healthcare",
     summary: "AI-driven diagnostics and patient care programs are being adopted in hospitals worldwide, improving outcomes and reducing costs.",
     image: "/healthy.png",
-    link: "https://healthaiworld.com/programs-2026"
+    article: `\
+      <p><strong>New AI Programs Revolutionize Healthcare</strong></p>
+      <p>Hospitals and clinics are rapidly adopting AI-powered tools for diagnostics, patient monitoring, and personalized treatment. Recent studies show that AI can detect certain diseases earlier than traditional methods, leading to better patient outcomes. In addition, AI is helping to reduce administrative burdens and streamline workflows, allowing healthcare professionals to focus more on patient care.</p>
+    `
   },
   {
     title: "World News: AI Policy and Ethics",
     summary: "Governments are enacting new policies to address AI safety, ethics, and workforce impact. International summits are underway to coordinate global standards.",
     image: "/education.png",
-    link: "https://ainews.global/policy-ethics"
+    article: `\
+      <p><strong>World News: AI Policy and Ethics</strong></p>
+      <p>As AI technologies become more widespread, governments around the world are introducing new regulations to ensure safety, transparency, and ethical use. Recent international summits have focused on creating common standards for AI development and deployment. Key topics include data privacy, algorithmic bias, and the impact of automation on jobs. Policymakers are working with industry leaders and researchers to shape the future of AI governance.</p>
+    `
   },
   {
     title: "Vlog: Inside a Next-Gen AI Lab",
     summary: "Go behind the scenes with a leading AI researcher as they tour a state-of-the-art AI lab and discuss the latest breakthroughs.",
     image: "/ai around the world.png",
-    link: "https://youtube.com/ai-lab-vlog"
+    article: `\
+      <p><strong>Vlog: Inside a Next-Gen AI Lab</strong></p>
+      <p>Join Dr. Lin, a leading AI researcher, for an exclusive look inside a next-generation AI laboratory. The tour covers the latest robotics, natural language processing demos, and interviews with engineers working on cutting-edge projects. The lab’s collaborative environment and focus on real-world applications highlight the exciting future of artificial intelligence.</p>
+    `
   }
 ];
 
@@ -124,14 +136,10 @@ export default function AINewsPage() {
             <div style={{ flex: 1 }}>
               <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>{story.title}</h2>
               <p style={{ color: '#444', fontSize: '1.15rem', marginBottom: 12 }}>{story.summary}</p>
-              <a
-                href={story.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: '#7b2ff2', fontWeight: 600, textDecoration: 'underline', fontSize: '1.08rem' }}
-              >
-                Read more
-              </a>
+              <details>
+                <summary style={{ color: '#7b2ff2', fontWeight: 600, textDecoration: 'underline', fontSize: '1.08rem', cursor: 'pointer' }}>Read full article</summary>
+                <div style={{ marginTop: 12 }} dangerouslySetInnerHTML={{ __html: story.article }} />
+              </details>
             </div>
           </article>
         ))}
