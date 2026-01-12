@@ -104,101 +104,6 @@ export const NEW_AI_JOBS = [
   }
 ];
 
-  // Example list of companies mass hiring (update as needed)
-  const MASS_HIRING_COMPANIES = [
-    {
-      name: "Amazon",
-      openRoles: "11,000+ open roles",
-      category: "Tech, logistics, cloud",
-      why: "Amazon remains the #1 most active employer on Jobright’s national hiring index.",
-      roles: [
-        "Software engineers",
-        "Data/AI roles",
-        "Warehouse & logistics",
-        "AWS cloud engineers"
-      ]
-    },
-    {
-      name: "PwC",
-      openRoles: "Thousands of openings",
-      category: "Consulting, finance, tech",
-      why: "Listed as one of the most active employers in 2025.",
-      roles: [
-        "AI strategy",
-        "Data analytics",
-        "Cybersecurity",
-        "Consulting"
-      ]
-    },
-    {
-      name: "AutoZone",
-      openRoles: "High‑volume hiring",
-      category: "Retail, logistics",
-      why: "Ranked among the top 14 most active employers in the U.S. right now.",
-      roles: [
-        "Store associates",
-        "Distribution center workers",
-        "Corporate tech roles"
-      ]
-    },
-    {
-      name: "KPMG US",
-      openRoles: "Large hiring wave",
-      category: "Consulting, finance, tech",
-      why: "Also listed as a top active employer in 2025.",
-      roles: [
-        "AI/ML analysts",
-        "Auditors",
-        "Data engineers",
-        "Consultants"
-      ]
-    },
-    {
-      name: "Microsoft",
-      openRoles: "“Massive scale” hiring in cloud + AI",
-      category: "Tech",
-      why: "Microsoft is highlighted as a top U.S. tech giant dominating hiring in 2025.",
-      roles: [
-        "AI engineers",
-        "Azure cloud roles",
-        "Research engineers",
-        "Product managers"
-      ]
-    },
-    {
-      name: "Google (Alphabet)",
-      openRoles: "AI & search expansion",
-      category: "Tech",
-      why: "Google is listed among the top companies hiring heavily in AI and information systems.",
-      roles: [
-        "AI researchers",
-        "ML engineers",
-        "Data scientists"
-      ]
-    },
-    {
-      name: "Nvidia",
-      openRoles: "AI chip boom = nonstop hiring",
-      category: "AI hardware",
-      why: "Nvidia is described as “ruling the AI era” and aggressively hiring in 2025.",
-      roles: [
-        "AI infrastructure",
-        "GPU engineering",
-        "Research"
-      ]
-    },
-    {
-      name: "Tesla",
-      openRoles: "High‑volume technical hiring",
-      category: "Automotive + AI",
-      why: "Tesla is expanding its tech ecosystem and hiring across engineering and manufacturing.",
-      roles: [
-        "Robotics",
-        "AI/Autopilot",
-        "Manufacturing tech"
-      ]
-    }
-  ];
 
   return (
     <main style={{ minHeight: '100vh', background: '#f5f3fd', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
@@ -208,26 +113,7 @@ export const NEW_AI_JOBS = [
           Discover emerging jobs and careers created by AI and automation. Each role includes a description, required skills, industries, example employers, and training resources to help you prepare for the future workforce.
         </div>
       </section>
-      {/* Mass Hiring Companies Section */}
-      <section style={{ background: '#fff', borderRadius: 16, padding: '24px 32px', maxWidth: 700, margin: '0 auto 32px auto', boxShadow: '0 2px 12px #7b2ff244', color: '#18191a', textAlign: 'center', fontSize: '1.08rem', lineHeight: 1.6, border: '1.5px solid #e0d6f7' }}>
-        <strong style={{ color: '#7b2ff2', fontSize: '1.15rem' }}>🌿 Companies Actively Doing Mass Hiring (U.S., 2025–2026)</strong>
-        <ul style={{ margin: '16px 0 0 0', padding: 0, listStyle: 'none', textAlign: 'left' }}>
-          {MASS_HIRING_COMPANIES.map((company, idx) => (
-            <li key={company.name} style={{ marginBottom: 18, paddingBottom: 10, borderBottom: '1px solid #ece9fc' }}>
-              <div style={{ fontWeight: 700, color: '#7b2ff2', fontSize: '1.08rem' }}>⭐ {idx + 1}. {company.name} <span style={{ color: '#888', fontWeight: 400, fontSize: '0.98rem' }}>— {company.openRoles}</span></div>
-              <div style={{ color: '#444', fontWeight: 500, marginBottom: 2 }}>Category: <span style={{ fontWeight: 400 }}>{company.category}</span></div>
-              <div style={{ color: '#18191a', fontSize: '0.98rem', marginBottom: 2 }}><strong>Why hiring:</strong> {company.why}</div>
-              <div style={{ color: '#18191a', fontSize: '0.98rem', marginBottom: 2 }}><strong>Roles:</strong>
-                <ul style={{ margin: '4px 0 0 18px', padding: 0, listStyle: 'disc' }}>
-                  {company.roles.map((role) => (
-                    <li key={role} style={{ marginBottom: 0 }}>{role}</li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
+
       <section style={{ background: '#fff', borderRadius: 16, padding: '32px 40px', maxWidth: 900, margin: '0 auto 48px auto', boxShadow: '0 2px 16px #18191a22', color: '#18191a', textAlign: 'center', fontSize: '1.12rem', lineHeight: 1.7, border: '1.5px solid #e0d6f7' }}>
         {NEW_AI_JOBS.map((job) => (
           <div key={job.title + (job.updated || '')} style={{ background: '#f5faff', borderRadius: 12, padding: 18, boxShadow: '0 2px 8px #90caf922', marginBottom: 24 }}>
