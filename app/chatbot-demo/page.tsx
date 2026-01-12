@@ -119,7 +119,7 @@ import React, { useState, useEffect } from "react";
 import { encryptFernet } from "../../lib/fernetEncrypt";
 import { NEW_AI_JOBS } from "../new-ai-jobs/page";
 import { fetchAIJobs } from "../../lib/supabaseJobs";
-  const [aiJobs, setAiJobs] = useState<any[]>([]);
+const [aiJobs, setAiJobs] = useState<any[]>([]);
 
 // Record a visit to the chatbot page
 async function recordChatbotVisit() {
@@ -315,6 +315,7 @@ const JOB_SUGGESTIONS = [
 
 
 export default function MrJobNanny() {
+  const [aiJobs, setAiJobs] = useState<any[]>([]);
     // Mode: 'job' or 'weight'
     type ModeType = 'job' | 'weight';
     const [mode, setMode] = useState<ModeType>('job');
@@ -855,7 +856,7 @@ export default function MrJobNanny() {
       if (
         (msg.includes("ai jobs") || msg.includes("list ai jobs") || msg.includes("all ai jobs") || msg.includes("what are the ai jobs") || msg.includes("show ai jobs") || msg.includes("available ai jobs") || msg.includes("types of ai jobs") || msg.includes("what do ai jobs do") || msg.includes("what is an ai job") || msg.includes("what are ai careers") || msg.includes("explain ai jobs") || msg.includes("tell me about ai jobs") || msg.includes("job list") || msg.includes("job options") || msg.includes("job roles"))
       ) {
-        return `AI jobs are roles that involve working with artificial intelligence technologies, such as building, training, or applying AI models and systems. Here are some AI jobs you can explore:\n\n${NEW_AI_JOBS.map(job => `• ${job.title}`).join("\n")}\n\nAs your job coach, I suggest exploring roles that match your interests and strengths. If you need help choosing a path, ask me for advice! Remember to set small, achievable goals and celebrate your progress. You can ask about any job above to learn more about its responsibilities, required skills, and pay, or for tips on how to get started.`;
+        return `AI jobs are roles that involve working with artificial intelligence technologies, such as building, training, or applying AI models and systems. Here are some AI jobs you can explore:\n\n${NEW_AI_JOBS.map(job => `• ${job.title} (${job.employers[0] || ''})`).join("\n")}\n\nAs your job coach, I suggest exploring roles that match your interests and strengths. If you need help choosing a path, ask me for advice! Remember to set small, achievable goals and celebrate your progress. You can ask about any job above to learn more about its responsibilities, required skills, and pay, or for tips on how to get started.`;
         return `AI jobs are roles that involve working with artificial intelligence technologies, such as building, training, or applying AI models and systems. Here are some AI jobs you can explore:\n\n${aiJobs.map(job => `• ${job.title}`).join("\n")}\n\nAs your job coach, I suggest exploring roles that match your interests and strengths. If you need help choosing a path, ask me for advice! Remember to set small, achievable goals and celebrate your progress. You can ask about any job above to learn more about its responsibilities, required skills, and pay, or for tips on how to get started.`;
       }
       // 3. AI job definitions, qualifications, and pay
