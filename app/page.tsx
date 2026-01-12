@@ -121,7 +121,7 @@ export default function HomePage() {
         top: 0,
         zIndex: 10,
       }}>
-        [
+        {[
           { label: 'Home', href: '/' },
           { label: 'About', href: '/about' },
           { label: 'Contact', href: '/contact' },
