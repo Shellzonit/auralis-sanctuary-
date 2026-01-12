@@ -135,9 +135,15 @@ export default function AINewsPage() {
           Stay updated with the latest stories in Artificial Intelligence: data centers, programs, world news, and vlogs.
         </div>
       </section>
-      {/* Live News Feed */}
+      {/* Live News Feed by Carlotta */}
       <section style={{ width: '100%', maxWidth: 900, margin: '0 auto 2rem auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#7b2ff2', marginBottom: 8 }}>Live AI News</h2>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginBottom: 8 }}>
+          <Image src="/carlotta.jpg" alt="Carlotta the News Bot" width={64} height={64} style={{ borderRadius: '50%', border: '2px solid #7b2ff2', background: '#fff' }} />
+          <div>
+            <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#7b2ff2', margin: 0 }}>Carlotta's Live AI News</h2>
+            <div style={{ color: '#7b2ff2', fontWeight: 500, fontSize: '1.08rem' }}>Your friendly AI news bot</div>
+          </div>
+        </div>
         {loading && <div>Loading live news...</div>}
         {error && <div style={{ color: 'red' }}>{error}</div>}
         {liveNews.map((story, idx) => (
