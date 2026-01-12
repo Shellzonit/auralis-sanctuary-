@@ -17,13 +17,68 @@ export default function HiringEventsPage() {
         boxSizing: 'border-box',
       }}
     >
-      <h1 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#18191a", margin: "32px 0 16px 0", textShadow: "0 2px 16px #ffd70044", fontFamily: 'Geist, Inter, Arial, sans-serif' }}>
-        <span style={{ color: '#ffd700' }}>AI Hiring Events</span>
-      </h1>
-      <section style={{ maxWidth: 900, marginBottom: 24, background: '#fff', borderRadius: 18, padding: '32px 40px', boxShadow: '0 4px 32px #18191a22', color: '#18191a', border: '2px solid #ffd700', fontSize: '1.12rem', lineHeight: 1.7 }}>
-        <p style={{ color: "#18191a", fontSize: "1.08rem", marginBottom: 18, fontWeight: 500 }}>
+      {/* Elegant Gradient Banner */}
+      <section
+        style={{
+          width: '100%',
+          maxWidth: 900,
+          margin: '2.5rem auto 2rem auto',
+          background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)',
+          borderRadius: 28,
+          boxShadow: '0 4px 32px #18191a22',
+          padding: '2.5rem 0 2.5rem 0',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+        }}
+      >
+        <h1
+          style={{
+            color: 'rgba(255,255,255,0.97)',
+            fontSize: 'clamp(2.8rem, 7vw, 4.5rem)',
+            fontWeight: 800,
+            fontFamily: 'Playfair Display, Georgia, serif',
+            fontStyle: 'italic',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            textAlign: 'center',
+            margin: 0,
+            width: '100%',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            position: 'relative',
+            zIndex: 2,
+            textShadow: '0 2px 8px #8882',
+            WebkitTextStroke: '1.5px #bba6f7',
+            filter: 'none',
+            background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            maskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)',
+            lineHeight: 1.18,
+            paddingBottom: '0.18em',
+          }}
+        >
+          AI Hiring Events
+        </h1>
+        <div style={{
+          color: '#18191a',
+          fontSize: '1.25rem',
+          fontWeight: 500,
+          marginTop: 12,
+          textAlign: 'center',
+          maxWidth: 600,
+          textShadow: '0 1px 6px #fff',
+        }}>
           Discover upcoming AI hiring events, job fairs, and networking opportunities for creative and technical talent. Each event includes details, location, and participation info.
-        </p>
+        </div>
+      </section>
+      {/* ...existing code for event cards, images, and links... */}
+      <section style={{ maxWidth: 900, marginBottom: 24, background: '#fff', borderRadius: 18, padding: '32px 40px', boxShadow: '0 4px 32px #18191a22', color: '#18191a', border: '2px solid #ffd700', fontSize: '1.12rem', lineHeight: 1.7 }}>
         <div style={{ display: 'flex', gap: 24, marginBottom: 24, justifyContent: 'center' }}>
           <img src="/education.png" alt="Education" width={180} height={110} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
           <img src="/healthy.png" alt="Healthy" width={180} height={110} style={{ borderRadius: 16, boxShadow: '0 2px 16px #18191a22', background: '#fff', border: '2px solid #ffd700' }} />
