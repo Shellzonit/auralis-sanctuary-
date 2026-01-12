@@ -37,6 +37,10 @@ export default function NavTabs() {
                 href={tab.href}
                 className={`text-xl font-bold tracking-wide px-4 py-2 rounded-lg transition-colors relative text-sanctuary-text hover:text-sanctuary-accent focus:text-sanctuary-accent outline-none`}
                 tabIndex={0}
+              >
+                {tab.label}
+              </Link>
+            </li>
           );
         })}
         <li style={{ position: "relative" }}>
