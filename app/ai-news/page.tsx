@@ -1,10 +1,11 @@
 "use client";
 
+
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-const newsStories = [
+const curatedNews = [
   {
     title: "AI Data Centers: Powering the Future",
     summary: "Major investments in AI data centers are reshaping the global tech landscape. Companies are building massive, energy-efficient facilities to support the next generation of AI models.",
@@ -44,6 +45,24 @@ const newsStories = [
 ];
 
 export default function AINewsPage() {
+  const [liveNews, setLiveNews] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("/api/ai-news")
+      .then(res => res.json())
+      .then(data => {
+        setLiveNews(Array.isArray(data.news) ? data.news : []);
+        setLoading(false);
+      })
+      .catch(e => {
+        setError("Failed to load live news.");
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <main
       id="main-content"
@@ -116,9 +135,43 @@ export default function AINewsPage() {
           Stay updated with the latest stories in Artificial Intelligence: data centers, programs, world news, and vlogs.
         </div>
       </section>
-      {/* News Stories */}
+      {/* Live News Feed */}
       <section style={{ width: '100%', maxWidth: 900, margin: '0 auto 2rem auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        {newsStories.map((story, idx) => (
+        <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#7b2ff2', marginBottom: 8 }}>Live AI News</h2>
+        {loading && <div>Loading live news...</div>}
+        {error && <div style={{ color: 'red' }}>{error}</div>}
+        {liveNews.map((story, idx) => (
+          <article key={story.url || idx} style={{
+            background: '#fff',
+            borderRadius: 16,
+            boxShadow: '0 2px 16px #18191a22',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: '24px',
+            gap: '2rem',
+            border: '1.5px solid #e0d6f7',
+          }}>
+            {story.image && (
+              <div style={{ minWidth: 180, maxWidth: 220 }}>
+                <Image src={story.image} alt={story.title} width={220} height={120} style={{ borderRadius: 12, objectFit: 'cover', width: '100%', height: 'auto' }} />
+              </div>
+            )}
+            <div style={{ flex: 1 }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>{story.title}</h3>
+              <p style={{ color: '#444', fontSize: '1.08rem', marginBottom: 8 }}>{story.summary}</p>
+              {story.url && (
+                <a href={story.url} target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', fontWeight: 600, textDecoration: 'underline', fontSize: '1.08rem' }}>Read original</a>
+              )}
+              {story.source && <span style={{ color: '#888', fontSize: '0.95rem', marginLeft: 8 }}>Source: {story.source}</span>}
+            </div>
+          </article>
+        ))}
+      </section>
+      {/* Curated News */}
+      <section style={{ width: '100%', maxWidth: 900, margin: '0 auto 2rem auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>Curated AI Stories</h2>
+        {curatedNews.map((story, idx) => (
           <article key={idx} style={{
             background: '#fff',
             borderRadius: 16,
@@ -134,8 +187,8 @@ export default function AINewsPage() {
               <Image src={story.image} alt={story.title} width={220} height={120} style={{ borderRadius: 12, objectFit: 'cover', width: '100%', height: 'auto' }} />
             </div>
             <div style={{ flex: 1 }}>
-              <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>{story.title}</h2>
-              <p style={{ color: '#444', fontSize: '1.15rem', marginBottom: 12 }}>{story.summary}</p>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>{story.title}</h3>
+              <p style={{ color: '#444', fontSize: '1.08rem', marginBottom: 8 }}>{story.summary}</p>
               <details>
                 <summary style={{ color: '#7b2ff2', fontWeight: 600, textDecoration: 'underline', fontSize: '1.08rem', cursor: 'pointer' }}>Read full article</summary>
                 <div style={{ marginTop: 12 }} dangerouslySetInnerHTML={{ __html: story.article }} />
