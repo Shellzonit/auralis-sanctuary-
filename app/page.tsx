@@ -121,10 +121,11 @@ export default function HomePage() {
         top: 0,
         zIndex: 10,
       }}>
-        {[
+        [
           { label: 'Home', href: '/' },
           { label: 'About', href: '/about' },
           { label: 'Contact', href: '/contact' },
+          { label: 'AI News', href: '/ai-news' },
           { label: 'AI Jobs', href: '/new-ai-jobs' },
           { label: 'Recovery Hub', href: '/recovery' },
           { label: 'Hiring Event', href: '/hiring-events' },

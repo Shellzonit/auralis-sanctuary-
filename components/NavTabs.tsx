@@ -9,6 +9,7 @@ export default function NavTabs() {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
+    { href: "/ai-news", label: "AI News" },
     { href: "/new-ai-jobs", label: "AI Jobs" },
     { href: "/recovery", label: "Recovery Hub" },
     { href: "/hiring-events", label: "Hiring Event" },
