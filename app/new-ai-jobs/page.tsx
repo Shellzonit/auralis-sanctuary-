@@ -105,6 +105,7 @@ export const NEW_AI_JOBS = [
 ];
 
 
+function NewAIJobsPage() {
   return (
     <main style={{ minHeight: '100vh', background: '#f5f3fd', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
       <section style={{ width: '100%', maxWidth: 700, margin: '3rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 24, boxShadow: '0 4px 32px #18191a22', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
@@ -131,3 +132,6 @@ export const NEW_AI_JOBS = [
       </section>
     </main>
   );
+}
+
+export default NewAIJobsPage;

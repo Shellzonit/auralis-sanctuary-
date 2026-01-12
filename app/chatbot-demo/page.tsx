@@ -134,8 +134,7 @@ async function recordChatbotVisit() {
     });
   } catch (e) {
     // Optionally log error
-  }
-}
+// Removed extra closing brace
 
 // Simple FAQ and AI job/event recommender chatbot
 // Latest announcement/news (update this string as needed)
@@ -317,7 +316,8 @@ const JOB_SUGGESTIONS = [
 
 export default function MrJobNanny() {
     // Mode: 'job' or 'weight'
-    const [mode, setMode] = useState<'job' | 'weight'>('job');
+    type ModeType = 'job' | 'weight';
+    const [mode, setMode] = useState<ModeType>('job');
     // Mode label and description for UI
     const modeLabel = mode === 'job' ? 'Job & Career Assistant' : 'Weight Loss & Health Coach';
     const modeDesc = mode === 'job'
@@ -436,7 +436,7 @@ export default function MrJobNanny() {
                     text: `📧 Reminder: You have a job interview${rem.company ? ' at ' + rem.company : ''} today at ${rem.time}. Check your email for tips and encouragement! Good luck!`,
                     parentId: undefined
                   }
-                ]);
+                );
               }
             });
             // Save updated reminders
@@ -458,7 +458,7 @@ export default function MrJobNanny() {
     setVisitorNum(num);
     setMessages([
       { id: 0, from: "Mr. Job Nanny", text: `Welcome! You are visitor number ${num} on this browser. Ask me anything about this site, AI jobs, or events.`, parentId: undefined }
-    ]);
+    );
     nextId.current = 1;
     recordChatbotVisit();
 
@@ -537,7 +537,6 @@ export default function MrJobNanny() {
         "Dairy-free: Avoid milk, cheese, yogurt. Use plant milks (soy, almond, oat), and check labels for hidden dairy.\n\n" +
         "For allergies or medical diets, always read labels and consult a healthcare professional or dietitian for safe, balanced options."
       );
-    }
     // Vitamin and mineral info trigger
     if (msg.includes("vitamin") || msg.includes("mineral") || msg.includes("micronutrient") || msg.includes("nutrient deficiency") || msg.includes("what does vitamin")) {
       return (
@@ -557,7 +556,10 @@ export default function MrJobNanny() {
       const foodNames = Object.keys(FOOD_MACROS);
       const found = foodNames.find(food => msg.includes(food.split(" ")[0]));
       if (found) {
-        const macros = FOOD_MACROS[found];
+        let macros = undefined;
+        if (typeof found === 'string' && Object.keys(FOOD_MACROS).includes(found as string)) {
+          macros = FOOD_MACROS[found as keyof typeof FOOD_MACROS];
+        }
         return `A typical serving of ${found} contains about ${macros.protein}g protein, ${macros.carbs}g carbs, and ${macros.fat}g fat. (Values are approximate and can vary by preparation.)`;
       } else {
         return "I can provide macronutrient info (protein, carbs, fat) for common foods like apple, chicken breast, rice, bread, and more. Please ask about a specific food!";
@@ -576,7 +578,11 @@ export default function MrJobNanny() {
       const foodNames = Object.keys(FOOD_CALORIES);
       const found = foodNames.find(food => msg.includes(food.split(" ")[0]));
       if (found) {
-        return `A typical serving of ${found} contains about ${FOOD_CALORIES[found]} calories. (Values are approximate and can vary by preparation.)`;
+        if (typeof found === 'string' && Object.keys(FOOD_CALORIES).includes(found as string)) {
+          return `A typical serving of ${found} contains about ${FOOD_CALORIES[found as keyof typeof FOOD_CALORIES]} calories. (Values are approximate and can vary by preparation.)`;
+        } else {
+          return 'Food not found.';
+        }
       } else {
         return "I can provide calorie counts for common foods like apple, banana, egg, bread, chicken breast, rice, and more. Please ask about a specific food!";
       }
@@ -615,7 +621,7 @@ export default function MrJobNanny() {
             (q.includes("combine") && msg.includes("combine"))
           );
         });
-        if (fitnessFaq) return fitnessFaq.a + "\n\n(Always consult your doctor before starting any new health or weight program.)";
+        if ((fitnessFaq as any) && typeof (fitnessFaq as any).a === 'string') return (fitnessFaq as any).a + "\n\n(Always consult your doctor before starting any new health or weight program.)";
         if (msg.includes("workout") || msg.includes("exercise") || msg.includes("move") || msg.includes("active")) {
           return `Here's a creative workout idea: ${WORKOUT_TIPS[Math.floor(Math.random() * WORKOUT_TIPS.length)]}\n\n(Always consult your doctor before starting any new health or weight program.)`;
         }
@@ -640,7 +646,7 @@ export default function MrJobNanny() {
             const q = f.q.toLowerCase();
             return fitnessKeywords.some(k => q.includes(k) && msg.includes(k));
           });
-          if (fitnessFaq) return fitnessFaq.a;
+          if ((fitnessFaq as any) && typeof (fitnessFaq as any).a === 'string') return (fitnessFaq as any).a;
           // If no direct FAQ match, offer a random tip
           if (msg.includes("workout") || msg.includes("exercise") || msg.includes("move") || msg.includes("active")) {
             return `Here's a creative workout idea: ${WORKOUT_TIPS[Math.floor(Math.random() * WORKOUT_TIPS.length)]}`;
@@ -684,7 +690,7 @@ export default function MrJobNanny() {
         let missing: string[] = [];
         let suggestions = '';
         if (job) {
-          missing = job.skills.filter(s => !userSkills.includes(s.toLowerCase()));
+          missing = job.skills.filter((s: string) => !userSkills.includes(s.toLowerCase()));
           suggestions = missing.length > 0
             ? `To qualify for ${job.title}, consider building these skills: ${missing.join(', ')}.`
             : `You already have most of the key skills for ${job.title}! Consider strengthening your portfolio or getting certified.`;
@@ -837,8 +843,7 @@ export default function MrJobNanny() {
       // Easiest AI career question
       if ((msg.includes("easiest") || msg.includes("easy") || msg.includes("least training") || msg.includes("minimal training") || msg.includes("no experience") || msg.includes("beginner")) && (msg.includes("ai career") || msg.includes("ai job") || msg.includes("ai field") || msg.includes("ai work"))) {
         // Find the job with the lowest barrier to entry (based on pay and required skills)
-        const entryJobs = NEW_AI_JOBS.filter(job => job.pay && (job.pay.includes("40,000") || job.pay.includes("60,000") || job.title.toLowerCase().includes("trainer") || job.title.toLowerCase().includes("content creator")));
-          const entryJobs = aiJobs.filter(job => job.pay && (job.pay.includes("40,000") || job.pay.includes("60,000") || job.title.toLowerCase().includes("trainer") || job.title.toLowerCase().includes("content creator")));
+        const entryJobs = (aiJobs && aiJobs.length > 0 ? aiJobs : NEW_AI_JOBS).filter(job => job.pay && (job.pay.includes("40,000") || job.pay.includes("60,000") || job.title.toLowerCase().includes("trainer") || job.title.toLowerCase().includes("content creator")));
         if (entryJobs.length > 0) {
           const easiest = entryJobs[0];
           return `One of the easiest AI careers to start with minimal training is **${easiest.title}**. ${easiest.description} This role often requires only basic skills such as ${easiest.skills.join(", ")}, and you can get started with resources like: ${easiest.resources.join(", ")}. Typical pay ranges from ${easiest.pay}.`;
@@ -903,10 +908,10 @@ export default function MrJobNanny() {
       }
       // 5. Job suggestion
       const jobSuggestion = JOB_SUGGESTIONS.find(j => msg.includes(j.keyword));
-      if (jobSuggestion) return jobSuggestion.suggestion;
+      if ((jobSuggestion as any) && typeof (jobSuggestion as any).suggestion === 'string') return (jobSuggestion as any).suggestion;
       // 6. FAQ match (moved lower so job logic takes priority)
       const faq = FAQS.find(f => msg.includes(f.q.toLowerCase().split(" ")[0]));
-      if (faq) return faq.a;
+      if ((faq as any) && typeof (faq as any).a === 'string') return (faq as any).a;
       // 7. Fallback
       return "I'm here to help with questions about AI jobs, events, and resources! Try asking about careers, events, or training. For the latest news, ask 'What's new?'";
     }
@@ -921,7 +926,7 @@ export default function MrJobNanny() {
     setLoading(true);
     setTimeout(() => {
         // Pass quiz state to bot response
-        const botReply = getBotResponse(userMsg);
+        const botReply = String(getBotResponse(userMsg) ?? "");
       setMessages(msgs => [
         ...msgs,
         { id: nextId.current++, from: "Mr. Job Nanny", text: botReply, parentId: replyTo ?? undefined }
@@ -962,7 +967,7 @@ export default function MrJobNanny() {
         <h1 style={{ color: 'rgba(255,255,255,0.97)', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.18, paddingBottom: '0.18em' }}>{modeLabel}</h1>
         <div style={{ color: '#ece9fc', fontSize: '1.15rem', fontWeight: 500, marginTop: 10, textAlign: 'center', maxWidth: 500, textShadow: '0 1px 6px #18191a55' }}>{modeDesc}</div>
       </section>
-      {mode === 'weight' && (
+      {(mode as ModeType) === 'weight' && (
         <div style={{ color: '#7b2ff2', fontWeight: 700, marginBottom: 12, fontSize: 15 }}>
           <span role="img" aria-label="warning">⚠️</span> Always consult your doctor before starting any weight loss or exercise program, especially if you have health conditions or concerns.
         </div>
@@ -978,6 +983,7 @@ export default function MrJobNanny() {
         boxShadow: "0 2px 12px #6a1b9a22",
         maxWidth: 520,
         width: "100%",
+       
         textAlign: "center",
         letterSpacing: 0.1,
       }} role="status" aria-live="polite">
@@ -1039,7 +1045,7 @@ export default function MrJobNanny() {
               <br />
               {resumeDraft}
               <br />
-              <button onClick={() => { navigator.clipboard.writeText(resumeDraft); }} style={{ marginTop: 10, background: '#ffd700', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '6px 14px', border: 'none', cursor: 'pointer' }}>Copy to Clipboard</button>
+              <button onClick={() => { if (resumeDraft) navigator.clipboard.writeText(resumeDraft); }} style={{ marginTop: 10, background: '#ffd700', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '6px 14px', border: 'none', cursor: 'pointer' }}>Copy to Clipboard</button>
               {resumeFeedback.length > 0 && (
                 <div style={{ marginTop: 18, background: '#18191a', color: '#ffb300', borderRadius: 8, padding: 12, fontSize: 15 }}>
                   <strong>Mr. Job Nanny's Suggestions:</strong>
@@ -1068,24 +1074,24 @@ export default function MrJobNanny() {
               boxShadow: mode === 'job' ? '0 2px 8px #ffd70044' : 'none',
               transition: 'all 0.2s',
             }}
-            aria-pressed={mode === 'job'}
+            aria-pressed={(mode as ModeType) === 'job'}
           >
             Job & Career Assistant
           </button>
           <button
             onClick={() => setMode('weight')}
             style={{
-              background: mode === 'weight' ? '#ffd700' : '#fff',
-              color: mode === 'weight' ? '#232526' : '#7b2ff2',
+              background: (mode as ModeType) === 'weight' ? '#ffd700' : '#fff',
+              color: (mode as ModeType) === 'weight' ? '#232526' : '#7b2ff2',
               fontWeight: 700,
               borderRadius: 8,
               padding: '8px 18px',
               border: '2px solid #ffd700',
               cursor: 'pointer',
-              boxShadow: mode === 'weight' ? '0 2px 8px #ffd70044' : 'none',
+              boxShadow: (mode as ModeType) === 'weight' ? '0 2px 8px #ffd70044' : 'none',
               transition: 'all 0.2s',
             }}
-            aria-pressed={mode === 'weight'}
+            aria-pressed={(mode as ModeType) === 'weight'}
           >
             WellCoach: Health & Weight
           </button>
