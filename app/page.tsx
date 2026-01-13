@@ -105,9 +105,6 @@ export default function HomePage() {
   return (
     <React.Fragment>
         <>
-      <div style={bannerStyle}>
-        Want to help test our app? <span style={{ color: '#fff', textDecoration: 'underline' }}>We need Android testers!</span> Please join the group: <a href="https://play.google.com/store/apps/details?id=com.aiwilding.mrnannyapp" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline' }}>Mr Nanny App on Google Play</a>
-      </div>
       <main
         id="main-content"
         style={{
@@ -256,10 +253,6 @@ export default function HomePage() {
         </ul>
         <span style={{ color: '#7b2ff2', fontWeight: 600 }}>{t[lang].privacy}</span>
         <br /><br />
-          <div style={{ margin: '20px 0', padding: '10px', background: '#f3e8ff', borderRadius: '8px', color: '#4a148c', fontWeight: 500 }}>
-            Want to help test our app? <br />
-            <span style={{ color: '#6a1b9a' }}>We need Android testers!</span> Please join the group: <a href="https://play.google.com/store/apps/details?id=com.aiwilding.mrnannyapp" target="_blank" rel="noopener noreferrer" style={{ color: '#7b2ff2', textDecoration: 'underline' }}>Mr Nanny App on Google Play</a>
-          </div>
         <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>{t[lang].chat}</Link>
       </section>
         </>
