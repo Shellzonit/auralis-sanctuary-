@@ -37,7 +37,15 @@ function NewAIJobsPage() {
         }, [search, industry, location]);
 
         // Unique industries and locations for filter dropdowns
-        const industries = Array.from(new Set(jobs.flatMap(j => Array.isArray(j.industries) ? j.industries : (j.industries ? [j.industries] : [])))).filter(Boolean);
+        const industries = Array.from(
+          new Set(
+            (Array.isArray(jobs) ? jobs : []).flatMap(j =>
+              Array.isArray(j.industries)
+                ? j.industries
+                : (j.industries ? [j.industries] : [])
+            )
+          )
+        ).filter(Boolean);
         const locations = Array.from(new Set(jobs.map(j => j.location).filter(Boolean)));
 
         return (
