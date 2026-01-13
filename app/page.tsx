@@ -197,7 +197,7 @@ export default function HomePage() {
             <section style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
               {/* Sanctuary Logo as third image */}
               <div style={{ width: 320, height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff', borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222' }}>
-                <SanctuaryLogo width={180} height={180} />
+                <SanctuaryLogo />
               </div>
             </section>
             {/* ...existing code... */}
