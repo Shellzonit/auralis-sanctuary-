@@ -263,4 +263,3 @@ export default function HomePage() {
       </section>
     </main>
   </React.Fragment>
-}
