@@ -128,21 +128,6 @@ export default function HomePage() {
                 {t[lang].tagline}
               </div>
             </section>
-            {/* DevTest Chat Board */}
-            <section style={{
-              width: '100%',
-              maxWidth: 900,
-              margin: '0 auto 2rem auto',
-              background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)',
-              borderRadius: 18,
-              boxShadow: '0 2px 16px #7b2ff222',
-              padding: '2.5rem 2rem',
-            }}>
-              <h2 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', textShadow: '0 2px 8px #7b2ff288' }}>DevTest Chat Board</h2>
-              <p style={{ color: '#fff', marginBottom: '1.5rem', textShadow: '0 1px 6px #7b2ff288' }}>Leave a message or reply to help other developers with app testing, QA, and debugging.</p>
-              {/* @ts-ignore */}
-              {require('../components/ThreadedChat').default()}
-            </section>
             {/* ...existing code... */}
             <section style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '2rem' }}>
               <Image

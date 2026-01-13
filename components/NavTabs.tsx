@@ -22,6 +22,7 @@ export default function NavTabs() {
     { href: "/ai-news", label: "AI News" },
     { href: "/new-ai-jobs", label: "AI Jobs" },
     { href: "/admin/ai-resilient-jobs", label: "AI‑Resilient Jobs" },
+    { href: "/devtest-chat", label: "DevTest Chat" },
     { href: "/recovery", label: "Recovery Hub" },
     { href: "/hiring-events", label: "Hiring Event" },
     { href: "/training", label: "Training" },
