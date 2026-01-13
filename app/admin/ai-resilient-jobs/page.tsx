@@ -9,7 +9,7 @@ const AIResilientJobsPage = () => {
           width: '100%',
           maxWidth: 900,
           margin: '2.5rem auto 2rem auto',
-          background: 'linear-gradient(90deg, #fffbe8 0%, #f5f3fd 100%)',
+          background: 'linear-gradient(90deg, #fffbe8 60%, #f5f3fd 100%)',
           borderRadius: 28,
           boxShadow: '0 4px 32px #d4a85722',
           padding: '2.5rem 0 2.5rem 0',
@@ -22,8 +22,8 @@ const AIResilientJobsPage = () => {
       >
         <h1
           style={{
-            color: '#b26a00',
-            fontSize: 'clamp(2.8rem, 7vw, 4.5rem)',
+            color: 'var(--accent, #D4A857)',
+            fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
             fontWeight: 800,
             fontFamily: 'var(--font-geist-sans), Inter, Segoe UI, Arial, sans-serif',
             letterSpacing: '0.01em',
@@ -32,10 +32,10 @@ const AIResilientJobsPage = () => {
             margin: 0,
             width: '100%',
             overflow: 'hidden',
-            whiteSpace: 'nowrap',
+            whiteSpace: 'normal',
             position: 'relative',
             zIndex: 2,
-            textShadow: '0 2px 8px #fffbe8',
+            textShadow: '0 2px 8px #fff',
             lineHeight: 1.18,
             paddingBottom: '0.18em',
           }}
@@ -43,13 +43,14 @@ const AIResilientJobsPage = () => {
           AI‑Resilient Jobs
         </h1>
         <div style={{
-          color: '#b26a00',
-          fontSize: '1.25rem',
+          color: '#18191a',
+          fontSize: '1.15rem',
           fontWeight: 500,
           marginTop: 12,
           textAlign: 'center',
           maxWidth: 600,
-          textShadow: '0 1px 6px #fffbe8',
+          textShadow: '0 1px 6px #fff',
+          fontFamily: 'var(--font-geist-sans), Inter, Segoe UI, Arial, sans-serif',
         }}>
           Explore careers that are less likely to be automated or replaced by AI—roles that require hands-on skill, human empathy, and creative problem solving.
         </div>
