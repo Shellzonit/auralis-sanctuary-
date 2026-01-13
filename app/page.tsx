@@ -117,7 +117,7 @@ export default function HomePage() {
             <section style={{
               width: '100%',
               maxWidth: 900,
-              margin: '-2.5rem auto 0.5rem auto',
+              margin: '-3.5rem auto 0.5rem auto',
               background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)',
               borderRadius: 28,
               boxShadow: '0 4px 32px #18191a22',
