@@ -114,7 +114,7 @@ export default function AINewsPage() {
       }}>
         <h1
           style={{
-            color: 'rgba(24,25,26,0.97)',
+            color: '#fff',
             fontSize: 'clamp(2.8rem, 7vw, 4.5rem)',
             fontWeight: 800,
             fontFamily: 'var(--font-geist-sans), Inter, Segoe UI, Arial, sans-serif',
@@ -135,13 +135,13 @@ export default function AINewsPage() {
           AI News
         </h1>
         <div style={{
-          color: '#18191a',
+          color: '#fff',
           fontSize: '1.25rem',
           fontWeight: 500,
           marginTop: 12,
           textAlign: 'center',
           maxWidth: 600,
-          textShadow: '0 1px 6px #fff',
+          textShadow: '0 1px 6px #222',
         }}>
           Stay updated with the latest stories in Artificial Intelligence: data centers, programs, world news, and vlogs.
         </div>
