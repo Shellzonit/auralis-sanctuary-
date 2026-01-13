@@ -114,12 +114,11 @@ export default function AINewsPage() {
       }}>
         <h1
           style={{
-            color: 'rgba(255,255,255,0.97)',
+            color: 'rgba(24,25,26,0.97)',
             fontSize: 'clamp(2.8rem, 7vw, 4.5rem)',
             fontWeight: 800,
-            fontFamily: 'Playfair Display, Georgia, serif',
-            fontStyle: 'italic',
-            letterSpacing: '0.12em',
+            fontFamily: 'var(--font-geist-sans), Inter, Segoe UI, Arial, sans-serif',
+            letterSpacing: '0.01em',
             textTransform: 'uppercase',
             textAlign: 'center',
             margin: 0,
@@ -129,14 +128,6 @@ export default function AINewsPage() {
             position: 'relative',
             zIndex: 2,
             textShadow: '0 2px 8px #8882',
-            WebkitTextStroke: '1.5px #bba6f7',
-            filter: 'none',
-            background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            maskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, #fff 80%, transparent 100%)',
             lineHeight: 1.18,
             paddingBottom: '0.18em',
           }}
