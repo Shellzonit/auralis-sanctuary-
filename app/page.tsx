@@ -36,9 +36,7 @@ export default function HomePage() {
     'uk.png',
     'usa.png',
   ];
-      // ...existing code...
-    ];
-    // ...existing code...
+  // ...existing code...
 
     // Banner message for Android testers
     const bannerStyle = {
