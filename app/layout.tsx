@@ -47,9 +47,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        {/* Privacy-friendly analytics by Plausible */}
-        <script async src="https://plausible.io/js/pa-RM4NWG57Tj9DemJxAzip1.js"></script>
-        <script dangerouslySetInnerHTML={{ __html: `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()` }} />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="A mythic, minimalist creative sanctuary for AI jobs, creativity, and community." />
@@ -68,19 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="twitter:title" content="AI Wilding" />
         <meta name="twitter:description" content="A mythic, minimalist creative sanctuary for AI jobs, creativity, and community." />
         <meta name="twitter:image" content="/BCO.436bd64f-0acc-4437-a5c3-15269bfdf309.png" />
-        {/* Structured Data (JSON-LD) */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          'name': 'AI Wilding',
-          'url': 'https://www.aiwilding.com/',
-          'description': 'A mythic, minimalist creative sanctuary for AI jobs, creativity, and community.',
-          'publisher': {
-            '@type': 'Organization',
-            'name': 'Sanctuary',
-            'url': 'https://www.aiwilding.com/'
-          }
-        }) }} />
+        {/* Structured Data (JSON-LD) can be added via Next.js Head component or server-side for CSP compliance */}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
