@@ -10,6 +10,8 @@ import Image from "next/image";
 
 export default function HomePage() {
   const pathname = usePathname();
+  const [imgError, setImgError] = React.useState(false);
+  const [img2Error, setImg2Error] = React.useState(false);
   // List of images from public/
   const images = [
     'ai around the world 2.png',
@@ -186,42 +188,30 @@ export default function HomePage() {
             </section>
             {/* Homepage random images with alt text for accessibility */}
             <section style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '2rem' }}>
-              <Image
-                src={`/${img}`}
-                alt={img.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')}
-                width={600}
-                height={320}
-                style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.style.display = 'none';
-                  const fallback = document.createElement('div');
-                  fallback.textContent = 'Image not found: ' + img;
-                  fallback.style.color = '#ff1744';
-                  fallback.style.fontWeight = 'bold';
-                  fallback.style.fontSize = '1.2rem';
-                  fallback.style.margin = 'auto';
-                  e.target.parentNode.appendChild(fallback);
-                }}
-              />
-              <Image
-                src={`/${img2}`}
-                alt={img2.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')}
-                width={600}
-                height={320}
-                style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.style.display = 'none';
-                  const fallback = document.createElement('div');
-                  fallback.textContent = 'Image not found: ' + img2;
-                  fallback.style.color = '#ff1744';
-                  fallback.style.fontWeight = 'bold';
-                  fallback.style.fontSize = '1.2rem';
-                  fallback.style.margin = 'auto';
-                  e.target.parentNode.appendChild(fallback);
-                }}
-              />
+              {imgError ? (
+                <div style={{ color: '#ff1744', fontWeight: 'bold', fontSize: '1.2rem', margin: 'auto' }}>Image not found: {img}</div>
+              ) : (
+                <Image
+                  src={`/${img}`}
+                  alt={img.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')}
+                  width={600}
+                  height={320}
+                  style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }}
+                  onError={() => setImgError(true)}
+                />
+              )}
+              {img2Error ? (
+                <div style={{ color: '#ff1744', fontWeight: 'bold', fontSize: '1.2rem', margin: 'auto' }}>Image not found: {img2}</div>
+              ) : (
+                <Image
+                  src={`/${img2}`}
+                  alt={img2.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')}
+                  width={600}
+                  height={320}
+                  style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }}
+                  onError={() => setImg2Error(true)}
+                />
+              )}
             </section>
       {/* Feature Section */}
       <section style={{
