@@ -46,22 +46,24 @@ export default function HomePage() {
       background: '#ff1744',
       color: '#fff',
       fontWeight: 700,
-      return (
-        <>
-          <main
-            id="main-content"
-            style={{
-              marginTop: '60px',
-              minHeight: '100vh',
-              width: '100%',
-              background: '#f5f3fd',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-            role="main"
-            tabIndex={-1}
-          >
+    };
+
+    return (
+      <>
+        <main
+          id="main-content"
+          style={{
+            marginTop: '60px',
+            minHeight: '100vh',
+            width: '100%',
+            background: '#f5f3fd',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+          role="main"
+          tabIndex={-1}
+        >
             {/* Language Switcher */}
             <div style={{ position: 'absolute', top: 12, right: 24, zIndex: 100, display: 'flex', gap: 8 }}>
               <button onClick={() => setLang('en')} style={{ padding: '4px 12px', borderRadius: 6, border: '1px solid #7b2ff2', background: lang === 'en' ? '#7b2ff2' : '#fff', color: lang === 'en' ? '#fff' : '#7b2ff2', fontWeight: 600, cursor: 'pointer' }}>EN</button>
