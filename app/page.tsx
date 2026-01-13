@@ -262,4 +262,4 @@ export default function HomePage() {
         <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>{t[lang].chat}</Link>
       </section>
     </main>
-  
+
