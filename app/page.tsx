@@ -157,6 +157,10 @@ export default function HomePage() {
               >
                 AI Wilding
               </h1>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 16 }}>
+                <Image src="/mrnannybot.png" alt="Mr. Nanny Bot" width={120} height={120} style={{ borderRadius: '50%', boxShadow: '0 2px 16px #7b2ff222', marginBottom: 8 }} />
+                <div style={{ color: 'silver', fontWeight: 700, fontSize: '1.3rem', textAlign: 'center', textShadow: '0 1px 6px #222' }}>Home of Mr. Nanny</div>
+              </div>
               <div style={{
                 color: 'silver',
                 fontSize: '1.25rem',
