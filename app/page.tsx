@@ -2,6 +2,7 @@
 
 
 import Link from "next/link";
+import SanctuaryLogo from '../components/SanctuaryLogo';
 
 // Import Next.js Image component
 import React from 'react';
