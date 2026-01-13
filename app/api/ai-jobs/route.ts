@@ -1,17 +1,13 @@
-import { NextResponse } from "next/server";
-import { fetchAIJobs, addAIJob, updateAIJob, deleteAIJob } from "../../../lib/supabaseJobs";
-
-export async function GET(request: Request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const search = searchParams.get('search') || undefined;
-    const industry = searchParams.get('industry') || undefined;
-    const location = searchParams.get('location') || undefined;
-    const jobs = await fetchAIJobs(search, industry, location);
-    return NextResponse.json(jobs);
-  } catch (error) {
-    return NextResponse.json({ error: String(error) }, { status: 500 });
-  }
+export async function GET() {
+  return Response.json([
+    {
+      title: "AI Prompt Engineer",
+      company: "AIWilding Sanctuary",
+      location: "Remote",
+      updated: "2026-01-13"
+    }
+  ]);
+}
 }
 
 export async function POST(request: Request) {
