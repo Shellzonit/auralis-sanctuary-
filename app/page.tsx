@@ -115,11 +115,11 @@ export default function HomePage() {
             <section style={{
               width: '100%',
               maxWidth: 900,
-              margin: '1.5rem auto 1rem auto',
+              margin: '0.5rem auto 0.5rem auto',
               background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)',
               borderRadius: 28,
               boxShadow: '0 4px 32px #18191a22',
-              padding: '1.5rem 0 1.5rem 0',
+              padding: '0.75rem 0 0.75rem 0',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -157,6 +157,9 @@ export default function HomePage() {
               >
                 AI Wilding
               </h1>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 12 }}>
+                <Image src="/mrnannybot.png" alt="Mr. Nanny Bot" width={120} height={120} style={{ borderRadius: '50%', boxShadow: '0 2px 16px #7b2ff222', marginBottom: 8 }} />
+              </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 16 }}>
                 <Image src="/mrnannybot.png" alt="Mr. Nanny Bot" width={120} height={120} style={{ borderRadius: '50%', boxShadow: '0 2px 16px #7b2ff222', marginBottom: 8 }} />
                 <div style={{ color: 'silver', fontWeight: 700, fontSize: '1.3rem', textAlign: 'center', textShadow: '0 1px 6px #222' }}>Home of Mr. Nanny</div>
