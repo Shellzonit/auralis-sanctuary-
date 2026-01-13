@@ -204,17 +204,6 @@ export default function HomePage() {
             </section>
           </main>
         </>
-              ) : (
-                <Image
-                  src={`/${img2}`}
-                  alt={img2.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')}
-                  width={600}
-                  height={320}
-                  style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }}
-                  onError={() => setImg2Error(true)}
-                />
-              )}
-            </section>
       {/* Feature Section */}
       <section style={{
         background: '#fff',
