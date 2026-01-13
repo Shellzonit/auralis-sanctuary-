@@ -115,11 +115,11 @@ export default function HomePage() {
             <section style={{
               width: '100%',
               maxWidth: 900,
-              margin: '2.5rem auto 2rem auto',
+              margin: '1.5rem auto 1rem auto',
               background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)',
               borderRadius: 28,
               boxShadow: '0 4px 32px #18191a22',
-              padding: '2.5rem 0 2.5rem 0',
+              padding: '1.5rem 0 1.5rem 0',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
