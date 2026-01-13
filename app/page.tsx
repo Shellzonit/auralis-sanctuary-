@@ -158,13 +158,13 @@ export default function HomePage() {
                 AI Wilding
               </h1>
               <div style={{
-                color: '#18191a',
+                color: 'silver',
                 fontSize: '1.25rem',
                 fontWeight: 500,
                 marginTop: 12,
                 textAlign: 'center',
                 maxWidth: 600,
-                textShadow: '0 1px 6px #fff',
+                textShadow: '0 1px 6px #222',
               }}>
                 {t[lang].tagline}
               </div>
