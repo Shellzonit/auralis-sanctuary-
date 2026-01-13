@@ -104,6 +104,7 @@ export default function HomePage() {
 
   return (
     <React.Fragment>
+        <>
       <div style={bannerStyle}>
         Want to help test our app? <span style={{ color: '#fff', textDecoration: 'underline' }}>We need Android testers!</span> Please join the group: <a href="https://play.google.com/store/apps/details?id=com.aiwilding.mrnannyapp" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline' }}>Mr Nanny App on Google Play</a>
       </div>
@@ -261,5 +262,6 @@ export default function HomePage() {
           </div>
         <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>{t[lang].chat}</Link>
       </section>
-    </main>
+        </>
+}
 
