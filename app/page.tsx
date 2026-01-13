@@ -204,18 +204,5 @@ export default function HomePage() {
             </section>
           </main>
         </>
-            lang === 'en' ? 'Answer your questions about pay, qualifications, and career growth'
-            : lang === 'es' ? 'Responde tus preguntas sobre salario, requisitos y crecimiento profesional'
-            : lang === 'ja' ? '給与、資格、キャリア成長についての質問に答えます'
-            : lang === 'zh' ? '回答您关于薪资、资格和职业发展的问题'
-            : 'वेतन, योग्यता और करियर ग्रोथ के बारे में आपके सवालों का जवाब दें'
-          }</li>
-        </ul>
-        <span style={{ color: '#7b2ff2', fontWeight: 600 }}>{t[lang].privacy}</span>
-        <br /><br />
-        <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>{t[lang].chat}</Link>
-      </section>
-    </main>
-  </>);
 }
 
