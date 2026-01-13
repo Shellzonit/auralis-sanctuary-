@@ -2,7 +2,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { encryptFernet } from "../../lib/fernetEncrypt";
-import { NEW_AI_JOBS } from "../new-ai-jobs/page";
 import { fetchAIJobs } from "../../lib/supabaseJobs";
 
 // Macronutrient info for common foods (per serving)
