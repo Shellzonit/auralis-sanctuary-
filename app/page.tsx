@@ -78,6 +78,7 @@ export default function HomePage() {
     }
   };
   // ...existing code...
+  // Banner moved up and nanny image added below
 
     // Banner message for Android testers
     const bannerStyle: React.CSSProperties = {
@@ -115,7 +116,7 @@ export default function HomePage() {
             <section style={{
               width: '100%',
               maxWidth: 900,
-              margin: '0.5rem auto 0.5rem auto',
+              margin: '-2.5rem auto 0.5rem auto',
               background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)',
               borderRadius: 28,
               boxShadow: '0 4px 32px #18191a22',
@@ -190,6 +191,15 @@ export default function HomePage() {
                 height={200}
                 style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }}
                 onError={() => setImg2Error(true)}
+              />
+            </section>
+            <section style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+              <Image
+                src={'/nanny.png'}
+                alt={'Nanny'}
+                width={320}
+                height={200}
+                style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }}
               />
             </section>
             {/* ...existing code... */}
