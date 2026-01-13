@@ -10,9 +10,9 @@ import Image from "next/image";
 
 export default function HomePage() {
   const pathname = usePathname();
+  const [lang, setLang] = React.useState('en');
   const [imgError, setImgError] = React.useState(false);
   const [img2Error, setImg2Error] = React.useState(false);
-  // List of images from public/
   const images = [
     'ai around the world 2.png',
     'ai around the world.png',
@@ -38,6 +38,45 @@ export default function HomePage() {
     'uk.png',
     'usa.png',
   ];
+  const [img, setImg] = React.useState(images[0]);
+  const [img2, setImg2] = React.useState(images[1]);
+  const t: Record<string, any> = {
+    en: {
+      tagline: "A mythic, minimalist creative sanctuary for AI jobs, creativity, and community.",
+      meet: "Meet Mr. Job Nanny, your AI career guide:",
+      desc: "Get personalized job advice, resume feedback, and career tips in your language.",
+      privacy: "Your privacy is protected. No data is shared.",
+      chat: "Try the Chatbot Demo"
+    },
+    es: {
+      tagline: "Un santuario creativo mítico y minimalista para empleos de IA, creatividad y comunidad.",
+      meet: "Conoce a Mr. Job Nanny, tu guía de carrera IA:",
+      desc: "Obtén consejos laborales personalizados, retroalimentación de currículum y tips de carrera en tu idioma.",
+      privacy: "Tu privacidad está protegida. No se comparte ningún dato.",
+      chat: "Prueba el Chatbot Demo"
+    },
+    ja: {
+      tagline: "AIの仕事、創造性、コミュニティのための神話的でミニマリストなクリエイティブサンクチュアリ。",
+      meet: "AIキャリアガイドMr. Job Nannyに会いましょう：",
+      desc: "あなたの言語でパーソナライズされた仕事のアドバイス、履歴書のフィードバック、キャリアのヒントを取得。",
+      privacy: "あなたのプライバシーは保護されています。データは共有されません。",
+      chat: "チャットボットデモを試す"
+    },
+    zh: {
+      tagline: "AI工作、创意和社区的神话极简主义创意圣地。",
+      meet: "认识您的AI职业向导Mr. Job Nanny：",
+      desc: "用您的语言获得个性化的求职建议、简历反馈和职业提示。",
+      privacy: "您的隐私受到保护。不会共享任何数据。",
+      chat: "试试聊天机器人演示"
+    },
+    hi: {
+      tagline: "एआई नौकरियों, रचनात्मकता और समुदाय के लिए एक पौराणिक, न्यूनतम रचनात्मक अभयारण्य।",
+      meet: "अपने एआई करियर गाइड Mr. Job Nanny से मिलें:",
+      desc: "अपनी भाषा में व्यक्तिगत नौकरी सलाह, रिज़्यूमे फीडबैक और करियर टिप्स प्राप्त करें।",
+      privacy: "आपकी गोपनीयता सुरक्षित है। कोई डेटा साझा नहीं किया जाता।",
+      chat: "चैटबोट डेमो आज़माएं"
+    }
+  };
   // ...existing code...
 
     // Banner message for Android testers
@@ -202,6 +241,6 @@ export default function HomePage() {
               <br /><br />
               <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>{t[lang].chat}</Link>
             </section>
-	  </main>
-    </>
+          </main>
+        </>
 
