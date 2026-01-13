@@ -1,62 +1,23 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabaseClient";
 
-export const NEW_AI_JOBS = [
-    {
-      title: "Secure AI/ML Delivery",
-      description: "Deploy, maintain, and scale ML models for the Department of Defense. Implement MLOps practices and support AI/ML solutions.",
-      skills: ["AI/ML", "MLOps", "Data Science", "Model Deployment"],
-      industries: ["Defense", "Government", "AI"],
-      employers: ["General Dynamics Information Technology"],
-      resources: [],
-      pay: "$148,750 - $201,250/year",
-      location: "Offutt AFB, NE (Onsite)",
-      updated: "Jan 11, 2026"
-    },
-    {
-      title: "Human Language Technology Developer",
-      description: "Perform HLT tasks as part of a large language services program. Experience with language technology and the intelligence community.",
-      skills: ["HLT", "Language Technology", "AI"],
-      industries: ["Government", "AI"],
-      employers: ["Leidos"],
-      resources: [],
-      pay: "$92,300 - $166,850/year",
-      location: "Reston, VA (Onsite)",
-      updated: "Jan 11, 2026"
-    },
-    {
-      title: "AI Customer Experience Manager",
-      description: "Drive the evolution of AI-powered support within the Customer Experience Team.",
-      skills: ["AI", "Customer Experience", "Support"],
-      industries: ["Tech", "AI"],
-      employers: ["DraftKings"],
-      resources: [],
-      pay: "$84,000 - $105,000/year",
-      location: "Boston, MA (Onsite)",
-      updated: "Jan 11, 2026"
-    },
-    {
+function NewAIJobsPage() {
+  const [jobs, setJobs] = useState<any[]>([]);
+  const [search, setSearch] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [location, setLocation] = useState("");
 
-      "use client";
-      import React, { useEffect, useState } from "react";
-      import { supabase } from "../../lib/supabaseClient";
-
-      function NewAIJobsPage() {
-        const [jobs, setJobs] = useState<any[]>([]);
-        const [search, setSearch] = useState("");
-        const [industry, setIndustry] = useState("");
-        const [location, setLocation] = useState("");
-
-        // Fetch jobs from API with search and filters
-        const fetchJobs = async (params = {}) => {
-          const url = new URL("/api/ai-jobs", window.location.origin);
-          if (search) url.searchParams.set("search", search);
-          if (industry) url.searchParams.set("industry", industry);
-          if (location) url.searchParams.set("location", location);
-          const res = await fetch(url.toString());
-          const data = await res.json();
-          setJobs(data || []);
-        };
+  // Fetch jobs from API with search and filters
+  const fetchJobs = async (params = {}) => {
+    const url = new URL("/api/ai-jobs", window.location.origin);
+    if (search) url.searchParams.set("search", search);
+    if (industry) url.searchParams.set("industry", industry);
+    if (location) url.searchParams.set("location", location);
+    const res = await fetch(url.toString());
+    const data = await res.json();
+    setJobs(data || []);
+  };
 
         useEffect(() => {
           fetchJobs();
