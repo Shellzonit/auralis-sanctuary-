@@ -195,8 +195,8 @@ export default function HomePage() {
             </section>
             <section style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
               <Image
-                src={'/nanny.png'}
-                alt={'Nanny'}
+                src={'/nannybot.png'}
+                alt={'Nanny Bot'}
                 width={320}
                 height={200}
                 style={{ borderRadius: 16, boxShadow: '0 2px 16px #7b2ff222', objectFit: 'cover', maxWidth: '100%', height: 'auto' }}
