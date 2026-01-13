@@ -76,7 +76,7 @@ export default function DevTestChat() {
                 {msg.author} • {new Date(msg.created_at).toLocaleString()}
               </div>
               <div className="text-red-100 bg-[#222] p-3 rounded-lg shadow">
-                {msg.content || msg.text}
+                {msg.content}
               </div>
             </div>
           ))
