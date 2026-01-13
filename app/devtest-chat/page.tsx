@@ -4,8 +4,8 @@ import React, { useState } from "react";
 
 export default function DevTestSignUp() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [app, setApp] = useState("");
+  const [selectedApp, setSelectedApp] = useState("");
+  const [testType, setTestType] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -34,24 +34,35 @@ export default function DevTestSignUp() {
             />
           </label>
           <label style={{ fontWeight: 600 }}>
-            Email
-            <input
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+            Select App/Project
+            <select
+              value={selectedApp}
+              onChange={e => setSelectedApp(e.target.value)}
               required
               style={{ width: "100%", padding: 8, marginTop: 4, borderRadius: 6, border: "1px solid #ccc" }}
-            />
+            >
+              <option value="" disabled>Select an app/project</option>
+              <option value="Resume Wizard">Resume Wizard</option>
+              <option value="AI Wilding">AI Wilding</option>
+              <option value="Job Nanny">Job Nanny</option>
+              <option value="Other">Other</option>
+            </select>
           </label>
           <label style={{ fontWeight: 600 }}>
-            App/Project Name
-            <input
-              type="text"
-              value={app}
-              onChange={e => setApp(e.target.value)}
+            Type of Testing
+            <select
+              value={testType}
+              onChange={e => setTestType(e.target.value)}
               required
               style={{ width: "100%", padding: 8, marginTop: 4, borderRadius: 6, border: "1px solid #ccc" }}
-            />
+            >
+              <option value="" disabled>Select testing type</option>
+              <option value="Usability">Usability</option>
+              <option value="Performance">Performance</option>
+              <option value="Security">Security</option>
+              <option value="Accessibility">Accessibility</option>
+              <option value="Other">Other</option>
+            </select>
           </label>
           <button type="submit" style={{ background: "#7b2ff2", color: "#fff", fontWeight: 700, padding: "10px 0", border: "none", borderRadius: 6, cursor: "pointer", fontSize: "1rem" }}>
             Sign Up
