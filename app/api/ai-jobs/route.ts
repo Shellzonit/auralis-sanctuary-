@@ -2,7 +2,26 @@ export const runtime = 'nodejs';
 
 import { fetchAIJobs } from "../../../lib/supabaseJobs";
 
+function checkSupabaseKeys() {
+  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) {
+    return { valid: false, message: 'Supabase URL or key is missing.' };
+  }
+  if (!url.startsWith('https://') || !url.includes('.supabase.co')) {
+    return { valid: false, message: 'Supabase URL format is invalid.' };
+  }
+  if (!key.startsWith('eyJ')) {
+    return { valid: false, message: 'Supabase key format is invalid.' };
+  }
+  return { valid: true, message: 'Supabase keys look valid.' };
+}
+
 export async function GET(request: Request) {
+  const integrity = checkSupabaseKeys();
+  if (!integrity.valid) {
+    return Response.json({ error: integrity.message }, { status: 500 });
+  }
   try {
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search') || undefined;
