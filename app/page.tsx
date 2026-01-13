@@ -239,9 +239,11 @@ export default function HomePage() {
               </ul>
               <span style={{ color: '#7b2ff2', fontWeight: 600 }}>{t[lang].privacy}</span>
               <br /><br />
-              <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>{t[lang].chat}</Link>
-            </section>
+                <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>{t[lang].chat}</Link>
+              </section>
             </main>
+          );
+        }
 
 
 
