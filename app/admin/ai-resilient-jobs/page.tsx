@@ -9,7 +9,7 @@ const AIResilientJobsPage = () => {
           width: '100%',
           maxWidth: 900,
           margin: '2.5rem auto 2rem auto',
-          background: 'linear-gradient(90deg, #fffbe8 60%, #f5f3fd 100%)',
+          background: 'linear-gradient(90deg, #ede7f6 60%, #f5f3fd 100%)',
           borderRadius: 28,
           boxShadow: '0 4px 32px #d4a85722',
           padding: '2.5rem 0 2.5rem 0',
