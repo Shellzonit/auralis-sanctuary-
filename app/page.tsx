@@ -103,8 +103,7 @@ export default function HomePage() {
   };
 
   return (
-    <React.Fragment>
-        <>
+    <>
       <main
         id="main-content"
         style={{
@@ -255,6 +254,7 @@ export default function HomePage() {
         <br /><br />
         <Link href="/chatbot-demo" style={{ color: '#6a1b9a', fontWeight: 700, textDecoration: 'underline', fontSize: '1.1rem' }}>{t[lang].chat}</Link>
       </section>
-        </>
+    </main>
+  </>);
 }
 
