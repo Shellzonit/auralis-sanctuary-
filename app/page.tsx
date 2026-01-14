@@ -53,23 +53,8 @@ export default function HomePage() {
       chat: "Try the Chatbot Demo"
     },
     es: {
-      import HeroSection from "../components/HeroSection";
-      import OperatorGallery from "../components/OperatorGallery";
-
-      export default function HomePage() {
-        return (
-          <main style={{ minHeight: '100vh', width: '100%', background: '#f5f3fd', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <HeroSection />
-            <section style={{ maxWidth: 700, margin: '2rem auto', textAlign: 'center' }}>
-              <h2 style={{ fontSize: '2rem', fontWeight: 600, marginBottom: 12 }}>Meet Your Operators</h2>
-              <p style={{ color: '#4a5568', fontSize: '1.1rem' }}>
-                Each operator brings a unique style and support. Choose the one that fits your needs, or explore them all.
-              </p>
-            </section>
-            <OperatorGallery />
-          </main>
-        );
-      }
+      tagline: "Un santuario creativo mítico y minimalista para trabajos de IA, creatividad y comunidad.",
+      meet: "Conoce a Mr. Job Nanny, tu guía de carrera IA:",
+      desc: "Obtén consejos personalizados de trabajo, retroalimentación de currículum y tips de carrera en tu idioma.",
       privacy: "Tu privacidad está protegida. No se comparte ningún dato.",
-
       chat: "Prueba el Chatbot Demo"
