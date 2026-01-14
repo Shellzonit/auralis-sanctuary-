@@ -1,13 +1,14 @@
 "use client";
 
 
+
 import Link from "next/link";
 import SanctuaryLogo from '../components/SanctuaryLogo';
-
-// Import Next.js Image component
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import Image from "next/image";
+import HeroSection from './hero-preview/HeroSection';
+import OperatorGallery from './hero-preview/OperatorGallery';
 
 export default function HomePage() {
   const pathname = usePathname();
@@ -105,6 +106,9 @@ export default function HomePage() {
           role="main"
           tabIndex={-1}
         >
+          {/* New Hero Section and Operator Gallery */}
+          <HeroSection />
+          <OperatorGallery />
             {/* Language Switcher */}
             <div style={{ position: 'absolute', top: 12, right: 24, zIndex: 100, display: 'flex', gap: 8 }}>
               <button onClick={() => setLang('en')} style={{ padding: '4px 12px', borderRadius: 6, border: '1px solid #7b2ff2', background: lang === 'en' ? '#7b2ff2' : '#fff', color: lang === 'en' ? '#fff' : '#7b2ff2', fontWeight: 600, cursor: 'pointer' }}>EN</button>
