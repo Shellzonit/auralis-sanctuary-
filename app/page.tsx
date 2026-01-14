@@ -1,60 +1,106 @@
 "use client";
 
-
-
-import Link from "next/link";
-import SanctuaryLogo from '../components/SanctuaryLogo';
-import React from 'react';
-import { usePathname } from 'next/navigation';
-import Image from "next/image";
-import HeroSection from './hero-preview/HeroSection';
-import OperatorGallery from './hero-preview/OperatorGallery';
-import AnnaOperatorCard from '../components/AnnaOperatorCard';
-import OperatorCards from '../components/OperatorCards';
+import AnnaOperatorCard from "../components/AnnaOperatorCard";
 
 export default function HomePage() {
-  const pathname = usePathname();
-  const [lang, setLang] = React.useState('en');
-  const [imgError, setImgError] = React.useState(false);
-  const [img2Error, setImg2Error] = React.useState(false);
-  const images = [
-    'ai around the world 2.png',
-    'ai around the world.png',
-    'ai homepage 3.png',
-    'ai homepage.png',
-    'Ai wilding (2).png',
-    'Ai wilding.png',
-    'background.png',
-    'BCO.436bd64f-0acc-4437-a5c3-15269bfdf309.png',
-    'big cities.png',
-    'canada graph.png',
-    'china.png',
-    'education.png',
-    'educational outlook.png',
-    'healthy.png',
-    'icon.png',
-    'japan.png',
-    'job growth.png',
-    'Mr Nanny.png',
-    'Resume.png',
-    'states 2.png',
-    'states.png',
-    'uk.png',
-    'usa.png',
-  ];
-  const [img, setImg] = React.useState(images[0]);
-  const [img2, setImg2] = React.useState(images[1]);
-  const t: Record<string, any> = {
-    en: {
-      tagline: "A mythic, minimalist creative sanctuary for AI jobs, creativity, and community.",
-      meet: "Meet Mr. Job Nanny, your AI career guide:",
-      desc: "Get personalized job advice, resume feedback, and career tips in your language.",
-      privacy: "Your privacy is protected. No data is shared.",
-      chat: "Try the Chatbot Demo"
-    },
-    es: {
-      tagline: "Un santuario creativo mítico y minimalista para trabajos de IA, creatividad y comunidad.",
-      meet: "Conoce a Mr. Job Nanny, tu guía de carrera IA:",
-      desc: "Obtén consejos personalizados de trabajo, retroalimentación de currículum y tips de carrera en tu idioma.",
-      privacy: "Tu privacidad está protegida. No se comparte ningún dato.",
-      chat: "Prueba el Chatbot Demo"
+  return (
+    <main
+      style={{
+        minHeight: "100vh",
+        background: "#f5f3fd",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "0 1rem",
+      }}
+    >
+      <section
+        style={{
+          width: "100%",
+          maxWidth: 700,
+          margin: "3rem auto 2rem auto",
+          background:
+            "linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)",
+          borderRadius: 24,
+          boxShadow: "0 4px 32px #18191a22",
+          padding: "2.5rem 0 2rem 0",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+        }}
+      >
+        <h1
+          style={{
+            color: "rgba(255,255,255,0.97)",
+            fontSize: "2.8rem",
+            fontWeight: 900,
+            fontFamily: "Playfair Display, Georgia, serif",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            textAlign: "center",
+            margin: 0,
+            width: "100%",
+            position: "relative",
+            zIndex: 2,
+            textShadow: "0 2px 8px #8882",
+            WebkitTextStroke: "1.5px #bba6f7",
+            filter: "none",
+            background:
+              "linear-gradient(180deg, #fff 60%, #e0d6f7 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            lineHeight: 1.18,
+            paddingBottom: "0.18em",
+          }}
+        >
+          Homepage
+        </h1>
+        <div
+          style={{
+            color: "#ece9fc",
+            fontSize: "1.25rem",
+            fontWeight: 600,
+            marginTop: 16,
+            textAlign: "center",
+            maxWidth: 520,
+            textShadow: "0 1px 6px #18191a55",
+          }}
+        >
+          Welcome to Sanctuary — your creative career hub for the AI era.
+        </div>
+      </section>
+      <section style={{ margin: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: 16, color: '#7b2ff2' }}>Featured Operator</h2>
+        <AnnaOperatorCard />
+      </section>
+      <section
+        style={{
+          background: "#fff",
+          borderRadius: 16,
+          padding: "32px 40px",
+          maxWidth: 600,
+          margin: "0 auto 48px auto",
+          boxShadow: "0 2px 16px #18191a22",
+          color: "#18191a",
+          textAlign: "center",
+          fontSize: "1.12rem",
+          lineHeight: 1.7,
+          border: "1.5px solid #e0d6f7",
+        }}
+      >
+        <div style={{ marginBottom: 18 }}>
+          <strong style={{ color: "#7b2ff2", fontSize: "1.15rem" }}>
+            Your Creative AI Career Platform
+          </strong>
+        </div>
+        <div>
+          Explore AI jobs, mock interviews, resume tools, events, and a vibrant community — all in one place.
+        </div>
+      </section>
+    </main>
+  );
+}
