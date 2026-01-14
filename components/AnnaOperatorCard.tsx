@@ -12,7 +12,7 @@ export default function AnnaOperatorCard() {
   const [chat, setChat] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const sendMessage = async (e) => {
+  const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
     setLoading(true);
