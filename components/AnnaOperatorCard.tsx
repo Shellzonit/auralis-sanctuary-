@@ -3,7 +3,7 @@ import React from "react";
 const operatorData = [
   {
     name: "Anna — Meal Bot",
-    image: "/images/operators/anna.jpeg"
+    image: "/images/operators/anna.jpeg.png"
   }
 ];
 
