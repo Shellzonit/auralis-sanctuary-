@@ -7,40 +7,45 @@ const fallbackImg = "/icon.png";
 
 const operatorData = [
   {
-    name: "William",
-    desc: "A thoughtful and strategic operator, ready to assist with your needs.",
-    img: "/William.png"
+    name: "Mr. Nanny",
+    img: "/mrnanny.png",
+    desc: "Gentle structure and supportive care. A steady hand for daily balance."
   },
   {
-    name: "Anna",
-    desc: "Creative and supportive, Anna brings warmth and insight to every interaction.",
-    img: "/Anna.png"
+    name: "Relocation Bot",
+    img: "/relocationbot.png",
+    desc: "Guidance and support for your next big move."
   },
   {
     name: "Donna",
-    desc: "Donna offers guidance and clarity, helping you navigate any challenge.",
-    img: "/Donna.png"
+    img: "/donna.png",
+    desc: "Offers clarity and wisdom for any challenge."
+  },
+  {
+    name: "Anna",
+    img: "/anna.png",
+    desc: "Creative meal ideas and nurturing support."
+  },
+  {
+    name: "William Bot",
+    img: "/williambot.png",
+    desc: "Strategic, thoughtful, and ready to assist."
+  },
+  {
+    name: "Entertainment Bot",
+    img: "/entertainmentbot.png",
+    desc: "Bringing joy, games, and bright moments."
   },
   {
     name: "Silver",
-    desc: "A calm and steady presence, Silver ensures a safe and welcoming space.",
-    img: "/silver.png"
+    img: "/silver.png",
+    desc: "A calm and steady presence for your sanctuary."
   },
   {
-    name: "William Games",
-    desc: "Bringing fun and engagement, William Games is your go-to for entertainment.",
-    img: "/William Games.png"
+    name: "Friendbot Shaunia",
+    img: "/friendbot-shaunia.png",
+    desc: "Warm, supportive, and emotionally present."
   },
-  {
-    name: "Carlotta",
-    desc: "Elegant and wise, Carlotta provides structure and emotional rhythm.",
-    img: "/Carlotta.png"
-  },
-  {
-    name: "Shaunia",
-    desc: "Shaunia is here to support and uplift, offering a friendly and helpful hand.",
-    img: "/Shaunia.png"
-  }
 ];
 
 export default function Home() {
