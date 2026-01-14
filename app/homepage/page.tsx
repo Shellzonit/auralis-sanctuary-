@@ -8,42 +8,42 @@ const fallbackImg = "/icon.png";
 const operatorData = [
   {
     name: "Mr. Nanny",
-    img: "/mrnanny.png",
+    img: "/images/operators/mrnanny.png",
     desc: "Gentle structure and supportive care. A steady hand for daily balance."
   },
   {
     name: "Relocation Bot",
-    img: "/relocationbot.png",
+    img: "/images/operators/relocationbot.png",
     desc: "Guidance and support for your next big move."
   },
   {
     name: "Donna",
-    img: "/donna.png",
+    img: "/images/operators/donna.png",
     desc: "Offers clarity and wisdom for any challenge."
   },
   {
     name: "Anna",
-    img: "/anna.png",
+    img: "/images/operators/anna.png",
     desc: "Creative meal ideas and nurturing support."
   },
   {
     name: "William Bot",
-    img: "/williambot.png",
+    img: "/images/operators/williambot.png",
     desc: "Strategic, thoughtful, and ready to assist."
   },
   {
     name: "Entertainment Bot",
-    img: "/entertainmentbot.png",
+    img: "/images/operators/entertainmentbot.png",
     desc: "Bringing joy, games, and bright moments."
   },
   {
     name: "Silver",
-    img: "/silver.png",
+    img: "/images/operators/silver.png",
     desc: "A calm and steady presence for your sanctuary."
   },
   {
     name: "Friendbot Shaunia",
-    img: "/friendbot-shaunia.png",
+    img: "/images/operators/friendbot-shaunia.png",
     desc: "Warm, supportive, and emotionally present."
   },
 ];
