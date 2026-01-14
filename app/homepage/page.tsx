@@ -23,7 +23,7 @@ const operatorData = [
   },
   {
     name: "Anna",
-    img: "/images/operators/anna.png",
+    img: "/images/operators/anna.jpeg",
     desc: "Creative meal ideas and nurturing support."
   },
   {
