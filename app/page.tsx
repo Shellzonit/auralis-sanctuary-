@@ -1,6 +1,8 @@
 "use client";
 
+
 import AnnaOperatorCard from "../components/AnnaOperatorCard";
+import BotGallery from "../components/BotGallery";
 
 export default function HomePage() {
   return (
@@ -76,6 +78,12 @@ export default function HomePage() {
       <section style={{ margin: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: 16, color: '#7b2ff2' }}>Featured Operator</h2>
         <AnnaOperatorCard />
+      </section>
+      <section style={{ width: '100%', margin: '2rem 0' }}>
+        <h2 style={{ fontSize: '1.7rem', fontWeight: 700, margin: '0 0 1.5rem 0', color: '#18191a', textAlign: 'center' }}>
+          Meet the Other Bots
+        </h2>
+        <BotGallery />
       </section>
       <section
         style={{
