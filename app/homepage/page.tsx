@@ -7,34 +7,39 @@ const fallbackImg = "/icon.png";
 
 const operatorData = [
   {
-    name: "Friend Bot",
-    desc: "Warm, supportive, and emotionally present. A gentle companion for grounding and conversation.",
+    name: "William",
+    desc: "A thoughtful and strategic operator, ready to assist with your needs.",
+    img: "/Images/operators/William.png"
+  },
+  {
+    name: "Anna",
+    desc: "Creative and supportive, Anna brings warmth and insight to every interaction.",
+    img: "/Images/operators/Anna.png"
+  },
+  {
+    name: "Donna",
+    desc: "Donna offers guidance and clarity, helping you navigate any challenge.",
     img: "/Images/operators/Donna.png"
   },
   {
-    name: "Entertainment Bot",
-    desc: "Light, playful, and creative. Bringing joy, games, and bright moments into your day.",
+    name: "Silver",
+    desc: "A calm and steady presence, Silver ensures a safe and welcoming space.",
+    img: "/Images/operators/silver.png"
+  },
+  {
+    name: "William Games",
+    desc: "Bringing fun and engagement, William Games is your go-to for entertainment.",
     img: "/Images/operators/William Games.png"
   },
   {
     name: "Carlotta",
-    desc: "Elegant, structured, and wise. A grounding presence with refined emotional rhythm.",
+    desc: "Elegant and wise, Carlotta provides structure and emotional rhythm.",
     img: "/Images/operators/Carlotta.png"
   },
   {
-    name: "Mr. Nanny",
-    desc: "Soft structure, gentle guidance, and supportive care. A steady hand for daily balance.",
-    img: "/Images/operators/Mr.Nanny.png"
-  },
-  {
-    name: "Anna the Meal Bot",
-    desc: "Calm, creative meal ideas and cooking support. Nourishment with warmth and ease.",
-    img: "/Images/operators/Anna.png"
-  },
-  {
-    name: "Security Bot",
-    desc: "Clear boundaries, emotional safety, and protective logic. A guardian presence in your Sanctuary.",
-    img: "/Images/operators/silver.png"
+    name: "Shaunia",
+    desc: "Shaunia is here to support and uplift, offering a friendly and helpful hand.",
+    img: "/Images/operators/Shaunia.png"
   }
 ];
 
