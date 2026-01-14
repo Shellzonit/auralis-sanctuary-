@@ -9,37 +9,37 @@ const operatorData = [
   {
     name: "William",
     desc: "A thoughtful and strategic operator, ready to assist with your needs.",
-    img: "/Images/operators/William.png"
+    img: "/William.png"
   },
   {
     name: "Anna",
     desc: "Creative and supportive, Anna brings warmth and insight to every interaction.",
-    img: "/Images/operators/Anna.png"
+    img: "/Anna.png"
   },
   {
     name: "Donna",
     desc: "Donna offers guidance and clarity, helping you navigate any challenge.",
-    img: "/Images/operators/Donna.png"
+    img: "/Donna.png"
   },
   {
     name: "Silver",
     desc: "A calm and steady presence, Silver ensures a safe and welcoming space.",
-    img: "/Images/operators/silver.png"
+    img: "/silver.png"
   },
   {
     name: "William Games",
     desc: "Bringing fun and engagement, William Games is your go-to for entertainment.",
-    img: "/Images/operators/William Games.png"
+    img: "/William Games.png"
   },
   {
     name: "Carlotta",
     desc: "Elegant and wise, Carlotta provides structure and emotional rhythm.",
-    img: "/Images/operators/Carlotta.png"
+    img: "/Carlotta.png"
   },
   {
     name: "Shaunia",
     desc: "Shaunia is here to support and uplift, offering a friendly and helpful hand.",
-    img: "/Images/operators/Shaunia.png"
+    img: "/Shaunia.png"
   }
 ];
 
