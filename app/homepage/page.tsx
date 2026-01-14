@@ -1,6 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+
+const fallbackImg = "/icon.png";
 
 const operatorData = [
   {
@@ -55,26 +58,30 @@ export default function Home() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Operator Card */}
-          {operatorData.map((op, index) => (
-            <div
-              key={index}
-              className="bg-[#14171d] rounded-2xl p-8 shadow-xl shadow-black/40 hover:shadow-black/60 transition-all border border-white/5 flex flex-col items-center"
-            >
-              <Image
-                src={op.img}
-                alt={op.name}
-                width={100}
-                height={100}
-                className="rounded-full mb-5 object-cover border border-gray-700"
-              />
-              <h3 className="text-xl font-semibold text-gray-100 mb-3 tracking-tight">
-                {op.name}
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed text-center">
-                {op.desc}
-              </p>
-            </div>
-          ))}
+          {operatorData.map((op, index) => {
+            const [imgSrc, setImgSrc] = useState(op.img);
+            return (
+              <div
+                key={index}
+                className="bg-[#14171d] rounded-2xl p-8 shadow-xl shadow-black/40 hover:shadow-black/60 transition-all border border-white/5 flex flex-col items-center"
+              >
+                <Image
+                  src={imgSrc}
+                  alt={op.name}
+                  width={100}
+                  height={100}
+                  className="rounded-full mb-5 object-cover border border-gray-700"
+                  onError={() => setImgSrc(fallbackImg)}
+                />
+                <h3 className="text-xl font-semibold text-gray-100 mb-3 tracking-tight">
+                  {op.name}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed text-center">
+                  {op.desc}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </section>
     </main>
