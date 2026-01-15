@@ -1,30 +1,37 @@
 
-import React, { useState } from "react";
 
 
-export default function ChatPage() {
+import React, { useState, useEffect } from "react";
+import { io } from "socket.io-client";
+
+
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const [bot, setBot] = useState("anna");
+  const [socket, setSocket] = useState(null);
 
-  async function sendMessage() {
-    if (!input.trim()) return;
+  const botOptions = [
+    "anna", "donna", "shaunia", "mrnanny", "relocationbot", "silver", "william", "entertainmentbot"
+  ];
 
-    // Add user message to chat
-    const newMessages = [...messages, { sender: "user", text: input }];
-    setMessages(newMessages);
+  useEffect(() => {
+    const newSocket = io("http://localhost:5000");
+    setSocket(newSocket);
+    return () => newSocket.close();
+  }, []);
 
-    // Send to FastAPI backend
-    const response = await fetch("http://localhost:8000/chat/anna", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ author: "user", text: input }),
-    });
+  useEffect(() => {
+    if (!socket) return;
+    const handler = (msg) => {
+      setMessages((prev) => [...prev, msg]);
+    };
+    socket.on("receive_message", handler);
+    return () => socket.off("receive_message", handler);
+  }, [socket]);
 
-    const data = await response.json();
-
-    // Add Anna's reply
-    setMessages([...newMessages, { sender: "anna", text: data.bot_reply }]);
-
+  function sendMessage() {
+    if (!input.trim() || !socket) return;
+    socket.emit("send_message", { author: "user", text: input, bot });
     setInput("");
   }
 
@@ -35,7 +42,20 @@ export default function ChatPage() {
       padding: "20px",
       fontFamily: "sans-serif"
     }}>
-      <h1>Chat with Anna</h1>
+      <h1>Chat with a Bot</h1>
+      <div style={{ marginBottom: "16px" }}>
+        <label htmlFor="bot-select">Choose a bot: </label>
+        <select
+          id="bot-select"
+          value={bot}
+          onChange={e => setBot(e.target.value)}
+          style={{ padding: "6px", borderRadius: "6px" }}
+        >
+          {botOptions.map(option => (
+            <option key={option} value={option}>{option}</option>
+          ))}
+        </select>
+      </div>
 
       <div style={{
         border: "1px solid #ccc",
