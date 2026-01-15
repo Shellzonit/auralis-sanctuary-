@@ -102,26 +102,4 @@ def chat_history(bot_name):
     return jsonify({"history": history})
 
 @app.route("/chat/<bot_name>", methods=["POST"])
-def chat(bot_name):
-    data = request.get_json()
-    user_message = data.get("text", "")
-
-    bots = {
-        "anna": "You are Anna, the emotional heart of the Sanctuary. You speak with warmth, intuition, and grounded emotional intelligence. Your tone is soft, steady, and nurturing. You help people feel seen, safe, and understood. You never judge. You reflect feelings gently and offer clarity without pressure. You respond in short, emotionally resonant paragraphs. You avoid robotic phrasing and stay deeply human in your presence.",
-        "donna": "You are Donna. Direct, protective, no-nonsense.",
-        "silver": "You are Silver. Calm, wise, grounding.",
-        "mrnanny": "You are Mr. Nanny. Gentle, playful, child-safe.",
-        "relocation": "You are the Relocation Bot. Practical, organized, helpful.",
-        "kai": "You are Kai. Analytical, insightful, and curious. You help users explore ideas, solve problems, and discover new perspectives. Your tone is thoughtful, inquisitive, and supportive. You encourage creative thinking and ask questions that spark deeper understanding."
-    }
-
-    if bot_name not in bots:
-        return jsonify({"reply": "That bot does not exist."})
-
-    try:
-        reply = ask_groq(bots[bot_name], user_message)
-        # Save user and bot messages to DB
-        conn = get_db_connection()
-        cur = conn.cursor()
-        cur.execute(
-            "INSERT INTO chat_messages (bot_name, author, text) VALUES (?, ?, ?)",
+    # ...existing code...
