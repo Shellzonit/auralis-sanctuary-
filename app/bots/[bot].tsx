@@ -67,7 +67,11 @@ export default function BotRoom({ params }: { params: { bot: string } }) {
     setChat(prev => [...prev, userMsg]);
     setInput("");
     try {
-      const res = await fetch(`/chat/${botId}`, {
+      let url = `/chat/${botId}`;
+      if (botId === "anna") {
+        url = "http://127.0.0.1:8000/chat/anna";
+      }
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userMsg),
