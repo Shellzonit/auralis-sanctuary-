@@ -38,8 +38,9 @@ def chat(bot_name):
         reply = ask_groq(bots[bot_name], user_message)
         return jsonify({"reply": reply})
     except Exception as e:
-        print("Error:", e)
-        return jsonify({"reply": "Sorry, the bot did not reply."})
+        import traceback
+        traceback.print_exc()
+        return jsonify({"reply": f"Backend error: {str(e)}"})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
