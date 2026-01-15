@@ -8,7 +8,7 @@ export default function ChatPage() {
   const [socket, setSocket] = useState(null);
 
   const botOptions = [
-    "anna", "donna", "shaunia", "mrnanny", "relocationbot", "silver", "william", "entertainmentbot"
+    "anna", "donna", "shaunia", "mrnanny", "relocationbot", "silver", "william", "entertainmentbot", "kai"
   ];
 
   // Fetch chat history when bot changes
