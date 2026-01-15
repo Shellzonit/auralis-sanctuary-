@@ -1,3 +1,30 @@
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+from groq import Groq
+import os
+
+app = FastAPI()
+
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+def ask_anna(user_message):
+    response = client.chat.completions.create(
+        model="llama-3.1-70b-versatile",
+        messages=[{"role": "user", "content": user_message}]
+    )
+    return response.choices[0].message["content"]
+
+@app.post("/chat/anna")
+async def chat_anna(payload: dict):
+    user_message = payload.get("text") or payload.get("message")
+    if not user_message:
+        return JSONResponse({"error": "No message provided"}, status_code=400)
+    try:
+        reply = ask_anna(user_message)
+    except Exception as e:
+        print(f"[Anna Chat Error] Groq API failed: {e}")
+        reply = "Hi! I'm Anna, your meal bot. Ask me for recipes, meal ideas, or nutrition tips! (Groq is currently unavailable, but I'm still here to help.)"
+    return {"reply": reply}
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from api.database import get_connection
@@ -57,8 +84,10 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
 
         # Generate reply using Groq LLM
         groq_key = os.getenv("GROQ_API_KEY")
+        print(f"[Anna Chat Debug] GROQ_API_KEY loaded: {groq_key}")
         client = Groq(api_key=groq_key)
         try:
+            print(f"[Anna Chat Debug] Calling Groq client with key: {groq_key}")
             groq_response = client.chat.completions.create(
                 model="llama-3.1-70b-versatile",
                 messages=[{"role": "user", "content": msg.text}]
