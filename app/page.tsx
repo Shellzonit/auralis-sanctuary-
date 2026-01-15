@@ -1,16 +1,7 @@
 "use client";
 
 
-// import AnnaOperatorCard from "../components/AnnaOperatorCard";
 import BotGallery from "../components/BotGallery";
-      {/* AnnaOperatorCard removed due to image issue */}
-      {/* ...other homepage content... */}
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative",
-        }}
-      >
         <h1
           style={{
             color: "rgba(255,255,255,0.97)",
