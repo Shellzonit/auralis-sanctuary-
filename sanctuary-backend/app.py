@@ -10,7 +10,7 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 def ask_groq(system_prompt, user_message):
     completion = client.chat.completions.create(
-        model="llama3-8b-8192",
+        model="llama3-8b-8192",  # make sure this EXACT name exists in Groq
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_message}
