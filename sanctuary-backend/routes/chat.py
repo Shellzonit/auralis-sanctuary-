@@ -4,6 +4,8 @@ from api.database import get_connection
 import os
 import requests
 from groq import Groq
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 
 router = APIRouter()
 
@@ -146,3 +148,24 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
     cur.close()
     conn.close()
     return {"user_message_id": row[0], "bot_reply": reply}
+
+# If this file is included as a router, add this to your main FastAPI app (usually main.py):
+#
+# app = FastAPI()
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["http://localhost:5173"],  # Vite dev server
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+# app.include_router(router)
+#
+# If you want to allow all origins (not recommended for production):
+#     allow_origins=["*"]
+#
+# If you are running this file directly as the FastAPI app, you can add:
+#
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run("chat:app", host="0.0.0.0", port=8000, reload=True)
