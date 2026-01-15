@@ -2,40 +2,43 @@ from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import os
 import traceback
-from groq import Groq
+import openai
 import sqlite3
 
 load_dotenv()
 
 # --- 1. Check for GROQ_API_KEY and raise an error if missing ---
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-if not GROQ_API_KEY:
-    raise RuntimeError("GROQ_API_KEY is missing. Please add it to your .env file.")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    raise RuntimeError("OPENAI_API_KEY is missing. Please add it to your .env file.")
 
 app = Flask(__name__)
-client = Groq(api_key=GROQ_API_KEY)
+openai.api_key = OPENAI_API_KEY
 
 # --- 2. ask_groq now has full error handling ---
 def ask_groq(system_prompt, user_message):
     try:
-        completion = client.chat.completions.create(
-            model="llama3-8b-8192",
+        print(f"[ask_openai] SYSTEM PROMPT: {system_prompt}")
+        print(f"[ask_openai] USER MESSAGE: {user_message}")
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_message}
             ]
         )
 
-        # Ensure choices exist
-        if not completion.choices:
-            print("Groq returned no choices:", completion)
+        choices = response.get("choices")
+        if not choices:
+            print("OpenAI returned no choices:", response)
             return None
 
-        reply = completion.choices[0].message.get("content")
+        reply = choices[0]["message"]["content"]
+        print(f"[ask_openai] BOT REPLY: {reply}")
         return reply
 
     except Exception as e:
-        print("\n--- Groq API Error ---")
+        print("\n--- OpenAI API Error ---")
         traceback.print_exc()
         print("----------------------\n")
         return None
@@ -56,19 +59,26 @@ def chat(bot_name):
     data = request.get_json()
     user_message = data.get("text", "")
 
+    print(f"[chat] BOT NAME: {bot_name}")
+    print(f"[chat] USER MESSAGE: {user_message}")
+
     if bot_name not in bots:
+        print(f"[chat] Bot '{bot_name}' does not exist.")
         return jsonify({"reply": f"Bot '{bot_name}' does not exist."})
 
     system_prompt = bots[bot_name]
+    print(f"[chat] SYSTEM PROMPT: {system_prompt}")
 
     reply = ask_groq(system_prompt, user_message)
 
     # --- 4. Clear message if Groq fails ---
     if reply is None:
+        print(f"[chat] No reply from Groq for bot '{bot_name}'.")
         return jsonify({
             "reply": f"{bot_name.capitalize()} could not reply due to a backend error."
         })
 
+    print(f"[chat] BOT REPLY: {reply}")
     return jsonify({"reply": reply})
 
 def get_db_connection():
