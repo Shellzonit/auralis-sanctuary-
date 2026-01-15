@@ -1,30 +1,3 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
-from groq import Groq
-import os
-
-app = FastAPI()
-
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-
-def ask_anna(user_message):
-    response = client.chat.completions.create(
-        model="llama-3.1-70b-versatile",
-        messages=[{"role": "user", "content": user_message}]
-    )
-    return response.choices[0].message["content"]
-
-@app.post("/chat/anna")
-async def chat_anna(payload: dict):
-    user_message = payload.get("text") or payload.get("message")
-    if not user_message:
-        return JSONResponse({"error": "No message provided"}, status_code=400)
-    try:
-        reply = ask_anna(user_message)
-    except Exception as e:
-        print(f"[Anna Chat Error] Groq API failed: {e}")
-        reply = "Hi! I'm Anna, your meal bot. Ask me for recipes, meal ideas, or nutrition tips! (Groq is currently unavailable, but I'm still here to help.)"
-    return {"reply": reply}
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from api.database import get_connection
@@ -75,14 +48,8 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
     # --- Smart reply logic ---
     reply = None
     if bot_name.lower() == "anna":
-        # Fetch Anna's identity from bots table
-        cur.execute("SELECT name, image, desc FROM bots WHERE LOWER(name) LIKE '%anna%'")
-        anna_info = cur.fetchone()
-        anna_name = anna_info[0] if anna_info else "Anna"
-        anna_avatar = anna_info[1] if anna_info else None
-        anna_desc = anna_info[2] if anna_info else "Meal and recipe support bot."
-
-        # Generate reply using Groq LLM
+        # Use Groq for Anna's reply
+        from groq import Groq
         groq_key = os.getenv("GROQ_API_KEY")
         print(f"[Anna Chat Debug] GROQ_API_KEY loaded: {groq_key}")
         client = Groq(api_key=groq_key)

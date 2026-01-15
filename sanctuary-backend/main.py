@@ -40,38 +40,3 @@ def test_db():
     conn.close()
     return {"database_time": result}
 
-# --- Anna chat endpoint ---
-@app.post("/chat/anna")
-async def chat_with_anna(msg: ChatMessage):
-    conn = get_connection()
-    cur = conn.cursor()
-    # Store user message
-    cur.execute(
-        """
-        INSERT INTO chat_messages (author, text, avatar)
-        VALUES (%s, %s, %s)
-        RETURNING id, timestamp
-        """,
-        (msg.author, msg.text, msg.avatar)
-    )
-    row = cur.fetchone()
-    conn.commit()
-    # Anna's placeholder response (replace with real bot logic as needed)
-    anna_reply = {
-        "author": "Anna",
-        "avatar": "/images/operators/anna.jpeg.png",
-        "text": f"Hi {{msg.author}}, I'm Anna! You said: '{{msg.text}}'",
-    }
-    # Store Anna's reply
-    cur.execute(
-        """
-        INSERT INTO chat_messages (author, text, avatar)
-        VALUES (%s, %s, %s)
-        RETURNING id, timestamp
-        """,
-        (anna_reply["author"], anna_reply["text"], anna_reply["avatar"])
-    )
-    conn.commit()
-    cur.close()
-    conn.close()
-    return {"user_message_id": row[0], "anna_reply": anna_reply}
