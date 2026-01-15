@@ -1,33 +1,10 @@
 "use client";
 
 
-import AnnaOperatorCard from "../components/AnnaOperatorCard";
+// import AnnaOperatorCard from "../components/AnnaOperatorCard";
 import BotGallery from "../components/BotGallery";
-
-export default function HomePage() {
-  return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#f5f3fd",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "0 1rem",
-      }}
-    >
-      <section
-        style={{
-          width: "100%",
-          maxWidth: 700,
-          margin: "3rem auto 2rem auto",
-          background:
-            "linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)",
-          borderRadius: 24,
-          boxShadow: "0 4px 32px #18191a22",
-          padding: "2.5rem 0 2rem 0",
-          display: "flex",
+      {/* AnnaOperatorCard removed due to image issue */}
+      {/* ...other homepage content... */}
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
@@ -75,10 +52,7 @@ export default function HomePage() {
           Welcome to Sanctuary — your creative career hub for the AI era.
         </div>
       </section>
-      <section style={{ margin: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: 16, color: '#7b2ff2' }}>Featured Operator</h2>
-        <AnnaOperatorCard />
-      </section>
+      {/* AnnaOperatorCard removed due to broken image */}
       <section style={{ width: '100%', margin: '2rem 0' }}>
         <h2 style={{ fontSize: '1.7rem', fontWeight: 700, margin: '0 0 1.5rem 0', color: '#18191a', textAlign: 'center' }}>
           Meet the Other Bots
