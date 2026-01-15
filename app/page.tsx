@@ -1,7 +1,12 @@
+
 "use client";
 
-
 import BotGallery from "../components/BotGallery";
+
+export default function HomePage() {
+  return (
+    <main>
+      <section>
         <h1
           style={{
             color: "rgba(255,255,255,0.97)",
