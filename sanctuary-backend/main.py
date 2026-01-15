@@ -1,5 +1,6 @@
 
 from fastapi import FastAPI, Request
+from routes import bots, chat, cityinfo
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -7,6 +8,9 @@ from api.database import get_connection
 
 
 app = FastAPI()
+app.include_router(bots.router)
+app.include_router(chat.router)
+app.include_router(cityinfo.router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

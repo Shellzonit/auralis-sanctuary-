@@ -44,6 +44,13 @@ def init_db():
         timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY(room_id) REFERENCES chat_rooms(id)
     )''')
+    # Bots registry
+    c.execute('''CREATE TABLE IF NOT EXISTS bots (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        image TEXT NOT NULL,
+        desc TEXT NOT NULL
+    )''')
     # AI job listings
     c.execute('''CREATE TABLE IF NOT EXISTS ai_jobs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -52,6 +59,19 @@ def init_db():
         description TEXT,
         pay TEXT
     )''')
+    # Insert initial bots if table is empty
+    c.execute('SELECT COUNT(*) FROM bots')
+    if c.fetchone()[0] == 0:
+        initial_bots = [
+            ("Donna — Entertainment Bot", "/images/operators/donna.png.png", "Your guide to fun, movies, and music. Ask for recommendations or entertainment news!"),
+            ("Shaunia — Friend Bot", "/images/operators/friendbot-shaunia.png.png", "A friendly companion for conversation and support. Always here to chat!"),
+            ("Mr. Nanny", "/images/operators/mrnanny.png.png", "Expert in job search and resume tips. Get career advice and interview prep."),
+            ("Relocation Bot", "/images/operators/relocationbot.png.png", "Moving somewhere new? Get relocation tips, city guides, and more."),
+            ("Silver — Senior Bot", "/images/operators/silver.png.png", "Support for seniors: health, wellness, and community resources."),
+            ("William — AI Artist", "/images/operators/williambot.png.png", "Ask about art, creativity, and AI-generated masterpieces!"),
+            ("Entertainment Bot", "/images/operators/entertainmentbot.png.png", "Games, trivia, and interactive fun for everyone.")
+        ]
+        c.executemany('INSERT INTO bots (name, image, desc) VALUES (?, ?, ?)', initial_bots)
     conn.commit()
     conn.close()
 
