@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from api.database import get_connection
 import os
 import requests
+from groq import Groq
 
 router = APIRouter()
 
@@ -54,27 +55,15 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
         anna_avatar = anna_info[1] if anna_info else None
         anna_desc = anna_info[2] if anna_info else "Meal and recipe support bot."
 
-        # Generate reply using OpenRouter LLM
-        api_key = os.getenv("OPENROUTER_API_KEY")
-        api_url = "https://openrouter.ai/api/v1/chat/completions"
-        headers = {
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json"
-        }
-        payload = {
-            "model": "openai/gpt-3.5-turbo",
-            "messages": [
-                {"role": "system", "content": anna_desc},
-                {"role": "user", "content": msg.text}
-            ]
-        }
+        # Generate reply using Groq LLM
+        groq_key = os.getenv("GROQ_API_KEY")
+        client = Groq(api_key=groq_key)
         try:
-            resp = requests.post(api_url, headers=headers, json=payload)
-            if resp.status_code == 200:
-                data = resp.json()
-                reply = data["choices"][0]["message"]["content"].strip()
-            else:
-                reply = "Sorry, Anna couldn't generate a reply right now."
+            groq_response = client.chat.completions.create(
+                model="llama-3.1-70b-versatile",
+                messages=[{"role": "user", "content": msg.text}]
+            )
+            reply = groq_response.choices[0].message["content"]
         except Exception:
             reply = "Sorry, Anna couldn't generate a reply right now."
 
