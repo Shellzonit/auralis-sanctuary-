@@ -1,4 +1,10 @@
 export const bots = [
+    {
+      name: "Anna — AI Career Coach",
+      image: "/images/operators/anna.png",
+      desc: "Your AI-powered career coach. Ask Anna for job search help, resume tips, and interview practice!",
+      ageAware: true
+    },
   {
     name: "Donna — Entertainment Bot",
     image: "/images/operators/donna.png.png",
