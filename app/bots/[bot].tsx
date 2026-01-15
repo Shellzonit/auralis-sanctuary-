@@ -1,3 +1,4 @@
+import React from "react";
 import { bots } from "../../data/bots";
 import { useRouter } from "next/router";
 
