@@ -11,6 +11,27 @@ export default function ChatPage() {
     "anna", "donna", "shaunia", "mrnanny", "relocationbot", "silver", "william", "entertainmentbot"
   ];
 
+  // Fetch chat history when bot changes
+  useEffect(() => {
+    async function fetchHistory() {
+      try {
+        const res = await fetch(`http://localhost:8000/chat/history/${bot}`);
+        const data = await res.json();
+        // Map backend format to frontend format
+        setMessages(
+          (data.history || []).map(msg => ({
+            text: msg.text,
+            sender: msg.author === "user" ? "user" : "bot",
+            timestamp: msg.timestamp
+          }))
+        );
+      } catch (err) {
+        setMessages([]);
+      }
+    }
+    fetchHistory();
+  }, [bot]);
+
   useEffect(() => {
     const newSocket = io("http://localhost:5000");
     setSocket(newSocket);
