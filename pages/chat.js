@@ -1,4 +1,6 @@
+
 import React, { useState } from "react";
+
 
 export default function ChatPage() {
   const [messages, setMessages] = useState([]);
@@ -11,17 +13,17 @@ export default function ChatPage() {
     const newMessages = [...messages, { sender: "user", text: input }];
     setMessages(newMessages);
 
-    // Send to backend
+    // Send to FastAPI backend
     const response = await fetch("http://localhost:8000/chat/anna", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: input }),
+      body: JSON.stringify({ author: "user", text: input }),
     });
 
     const data = await response.json();
 
     // Add Anna's reply
-    setMessages([...newMessages, { sender: "anna", text: data.reply }]);
+    setMessages([...newMessages, { sender: "anna", text: data.bot_reply }]);
 
     setInput("");
   }
