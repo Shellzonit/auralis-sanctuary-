@@ -1,23 +1,75 @@
+
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import os
+import traceback
 from groq import Groq
 import sqlite3
 
 load_dotenv()
 
-app = Flask(__name__)
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+# --- 1. Check for GROQ_API_KEY and raise an error if missing ---
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+if not GROQ_API_KEY:
+    raise RuntimeError("GROQ_API_KEY is missing. Please add it to your .env file.")
 
+app = Flask(__name__)
+client = Groq(api_key=GROQ_API_KEY)
+
+# --- 2. ask_groq now has full error handling ---
 def ask_groq(system_prompt, user_message):
-    completion = client.chat.completions.create(
-        model="llama3-8b-8192",  # make sure this EXACT name exists in Groq
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_message}
-        ]
-    )
-    return completion.choices[0].message["content"]
+    try:
+        completion = client.chat.completions.create(
+            model="llama3-8b-8192",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_message}
+            ]
+        )
+
+        # Ensure choices exist
+        if not completion.choices:
+            print("Groq returned no choices:", completion)
+            return None
+
+        reply = completion.choices[0].message.get("content")
+        return reply
+
+    except Exception as e:
+        print("\n--- Groq API Error ---")
+        traceback.print_exc()
+        print("----------------------\n")
+        return None
+
+# --- 3. Updated bot keys (relocation → relocationbot) ---
+bots = {
+    "anna": "You are Anna. Warm, intuitive, emotionally intelligent.",
+    "donna": "You are Donna. Direct, protective, no-nonsense.",
+    "silver": "You are Silver. Calm, wise, grounding.",
+    "mrnanny": "You are Mr. Nanny. Gentle, playful, child-safe.",
+    "relocationbot": "You are the Relocation Bot. Practical, organized, helpful."
+}
+
+
+@app.route("/chat/<bot_name>", methods=["POST"])
+def chat(bot_name):
+    data = request.get_json()
+    user_message = data.get("text", "")
+
+    if bot_name not in bots:
+        return jsonify({"reply": f"Bot '{bot_name}' does not exist."})
+
+    system_prompt = bots[bot_name]
+
+    reply = ask_groq(system_prompt, user_message)
+
+    # --- 4. Clear message if Groq fails ---
+    if reply is None:
+        return jsonify({
+            "reply": f"{bot_name.capitalize()} could not reply due to a backend error."
+        })
+
+    return jsonify({"reply": reply})
 
 def get_db_connection():
     conn = sqlite3.connect('chat_history.db')
