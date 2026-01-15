@@ -9,39 +9,52 @@ export default function HomePage() {
     <main>
       <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 }}>
         <img src="/ai homepage.png" alt="Sanctuary Banner" style={{ maxWidth: 700, width: '100%', borderRadius: 18, marginBottom: 12, boxShadow: '0 4px 32px #18191a22' }} />
-        <h1
-          style={{
-            color: "#7b2ff2",
-            fontSize: "2.8rem",
-            fontWeight: 900,
-            fontFamily: "Playfair Display, Georgia, serif",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            textAlign: "center",
-            margin: '16px 0 0 0',
-            width: "100%",
-            position: "relative",
-            zIndex: 2,
-            textShadow: "0 2px 8px #8882",
-            WebkitTextStroke: "1.5px #bba6f7",
-            filter: "none",
-            lineHeight: 1.18,
-            paddingBottom: "0.18em",
-          }}
-        >
-          AI Wilding
-        </h1>
+        <div style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 16,
+        }}>
+          <div style={{
+            background: 'linear-gradient(90deg, #7b2ff2 0%, #e0d6f7 100%)',
+            borderRadius: 24,
+            boxShadow: '0 4px 32px #18191a22',
+            padding: '1.5rem 2.5rem',
+            display: 'inline-block',
+          }}>
+            <h1
+              style={{
+                color: '#fff',
+                fontSize: '3.6rem',
+                fontWeight: 900,
+                fontFamily: 'Playfair Display, Georgia, serif',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                textAlign: 'center',
+                margin: 0,
+                textShadow: '0 2px 8px #8882',
+                WebkitTextStroke: '1.5px #7b2ff2',
+                filter: 'none',
+                lineHeight: 1.18,
+                paddingBottom: '0.18em',
+              }}
+            >
+              AI Wilding
+            </h1>
+          </div>
+        </div>
       </div>
       <section>
         <div
           style={{
-            color: "#ece9fc",
-            fontSize: "1.25rem",
-            fontWeight: 600,
-            marginTop: 16,
+            color: "#232526",
+            fontSize: "1.35rem",
+            fontWeight: 700,
+            marginTop: 18,
             textAlign: "center",
             maxWidth: 520,
-            textShadow: "0 1px 6px #18191a55",
+            textShadow: "0 1px 6px #18191a33",
           }}
         >
           Welcome to Sanctuary — your creative career hub for the AI era.
