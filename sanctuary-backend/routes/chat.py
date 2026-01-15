@@ -32,7 +32,7 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
         cur.close()
         conn.close()
         raise HTTPException(status_code=404, detail="Bot not found")
-    cur.execute(f"INSERT INTO {table} (author, text, avatar) VALUES (%s, %s, %s) RETURNING id, timestamp", (msg.author, msg.text, msg.avatar))
+    cur.execute(f"INSERT INTO {table} (author, text) VALUES (%s, %s) RETURNING id, timestamp", (msg.author, msg.text))
     row = cur.fetchone()
     conn.commit()
 
@@ -48,37 +48,35 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
     # --- Smart reply logic ---
     reply = None
     if bot_name.lower() == "anna":
-        # Use Groq for Anna's reply
-        from groq import Groq
+        anna_name = "Anna"
         groq_key = os.getenv("GROQ_API_KEY")
-        print(f"[Anna Chat Debug] GROQ_API_KEY loaded: {groq_key}")
         client = Groq(api_key=groq_key)
         try:
-            print(f"[Anna Chat Debug] Calling Groq client with key: {groq_key}")
             groq_response = client.chat.completions.create(
                 model="llama-3.1-70b-versatile",
                 messages=[{"role": "user", "content": msg.text}]
             )
             reply = groq_response.choices[0].message["content"]
         except Exception as e:
-            print(f"[Anna Chat Error] Groq API failed: {e}")
-            reply = "Hi! I'm Anna, your meal bot. Ask me for recipes, meal ideas, or nutrition tips! (Groq is currently unavailable, but I'm still here to help.)"
+            reply = "Hi! I'm Anna, your meal bot. Ask me for recipes, meal ideas, or nutrition tips!"
 
-        # --- Store Anna's reply in PostgreSQL ---
-        cur.execute(f"INSERT INTO {table} (author, text, avatar) VALUES (%s, %s, %s) RETURNING id, timestamp", (anna_name, reply, anna_avatar))
+        cur.execute(
+            f"INSERT INTO {table} (author, text) VALUES (%s, %s)",
+            (anna_name, reply)
+        )
         conn.commit()
-
-        # --- Store Anna's reply in Supabase ---
         try:
             requests.post(
                 os.getenv("SUPABASE_CHAT_INSERT_URL"),
-                json={"author": anna_name, "text": reply, "avatar": anna_avatar}
+                json={"author": anna_name, "text": reply}
             )
         except Exception:
             pass
     else:
         # ...existing logic for other bots...
         user_text = msg.text.lower()
+        bot_name_title = bot_name.title()
+        bot_avatar = None
         if bot_name.lower() == "silver":
             topic = None
             if any(word in user_text for word in ["health", "hydrate", "walk", "doctor"]):
@@ -117,16 +115,30 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
                 except Exception:
                     reply = f"Sorry, there was a problem fetching info for {city_query}."
             if not reply:
-                cur.execute(f"SELECT text FROM {table} WHERE author = %s ORDER BY timestamp DESC LIMIT 1", (bot_name.title(),))
+                cur.execute(f"SELECT text FROM {table} WHERE author = %s ORDER BY timestamp DESC LIMIT 1", (bot_name_title,))
                 bot_reply = cur.fetchone()
-                reply = bot_reply[0] if bot_reply else f"Hi, I'm {bot_name.title()}! How can I help you?"
+                reply = bot_reply[0] if bot_reply else f"Hi, I'm {bot_name_title}! How can I help you?"
         else:
-            cur.execute(f"SELECT text FROM {table} WHERE author = %s ORDER BY timestamp DESC LIMIT 1", (bot_name.title(),))
+            cur.execute(f"SELECT text FROM {table} WHERE author = %s ORDER BY timestamp DESC LIMIT 1", (bot_name_title,))
             bot_reply = cur.fetchone()
             if bot_reply:
                 reply = bot_reply[0]
             else:
-                reply = f"Hi, I'm {bot_name.title()}! How can I help you?"
+                reply = f"Hi, I'm {bot_name_title}! How can I help you?"
+
+        # Store bot reply in PostgreSQL and Supabase with avatar=None
+        cur.execute(
+            f"INSERT INTO {table} (author, text) VALUES (%s, %s)",
+            (bot_name_title, reply)
+        )
+        conn.commit()
+        try:
+            requests.post(
+                os.getenv("SUPABASE_CHAT_INSERT_URL"),
+                json={"author": bot_name_title, "text": reply}
+            )
+        except Exception:
+            pass
 
     cur.close()
     conn.close()
