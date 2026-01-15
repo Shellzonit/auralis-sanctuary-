@@ -8,37 +8,30 @@ export default function HomePage() {
   return (
     <main>
       <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 }}>
-        <img src="/Ai wilding.png" alt="AI Wilding" style={{ maxWidth: 320, width: '100%', borderRadius: 18, marginBottom: 12 }} />
-        <img src="/ai homepage.png" alt="Sanctuary Banner" style={{ maxWidth: 700, width: '100%', borderRadius: 18 }} />
-      </div>
-      <section>
+        <img src="/ai homepage.png" alt="Sanctuary Banner" style={{ maxWidth: 700, width: '100%', borderRadius: 18, marginBottom: 12, boxShadow: '0 4px 32px #18191a22' }} />
         <h1
           style={{
-            color: "rgba(255,255,255,0.97)",
+            color: "#7b2ff2",
             fontSize: "2.8rem",
             fontWeight: 900,
             fontFamily: "Playfair Display, Georgia, serif",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             textAlign: "center",
-            margin: 0,
+            margin: '16px 0 0 0',
             width: "100%",
             position: "relative",
             zIndex: 2,
             textShadow: "0 2px 8px #8882",
             WebkitTextStroke: "1.5px #bba6f7",
             filter: "none",
-            background:
-              "linear-gradient(180deg, #fff 60%, #e0d6f7 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
             lineHeight: 1.18,
             paddingBottom: "0.18em",
           }}
         >
-          Homepage
+          AI Wilding
         </h1>
+      </div>
         <div
           style={{
             color: "#ece9fc",
