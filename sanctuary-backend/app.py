@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import os
@@ -47,7 +46,8 @@ bots = {
     "donna": "You are Donna. Direct, protective, no-nonsense.",
     "silver": "You are Silver. Calm, wise, grounding.",
     "mrnanny": "You are Mr. Nanny. Gentle, playful, child-safe.",
-    "relocationbot": "You are the Relocation Bot. Practical, organized, helpful."
+    "relocationbot": "You are the Relocation Bot. Practical, organized, helpful.",
+    "kai": "You are Kai. Analytical, insightful, and curious. You help users explore ideas, solve problems, and discover new perspectives. Your tone is thoughtful, inquisitive, and supportive. You encourage creative thinking and ask questions that spark deeper understanding."
 }
 
 
@@ -111,7 +111,8 @@ def chat(bot_name):
         "donna": "You are Donna. Direct, protective, no-nonsense.",
         "silver": "You are Silver. Calm, wise, grounding.",
         "mrnanny": "You are Mr. Nanny. Gentle, playful, child-safe.",
-        "relocation": "You are the Relocation Bot. Practical, organized, helpful."
+        "relocation": "You are the Relocation Bot. Practical, organized, helpful.",
+        "kai": "You are Kai. Analytical, insightful, and curious. You help users explore ideas, solve problems, and discover new perspectives. Your tone is thoughtful, inquisitive, and supportive. You encourage creative thinking and ask questions that spark deeper understanding."
     }
 
     if bot_name not in bots:
