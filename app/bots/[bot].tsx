@@ -58,11 +58,13 @@ export default function BotRoom({ params }: { params: { bot: string } }) {
         body: JSON.stringify(userMsg),
       });
       const data = await res.json();
-      if (data && (data.reply || data["anna_reply"])) {
-        // Support both generic and Anna-style reply
-        setChat(prev => [...prev, data.reply || data["anna_reply"]]);
+      if (data && data.bot_reply) {
+        setChat(prev => [...prev, { author: bot.name, text: data.bot_reply, avatar: bot.image }]);
+      } else if (data && (data.reply || data["anna_reply"])) {
+        // Support legacy reply keys if present
+        setChat(prev => [...prev, { author: bot.name, text: data.reply || data["anna_reply"], avatar: bot.image }]);
       } else if (data && data.message) {
-        setChat(prev => [...prev, data.message]);
+        setChat(prev => [...prev, { author: bot.name, text: data.message, avatar: bot.image }]);
       }
     } catch (err) {
       setChat(prev => [...prev, { author: bot.name, text: "Sorry, something went wrong.", avatar: bot.image }]);
