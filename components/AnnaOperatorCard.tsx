@@ -9,7 +9,9 @@ const operatorData = [
 ];
 
 
-  type ChatMsg = { author: string; text: string; avatar: string | null };
+type ChatMsg = { author: string; text: string; avatar: string | null };
+
+const AnnaOperatorCard: React.FC = () => {
   const [input, setInput] = useState("");
   const [chat, setChat] = useState<ChatMsg[]>([]);
   const [loading, setLoading] = useState(false);
@@ -69,4 +71,6 @@ const operatorData = [
       </div>
     </div>
   );
-}
+};
+
+export default AnnaOperatorCard;
