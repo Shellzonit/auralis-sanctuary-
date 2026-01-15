@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import os
 from groq import Groq
+import sqlite3
 
 load_dotenv()
 
@@ -17,6 +18,36 @@ def ask_groq(system_prompt, user_message):
         ]
     )
     return completion.choices[0].message["content"]
+
+def get_db_connection():
+    conn = sqlite3.connect('chat_history.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+@app.route("/chat/history/<bot_name>", methods=["GET"])
+def chat_history(bot_name):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS chat_messages (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            bot_name TEXT,
+            author TEXT,
+            text TEXT,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+    limit = int(request.args.get("limit", 50))
+    cur.execute(
+        "SELECT author, text, timestamp FROM chat_messages WHERE bot_name = ? ORDER BY timestamp ASC LIMIT ?",
+        (bot_name, limit)
+    )
+    rows = cur.fetchall()
+    conn.close()
+    history = [
+        {"author": row["author"], "text": row["text"], "timestamp": row["timestamp"]} for row in rows
+    ]
+    return jsonify({"history": history})
 
 @app.route("/chat/<bot_name>", methods=["POST"])
 def chat(bot_name):
@@ -36,11 +67,8 @@ def chat(bot_name):
 
     try:
         reply = ask_groq(bots[bot_name], user_message)
-        return jsonify({"reply": reply})
-    except Exception as e:
-        import traceback
-        traceback.print_exc()
-        return jsonify({"reply": f"Backend error: {str(e)}"})
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+        # Save user and bot messages to DB
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute(
+            "INSERT INTO chat_messages (bot_name, author, text) VALUES (?, ?, ?)",
