@@ -2,43 +2,42 @@ from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import os
 import traceback
-from openai import OpenAI
+from groq import Groq
 import sqlite3
 
 load_dotenv()
 
 # --- 1. Check for GROQ_API_KEY and raise an error if missing ---
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-if not OPENAI_API_KEY:
-    raise RuntimeError("OPENAI_API_KEY is missing. Please add it to your .env file.")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+if not GROQ_API_KEY:
+    raise RuntimeError("GROQ_API_KEY is missing. Please add it to your .env file.")
 
 app = Flask(__name__)
-client = OpenAI(api_key=OPENAI_API_KEY)
+client = Groq(api_key=GROQ_API_KEY)
 
 # --- 2. ask_groq now has full error handling ---
 def ask_groq(system_prompt, user_message):
     try:
-        print(f"[ask_openai] SYSTEM PROMPT: {system_prompt}")
-        print(f"[ask_openai] USER MESSAGE: {user_message}")
+        print(f"[ask_groq] SYSTEM PROMPT: {system_prompt}")
+        print(f"[ask_groq] USER MESSAGE: {user_message}")
         completion = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="llama3-70b-8192",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_message}
             ]
         )
 
-        choices = completion.choices
-        if not choices:
-            print("OpenAI returned no choices:", completion)
+        if not completion.choices:
+            print("Groq returned no choices:", completion)
             return None
 
-        reply = choices[0].message.content
-        print(f"[ask_openai] BOT REPLY: {reply}")
+        reply = completion.choices[0].message.get("content")
+        print(f"[ask_groq] BOT REPLY: {reply}")
         return reply
 
     except Exception as e:
-        print("\n--- OpenAI API Error ---")
+        print("\n--- Groq API Error ---")
         traceback.print_exc()
         print("----------------------\n")
         return None
@@ -50,7 +49,10 @@ bots = {
     "silver": "You are Silver. Calm, wise, grounding.",
     "mrnanny": "You are Mr. Nanny. Gentle, playful, child-safe.",
     "relocationbot": "You are the Relocation Bot. Practical, organized, helpful.",
-    "kai": "You are Kai. Analytical, insightful, and curious. You help users explore ideas, solve problems, and discover new perspectives. Your tone is thoughtful, inquisitive, and supportive. You encourage creative thinking and ask questions that spark deeper understanding."
+    "kai": "You are Kai. Analytical, insightful, and curious. You help users explore ideas, solve problems, and discover new perspectives. Your tone is thoughtful, inquisitive, and supportive. You encourage creative thinking and ask questions that spark deeper understanding.",
+    "shaunia": "You are Shaunia. Friendly, supportive, and always ready to listen. You help users feel heard and understood.",
+    "william": "You are William. Creative, artistic, and inspiring. You encourage users to express themselves and explore their artistic side.",
+    "entertainmentbot": "You are EntertainmentBot. Fun, witty, and full of interesting facts, jokes, and games. You keep users entertained and engaged."
 }
 
 
@@ -111,5 +113,5 @@ def chat_history(bot_name):
     ]
     return jsonify({"history": history})
 
-@app.route("/chat/<bot_name>", methods=["POST"])
-    # ...existing code...
+
+    
