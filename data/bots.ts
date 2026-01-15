@@ -1,7 +1,7 @@
 export const bots = [
     {
       name: "Anna — Meal Bot",
-      image: "/images/operators/anna.png",
+      image: "/images/operators/anna.png.png",
       desc: "Your friendly meal planner and nutrition assistant. Ask Anna for recipes, meal ideas, and healthy eating tips!",
       ageAware: true
     },
