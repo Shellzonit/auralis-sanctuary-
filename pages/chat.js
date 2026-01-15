@@ -12,17 +12,16 @@ export default function ChatPage() {
     setMessages(newMessages);
 
     // Send to backend
-    const payload = { author: "You", text: input, avatar: null };
     const response = await fetch("http://localhost:8000/chat/anna", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ message: input }),
     });
 
     const data = await response.json();
 
     // Add Anna's reply
-    setMessages([...newMessages, { sender: "anna", text: data.reply || data.anna_reply?.text || "Sorry, something went wrong." }]);
+    setMessages([...newMessages, { sender: "anna", text: data.reply }]);
 
     setInput("");
   }
