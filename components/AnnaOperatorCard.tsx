@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 
 const operatorData = [
@@ -7,9 +8,10 @@ const operatorData = [
   }
 ];
 
-export default function AnnaOperatorCard() {
+
+  type ChatMsg = { author: string; text: string; avatar: string | null };
   const [input, setInput] = useState("");
-  const [chat, setChat] = useState([]);
+  const [chat, setChat] = useState<ChatMsg[]>([]);
   const [loading, setLoading] = useState(false);
 
   const sendMessage = async (e: React.FormEvent) => {
