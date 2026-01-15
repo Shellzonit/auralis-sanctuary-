@@ -50,14 +50,17 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
     if bot_name.lower() == "anna":
         anna_name = "Anna"
         groq_key = os.getenv("GROQ_API_KEY")
+        print(f"[Anna Chat Debug] GROQ_API_KEY loaded: {groq_key}")
         client = Groq(api_key=groq_key)
         try:
+            print(f"[Anna Chat Debug] Calling Groq client with key: {groq_key}")
             groq_response = client.chat.completions.create(
                 model="llama-3.1-70b-versatile",
                 messages=[{"role": "user", "content": msg.text}]
             )
             reply = groq_response.choices[0].message["content"]
         except Exception as e:
+            print(f"[Anna Chat Error] Groq API failed: {e}")
             reply = "Hi! I'm Anna, your meal bot. Ask me for recipes, meal ideas, or nutrition tips!"
 
         cur.execute(
