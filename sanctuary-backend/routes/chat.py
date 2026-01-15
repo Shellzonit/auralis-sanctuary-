@@ -110,6 +110,7 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
 
                 # Generate reply using OpenAI LLM
                 openai.api_key = os.getenv("OPENAI_API_KEY", "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")
+                openai.api_base = "https://openrouter.ai/api/v1"
                 prompt = f"{anna_desc}\nUser: {msg.text}\nAnna:"
                 try:
                     response = openai.ChatCompletion.create(
