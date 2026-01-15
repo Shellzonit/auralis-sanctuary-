@@ -15,6 +15,8 @@ export default function BotRoom({ params }: { params: { bot: string } }) {
     if (botId === "entertainmentbot" && slug.includes("donnaentertainmentbot")) return true;
     return false;
   });
+  const botSlug = slugify(bot?.name || "");
+  const vrRoomUrl = `/${botSlug}-vr-room.html`;
 
   const [input, setInput] = React.useState("");
   const [chat, setChat] = React.useState<{ author: string; text: string; avatar?: string | null }[]>([]);
@@ -27,6 +29,12 @@ export default function BotRoom({ params }: { params: { bot: string } }) {
   // Custom Donna room enhancements
   const isDonna = bot.name.toLowerCase().includes("donna");
   const isAnna = bot.name.toLowerCase().includes("anna");
+  const isShaunia = bot.name.toLowerCase().includes("shaunia");
+  const isMrNanny = bot.name.toLowerCase().includes("mr. nanny");
+  const isRelocation = bot.name.toLowerCase().includes("relocation");
+  const isSilver = bot.name.toLowerCase().includes("silver");
+  const isWilliam = bot.name.toLowerCase().includes("william");
+  const isEntertainment = bot.name.toLowerCase().includes("entertainment bot");
   const donnaGreeting = "Welcome to Donna's Entertainment Lounge! Ask me for movie, music, or fun recommendations.";
   const entertainmentWidgets = isDonna ? (
     <div style={{ margin: '24px 0', width: '100%' }}>
@@ -79,11 +87,9 @@ export default function BotRoom({ params }: { params: { bot: string } }) {
         <img src={bot.image} alt={bot.name} width={200} height={200} style={{ borderRadius: 18, marginBottom: 18, border: isDonna ? '4px solid #e94f7a' : 'none' }} />
         <h1 style={{ fontSize: '2.2rem', fontWeight: 900, color: isDonna ? '#e94f7a' : '#7b2ff2', margin: '0 0 10px 0', letterSpacing: isDonna ? '2px' : '0' }}>{bot.name}</h1>
         <p style={{ color: '#444', fontSize: '1.12rem', textAlign: 'center', marginBottom: 24 }}>{isDonna ? donnaGreeting : bot.desc}</p>
-        {isAnna && (
-          <a href="/anna-room.html" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: '#f7b32b', color: '#232526', fontWeight: 700, borderRadius: 8, padding: '12px 24px', textDecoration: 'none', boxShadow: '0 2px 8px #f7b32b55', fontSize: '1.1rem', marginBottom: 16 }}>
-            Launch Anna's Meal Room
-          </a>
-        )}
+        <a href={vrRoomUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: '#7b2ff2', color: '#fff', fontWeight: 700, borderRadius: 8, padding: '12px 24px', textDecoration: 'none', boxShadow: '0 2px 8px #7b2ff255', fontSize: '1.1rem', marginBottom: 16 }}>
+          Launch {bot.name.split(' ')[0]}'s VR Room
+        </a>
         {entertainmentWidgets}
         <div style={{ minHeight: 120, maxHeight: 200, overflowY: 'auto', marginBottom: 12, width: '100%' }}>
           {chat.map((msg, idx) => (
