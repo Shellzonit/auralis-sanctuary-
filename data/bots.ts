@@ -46,5 +46,11 @@ export const bots = [
     image: "/images/operators/entertainmentbot.png.png",
     desc: "Games, trivia, and interactive fun for everyone."
     , ageAware: true
+  },
+  {
+    name: "Kai — Insight Bot",
+    image: "/images/operators/kai.jpg",
+    desc: "Analytical, insightful, and curious. Kai helps you explore ideas, solve problems, and discover new perspectives with thoughtful, supportive questions.",
+    ageAware: true
   }
 ];
