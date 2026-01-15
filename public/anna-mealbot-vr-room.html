@@ -16,5 +16,43 @@
       <a-text value="Welcome to Anna's Meal VR Room!" position="0 3.5 -4" align="center" color="#7b2ff2" width="6"></a-text>
       <a-text value="Ask Anna for recipes, meal ideas, and nutrition tips!" position="0 1 -4" align="center" color="#232526" width="6"></a-text>
     </a-scene>
+    <div id="chatbox" style="position:fixed;bottom:32px;left:50%;transform:translateX(-50%);width:400px;background:#fff;border-radius:16px;box-shadow:0 2px 16px #7b2ff222;padding:24px;z-index:10;display:flex;flex-direction:column;align-items:center;">
+      <div id="messages" style="width:100%;min-height:80px;max-height:180px;overflow-y:auto;margin-bottom:12px;color:#232526;font-size:1.08rem;"></div>
+      <form id="chatForm" style="display:flex;width:100%;gap:8px;">
+        <input id="chatInput" type="text" placeholder="Ask Anna for a recipe..." style="flex:1;padding:10px;border-radius:8px;border:1px solid #7b2ff2;font-size:1rem;" />
+        <button type="submit" style="background:#7b2ff2;color:#fff;font-weight:700;border:none;border-radius:8px;padding:0 18px;font-size:1rem;">Send</button>
+      </form>
+    </div>
+    <script>
+      const chatForm = document.getElementById('chatForm');
+      const chatInput = document.getElementById('chatInput');
+      const messagesDiv = document.getElementById('messages');
+      function addMessage(author, text) {
+        const msg = document.createElement('div');
+        msg.style.marginBottom = '8px';
+        msg.innerHTML = `<span style='font-weight:500;color:${author==='You'?'#7b2ff2':'#18191a'}'>${author}:</span> <span>${text}</span>`;
+        messagesDiv.appendChild(msg);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      }
+      chatForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const input = chatInput.value.trim();
+        if (!input) return;
+        addMessage('You', input);
+        chatInput.value = '';
+        try {
+          const res = await fetch('/api/chat/anna', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ author: 'You', text: input, avatar: null })
+          });
+          const data = await res.json();
+          const reply = data.bot_reply || data.reply || data.anna_reply || 'Sorry, Anna did not reply.';
+          addMessage('Anna', reply);
+        } catch {
+          addMessage('Anna', 'Sorry, something went wrong.');
+        }
+      });
+    </script>
   </body>
 </html>
