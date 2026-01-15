@@ -149,6 +149,34 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
     conn.close()
     return {"user_message_id": row[0], "bot_reply": reply}
 
+@router.get("/chat/history/{bot_name}")
+async def get_chat_history(bot_name: str, limit: int = 50):
+    conn = get_connection()
+    cur = conn.cursor()
+    table_map = {
+        "anna": "chat_messages",
+        "donna": "entertainmentbot_chat",
+        "shaunia": "friendbot_chat",
+        "mrnanny": "mrnanny_chat",
+        "relocationbot": "relocationbot_chat",
+        "silver": "seniorbot_chat",
+        "william": "artistbot_chat",
+        "entertainmentbot": "entertainmentbot_chat"
+    }
+    table = table_map.get(bot_name.lower())
+    if not table:
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=404, detail="Bot not found")
+    cur.execute(f"SELECT author, text, timestamp FROM {table} ORDER BY timestamp ASC LIMIT %s", (limit,))
+    rows = cur.fetchall()
+    cur.close()
+    conn.close()
+    history = [
+        {"author": row[0], "text": row[1], "timestamp": row[2]} for row in rows
+    ]
+    return {"history": history}
+
 # If this file is included as a router, add this to your main FastAPI app (usually main.py):
 #
 # app = FastAPI()
