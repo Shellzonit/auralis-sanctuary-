@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import os
 import traceback
-import openai
+from openai import OpenAI
 import sqlite3
 
 load_dotenv()
@@ -13,14 +13,14 @@ if not OPENAI_API_KEY:
     raise RuntimeError("OPENAI_API_KEY is missing. Please add it to your .env file.")
 
 app = Flask(__name__)
-openai.api_key = OPENAI_API_KEY
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 # --- 2. ask_groq now has full error handling ---
 def ask_groq(system_prompt, user_message):
     try:
         print(f"[ask_openai] SYSTEM PROMPT: {system_prompt}")
         print(f"[ask_openai] USER MESSAGE: {user_message}")
-        response = openai.ChatCompletion.create(
+        completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": system_prompt},
@@ -28,12 +28,12 @@ def ask_groq(system_prompt, user_message):
             ]
         )
 
-        choices = response.get("choices")
+        choices = completion.choices
         if not choices:
-            print("OpenAI returned no choices:", response)
+            print("OpenAI returned no choices:", completion)
             return None
 
-        reply = choices[0]["message"]["content"]
+        reply = choices[0].message.content
         print(f"[ask_openai] BOT REPLY: {reply}")
         return reply
 
