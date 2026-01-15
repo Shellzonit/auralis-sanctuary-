@@ -7,6 +7,10 @@ import BotGallery from "../components/BotGallery";
 export default function HomePage() {
   return (
     <main>
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 }}>
+        <img src="/Ai wilding.png" alt="AI Wilding" style={{ maxWidth: 320, width: '100%', borderRadius: 18, marginBottom: 12 }} />
+        <img src="/ai homepage.png" alt="Sanctuary Banner" style={{ maxWidth: 700, width: '100%', borderRadius: 18 }} />
+      </div>
       <section>
         <h1
           style={{
