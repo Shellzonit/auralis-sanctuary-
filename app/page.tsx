@@ -32,6 +32,7 @@ export default function HomePage() {
           AI Wilding
         </h1>
       </div>
+      <section>
         <div
           style={{
             color: "#ece9fc",
