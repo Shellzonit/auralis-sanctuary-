@@ -4,8 +4,14 @@ import { useRouter } from "next/router";
 
 export default function BotRoom({ params }: { params: { bot: string } }) {
   const botId = params.bot.toLowerCase();
-  // Normalize bot names to slugs for matching
-  const slugify = (name: string) => name.toLowerCase().replace(/[^a-z0-9]/g, "");
+  // Normalize bot names to slugs for matching (use dashes to match VR room filenames)
+  const slugify = (name: string) =>
+    name
+      .toLowerCase()
+      .replace(/[—–]/g, "-") // replace em/en dashes with hyphen
+      .replace(/[^a-z0-9]+/g, "-") // replace non-alphanum with hyphen
+      .replace(/^-+|-+$/g, "") // trim leading/trailing hyphens
+  ;
   // Add fallback aliases for Donna
   const bot = bots.find(b => {
     const slug = slugify(b.name);
@@ -61,7 +67,7 @@ export default function BotRoom({ params }: { params: { bot: string } }) {
     setChat(prev => [...prev, userMsg]);
     setInput("");
     try {
-      const res = await fetch(`/api/chat/${botId}`, {
+      const res = await fetch(`/chat/${botId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userMsg),
