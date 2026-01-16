@@ -104,6 +104,18 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
                     reply = bot_reply[0]
             if not reply:
                 reply = "Hi, I'm Silver! How can I help you today?"
+        elif bot_name.lower() == "mrnanny":
+            print("[MrNanny Debug] Handling Mr Nanny bot logic.")
+            # Custom logic for Mr Nanny
+            # You can expand this logic as needed for more advanced responses
+            cur.execute(f"SELECT text FROM {table} WHERE author = %s ORDER BY timestamp DESC LIMIT 1", (bot_name_title,))
+            bot_reply = cur.fetchone()
+            if bot_reply:
+                reply = bot_reply[0]
+                print(f"[MrNanny Debug] Found previous reply: {reply}")
+            else:
+                reply = "Hi, I'm Mr. Job Nanny! I'm here to help you with your resume and job search. Ask me anything about resumes, job applications, or interview tips!"
+                print("[MrNanny Debug] Using default reply.")
         elif bot_name.lower() == "relocationbot":
             import re
             match = re.search(r'(?:about|in) ([a-zA-Z ]+)', user_text)
