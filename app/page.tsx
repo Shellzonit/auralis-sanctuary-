@@ -40,22 +40,18 @@ export default function HomePage() {
             </h1>
           </div>
         </div>
-      </div>
-      <section>
-        <div
-          style={{
-            color: "#232526",
-            fontSize: "1.35rem",
-            fontWeight: 700,
-            marginTop: 18,
-            textAlign: "center",
-            maxWidth: 520,
-            textShadow: "0 1px 6px #18191a33",
-          }}
-        >
+        <div style={{
+          color: "#555",
+          fontSize: "1.1rem",
+          fontWeight: 500,
+          marginTop: 12,
+          textAlign: "center",
+          maxWidth: 520,
+          textShadow: "0 1px 6px #18191a11",
+        }}>
           Welcome to Sanctuary — your creative career hub for the AI era.
         </div>
-      </section>
+      </div>
       <section
         style={{
           background: "#fff",
