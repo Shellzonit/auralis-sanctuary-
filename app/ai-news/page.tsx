@@ -44,6 +44,78 @@ const curatedNews = [
   }
 ];
 
+const aiMusic = [
+  {
+    title: "AI Composes a Symphony",
+    artist: "SynthAI Orchestra",
+    summary: "A new AI model has composed a full-length symphony, blending classical and modern styles. The piece is being performed by major orchestras worldwide.",
+    image: "/ai-music.png",
+    article: `<p><strong>AI Composes a Symphony</strong></p><p>AI-driven music composition is reaching new heights. The SynthAI Orchestra recently debuted a symphony written entirely by an advanced neural network, receiving critical acclaim for its emotional depth and technical complexity.</p>`
+  },
+  {
+    title: "Vocaloid Revolution: AI Singers Rise",
+    artist: "VocaloidX",
+    summary: "AI-powered virtual singers are topping the charts, with millions of fans streaming their music online.",
+    image: "/ai-vocaloid.png",
+    article: `<p><strong>Vocaloid Revolution: AI Singers Rise</strong></p><p>Virtual singers powered by AI, like VocaloidX, are captivating audiences with their unique voices and performances. The technology is opening new creative possibilities for musicians and producers.</p>`
+  }
+];
+
+const aiArt = [
+  {
+    title: "AI Wins Art Competition",
+    artist: "ArtBot 3000",
+    summary: "An AI-generated painting has won a prestigious international art competition, sparking debate about creativity and authorship.",
+    image: "/ai-art.png",
+    article: `<p><strong>AI Wins Art Competition</strong></p><p>ArtBot 3000's painting, created using generative adversarial networks, was awarded first prize at the Global Art Expo. Judges praised its originality and technique, while artists discuss the implications for the future of art.</p>`
+  },
+  {
+    title: "Generative Art Galleries Expand",
+    artist: "GalleryAI",
+    summary: "Galleries dedicated to AI-generated art are opening in major cities, attracting collectors and tech enthusiasts alike.",
+    image: "/ai-gallery.png",
+    article: `<p><strong>Generative Art Galleries Expand</strong></p><p>GalleryAI, a new chain of galleries, showcases works created by artificial intelligence. The movement is redefining what it means to be an artist in the digital age.</p>`
+  },
+  {
+    title: "WilliamBot's Portraits Go Viral",
+    artist: "WilliamBot (ArtistBot)",
+    summary: "AI artist WilliamBot's digital portraits are trending on social media, inspiring a new wave of creative collaborations.",
+    image: "/william-bot-art.png",
+    article: `<p><strong>WilliamBot's Portraits Go Viral</strong></p><p>WilliamBot, the ArtistBot, has taken the art world by storm with its unique digital portraits. Fans and human artists are remixing and collaborating with WilliamBot, blurring the lines between human and machine creativity.</p>`
+  },
+  {
+    title: "AI Animators Create Short Films",
+    artist: "FrameGen AI",
+    summary: "AI-powered animation tools are enabling indie creators to produce stunning short films with minimal resources.",
+    image: "/ai-animation.png",
+    article: `<p><strong>AI Animators Create Short Films</strong></p><p>FrameGen AI's animation suite lets anyone create high-quality animated shorts. The technology is democratizing filmmaking and giving rise to a new generation of storytellers.</p>`
+  }
+];
+
+const aiFun = [
+  {
+    title: "AI Stand-Up Comedians Debut",
+    performer: "LaughBot",
+    summary: "AI-powered comedians are performing live, generating jokes on the fly and interacting with audiences.",
+    image: "/ai-comedy.png",
+    article: `<p><strong>AI Stand-Up Comedians Debut</strong></p><p>LaughBot, the world's first AI stand-up comedian, is making crowds laugh with original, real-time jokes. Comedy clubs are experimenting with human-AI improv nights for extra fun.</p>`
+  },
+  {
+    title: "Virtual Pet Companions Get Smarter",
+    performer: "PetPal AI",
+    summary: "AI pets are learning new tricks, responding to emotions, and even helping kids with homework.",
+    image: "/ai-pet.png",
+    article: `<p><strong>Virtual Pet Companions Get Smarter</strong></p><p>PetPal AI's virtual pets are more lifelike than ever, offering companionship, entertainment, and educational support for families worldwide.</p>`
+  },
+  {
+    title: "AI Game Masters Run D&D Adventures",
+    performer: "DungeonAI",
+    summary: "AI-powered game masters are running interactive tabletop RPGs, creating custom quests and characters on demand.",
+    image: "/ai-dnd.png",
+    article: `<p><strong>AI Game Masters Run D&D Adventures</strong></p><p>DungeonAI is revolutionizing tabletop gaming by generating unique adventures, NPCs, and storylines for every session. Players say the AI keeps things fresh and surprising.</p>`
+  }
+];
+
 export default function AINewsPage() {
   // Carlotta's event stories state
   const [eventStories, setEventStories] = useState<any[]>([]);
@@ -214,6 +286,99 @@ export default function AINewsPage() {
               <details>
                 <summary style={{ color: '#7b2ff2', fontWeight: 600, textDecoration: 'underline', fontSize: '1.08rem', cursor: 'pointer' }}>Read full article</summary>
                 <div style={{ marginTop: 12 }} dangerouslySetInnerHTML={{ __html: story.article }} />
+              </details>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      {/* AI Music Section */}
+      <section style={{ width: '100%', maxWidth: 900, margin: '0 auto 2rem auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>AI Music Highlights</h2>
+        {aiMusic.map((music, idx) => (
+          <article key={idx} style={{
+            background: '#fff',
+            borderRadius: 16,
+            boxShadow: '0 2px 16px #18191a22',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: '24px',
+            gap: '2rem',
+            border: '1.5px solid #e0d6f7',
+          }}>
+            <div style={{ minWidth: 180, maxWidth: 220 }}>
+              <Image src={music.image} alt={music.title} width={220} height={120} style={{ borderRadius: 12, objectFit: 'cover', width: '100%', height: 'auto' }} />
+            </div>
+            <div style={{ flex: 1 }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>{music.title}</h3>
+              <p style={{ color: '#888', fontSize: '1.05rem', marginBottom: 8 }}>By {music.artist}</p>
+              <p style={{ color: '#444', fontSize: '1.08rem', marginBottom: 8 }}>{music.summary}</p>
+              <details>
+                <summary style={{ color: '#7b2ff2', fontWeight: 600, textDecoration: 'underline', fontSize: '1.08rem', cursor: 'pointer' }}>Read full article</summary>
+                <div style={{ marginTop: 12 }} dangerouslySetInnerHTML={{ __html: music.article }} />
+              </details>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      {/* AI Art Section */}
+      <section style={{ width: '100%', maxWidth: 900, margin: '0 auto 2rem auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>AI Art Highlights</h2>
+        {aiArt.map((art, idx) => (
+          <article key={idx} style={{
+            background: '#fff',
+            borderRadius: 16,
+            boxShadow: '0 2px 16px #18191a22',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: '24px',
+            gap: '2rem',
+            border: '1.5px solid #e0d6f7',
+          }}>
+            <div style={{ minWidth: 180, maxWidth: 220 }}>
+              <Image src={art.image} alt={art.title} width={220} height={120} style={{ borderRadius: 12, objectFit: 'cover', width: '100%', height: 'auto' }} />
+            </div>
+            <div style={{ flex: 1 }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>{art.title}</h3>
+              <p style={{ color: '#888', fontSize: '1.05rem', marginBottom: 8 }}>By {art.artist}</p>
+              <p style={{ color: '#444', fontSize: '1.08rem', marginBottom: 8 }}>{art.summary}</p>
+              <details>
+                <summary style={{ color: '#7b2ff2', fontWeight: 600, textDecoration: 'underline', fontSize: '1.08rem', cursor: 'pointer' }}>Read full article</summary>
+                <div style={{ marginTop: 12 }} dangerouslySetInnerHTML={{ __html: art.article }} />
+              </details>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      {/* AI Fun & Entertainment Section */}
+      <section style={{ width: '100%', maxWidth: 900, margin: '0 auto 2rem auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>AI Fun & Entertainment</h2>
+        {aiFun.map((fun, idx) => (
+          <article key={idx} style={{
+            background: '#fff',
+            borderRadius: 16,
+            boxShadow: '0 2px 16px #18191a22',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: '24px',
+            gap: '2rem',
+            border: '1.5px solid #e0d6f7',
+          }}>
+            <div style={{ minWidth: 180, maxWidth: 220 }}>
+              <Image src={fun.image} alt={fun.title} width={220} height={120} style={{ borderRadius: 12, objectFit: 'cover', width: '100%', height: 'auto' }} />
+            </div>
+            <div style={{ flex: 1 }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#2a4365', marginBottom: 8 }}>{fun.title}</h3>
+              <p style={{ color: '#888', fontSize: '1.05rem', marginBottom: 8 }}>By {fun.performer}</p>
+              <p style={{ color: '#444', fontSize: '1.08rem', marginBottom: 8 }}>{fun.summary}</p>
+              <details>
+                <summary style={{ color: '#7b2ff2', fontWeight: 600, textDecoration: 'underline', fontSize: '1.08rem', cursor: 'pointer' }}>Read full article</summary>
+                <div style={{ marginTop: 12 }} dangerouslySetInnerHTML={{ __html: fun.article }} />
               </details>
             </div>
           </article>

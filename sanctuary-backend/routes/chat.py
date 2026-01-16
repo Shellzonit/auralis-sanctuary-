@@ -16,7 +16,6 @@ class ChatRequest(BaseModel):
 
 @router.post("/chat/{bot_name}")
 async def chat_with_bot(bot_name: str, msg: ChatRequest):
-    # --- Store user message in PostgreSQL ---
     conn = get_connection()
     cur = conn.cursor()
     table_map = {
@@ -34,11 +33,11 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
         cur.close()
         conn.close()
         raise HTTPException(status_code=404, detail="Bot not found")
+
     cur.execute(f"INSERT INTO {table} (author, text) VALUES (%s, %s) RETURNING id, timestamp", (msg.author, msg.text))
     row = cur.fetchone()
     conn.commit()
 
-    # --- Store user message in Supabase ---
     try:
         requests.post(
             os.getenv("SUPABASE_CHAT_INSERT_URL"),
@@ -47,8 +46,10 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
     except Exception:
         pass
 
-    # --- Smart reply logic ---
     reply = None
+    bot_name_title = bot_name.title()
+    user_text = msg.text.lower()
+
     if bot_name.lower() == "anna":
         anna_name = "Anna"
         groq_key = os.getenv("GROQ_API_KEY")
@@ -77,135 +78,88 @@ async def chat_with_bot(bot_name: str, msg: ChatRequest):
             )
         except Exception:
             pass
-    else:
-        # ...existing logic for other bots...
-        user_text = msg.text.lower()
-        bot_name_title = bot_name.title()
-        bot_avatar = None
-        if bot_name.lower() == "silver":
-            topic = None
-            if any(word in user_text for word in ["health", "hydrate", "walk", "doctor"]):
-                topic = "health"
-            elif any(word in user_text for word in ["wellness", "meditation", "relax", "stretch"]):
-                topic = "wellness"
-            elif any(word in user_text for word in ["community", "center", "friends", "activities"]):
-                topic = "community"
-            elif any(word in user_text for word in ["resource", "support", "help"]):
-                topic = "resources"
-            if topic:
-                cur.execute(f"SELECT text FROM seniorbot_chat WHERE topic = %s ORDER BY RANDOM() LIMIT 1", (topic,))
-                bot_reply = cur.fetchone()
-                if bot_reply:
-                    reply = bot_reply[0]
-            if not reply:
-                cur.execute(f"SELECT text FROM seniorbot_chat ORDER BY RANDOM() LIMIT 1")
-                bot_reply = cur.fetchone()
-                if bot_reply:
-                    reply = bot_reply[0]
-            if not reply:
-                reply = "Hi, I'm Silver! How can I help you today?"
-        elif bot_name.lower() == "mrnanny":
-            print("[MrNanny Debug] Handling Mr Nanny bot logic.")
-            # Custom logic for Mr Nanny
-            # You can expand this logic as needed for more advanced responses
-            cur.execute(f"SELECT text FROM {table} WHERE author = %s ORDER BY timestamp DESC LIMIT 1", (bot_name_title,))
+    elif bot_name.lower() == "silver":
+        topic = None
+        if any(word in user_text for word in ["health", "hydrate", "walk", "doctor"]):
+            topic = "health"
+        elif any(word in user_text for word in ["wellness", "meditation", "relax", "stretch"]):
+            topic = "wellness"
+        elif any(word in user_text for word in ["community", "center", "friends", "activities"]):
+            topic = "community"
+        elif any(word in user_text for word in ["resource", "support", "help"]):
+            topic = "resources"
+        if topic:
+            cur.execute(f"SELECT text FROM seniorbot_chat WHERE topic = %s ORDER BY RANDOM() LIMIT 1", (topic,))
             bot_reply = cur.fetchone()
             if bot_reply:
                 reply = bot_reply[0]
-                print(f"[MrNanny Debug] Found previous reply: {reply}")
-            else:
-                reply = "Hi, I'm Mr. Job Nanny! I'm here to help you with your resume and job search. Ask me anything about resumes, job applications, or interview tips!"
-                print("[MrNanny Debug] Using default reply.")
-        elif bot_name.lower() == "relocationbot":
-            import re
-            match = re.search(r'(?:about|in) ([a-zA-Z ]+)', user_text)
-            if match:
-                city_query = match.group(1).strip()
-                api_url = f"http://localhost:8000/cityinfo/{city_query.replace(' ', '-').lower()}"
-                try:
-                    resp = requests.get(api_url)
-                    if resp.status_code == 200:
-                        city_data = resp.json()
-                        reply = city_data.get("summary") or f"Here's some info about {city_query}."
-                    else:
-                        reply = f"Sorry, I couldn't find info for {city_query}."
-                except Exception:
-                    reply = f"Sorry, there was a problem fetching info for {city_query}."
-            if not reply:
-                cur.execute(f"SELECT text FROM {table} WHERE author = %s ORDER BY timestamp DESC LIMIT 1", (bot_name_title,))
-                bot_reply = cur.fetchone()
-                reply = bot_reply[0] if bot_reply else f"Hi, I'm {bot_name_title}! How can I help you?"
+        if not reply:
+            cur.execute(f"SELECT text FROM seniorbot_chat ORDER BY RANDOM() LIMIT 1")
+            bot_reply = cur.fetchone()
+            if bot_reply:
+                reply = bot_reply[0]
+        if not reply:
+            reply = "Hi, I'm Silver! How can I help you today?"
+    elif bot_name.lower() == "mrnanny":
+        print("[MrNanny Debug] Handling Mr Nanny bot logic.")
+        cur.execute(f"SELECT text FROM {table} WHERE author = %s ORDER BY timestamp DESC LIMIT 1", (bot_name_title,))
+        bot_reply = cur.fetchone()
+        if bot_reply:
+            reply = bot_reply[0]
+            print(f"[MrNanny Debug] Found previous reply: {reply}")
         else:
+            reply = "Hi, I'm Mr. Job Nanny! I'm here to help you with your resume and job search. Ask me anything about resumes, job applications, or interview tips!"
+            print("[MrNanny Debug] Using default reply.")
+    elif bot_name.lower() == "william":
+        print("[WilliamBot Debug] Handling William (ArtistBot) logic.")
+        cur.execute(f"SELECT text FROM {table} WHERE author = %s ORDER BY timestamp DESC LIMIT 1", (bot_name_title,))
+        bot_reply = cur.fetchone()
+        if bot_reply:
+            reply = bot_reply[0]
+            print(f"[WilliamBot Debug] Found previous reply: {reply}")
+        else:
+            reply = "Hi, I'm William, your ArtistBot! I can help you with art tips, creative inspiration, and portfolio advice. Ask me anything about art!"
+            print("[WilliamBot Debug] Using default reply.")
+    elif bot_name.lower() == "relocationbot":
+        import re
+        match = re.search(r'(?:about|in) ([a-zA-Z ]+)', user_text)
+        if match:
+            city_query = match.group(1).strip()
+            api_url = f"http://localhost:8000/cityinfo/{city_query.replace(' ', '-').lower()}"
+            try:
+                resp = requests.get(api_url)
+                if resp.status_code == 200:
+                    city_data = resp.json()
+                    reply = city_data.get("summary") or f"Here's some info about {city_query}."
+                else:
+                    reply = f"Sorry, I couldn't find info for {city_query}."
+            except Exception:
+                reply = f"Sorry, there was a problem fetching info for {city_query}."
+        if not reply:
             cur.execute(f"SELECT text FROM {table} WHERE author = %s ORDER BY timestamp DESC LIMIT 1", (bot_name_title,))
             bot_reply = cur.fetchone()
-            if bot_reply:
-                reply = bot_reply[0]
-            else:
-                reply = f"Hi, I'm {bot_name_title}! How can I help you?"
+            reply = bot_reply[0] if bot_reply else f"Hi, I'm {bot_name_title}! How can I help you?"
+    else:
+        cur.execute(f"SELECT text FROM {table} WHERE author = %s ORDER BY timestamp DESC LIMIT 1", (bot_name_title,))
+        bot_reply = cur.fetchone()
+        if bot_reply:
+            reply = bot_reply[0]
+        else:
+            reply = f"Hi, I'm {bot_name_title}! How can I help you?"
 
-        # Store bot reply in PostgreSQL and Supabase with avatar=None
-        cur.execute(
-            f"INSERT INTO {table} (author, text) VALUES (%s, %s)",
-            (bot_name_title, reply)
+    cur.execute(
+        f"INSERT INTO {table} (author, text) VALUES (%s, %s)",
+        (bot_name_title, reply)
+    )
+    conn.commit()
+    try:
+        requests.post(
+            os.getenv("SUPABASE_CHAT_INSERT_URL"),
+            json={"author": bot_name_title, "text": reply}
         )
-        conn.commit()
-        try:
-            requests.post(
-                os.getenv("SUPABASE_CHAT_INSERT_URL"),
-                json={"author": bot_name_title, "text": reply}
-            )
-        except Exception:
-            pass
+    except Exception:
+        pass
 
     cur.close()
     conn.close()
     return {"user_message_id": row[0], "bot_reply": reply}
-
-@router.get("/chat/history/{bot_name}")
-async def get_chat_history(bot_name: str, limit: int = 50):
-    conn = get_connection()
-    cur = conn.cursor()
-    table_map = {
-        "anna": "chat_messages",
-        "donna": "entertainmentbot_chat",
-        "shaunia": "friendbot_chat",
-        "mrnanny": "mrnanny_chat",
-        "relocationbot": "relocationbot_chat",
-        "silver": "seniorbot_chat",
-        "william": "artistbot_chat",
-        "entertainmentbot": "entertainmentbot_chat"
-    }
-    table = table_map.get(bot_name.lower())
-    if not table:
-        cur.close()
-        conn.close()
-        raise HTTPException(status_code=404, detail="Bot not found")
-    cur.execute(f"SELECT author, text, timestamp FROM {table} ORDER BY timestamp ASC LIMIT %s", (limit,))
-    rows = cur.fetchall()
-    cur.close()
-    conn.close()
-    history = [
-        {"author": row[0], "text": row[1], "timestamp": row[2]} for row in rows
-    ]
-    return {"history": history}
-
-# If this file is included as a router, add this to your main FastAPI app (usually main.py):
-#
-# app = FastAPI()
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["http://localhost:5173"],  # Vite dev server
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
-# app.include_router(router)
-#
-# If you want to allow all origins (not recommended for production):
-#     allow_origins=["*"]
-#
-# If you are running this file directly as the FastAPI app, you can add:
-#
-# if __name__ == "__main__":
-#     import uvicorn
-#     uvicorn.run("chat:app", host="0.0.0.0", port=8000, reload=True)
