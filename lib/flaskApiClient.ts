@@ -2,7 +2,7 @@
 // Utility functions to interact with your Flask backend (chat rooms & jobs)
 
 const BACKEND_URL = 'https://www.aiwilding.com/api'; // Change to your backend URL if different
-const API_KEY = 'MyUltraSecretKey2025!'; // Store securely in env for production
+const API_KEY = process.env.NEXT_PUBLIC_FLASK_API_KEY || ''; // Store securely in env for production
 
 export async function createChatRoom(name: string) {
   const res = await fetch(`${BACKEND_URL}/rooms`, {

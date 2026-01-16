@@ -15,7 +15,7 @@ export default function ChatPage() {
   useEffect(() => {
     async function fetchHistory() {
       try {
-        const res = await fetch(`http://localhost:8000/chat/history/${bot}`);
+        const res = await fetch(`http://localhost:5000/chat/history/${bot}`);
         const data = await res.json();
         // Map backend format to frontend format
         setMessages(
