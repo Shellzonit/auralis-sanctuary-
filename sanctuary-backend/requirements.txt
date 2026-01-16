@@ -1,2 +1,9 @@
 flask
 flask-cors
+fastapi
+uvicorn
+psycopg2
+python-dotenv
+pydantic
+requests
+groq
