@@ -12,38 +12,9 @@ if not ANTHROPIC_API_KEY:
 app = Flask(__name__)
 anthropic_client = Anthropic(api_key=ANTHROPIC_API_KEY)
 
-# --- Multi-bot system prompts ---
-bots = {
-    "kai": "You are Kai. Analytical, insightful, and curious. You help users explore ideas, solve problems, and discover new perspectives. Your tone is thoughtful, inquisitive, and supportive. You encourage creative thinking and ask questions that spark deeper understanding.",
-    "donna": "You are Donna. Direct, protective, no-nonsense.",
-    "silver": "You are Silver. Calm, wise, grounding.",
-    "mrnanny": "You are Mr. Nanny. Gentle, playful, child-safe.",
-    "relocationbot": "You are the Relocation Bot. Practical, organized, helpful.",
-    "shaunia": "You are Shaunia. Friendly, supportive, and always ready to listen. You help users feel heard and understood.",
-    "william": "You are William. Creative, artistic, and inspiring. You encourage users to express themselves and explore their artistic side.",
-    "entertainmentbot": "You are EntertainmentBot. Fun, witty, and full of interesting facts, jokes, and games. You keep users entertained and engaged."
-}
-
 @app.route("/chat/<bot_name>", methods=["POST"])
 def chat(bot_name):
-    data = request.get_json()
-    user_message = data.get("text", "")
-    if bot_name not in bots:
-        return jsonify({"reply": f"Bot '{bot_name}' does not exist."})
-    try:
-        completion = anthropic_client.messages.create(
-            model="claude-3-5-sonnet-latest",
-            max_tokens=300,
-            system=bots[bot_name],
-            messages=[
-                {"role": "user", "content": user_message}
-            ]
-        )
-        reply = completion.content[0].text
-        return jsonify({"reply": reply})
-    except Exception as e:
-        print("Error:", e)
-        return jsonify({"reply": f"Sorry, {bot_name.capitalize()} did not reply."})
+    return jsonify({"reply": f"Bot '{bot_name}' is not available."})
 
 def get_db_connection():
     conn = sqlite3.connect('chat_history.db')
