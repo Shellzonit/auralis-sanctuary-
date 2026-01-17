@@ -2,8 +2,71 @@
 import React, { useEffect, useState } from "react";
 
 const MAJOR_CITIES = [
-  "Dallas", "Houston", "Austin", "San Antonio", "Frisco", "Irving", "Cedar Park", "Laredo"
+  "San Francisco Bay Area",
+  "New York City",
+  "Austin, Texas",
+  "Seattle",
+  "Boston",
+  "Los Angeles",
+  "Chicago",
+  "Dallas–Fort Worth"
 ];
+
+const CITY_JOBS: { [city: string]: string[] } = {
+  "San Francisco Bay Area": [
+    "Machine Learning Engineer",
+    "AI Research Scientist",
+    "LLM / NLP Engineer",
+    "Robotics Engineer",
+    "Data Scientist (AI/ML)",
+    "AI Product Manager",
+    "Computer Vision Engineer"
+  ],
+  "New York City": [
+    "Quantitative AI Researcher",
+    "NLP Engineer",
+    "AI Governance Analyst",
+    "ML Ops Engineer",
+    "AI‑powered Marketing Analyst"
+  ],
+  "Austin, Texas": [
+    "AI Engineer (Apple, Tesla, Dell)",
+    "Applied Scientist",
+    "AI Infrastructure Engineer",
+    "Data Annotation Specialist",
+    "IT Automation (AI‑powered)"
+  ],
+  "Seattle": [
+    "Generative AI Engineer",
+    "Cloud AI Architect",
+    "Reinforcement Learning Engineer",
+    "AI Security Engineer"
+  ],
+  "Boston": [
+    "AI in Drug Discovery",
+    "Bioinformatics ML Engineer",
+    "Robotics Perception Engineer",
+    "AI Medical Imaging Scientist"
+  ],
+  "Los Angeles": [
+    "AI Video/Audio Model Engineer",
+    "Generative Media Engineer",
+    "Autonomous Vehicle AI Engineer",
+    "AI Content Analyst"
+  ],
+  "Chicago": [
+    "AI Supply Chain Analyst",
+    "Predictive Modeling Engineer",
+    "Healthcare AI Analyst",
+    "ML Engineer (Finance)"
+  ],
+  "Dallas–Fort Worth": [
+    "AI Trainer (Medical, Legal, General)",
+    "Data Scientist",
+    "AI Cybersecurity Analyst",
+    "ML Engineer"
+  ]
+};
 
 function NewAIJobsPage() {
   const [jobs, setJobs] = useState<any[]>([]);
@@ -23,19 +86,33 @@ function NewAIJobsPage() {
     // eslint-disable-next-line
   }, [search, location]);
 
-  // Group jobs by major cities
+  // Group jobs by major cities (Texas only)
   const jobsByCity: { [city: string]: any[] } = {};
-  MAJOR_CITIES.forEach(city => {
+  ["Dallas", "Houston", "Austin", "San Antonio", "Frisco", "Irving", "Cedar Park", "Laredo"].forEach(city => {
     jobsByCity[city] = jobs.filter(job => job.location && job.location.toLowerCase().includes(city.toLowerCase()));
   });
 
   return (
     <main style={{ minHeight: '100vh', background: '#f5f3fd', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem' }}>
-      <section style={{ width: '100%', maxWidth: 700, margin: '3rem auto 2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 24, boxShadow: '0 4px 32px #18191a22', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-        <h1 style={{ color: 'rgba(255,255,255,0.97)', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.18, paddingBottom: '0.18em' }}>AI Jobs & Careers</h1>
-        <div style={{ color: '#ece9fc', fontSize: '1.15rem', fontWeight: 500, marginTop: 10, textAlign: 'center', maxWidth: 500, textShadow: '0 1px 6px #18191a55' }}>
-          Discover emerging jobs and careers created by AI and automation. Find your next opportunity below.
+      <section style={{ width: '100%', maxWidth: 900, margin: '3rem auto 2rem auto', background: '#fff', borderRadius: 24, boxShadow: '0 4px 32px #18191a22', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <h1 style={{ color: '#7b2ff2', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'Playfair Display, Georgia, serif', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', margin: 0, width: '100%', position: 'relative', zIndex: 2, textShadow: '0 2px 8px #8882', WebkitTextStroke: '1.5px #bba6f7', filter: 'none', background: 'linear-gradient(180deg, #fff 60%, #e0d6f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.18, paddingBottom: '0.18em' }}>AI Jobs Hiring Now — Major U.S. Cities</h1>
+        <div style={{ color: '#18191a', fontSize: '1.15rem', fontWeight: 500, marginTop: 10, textAlign: 'center', maxWidth: 700, textShadow: '0 1px 6px #18191a22' }}>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {MAJOR_CITIES.map(city => (
+              <li key={city} style={{ marginBottom: 24 }}>
+                <strong style={{ color: '#7b2ff2', fontSize: '1.18rem' }}>{city}</strong>
+                <ul style={{ marginTop: 8, marginLeft: 0, paddingLeft: 0 }}>
+                  {CITY_JOBS[city].map(job => (
+                    <li key={job} style={{ color: '#18191a', fontSize: '1.08rem', marginBottom: 4 }}>{job}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
         </div>
+      </section>
+
+      <section style={{ width: '100%', maxWidth: 700, margin: '2rem auto', background: 'linear-gradient(90deg, #18191a 0%, #18191a 60%, #7b2ff2 100%)', borderRadius: 24, boxShadow: '0 4px 32px #18191a22', padding: '2rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
         <div style={{ marginTop: 24, display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
           <input
             type="text"
@@ -56,7 +133,7 @@ function NewAIJobsPage() {
 
       <section style={{ background: '#fff', borderRadius: 16, padding: '32px 40px', maxWidth: 1100, margin: '0 auto 48px auto', boxShadow: '0 2px 16px #18191a22', color: '#18191a', textAlign: 'center', fontSize: '1.12rem', lineHeight: 1.7, border: '1.5px solid #e0d6f7' }}>
         <h2 style={{ color: '#7b2ff2', fontSize: '1.5rem', marginBottom: 24, textAlign: 'left' }}>AI Jobs by Major Texas Cities</h2>
-        {MAJOR_CITIES.map(city => (
+        {["Dallas", "Houston", "Austin", "San Antonio", "Frisco", "Irving", "Cedar Park", "Laredo"].map(city => (
           jobsByCity[city].length > 0 && (
             <div key={city} style={{ marginBottom: 40 }}>
               <h3 style={{ color: '#18191a', fontSize: '1.18rem', marginBottom: 12, textAlign: 'left', borderBottom: '1px solid #e0d6f7', paddingBottom: 4 }}>{city}</h3>
