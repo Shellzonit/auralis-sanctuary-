@@ -2,3 +2,16 @@ sanctuary.db
 __pycache__/
 *.pyc
 .env
+.env.*
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+# OS files
+.DS_Store
+Thumbs.db
+# Test and log files
+*.log
+*.test
+*.tmp
